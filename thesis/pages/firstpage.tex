@@ -1,0 +1,42 @@
+%%% First page
+%%%%%%% Wording: ⏳
+%%%%%%% Styling: ⏳
+%%%%%%% References: ⏳
+%%%%% Grammar: ⏳
+%%% --------------------------------------------------------------
+\newpage
+\pagestyle{plain}
+
+%%% pagination start
+\setcounter{page}{6}
+
+%%% edges of the page
+\newgeometry{textwidth=100mm, textheight=247mm, left=40.4mm, right=75mm}
+
+%%% background
+\tikz[remember picture,overlay]
+\node[opacity=1,inner sep=0pt] at (current page.center)
+    {\includegraphics[width=\paperwidth,height=\paperheight]{\FIGDIR/side-banner}};
+
+\begin{center}
+
+    %%% logo
+    \centerline{\mbox{\includegraphics[width=39.6mm]{\FIGDIR/uu-icon}}}
+
+    \vfill
+
+    %%% thesis name in english
+    \Large\textbf{Cashless festival data analysis and analytical dashboard development}
+
+    \vspace{5mm}
+
+    %%% thesis name in czech
+    \Large{Analýza dat bezhotovostního festivalu a vývoj analytického dashboardu}
+
+    \vfill
+
+    %%% logo
+    \centerline{\mbox{\includegraphics[width=45mm]{\FIGDIR/uu-logo}}}
+
+\end{center}
+\restoregeometry

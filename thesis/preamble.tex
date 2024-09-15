@@ -1,0 +1,107 @@
+%%%%% Setting the input encoding of the files: UTF-8
+%%%%% ---------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+
+%%%%% Setting the language of the document
+%%%%% ---------------------------------------------------------------
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{indentfirst}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.75\baselineskip}
+
+%%%%% Setting the color boxes/frames
+%%%%% ---------------------------------------------------------------
+\usepackage{tcolorbox}
+% gray box preset
+\newtcolorbox{gray-box}[1]{colback=gray!5!white,colframe=gray!50!black,title=#1}
+
+%%%%% Setting the colors and syntax of the code
+%%%%% ---------------------------------------------------------------
+% TODO: Define the colors
+\usepackage{fvextra}
+\usepackage{xcolor}
+\definecolor{codekeyword}{rgb}{0.0,0.3,0.7}
+\definecolor{codestring}{rgb}{0.4,0.4,0.8}
+\definecolor{codecomment}{rgb}{0.2,0.2,0.2}
+\definecolor{codejsdoc}{rgb}{0.4,0.4,0.4}
+\definecolor{codelinenum}{rgb}{0.8,0.8,0.8}
+\definecolor{lightyellow}{rgb}{255, 255, 224}
+
+% minted package setup
+\usepackage[outputdir=dist]{minted}
+\setminted{
+    frame=none,
+    breaklines=true,
+    fontsize=\footnotesize,
+    tabsize=2,
+    linenos,
+    numbersep=5pt,
+    xleftmargin=0pt,
+    baselinestretch=1.2,
+    style=friendly,
+%   TODO: highlighting not working
+    highlightcolor=\color{lightyellow},
+    keywordstyle=\color{codekeyword},
+    stringstyle=\color{codestring},
+    commentstyle=\color{codecomment}\itshape,
+    morecomment=[s][\color{codejsdoc}]{/**}{*/},
+    numberstyle=\footnotesize\color{codelinenum}
+}
+
+% listings package setup
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    frame=single,
+    breaklines=true,
+    showstringspaces=false,
+    keywordstyle=\bfseries,
+    commentstyle=\itshape\color{gray},
+    captionpos=t
+}
+
+% wrap long URLs
+\PassOptionsToPackage{hyphens}{url}
+
+%%%%% Additional useful packages
+%%%%% ----------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage[labelfont=bf]{caption}
+\newcommand{\sourceDefaultLabel}{Own creation}
+\newcommand{\sourceLabel}{Source:}
+\newcommand{\source}[1][\sourceDefaultLabel]{\caption*{\hfill\footnotesize{\sourceLabel~\textit{#1}}}}
+\usepackage{psfrag}
+\usepackage{fancyvrb}
+\usepackage[numbers]{natbib}
+\usepackage{usebib}
+\usepackage{tikz}
+\usepackage{bbding}
+\usepackage{icomma}
+\usepackage{dcolumn}
+\usepackage{booktabs}
+\usepackage{paralist}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{epigraph}
+\newcommand\foreign[1]{\emph{#1}}
+\usepackage{pdfpages}
+\usepackage{nameref}
+% will create a reference to a chapter, section, ... including the number and in bold
+\renewcommand{\fullref}[1]{\textbf{\nameref{#1}}}
+
+%%%%% Setting the acronyms
+%%%%% ---------------------------------------------------------------
+\usepackage{acro}
+\DeclareAcronym{api}{short=API,     long=Application Programming Interface }
+
+%%%%% Setting the headings
+%%%%% ------------------------------------------------------------
+\usepackage{titlesec}
+%\titlespacing*{\chapter}{0pt}{-10mm}{5mm}
+\titleformat{\chapter}{\normalfont\huge\bfseries}{\thechapter}{1em}{}
