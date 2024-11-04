@@ -1,3 +1,14 @@
 # ignore all files inside /out directory except for the pdf file
 thesis/dist/*
 !thesis/dist/*.pdf
+
+# ignore unnecessary files
+.idea/
+cache/
+cached-queries/
+
+# database source and exports
+db/
+
+# db queries
+app-demo/db_queries.py
