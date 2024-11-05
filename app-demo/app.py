@@ -1,22 +1,19 @@
 from __future__ import annotations
 
 import asyncio
-import datetime
-from uuid import uuid4
 
 import dash as dash
 import dash_mantine_components as dmc
 import dateutil as dateutil
-import diskcache
 import pandas as pd
 import plotly.graph_objects as go
 from dash import dcc, html
 from dash_iconify import DashIconify
 
+from chart_utils import SankeyDiagram
+from dash_utils import background_callback_manager, create_cache_key, external_script, index_string
 from db_queries import query_manager
 from db_utils import format_number, format_number_short, format_price
-from chart_utils import SankeyDiagram, SankeyFlow, SankeyNode, get_color
-from dash_utils import index_string, background_callback_manager, launch_uid, external_script
 
 # set the React version
 dash._dash_renderer._set_react_version("18.2.0")
@@ -29,9 +26,14 @@ days = {
 }
 
 
+def fast_preview_playground():
+	return []
+
+
 # ---- Dash Application ----
 class MainApplication:
 	def __init__(self):
+		self._callbacks_registered = False
 
 		self.__app = dash.Dash(
 			name=__name__,
@@ -52,7 +54,7 @@ class MainApplication:
 		# Register callbacks
 		self._register_callbacks()
 
-	def register_callback(self, output, inputs, prevent_initial_call=False, background=False):
+	def register_callback(self, output, inputs, prevent_initial_call=False, background=False, *args, **kwargs):
 		"""
 		Decorator for Dash callbacks that handles async operations and error handling.
 
@@ -64,6 +66,8 @@ class MainApplication:
 		"""
 
 		def decorator(func):
+			# print(f"Registering callback for function {func.__name__}, Output: {output}")
+
 			def async_callback_wrapper(_self, *args, **kwargs):
 				"""Async callback wrapper implementation"""
 
@@ -74,7 +78,6 @@ class MainApplication:
 
 						# Call the original function with parsed arguments
 						return await func(_self, *parsed_args, **kwargs)
-
 					except Exception as e:
 						print(f"Error in callback {func.__name__}: {str(e)}")
 						raise dash.exceptions.PreventUpdate
@@ -100,15 +103,22 @@ class MainApplication:
 					raise dash.exceptions.PreventUpdate
 
 			# Register the callback with Dash
-			wrapped = self.__app.callback(
-				output=output,
-				inputs=inputs,
-				prevent_initial_call=prevent_initial_call,
-				background=background,
-				manager=background_callback_manager
-			)(async_callback_wrapper if background else sync_callback_wrapper)
-
-			return wrapped
+			if background:
+				return self.__app.callback(
+					output=output,
+					inputs=inputs,
+					background=True,
+					prevent_initial_call=prevent_initial_call,
+					manager=create_cache_key(func.__name__),
+					*args, **kwargs
+				)(async_callback_wrapper)
+			else:
+				return self.__app.callback(
+					output=output,
+					inputs=inputs,
+					prevent_initial_call=prevent_initial_call,
+					*args, **kwargs
+				)(sync_callback_wrapper)
 
 		return decorator
 
@@ -134,10 +144,88 @@ class MainApplication:
 									),
 								]
 							),
+							# FIXME
+							fast_preview_playground(),
 							# Main content
 							html.Main(
 								className="grid grid-cols-1 gap-4",
 								children=[
+									# -- TODO: Customer insights section
+									html.Section(
+										className="flex flex-col gap-3 bg-white rounded-lg border border-zinc-200",
+										children=[
+											html.Div(
+												className="p-4",
+												children=[
+													html.Div(
+														className="flex items-center gap-4",
+														children=[
+															dmc.ThemeIcon(
+																size="xl",
+																radius="xl",
+																c="indigo",
+																variant="light",
+																children=DashIconify(icon="carbon:customer", width=25)
+															),
+															html.Div(
+																children=[
+																	dmc.Title(
+																		size="1.25rem",
+																		children='Customer insights'
+																	),
+																	dmc.Text(
+																		"TODO: detailed description here",
+																		c="dimmed",
+																	),
+																]
+															)
+														],
+													),
+												]
+											),
+											# Overview
+											dcc.Loading(
+												type="dot",
+												target_components={ "customer-insights-section": "children" },
+												children=[
+													dmc.Grid(
+														id="customer-insights-section",
+														gutter="md",
+														p="sm",
+														grow=False,
+														children=[]
+													)
+												],
+											),
+											# Content tabs
+											dmc.Tabs(
+												id="customer-insights-tabs",
+												value="todo",
+												children=[
+													html.Div(
+														className="px-3",
+														children=[
+															dmc.TabsList(
+																children=[
+																	dmc.TabsTab(
+																		"TODO",
+																		# leftSection=DashIconify(icon="tabler:chart-line"),
+																		value="todo",
+																	),
+																]
+															),
+														]
+													),
+													# tab
+													dmc.TabsPanel(
+														value="todo",
+														children=[]
+													),
+												],
+											)
+										],
+									),
+									# -- Main overview section
 									html.Section(
 										className="flex flex-col gap-3 bg-white rounded-lg border border-zinc-200",
 										children=[
@@ -170,13 +258,13 @@ class MainApplication:
 													),
 												]
 											),
-											# Main overview section
+											# Overview
 											dcc.Loading(
 												type="dot",
-												target_components={ "orders-insights-section": "children" },
+												target_components={ "order-insights-section": "children" },
 												children=[
 													dmc.Grid(
-														id="orders-insights-section",
+														id="order-insights-section",
 														gutter="md",
 														p="sm",
 														grow=False,
@@ -186,7 +274,7 @@ class MainApplication:
 											),
 											# Content tabs
 											dmc.Tabs(
-												id="tabs",
+												id="order-insights-section-tabs",
 												value="time-series",
 												children=[
 													html.Div(
@@ -281,7 +369,6 @@ class MainApplication:
 											)
 										],
 									),
-
 								]
 							),
 						]
@@ -333,6 +420,10 @@ class MainApplication:
 		)
 
 	def _register_callbacks(self):
+		if self._callbacks_registered:
+			print("Callbacks already registered!")
+			return
+
 		# sync date preset with date inputs
 		@self.register_callback(
 			output=(dash.Output("filter-date-from", "value"), dash.Output("filter-date-to", "value")),
@@ -341,11 +432,118 @@ class MainApplication:
 		def sync_date_preset(preset):
 			return days[preset] if preset in days else (days['1'][0], days['3'][1])
 
+		# FIXME: update customers insights section
+		@self.register_callback(
+			background=True,
+			output=(dash.Output("customer-insights-section", "children")),
+			inputs=(
+					dash.Input("filter-date-from", "value"),
+					dash.Input("filter-date-to", "value")
+			),
+		)
+		async def update_customers_insights_section(date_from, date_to):
+			results = await self.query_manager.execute_queries(
+				query_names=[
+					"customer_base",
+				],
+				parameters={
+					"date_from": dateutil.parser.parse(date_from),
+					"date_to": dateutil.parser.parse(date_to)
+				}
+			)
+			# TODO
+			customer_base = [
+				("Regular chips", {
+					"count": 0,
+					"percent": 0,
+					"trend": [0],
+					"avg_spend": 0,
+				})
+			]
+
+			return [
+				dmc.GridCol(
+					span=6,
+					children=[
+						# TODO: customer type cards
+						dmc.Grid(
+							[
+								# card for each customer type
+								*[dmc.GridCol(
+									span=6,
+									children=[
+										dmc.Card(
+											[
+												dmc.Group(
+													[
+														dmc.Stack(
+															[
+																dmc.Text(type_name, fw=500),
+																dmc.Group(
+																	[
+																		dmc.Text(
+																			f"{data['count']:,}",
+																			size="xl",
+																			fw=700
+																		),
+																		dmc.Badge(
+																			f"{data['percent']}%",
+																			variant="outline",
+																			c="blue"
+																		)
+																	], gap="xs"
+																),
+															]
+														),
+														# Sparkline using plotly
+														dcc.Graph(
+															figure={
+																'data': [{
+																	'x': list(range(len(data['trend']))),
+																	'y': data['trend'],
+																	'mode': 'lines',
+																	'line': { 'color': '#228be6' },
+																}],
+																'layout': {
+																	'margin': { 'l': 0, 'r': 0, 't': 0, 'b': 0 },
+																	'height': 30,
+																	'width': 60,
+																	'showlegend': False,
+																	'plot_bgcolor': 'rgba(0,0,0,0)',
+																	'paper_bgcolor': 'rgba(0,0,0,0)',
+																	'xaxis': { 'visible': False },
+																	'yaxis': { 'visible': False }
+																}
+															},
+															config={ 'displayModeBar': False }
+														)
+													], justify="space-between"
+												),
+												dmc.Text(
+													f"Avg. spend: {data['avg_spend']} CZK",
+													c="dimmed",
+													size="sm"
+												)
+											], p="xs", withBorder=True
+										)
+									],
+								)
+									for type_name, data in customer_base
+								]
+							]
+						),
+					]
+				)
+			]
+
 		# FIXME: update orders insights section
 		@self.register_callback(
 			background=True,
-			output=(dash.Output("orders-insights-section", "children")),
-			inputs=(dash.Input("filter-date-from", "value"), dash.Input("filter-date-to", "value")),
+			output=(dash.Output("order-insights-section", "children")),
+			inputs=(
+					dash.Input(component_id="filter-date-from", component_property="value"),
+					dash.Input(component_id="filter-date-to", component_property="value"),
+			),
 		)
 		async def update_orders_insights_section(date_from, date_to):
 			results = await self.query_manager.execute_queries(
@@ -734,11 +932,11 @@ class MainApplication:
 			inputs=(
 					dash.Input("filter-date-from", "value"),
 					dash.Input("filter-date-to", "value"),
-					dash.State("tabs", "value"),
+					dash.State("order-insights-section-tabs", "value"),
 					dash.Input("include-vip-toggle", "checked")
 			),
 		)
-		async def update_time_series_section(date_from, date_to, current_tab, include_vip):
+		async def update_time_series_section(date_from, date_to, tab, include_vip):
 			results = await self.query_manager.execute_queries(
 				query_names=[
 					"event_entry_timeline",
@@ -795,10 +993,10 @@ class MainApplication:
 			inputs=(
 					dash.Input("filter-date-from", "value"),
 					dash.Input("filter-date-to", "value"),
-					dash.State("tabs", "value"),
+					dash.State("order-insights-section-tabs", "value"),
 			),
 		)
-		async def update_cash_flow_section(date_from, date_to, current_tab):
+		async def update_cash_flow_section(date_from, date_to, tab):
 			results = await self.query_manager.execute_queries(
 				query_names=[
 					"sankey_diagram"
@@ -881,6 +1079,8 @@ class MainApplication:
 					]
 				)
 			]
+
+		self._callbacks_registered = True
 
 	@property
 	def app(self):
