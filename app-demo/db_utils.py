@@ -187,7 +187,12 @@ class QueryManager:
 			if query_def.default_data == "FSCacheDefault":
 				try:
 					print(f"⚡ Returning cached data for query {query_name}")
-					return pd.read_csv(f"./cached-queries/{query_key}.csv")
+					# read CSV from cache
+					csv = pd.read_csv(f"./cached-queries/{query_key}.csv")
+					# replace NaN with None
+					csv = csv.where(pd.notnull(csv), None)
+					# return the cached data as a DataFrame
+					return csv
 				except Exception as e:
 					pass
 			else:
