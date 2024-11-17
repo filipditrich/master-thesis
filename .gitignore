@@ -11,4 +11,4 @@ cached-queries/
 db/
 
 # db queries
-app-demo/db_queries.py
+app-demo/queries/
