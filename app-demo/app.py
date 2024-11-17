@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 
 import dash as dash
 import dash_mantine_components as dmc
@@ -13,7 +14,7 @@ from dash_iconify import DashIconify
 from chart_utils import SankeyDiagram
 from dash_utils import background_callback_manager, create_cache_key, external_script, index_string
 from db_queries import query_manager
-from db_utils import format_number, format_number_short, format_price
+from db_utils import format_date, format_number, format_number_short, format_percent, format_price
 
 # set the React version
 dash._dash_renderer._set_react_version("18.2.0")
@@ -123,6 +124,55 @@ class MainApplication:
 		return decorator
 
 	def _create_layout(self):
+
+		# customer_insights_grouping_options = [
+		# 	# all
+		# 	# {
+		# 	# 	"group": "All",
+		# 	# 	"items": [
+		# 	# 		{ "value": "all:all", "label": "All customers" },
+		# 	# 	]
+		# 	# },
+		# 	# per type
+		# 	{
+		# 		"group": "Chip type",
+		# 		"items": [
+		# 			{ "value": "chip_type:Pass", "label": "Tickets customers" },
+		# 			{ "value": "chip_type:POS", "label": "POS customers" },
+		# 			{ "value": "chip_type:POS VIP", "label": "POS VIP customers" },
+		# 			{ "value": "chip_type:Guest", "label": "Guset customers" },
+		# 			{ "value": "chip_type:Staff", "label": "Staff customers" },
+		# 		]
+		# 	},
+		# 	# per group
+		# 	{
+		# 		"group": "Chip group",
+		# 		"items": [
+		# 			{ "value": "chip_group:Onsite", "label": "Onsite customers" },
+		# 			{ "value": "chip_group:Online", "label": "Online customers" },
+		# 		]
+		# 	},
+		# 	# per bank
+		# 	{
+		# 		"group": "Bank",
+		# 		"items": [
+		# 			{ "value": "bank:5500", "label": "Raiffeisenbank" },
+		# 			{ "value": "bank:3030", "label": "Air Bank" },
+		# 			{ "value": "bank:2010", "label": "Fio banka" },
+		# 			{ "value": "bank:6210", "label": "mBank" },
+		# 			{ "value": "bank:2700", "label": "UniCredit Bank" },
+		# 			{ "value": "bank:0800", "label": "Česká spořitelna" },
+		# 			{ "value": "bank:0300", "label": "ČSOB" },
+		# 			{ "value": "bank:0100", "label": "Komerční banka" },
+		# 			{ "value": "bank:2250", "label": "Banka CREDITS" },
+		# 			{ "value": "bank:0600", "label": "MONETA Money Bank" },
+		# 			{ "value": "bank:6363", "label": "Partners Banka" },
+		# 			# TODO: more options
+		# 		]
+		# 	}
+		# 	# TODO
+		# ]
+
 		return dmc.MantineProvider(
 			html.Div(
 				className="grow",
@@ -171,7 +221,7 @@ class MainApplication:
 																children=[
 																	dmc.Title(
 																		size="1.25rem",
-																		children='Customer insights'
+																		children='Customer insights (Online vs. Onsite)'
 																	),
 																	dmc.Text(
 																		"TODO: detailed description here",
@@ -184,45 +234,88 @@ class MainApplication:
 												]
 											),
 											# Overview
-											dcc.Loading(
-												type="dot",
-												target_components={ "customer-insights-section": "children" },
+											dmc.Grid(
+												gutter="md",
+												p="sm",
+												grow=False,
 												children=[
-													dmc.Grid(
-														id="customer-insights-section",
-														gutter="md",
-														p="sm",
-														grow=False,
-														children=[]
-													)
-												],
-											),
-											# Content tabs
-											dmc.Tabs(
-												id="customer-insights-tabs",
-												value="todo",
-												children=[
-													html.Div(
-														className="px-3",
+													dmc.GridCol(
+														span=12,
 														children=[
-															dmc.TabsList(
+															dcc.Loading(
+																type="dot",
+																target_components={ "customer-insights-left-results": "children" },
 																children=[
-																	dmc.TabsTab(
-																		"TODO",
-																		# leftSection=DashIconify(icon="tabler:chart-line"),
-																		value="todo",
+																	# Content tabs
+																	dmc.Tabs(
+																		id="customer-insights-left-results",
+																		value="activity",
+																		children=[],
 																	),
-																]
+																],
 															),
+															# dmc.Card(
+															# 	withBorder=True,
+															# 	children=[
+															# 		html.Div(
+															# 			className="grid grid-cols-1 gap-3",
+															# 			children=[
+															# 				dmc.Select(
+															# 					id="customer-insights-left-grouping",
+															# 					allowDeselect=False,
+															# 					value="chip_group:Online",
+															# 					data=customer_insights_grouping_options,
+															# 				),
+															# 				# dcc.Loading(
+															# 				# 	type="dot",
+															# 				# 	target_components={ "customer-insights-left-results": "children" },
+															# 				# 	children=[
+															# 				# 		html.Div(
+															# 				# 			id="customer-insights-left-results",
+															# 				# 			children=[]
+															# 				# 		)
+															# 				# 	],
+															# 				# ),
+															# 			]
+															# 		)
+															# 	]
+															# )
 														]
 													),
-													# tab
-													dmc.TabsPanel(
-														value="todo",
-														children=[]
-													),
-												],
-											)
+													# FIXME
+													# dmc.GridCol(
+													# 	span=6,
+													# 	children=[
+													# 		dmc.Card(
+													# 			withBorder=True,
+													# 			children=[
+													# 				html.Div(
+													# 					className="grid grid-cols-1 gap-3",
+													# 					children=[
+													# 						dmc.Select(
+													# 							id="customer-insights-right-grouping",
+													# 							allowDeselect=False,
+													# 							value="chip_group:Onsite",
+													# 							data=customer_insights_grouping_options,
+													# 						),
+													# 						dcc.Loading(
+													# 							type="dot",
+													# 							target_components={ "customer-insights-right-results": "children" },
+													# 							children=[
+													# 								html.Div(
+													# 									id="customer-insights-right-results",
+													# 									children=[]
+													# 								)
+													# 							],
+													# 						),
+													# 					]
+													# 				)
+													# 			]
+													# 		)
+													# 	]
+													# )
+												]
+											),
 										],
 									),
 									# -- Main overview section
@@ -419,6 +512,399 @@ class MainApplication:
 			)
 		)
 
+	async def update_customer_insights_results(self, date_from, date_to, grouping_key, main_value, comp_value):
+		print(f"Grouping key: {grouping_key}, value: {main_value} (vs. {comp_value})")
+
+		# all_results = await self.query_manager.execute_queries(
+		# 	query_names=[
+		# 		"customer_order_stats_grouped",
+		# 		"customer_topup_stats_grouped",
+		# 		"customer_activity_stats_grouped",
+		# 		"customer_refund_stats_grouped"
+		# 	],
+		# 	parameters={
+		# 		"date_from": dateutil.parser.parse(date_from),
+		# 		"date_to": dateutil.parser.parse(date_to),
+		# 		"grouping_key": 'all'
+		# 	}
+		# )
+		# all_data = pd.concat(
+		# 	[
+		# 		all_results['customer_order_stats_grouped'].iloc[0],
+		# 		all_results['customer_topup_stats_grouped'].iloc[0],
+		# 		all_results['customer_activity_stats_grouped'].iloc[0],
+		# 		all_results['customer_refund_stats_grouped'].iloc[0],
+		# 	]
+		# )
+		results = await self.query_manager.execute_queries(
+			query_names=[
+				"customer_order_stats_grouped",
+				"customer_topup_stats_grouped",
+				"customer_activity_stats_grouped",
+				"customer_refund_stats_grouped"
+			],
+			parameters={
+				"date_from": dateutil.parser.parse(date_from),
+				"date_to": dateutil.parser.parse(date_to),
+				"grouping_key": grouping_key
+			}
+		)
+		# TODO
+		customers_order_stats_grouped = results['customer_order_stats_grouped']
+		customers_topup_stats_grouped = results['customer_topup_stats_grouped']
+		customers_activity_stats_grouped = results['customer_activity_stats_grouped']
+		customers_refund_stats_grouped = results['customer_refund_stats_grouped']
+		# get first row af all stats data and merge their columns to one
+		main_data = pd.concat(
+			[
+				customers_order_stats_grouped[customers_order_stats_grouped['grouping_key'] == main_value].iloc[0],
+				customers_topup_stats_grouped[customers_topup_stats_grouped['grouping_key'] == main_value].iloc[0],
+				customers_activity_stats_grouped[customers_activity_stats_grouped['grouping_key'] == main_value].iloc[0],
+				customers_refund_stats_grouped[customers_refund_stats_grouped['grouping_key'] == main_value].iloc[0],
+			]
+		)
+
+		# right_data = pd.concat(
+		# 	[
+		# 		customers_order_stats_grouped[customers_order_stats_grouped['grouping_key'] == comp_value].iloc[0],
+		# 		customers_topup_stats_grouped[customers_topup_stats_grouped['grouping_key'] == comp_value].iloc[0],
+		# 		customers_activity_stats_grouped[customers_activity_stats_grouped['grouping_key'] == comp_value].iloc[0],
+		# 		customers_refund_stats_grouped[customers_refund_stats_grouped['grouping_key'] == comp_value].iloc[0],
+		# 	]
+		# ) if comp_value else _all_data
+
+		# daily_customers = pd.DataFrame(json.loads(main_data['activity_daily_customers']))
+
+		def stat_item(name, value, change=None):
+			return dmc.Group(
+				justify="space-between",
+				children=[
+					dmc.Text(name, size="sm"),
+					dmc.Text(value, size="sm", fw=600),
+				]
+			)
+
+		# def get_value_of(key, inverse=False):
+		# 	try:
+		# 		ref_value = left_data[key]
+		# 		if inverse:
+		# 			all_value = all_data[key]
+		# 			return all_value - ref_value
+		#
+		# 		return ref_value
+		#
+		# 	except Exception as e:
+		# 		return 0
+		#
+		# def get_ratio_of(key, inverse=False):
+		# 	try:
+		# 		ref_value = left_data[key]
+		# 		value = (ref_value / all_data[key]) * 100
+		# 		if inverse:
+		# 			return 100 - value
+		# 		return value
+		# 	except Exception as e:
+		# 		return 0
+		#
+		# def get_percentage_change_of(key):
+		# 	try:
+		# 		ref_value = get_value_of(key)
+		# 		rest_value = get_value_of(key, True)
+		# 		return ((ref_value - rest_value) / rest_value) * 100
+		# 	except Exception as e:
+		# 		return 0
+
+		# capitalize
+		# left_label = main_value.capitalize()
+		# right_label = "Rest"  # fixme
+		# left_color = "blue"
+		# right_color = "pink"
+
+		return [
+			html.Div(
+				children=[
+					dmc.TabsList(
+						children=[
+							dmc.TabsTab("Activity", leftSection=DashIconify(icon="mdi:chart-line"), value="activity"),
+							dmc.TabsTab("Orders", leftSection=DashIconify(icon="mdi:cart"), value="orders"),
+						]
+					),
+					# activity tab
+					dmc.TabsPanel(
+						value="activity",
+						children=[
+							dmc.Grid(
+								py="sm",
+								children=[
+									# customers card
+									dmc.GridCol(
+										span=3,
+										children=[
+											dmc.Card(
+												className="h-full",
+												withBorder=True,
+												children=[
+													dmc.Stack(
+														className="grow",
+														gap="xs",
+														children=[
+															dmc.Group(
+																justify="space-between",
+																children=[
+																	dmc.Text("Total Active Customers", size="sm", fw=500),
+																	DashIconify(icon="mdi:account-group", width=21)
+																]
+															),
+															dmc.Text(
+																children=[
+																	f"{format_number(main_data['total_customers'])} unique customers"
+																], size="xl", fw=700
+															),
+															dmc.Divider(className="mt-auto"),
+														]
+													)
+												]
+											),
+										]
+									),
+									# top-ups card
+									dmc.GridCol(
+										span=4,
+										children=[
+											dmc.Card(
+												className="h-full",
+												withBorder=True,
+												children=[
+													dmc.Stack(
+														gap="xs",
+														children=[
+															dmc.Group(
+																justify="space-between",
+																children=[
+																	dmc.Text("Top-ups volume", size="sm", fw=500),
+																	DashIconify(icon="mdi:credit-card", width=21)
+																]
+															),
+															dmc.Text(
+																children=[
+																	format_price(main_data['topup_total_amount'])
+																], size="1.5rem", fw=700
+															),
+															dmc.Text(
+																children=[
+																	f"{format_number(main_data['topup_total_count'])} top-ups (max. {format_number(main_data['topup_max_count'])} per customer)"
+																], size="sm", c="dimmed"
+															),
+															dmc.Divider(className="mt-auto"),
+															dmc.Stack(
+																gap="xs",
+																children=[
+																	# stat_item("Total top-ups", format_number(main_data['topup_total_count'])),
+																	# stat_item("Average top-up amount", format_price(main_data['topup_avg_amount'])),
+																	stat_item("Average top-up count", format_number(main_data['topup_avg_count'])),
+																]
+															),
+															dmc.Grid(
+																children=[
+																	dmc.GridCol(
+																		span=6,
+																		children=dmc.Card(
+																			withBorder=True,
+																			p="xs",
+																			className="bg-gray-50",
+																			children=[
+																				dmc.Group(
+																					gap=4,
+																					children=[
+																						DashIconify(icon="mdi:credit-card", width=14, color="gray"),
+																						dmc.Text("Average top-up", size="xs", c="dimmed", fw=600),
+																					]
+																				),
+																				dmc.Text(children=format_price(main_data['topup_avg_amount']), size="lg", fw=700),
+																			]
+																		)
+																	),
+																	dmc.GridCol(
+																		span=6,
+																		children=dmc.Card(
+																			withBorder=True,
+																			p="xs",
+																			className="bg-gray-50",
+																			children=[
+																				dmc.Group(
+																					gap=4,
+																					children=[
+																						DashIconify(icon="mdi:credit-card", width=14, color="gray"),
+																						dmc.Text("Average top-up", size="xs", c="dimmed", fw=600),
+																					]
+																				),
+																				dmc.Text(children=format_price(main_data['topup_avg_amount']), size="lg", fw=700),
+																			]
+																		)
+																	)
+																]
+															),
+														]
+													)
+												]
+											),
+										]
+									),
+								]
+							),
+						]
+					),
+					# orders tab
+					dmc.TabsPanel(
+						value="orders",
+						children=[
+							dmc.Grid(
+								py="sm",
+								children=[
+									dmc.GridCol(
+										span=3,
+										children=["TODO"]
+									)
+								]
+							)
+						]
+					)
+				]
+			),
+		]
+
+		# dmc.Stack(
+		# 	gap=4,
+		# 	children=[
+		# 		dmc.Group(
+		# 			justify="space-between",
+		# 			children=[
+		# 				dmc.Text(f"{left_label} ({format_percent(get_ratio_of('total_customers'))})", size="xs", c="dimmed"),
+		# 				dmc.Text(right_label, size="xs", c="dimmed"),
+		# 			]
+		# 		),
+		# 		dmc.ProgressRoot(
+		# 			[
+		# 				dmc.ProgressSection(value=get_ratio_of('total_customers'), color=left_color),
+		# 				dmc.ProgressSection(value=get_ratio_of('total_customers', True), color=right_color),
+		# 			],
+		# 			size="sm",
+		# 		),
+		# 		dmc.Group(
+		# 			justify="space-between",
+		# 			children=[
+		# 				dmc.Text(format_number(get_value_of('total_customers')), size="xs", fw=500),
+		# 				dmc.Text(format_number(get_value_of('total_customers', True)), size="xs", fw=500)
+		# 			]
+		# 		),
+		# 	]
+		# ),
+
+		return [
+			html.Div(
+				className="flex flex-col gap-3 p-2",
+				children=[
+
+					# Overview
+					html.Header(
+						className="flex items-center gap-2 justify-between",
+						children=[
+							dmc.Text("Customers Overview", size="lg", fw=500),
+							DashIconify(icon="mdi:account-group", width=21)
+						]
+					),
+					dmc.Stack(
+						gap="xs",
+						children=[
+							stat_item("Total customers", format_number(main_data['total_customers'])),
+						]
+					),
+					# Orders
+					html.Header(
+						className="flex items-center gap-2 justify-between",
+						children=[
+							dmc.Text("Orders Overview", size="lg", fw=500),
+							DashIconify(icon="mdi:cart", width=21)
+						]
+					),
+					dmc.Stack(
+						gap="xs",
+						children=[
+							stat_item("Total orders", format_number(main_data['order_total_count'])),
+							stat_item("Total orders volume", format_price(main_data['order_total_amount'])),
+							stat_item(
+								"Top category",
+								f"{main_data['order_top_category']} ({format_number(main_data['order_top_category_ratio'])} %)"
+							),
+							stat_item(
+								"Top product",
+								f"{main_data['order_top_product']} ({format_number(main_data['order_top_product_ratio'])} %)"
+							),
+							stat_item(
+								"Top place",
+								f"{main_data['order_top_place']} ({format_number(main_data['order_top_place_ratio'])} %)"
+							),
+							stat_item("Average order value", format_price(main_data['order_avg_amount'])),
+							stat_item("Average total spent", format_price(main_data['order_avg_spending'])),
+							stat_item("Average time between orders", f"{format_number(main_data['order_avg_hours_between'])} hours"),
+						]
+					),
+					# Top ups
+					html.Header(
+						className="flex items-center gap-2 justify-between",
+						children=[
+							dmc.Text("Top-ups Overview", size="lg", fw=500),
+							DashIconify(icon="mdi:credit-card", width=21)
+						]
+					),
+					dmc.Stack(
+						gap="xs",
+						children=[
+							stat_item("Total top-ups", format_number(main_data['topup_total_count'])),
+							stat_item("Total top-ups volume", format_price(main_data['topup_total_amount'])),
+							stat_item("Max top-up amount", format_price(main_data['topup_max_amount'])),
+							stat_item("Average top-up amount", format_price(main_data['topup_avg_amount'])),
+							stat_item("Max top-up count", format_number(main_data['topup_max_count'])),
+							stat_item("Average top-up count", format_number(main_data['topup_avg_count'])),
+							stat_item("Average time between top-ups", f"{format_number(main_data['topup_avg_hours_between'])} hours"),
+							stat_item("Top top-up place", f"{main_data['topup_top_place']} ({format_number(main_data['topup_top_place_ratio'])} %)"),
+						]
+					),
+					# Activity ups
+					html.Header(
+						className="flex items-center gap-2 justify-between",
+						children=[
+							dmc.Text("Activity overview", size="lg", fw=500),
+							DashIconify(icon="mdi:chart-line", width=21)
+						]
+					),
+					dmc.Stack(
+						gap="xs",
+						children=[
+							stat_item("Average time spent", f"{format_number(main_data['activity_avg_hours'])} hours"),
+							stat_item("Max time spent", f"{format_number(main_data['activity_max_hours'])} hours"),
+							stat_item("Average sessions", format_number(main_data['activity_avg_sessions'])),
+							stat_item("Average session length", f"{format_number(main_data['activity_avg_session_length'])} hours"),
+							stat_item("Customers who rated", f"{format_number(main_data['active_customers_with_ratings'])} ({format_number(main_data['active_customers_with_ratings_ratio'])} %)"),
+							stat_item("Average rating", f"{format_number(main_data['activity_avg_rating'])}"),
+							stat_item("Blocked customers", f"{format_number(main_data['blocked_customers'])} ({format_number(main_data['blocked_customers_ratio'])} %)"),
+							# activity avg daily customers, max, min
+							stat_item("Average daily customers", format_number(main_data['activity_avg_daily_customers'])),
+							stat_item("Max daily customers", format_number(main_data['activity_max_daily_customers'])),
+							stat_item("Min daily customers", format_number(main_data['activity_min_daily_customers'])),
+							*[
+								stat_item(
+									f"Daily: {format_date(row['date'])}",
+									format_number(row['active_customers']),
+								)
+								for _, row in daily_customers.iterrows()
+							]
+						]
+					),
+				]
+			)
+		]
+
 	def _register_callbacks(self):
 		if self._callbacks_registered:
 			print("Callbacks already registered!")
@@ -432,109 +918,33 @@ class MainApplication:
 		def sync_date_preset(preset):
 			return days[preset] if preset in days else (days['1'][0], days['3'][1])
 
-		# FIXME: update customers insights section
+		# FIXME: update customers insights section (left)
 		@self.register_callback(
 			background=True,
-			output=(dash.Output("customer-insights-section", "children")),
+			output=(dash.Output("customer-insights-left-results", "children")),
 			inputs=(
 					dash.Input("filter-date-from", "value"),
-					dash.Input("filter-date-to", "value")
+					dash.Input("filter-date-to", "value"),
+					# dash.Input("customer-insights-left-grouping", "value"),
 			),
 		)
-		async def update_customers_insights_section(date_from, date_to):
-			results = await self.query_manager.execute_queries(
-				query_names=[
-					"customer_base",
-				],
-				parameters={
-					"date_from": dateutil.parser.parse(date_from),
-					"date_to": dateutil.parser.parse(date_to)
-				}
-			)
-			# TODO
-			customer_base = [
-				("Regular chips", {
-					"count": 0,
-					"percent": 0,
-					"trend": [0],
-					"avg_spend": 0,
-				})
-			]
+		async def update_customer_insights_left_results(date_from, date_to):
+			# grouping_key, main_value = grouping_select.split(":")
+			# return await self.update_customer_insights_results(date_from, date_to, grouping_key, main_value, None)
+			return await self.update_customer_insights_results(date_from, date_to, 'chip_group', 'Online', 'all')
 
-			return [
-				dmc.GridCol(
-					span=6,
-					children=[
-						# TODO: customer type cards
-						dmc.Grid(
-							[
-								# card for each customer type
-								*[dmc.GridCol(
-									span=6,
-									children=[
-										dmc.Card(
-											[
-												dmc.Group(
-													[
-														dmc.Stack(
-															[
-																dmc.Text(type_name, fw=500),
-																dmc.Group(
-																	[
-																		dmc.Text(
-																			f"{data['count']:,}",
-																			size="xl",
-																			fw=700
-																		),
-																		dmc.Badge(
-																			f"{data['percent']}%",
-																			variant="outline",
-																			c="blue"
-																		)
-																	], gap="xs"
-																),
-															]
-														),
-														# Sparkline using plotly
-														dcc.Graph(
-															figure={
-																'data': [{
-																	'x': list(range(len(data['trend']))),
-																	'y': data['trend'],
-																	'mode': 'lines',
-																	'line': { 'color': '#228be6' },
-																}],
-																'layout': {
-																	'margin': { 'l': 0, 'r': 0, 't': 0, 'b': 0 },
-																	'height': 30,
-																	'width': 60,
-																	'showlegend': False,
-																	'plot_bgcolor': 'rgba(0,0,0,0)',
-																	'paper_bgcolor': 'rgba(0,0,0,0)',
-																	'xaxis': { 'visible': False },
-																	'yaxis': { 'visible': False }
-																}
-															},
-															config={ 'displayModeBar': False }
-														)
-													], justify="space-between"
-												),
-												dmc.Text(
-													f"Avg. spend: {data['avg_spend']} CZK",
-													c="dimmed",
-													size="sm"
-												)
-											], p="xs", withBorder=True
-										)
-									],
-								)
-									for type_name, data in customer_base
-								]
-							]
-						),
-					]
-				)
-			]
+		# FIXME: update customers insights section (right)
+		# @self.register_callback(
+		# 	background=True,
+		# 	output=(dash.Output("customer-insights-right-results", "children")),
+		# 	inputs=(
+		# 			dash.Input("filter-date-from", "value"),
+		# 			dash.Input("filter-date-to", "value"),
+		# 			dash.Input("customer-insights-right-grouping", "value"),
+		# 	),
+		# )
+		# async def update_customer_insights_left_results(date_from, date_to, grouping_select):
+		# 	return await self.update_customer_insights_results(date_from, date_to, grouping_select)
 
 		# FIXME: update orders insights section
 		@self.register_callback(
@@ -1021,8 +1431,17 @@ class MainApplication:
 
 			diagram.add_node('event_finances', 'Event finances', x=0.4, y=0.5, color='warm_gray')
 
-			diagram.add_node('vendor_sales', 'Vendor sales', x=0.6, y=0.3, color='dusty_blue')
-			diagram.add_node('unused_credit', 'Unused credit', x=0.6, y=0.85, color='peach')
+			diagram.add_node('vendor_sales', 'Vendor sales', x=0.65, y=0.3, color='dusty_blue')
+			# diagram.add_node('beer_sales', 'Beer', x=0.6, y=0, color='light_steel')
+			# diagram.add_node('spirits_sales', 'Spirits', x=0.6, y=0, color='light_steel')
+			# diagram.add_node('salty_sales', 'Salty', x=0.6, y=0, color='light_steel')
+			# diagram.add_node('other_sales', 'Other', x=0.6, y=0, color='light_steel')
+			# diagram.add_node('non_alcoholic_sales', 'Non-alcoholic', x=0.6, y=0, color='light_steel')
+			# diagram.add_node('wine_sales', 'Wine', x=0.6, y=0, color='light_steel')
+			# diagram.add_node('complimentary_sales', 'Complimentary', x=0.6, y=0, color='light_steel'),
+			# diagram.add_node('sweet_sales', 'Sweet', x=0.6, y=0, color='light_steel')
+
+			diagram.add_node('unused_credit', 'Unused credit', x=0.6, y=0.8, color='peach')
 
 			diagram.add_node('organizer_commission', 'Organizer commission', x=0.8, y=0.65, color='sage')
 
@@ -1040,6 +1459,24 @@ class MainApplication:
 			diagram.add_flow('cash_card_payments', 'event_finances', sankey_data['non_chip_sales'] / 100, color=None)
 
 			diagram.add_flow('event_finances', 'vendor_sales', sankey_data['vendor_sales'] / 100, color=None)
+			# diagram.add_flow('event_finances', 'non_alcoholic_sales', sankey_data['non_alcoholic_sales'] / 100, color=None)
+			# diagram.add_flow('event_finances', 'beer_sales', sankey_data['beer_sales'] / 100, color=None)
+			# diagram.add_flow('event_finances', 'wine_sales', sankey_data['wine_sales'] / 100, color=None)
+			# diagram.add_flow('event_finances', 'spirits_sales', sankey_data['spirits_sales'] / 100, color=None)
+			# diagram.add_flow('event_finances', 'salty_sales', sankey_data['salty_sales'] / 100, color=None)
+			# diagram.add_flow('event_finances', 'sweet_sales', sankey_data['sweet_sales'] / 100, color=None)
+			# diagram.add_flow('event_finances', 'complimentary_sales', sankey_data['complimentary_sales'] / 100, color=None)
+			# diagram.add_flow('event_finances', 'other_sales', sankey_data['other_sales'] / 100, color=None)
+
+			# diagram.add_flow('non_alcoholic_sales', 'vendor_sales', sankey_data['non_alcoholic_sales'] / 100, color=None)
+			# diagram.add_flow('beer_sales', 'vendor_sales', sankey_data['beer_sales'] / 100, color=None)
+			# diagram.add_flow('wine_sales', 'vendor_sales', sankey_data['wine_sales'] / 100, color=None)
+			# diagram.add_flow('spirits_sales', 'vendor_sales', sankey_data['spirits_sales'] / 100, color=None)
+			# diagram.add_flow('salty_sales', 'vendor_sales', sankey_data['salty_sales'] / 100, color=None)
+			# diagram.add_flow('sweet_sales', 'vendor_sales', sankey_data['sweet_sales'] / 100, color=None)
+			# diagram.add_flow('complimentary_sales', 'vendor_sales', sankey_data['complimentary_sales'] / 100, color=None)
+			# diagram.add_flow('other_sales', 'vendor_sales', sankey_data['other_sales'] / 100, color=None)
+
 			diagram.add_flow('event_finances', 'unused_credit', sankey_data['unused_credits'] / 100, color=None)
 
 			diagram.add_flow('vendor_sales', 'sellers_payout', sankey_data['to_be_forwarded'] / 100, color=None)

@@ -30,6 +30,25 @@ def format_number(num: int | float) -> str:
 		return "0"
 
 
+def format_percent(num: int | float) -> str:
+	"""Default percent formatter with 1 decimal place"""
+	try:
+		return f"{num:.1f} %"
+	except TypeError:
+		return "0.0%"
+
+
+def format_date(date: str, with_time: Optional[bool] = False) -> str:
+	"""Default localized (CZ) date formatter"""
+	try:
+		if with_time:
+			return pd.to_datetime(date).strftime("%d.%m.%Y %H:%M:%S")
+		else:
+			return pd.to_datetime(date).strftime("%d.%m.%Y")
+	except TypeError:
+		return "Unknown date"
+
+
 def format_number_short(num: int | float) -> str:
 	"""Formats number to a short form with K suffix for thousands or ..."""
 	num = round(num)
@@ -124,7 +143,20 @@ class QueryManager:
 		self._pool_lock = asyncio.Lock()
 
 	def _initialize_queries(self):
+		"""Register all queries and transformers"""
 		pass
+
+	@staticmethod
+	def read_sql_query(filename: str) -> str:
+		"""Read a SQL query from queries/ directory repo"""
+		with open(f"./app-demo/queries/{filename}", "r") as f:
+			sql_file = f.read()
+			# replace named parameters :date_from$1, :chip_type$3, :date_to$2
+			sql_file = sql_file.replace(":date_from", "")
+			sql_file = sql_file.replace(":date_to", "")
+			sql_file = sql_file.replace(":grouping_key", "")
+			# TODO: add more named parameters to replace or generalize
+			return sql_file
 
 	async def init_pool(self):
 		async with self._pool_lock:
@@ -253,7 +285,7 @@ class QueryManager:
 				await self.init_pool()
 
 			except Exception as e:
-				print(f"Error executing query {query_name}: {e}")
+				print(f"🚨 Error executing query {query_name}: {e}")
 				raise
 
 	async def execute_queries(self, query_names: List[str], parameters: Dict[str, Any]) -> Dict[str, pd.DataFrame]:
