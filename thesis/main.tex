@@ -28,6 +28,9 @@
 %%%%% ---------------------------------------------------------------
 % \usepackage[czech]{babel}
 % \ifx\uv\undefined\newcommand{\uv}[1]{,,#1``}\fi
+\usepackage [english]{babel}
+\usepackage [autostyle, english = american]{csquotes}
+\MakeOuterQuote{"}
 
 %%%%% Preamble with settings and macros
 %%%%% ---------------------------------------------------------------
@@ -37,16 +40,16 @@
 %%%%% ------------------------------------------------------------
 \usepackage[unicode]{hyperref}
 \hypersetup{pdftitle=Cashless festival data analysis and analytical dashboard development,
-    pdfauthor=Bc. Filip Ditrich
-    ps2pdf,
-    colorlinks=true,
-    urlcolor=black,
-    linkcolor=black,
-    citecolor=black,
-    pdfstartview=FitH,
-    pdfpagemode=UseOutlines,
-    pdfnewwindow,
-    breaklinks
+	pdfauthor=Bc. Filip Ditrich
+	ps2pdf,
+	colorlinks=true,
+	urlcolor=black,
+	linkcolor=black,
+	citecolor=black,
+	pdfstartview=FitH,
+	pdfpagemode=UseOutlines,
+	pdfnewwindow,
+	breaklinks
 }
 
 %%%%% Bibliography setup
@@ -79,51 +82,51 @@
 %%%%% ------------------------------------------------------------
 \begin{document}
 %%% title page
-    \include{pages/hard-title} % FIXME: remove
-    \include{pages/cover}
+	\include{pages/hard-title} % FIXME: remove
+	\include{pages/cover}
 %%% TODO: copy of the assignment
 %    \includepdf[pages={1}]{\ThesisFigures/zadani-zp.pdf}
 %    \includepdf[pages={2}]{\ThesisFigures/zadani-zp.pdf}
 %%% declaration
-    \include{pages/statutory-declaration}
+	\include{pages/statutory-declaration}
 %%% acknowledgements
-    \include{pages/acknowledgements}
+	\include{pages/acknowledgements}
 %%% first page
-    \include{pages/firstpage}
+	\include{pages/firstpage}
 %%% abstract
-    \include{pages/abstract}
+	\include{pages/abstract}
 %%% table of contents
-    \newpage
-    \pagestyle{plain}
-    \tableofcontents
+	\newpage
+	\pagestyle{plain}
+	\tableofcontents
 %%% chapters
-    % chapter - introduction
-    \input{pages/chapters/introduction}
-    % chapter - methodology
-    \input{pages/chapters/methodology}
-    % chapter - data analysis and results
-    \input{pages/chapters/data-analysis-and-results}
-    % chapter - implementation of the analytical dashboard
-    \input{pages/chapters/implementation-of-the-analytical-dashboard}
-    % chapter - discussion
-    \input{pages/chapters/discussion}
-    % chapter - conclusion
-    \input{pages/chapters/conclusion}
+	% chapter - introduction
+	\input{pages/chapters/introduction}
+	% chapter - methodology
+	\input{pages/chapters/methodology}
+	% chapter - data analysis and results
+	\input{pages/chapters/data-analysis-and-results}
+	% chapter - implementation of the analytical dashboard
+	\input{pages/chapters/implementation-of-the-analytical-dashboard}
+	% chapter - discussion
+	\input{pages/chapters/discussion}
+	% chapter - conclusion
+	\input{pages/chapters/conclusion}
 %%% bibliography
-    \begin{flushleft}
-        \bibliography{/Users/filipditrich/University/master_thesis/thesis/main,/Users/filipditrich/University/master_thesis/thesis/auto}
-    \end{flushleft}
+	\begin{flushleft}
+		\bibliography{/Users/filipditrich/University/master_thesis/thesis/main,/Users/filipditrich/University/master_thesis/thesis/auto}
+	\end{flushleft}
 %%% list of figures
-    \listoffigures
-    \textit{Note: Unless stated otherwise, all figures are the author's own work.}
+	\listoffigures
+	\textit{Note: Unless stated otherwise, all figures are the author's own work.}
 %%% list of tables
-    \listoftables
+	\listoftables
 %%% list of source codes
-    \listoflistings
+	\listoflistings
 %%% list of abbreviations / acronyms
-    \input{pages/acronyms}
+	\input{pages/acronyms}
 %%% appendix
-    \input{pages/appendix}
+	\input{pages/appendix}
 %%% extended summary
-    \addtocontents{toc}{\protect\contentsline{chapter}{Extended Summary}{}{}}
+	\addtocontents{toc}{\protect\contentsline{chapter}{Extended Summary}{}{}}
 \end{document}
