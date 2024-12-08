@@ -35,7 +35,7 @@ colors = {
 
 
 def get_color(name: str, alpha: Optional[float] = None) -> str:
-	base_color = colors[name] if name in colors else colors['purple']
+	base_color = colors[name] if name in colors else colors['indigo']
 	if alpha is not None:
 		return change_alpha(base_color, alpha)
 
@@ -88,8 +88,8 @@ class SankeyDiagram:
 				'thickness': 20,
 				'line': { 'color': "black", 'width': 0.5 },
 				'label': node_labels,
-				'x': node_x,
-				'y': node_y,
+				# 'x': node_x,
+				# 'y': node_y,
 				'color': node_colors,
 			},
 			'link': {

@@ -170,7 +170,9 @@ query_manager.registry.register_query(
 		sql=QueryManager.read_sql_query("time_series.sql"),
 		parameters=[
 			QueryParameter("date_from", datetime.datetime),
-			QueryParameter("date_to", datetime.datetime)
+			QueryParameter("date_to", datetime.datetime),
+			QueryParameter("granularity_minutes", int),
+			QueryParameter("day_start_hour", int)
 		],
 		default_data="FSCacheDefault"
 	)
