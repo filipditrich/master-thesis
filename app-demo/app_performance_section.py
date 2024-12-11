@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import datetime
+
 import dash as dash
 import dash_mantine_components as dmc
 import dash_ag_grid as dag
@@ -7,7 +9,7 @@ import dateutil as dateutil
 from dash import dcc, html
 from dash_iconify import DashIconify
 from pandas import Timestamp
-from db_utils import format_number, format_number_short, interpolated_text_with_components, locale_cs_d3
+from db_utils import QueryDefinition, QueryManager, QueryParameter, format_number, format_date, interpolated_text_with_components, locale_cs_d3
 
 
 def performance_section_children(app):
@@ -48,203 +50,25 @@ def performance_section_children(app):
 				gutter="md",
 				p="sm",
 				grow=False,
+				id="kpi-cards-section",
 				children=[
-					# TODO: total customers
+					# total customers
 					dmc.GridCol(
 						span=4,
-						children=[
-							dmc.Card(
-								className="h-full",
-								p="sm",
-								withBorder=True,
-								children=[
-									dmc.Stack(
-										gap="xs",
-										className="grow",
-										children=[
-											dmc.Text("Active customers", size="sm", fw=500),
-											dmc.Group(
-												gap="xs",
-												justify="space-between",
-												children=[
-													dmc.Text(
-														f"{format_number(10009)} customers",
-														size="xl",
-														fw=700
-													),
-													dmc.ThemeIcon(
-														size="lg",
-														radius="xl",
-														color="red",
-														variant="light",
-														children=DashIconify(icon="mdi:user", width=20)
-													),
-												]
-											),
-											dmc.Text(
-												interpolated_text_with_components(
-													"was the total number of active customers at the event",
-													{
-													}
-												),
-												size="sm",
-												className="mt-auto",
-												c="dimmed"
-											),
-											dmc.Divider(),
-											dmc.Group(
-												gap="xs",
-												justify="space-between",
-												children=[
-													dmc.Text(
-														f"With total {format_number(8066)} customers",
-														size="sm",
-														fw=500
-													),
-													dmc.Text(
-														"on the last day",
-														size="sm",
-														c="dimmed"
-													),
-												]
-											),
-										]
-									)
-								]
-							)
-						]
+						id='total-customers-card',
 					),
 					# TODO: total processed
 					dmc.GridCol(
 						span=4,
-						children=[
-							dmc.Card(
-								className="h-full",
-								p="sm",
-								withBorder=True,
-								children=[
-									dmc.Stack(
-										gap="xs",
-										className="grow",
-										children=[
-											dmc.Text("Processed transactions", size="sm", fw=500),
-											dmc.Group(
-												gap="xs",
-												justify="space-between",
-												children=[
-													dmc.Text(
-														f"{format_number(128500)} transactions",
-														size="xl",
-														fw=700
-													),
-													dmc.ThemeIcon(
-														size="lg",
-														radius="xl",
-														color="red",
-														variant="light",
-														children=DashIconify(icon="grommet-icons:transaction", width=20)
-													),
-												]
-											),
-											dmc.Text(
-												interpolated_text_with_components(
-													"were processed at the event",
-													{ }
-												),
-												size="sm",
-												className="mt-auto",
-												c="dimmed"
-											),
-											dmc.Divider(),
-											dmc.Group(
-												gap="xs",
-												justify="space-between",
-												children=[
-													dmc.Text(
-														f"TODO",
-														size="sm",
-														fw=500
-													),
-													dmc.Text(
-														"TODO",
-														size="sm",
-														c="dimmed"
-													),
-												]
-											),
-										]
-									)
-								]
-							)
-						]
+						id='total-transactions-card'
 					),
 					# TODO: volume peaks
 					dmc.GridCol(
 						span=4,
-						children=[
-							dmc.Card(
-								className="h-full",
-								p="sm",
-								withBorder=True,
-								children=[
-									dmc.Stack(
-										gap="xs",
-										className="grow",
-										children=[
-											dmc.Text("Volume peaks", size="sm", fw=500),
-											dmc.Group(
-												gap="xs",
-												justify="space-between",
-												children=[
-													dmc.Text(
-														f"{format_number(150)} transactions per minute",
-														size="xl",
-														fw=700
-													),
-													dmc.ThemeIcon(
-														size="lg",
-														radius="xl",
-														color="red",
-														variant="light",
-														children=DashIconify(icon="material-symbols:speed", width=20)
-													),
-												]
-											),
-											dmc.Text(
-												interpolated_text_with_components(
-													"was the highest peak on the {day} day at roughly {time}",
-													{
-														"day": "third",
-														"time": "18:35"
-													}
-												),
-												size="sm",
-												className="mt-auto",
-												c="dimmed"
-											),
-											dmc.Divider(),
-											dmc.Group(
-												gap="xs",
-												justify="space-between",
-												children=[
-													dmc.Text(
-														f"TODO",
-														size="sm",
-														fw=500
-													),
-													dmc.Text(
-														"TODO",
-														size="sm",
-														c="dimmed"
-													),
-												]
-											),
-										]
-									)
-								]
-							)
-						]
+						id='transaction-volume-peak-card',
 					),
+
+					# time series chart
 					dmc.GridCol(
 						span=12,
 						children=[
@@ -569,3 +393,321 @@ def performance_section_callbacks(app):
 				yAxisProps={ "width": 80 },
 			)
 		]
+
+	# update customers per days
+	@app.register_callback(
+		background=True,
+		output=(dash.Output("total-customers-card", "children")),
+		inputs=(
+				dash.Input("filter-date-from", "value"),
+				dash.Input("filter-date-to", "value"),
+		),
+	)
+	async def update_customers_per_day_card(date_from, date_to):
+		results = await app.query_manager.execute_queries(
+			query_names=[
+				"customers_per_day",
+				"total_active"
+			],
+			or_query_defs={
+				'customers_per_day': QueryDefinition(
+					name="customers_per_day",
+					sql=QueryManager.process_sql_query(
+						"""
+							SELECT
+								DATE_TRUNC('day', t.created) AS day,
+								COUNT(DISTINCT t.chip_id) AS active_chips
+							FROM pos_transactions_rich t
+							WHERE t.chip_id IS NOT NULL
+							GROUP BY day
+							ORDER BY active_chips DESC;
+						"""
+					),
+					parameters=[],
+					default_data="FSCacheDefault"
+				),
+				'total_active': QueryDefinition(
+					name="total_active",
+					sql=QueryManager.process_sql_query(
+						"""
+						SELECT
+							COUNT(DISTINCT c.chip_id) AS total_active
+						FROM get_chip_customers(:date_from$1, :date_to$2) c
+						"""
+					),
+					parameters=[
+						QueryParameter("date_from", datetime.datetime),
+						QueryParameter("date_to", datetime.datetime)
+					],
+					default_data="FSCacheDefault"
+				),
+			},
+			parameters={
+				"date_from": dateutil.parser.parse(date_from),
+				"date_to": dateutil.parser.parse(date_to),
+			}
+		)
+		customers_per_day = results['customers_per_day']
+		most_active_day = customers_per_day.iloc[0]
+		total_active = results['total_active'].iloc[0]['total_active']
+
+		return dmc.Card(
+			className="h-full",
+			p="sm",
+			withBorder=True,
+			children=[
+				dmc.Stack(
+					gap="xs",
+					className="grow",
+					children=[
+						dmc.Text("Active customers", size="sm", fw=500),
+						dmc.Group(
+							gap="xs",
+							justify="space-between",
+							children=[
+								dmc.Text(
+									f"{format_number(total_active)} customers",
+									size="xl",
+									fw=700
+								),
+								dmc.ThemeIcon(
+									size="lg",
+									radius="xl",
+									color="green",
+									variant="light",
+									children=DashIconify(icon="mdi:user", width=20)
+								),
+							]
+						),
+						dmc.Text(
+							interpolated_text_with_components(
+								"was the total number of active customers at the event",
+								{ }
+							),
+							size="sm",
+							className="mt-auto",
+							c="dimmed"
+						),
+						dmc.Divider(),
+						dmc.Group(
+							gap="xs",
+							justify="space-between",
+							children=[
+								dmc.Text(
+									f"With the most of {format_number(most_active_day['active_chips'])} active",
+									size="sm",
+									fw=500
+								),
+								dmc.Text(
+									f"on {format_date(most_active_day['day'], False)}",
+									size="sm",
+									c="dimmed"
+								),
+							]
+						),
+					]
+				)
+			]
+		)
+
+	# update total transactions card
+	@app.register_callback(
+		background=True,
+		output=(dash.Output("total-transactions-card", "children")),
+		inputs=(
+				dash.Input("filter-date-from", "value"),
+				dash.Input("filter-date-to", "value"),
+		),
+	)
+	async def update_total_transactions_card(date_from, date_to):
+		results = await app.query_manager.execute_queries(
+			query_names=[
+				"total_transactions"
+			],
+			or_query_defs={
+				'total_transactions': QueryDefinition(
+					name="total_transactions",
+					sql=QueryManager.process_sql_query(
+						"""
+						SELECT
+							COUNT(t.transaction_id) AS total_transactions
+						FROM pos_transactions t
+						WHERE t.created BETWEEN :date_from$1 AND :date_to$2
+						"""
+					),
+					parameters=[
+						QueryParameter("date_from", datetime.datetime),
+						QueryParameter("date_to", datetime.datetime)
+					],
+					default_data="FSCacheDefault",
+				),
+			},
+			parameters={
+				"date_from": dateutil.parser.parse(date_from),
+				"date_to": dateutil.parser.parse(date_to),
+			}
+		)
+		total_transactions = results['total_transactions'].iloc[0]['total_transactions']
+
+		return dmc.Card(
+			className="h-full",
+			p="sm",
+			withBorder=True,
+			children=[
+				dmc.Stack(
+					gap="xs",
+					className="grow",
+					children=[
+						dmc.Text("Processed transactions", size="sm", fw=500),
+						dmc.Group(
+							gap="xs",
+							justify="space-between",
+							children=[
+								dmc.Text(
+									f"{format_number(total_transactions)} transactions",
+									size="xl",
+									fw=700
+								),
+								dmc.ThemeIcon(
+									size="lg",
+									radius="xl",
+									color="green",
+									variant="light",
+									children=DashIconify(icon="grommet-icons:transaction", width=20)
+								),
+							]
+						),
+						dmc.Text(
+							interpolated_text_with_components(
+								"were processed at the event",
+								{ }
+							),
+							size="sm",
+							className="mt-auto",
+							c="dimmed"
+						),
+						dmc.Divider(),
+						dmc.Group(
+							gap="xs",
+							justify="space-between",
+							children=[
+								dmc.Text(
+									f"TODO",
+									size="sm",
+									fw=500
+								),
+								dmc.Text(
+									"TODO",
+									size="sm",
+									c="dimmed"
+								),
+							]
+						),
+					]
+				)
+			]
+		);
+
+	# update transaction volume peak card
+	@app.register_callback(
+		background=True,
+		output=(dash.Output("transaction-volume-peak-card", "children")),
+		inputs=(
+				dash.Input("filter-date-from", "value"),
+				dash.Input("filter-date-to", "value"),
+		),
+	)
+	async def update_transaction_volume_peak_card(date_from, date_to):
+		results = await app.query_manager.execute_queries(
+			query_names=[
+				"transaction_volume_peak"
+			],
+			or_query_defs={
+				'transaction_volume_peak': QueryDefinition(
+					name="transaction_volume_peak",
+					sql=QueryManager.process_sql_query(
+						"""
+						SELECT
+							DATE_TRUNC('minute', t.created) AS minute,
+							COUNT(t.transaction_id) AS transaction_count
+						FROM pos_transactions t
+						WHERE t.created BETWEEN :date_from$1 AND :date_to$2
+						GROUP BY minute
+						ORDER BY transaction_count DESC
+						LIMIT 1;
+						"""
+					),
+					parameters=[
+						QueryParameter("date_from", datetime.datetime),
+						QueryParameter("date_to", datetime.datetime)
+					],
+					default_data="FSCacheDefault",
+				),
+			},
+			parameters={
+				"date_from": dateutil.parser.parse(date_from),
+				"date_to": dateutil.parser.parse(date_to),
+			}
+		)
+		transaction_volume_peak = results['transaction_volume_peak'].iloc[0]
+
+		return dmc.Card(
+			className="h-full",
+			p="sm",
+			withBorder=True,
+			children=[
+				dmc.Stack(
+					gap="xs",
+					className="grow",
+					children=[
+						dmc.Text("Volume peaks", size="sm", fw=500),
+						dmc.Group(
+							gap="xs",
+							justify="space-between",
+							children=[
+								dmc.Text(
+									f"{format_number(transaction_volume_peak['transaction_count'])} transactions per minute",
+									size="xl",
+									fw=700
+								),
+								dmc.ThemeIcon(
+									size="lg",
+									radius="xl",
+									color="green",
+									variant="light",
+									children=DashIconify(icon="material-symbols:speed", width=20)
+								),
+							]
+						),
+						dmc.Text(
+							interpolated_text_with_components(
+								"was the highest peak on {date}",
+								{
+									"date": format_date(transaction_volume_peak['minute'], True)
+								}
+							),
+							size="sm",
+							className="mt-auto",
+							c="dimmed"
+						),
+						dmc.Divider(),
+						dmc.Group(
+							gap="xs",
+							justify="space-between",
+							children=[
+								dmc.Text(
+									f"TODO",
+									size="sm",
+									fw=500
+								),
+								dmc.Text(
+									"TODO",
+									size="sm",
+									c="dimmed"
+								),
+							]
+						),
+					]
+				)
+			]
+		);

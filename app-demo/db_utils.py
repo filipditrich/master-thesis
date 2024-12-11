@@ -101,9 +101,9 @@ def format_date(date: str, with_time: Optional[bool] = False) -> str:
 	"""Default localized (CZ) date formatter"""
 	try:
 		if with_time:
-			return pd.to_datetime(date).strftime("%d.%m.%Y %H:%M:%S")
+			return pd.to_datetime(date).strftime("%d.%m. %H:%M")
 		else:
-			return pd.to_datetime(date).strftime("%d.%m.%Y")
+			return pd.to_datetime(date).strftime("%d.%m.")
 	except TypeError:
 		return "Unknown date"
 
@@ -220,19 +220,25 @@ class QueryManager:
 		pass
 
 	@staticmethod
+	def process_sql_query(sql_query: str) -> str:
+		"""Process an SQL query to replace dynamic named parameters with positional parameters"""
+		# replace all dynamic named parameters ":param_name$n" with "n" using regex
+		output_query = sql_query
+		params = re.findall(r"\:\w+\$\d+", output_query)
+		for param in params:
+			# get the number from the dynamic named parameter
+			num = param.split("$")[-1]
+			# replace the dynamic named parameter with the number
+			output_query = output_query.replace(param, f"${num}")
+
+		return output_query
+
+	@staticmethod
 	def read_sql_query(filename: str) -> str:
 		"""Read a SQL query from queries/ directory repo"""
 		with open(f"./app-demo/queries/{filename}", "r") as f:
 			sql_file = f.read()
-			# replace all dynamic named parameters ":param_name$n" with "n" using regex
-			params = re.findall(r"\:\w+\$\d+", sql_file)
-			for param in params:
-				# get the number from the dynamic named parameter
-				num = param.split("$")[-1]
-				# replace the dynamic named parameter with the number
-				sql_file = sql_file.replace(param, f"${num}")
-
-			return sql_file
+			return QueryManager.process_sql_query(sql_file)
 
 	async def init_pool(self):
 		async with self._pool_lock:
@@ -285,9 +291,9 @@ class QueryManager:
 		# Combine query name and parameters
 		return f"{param_str_hash}/{query_name}"
 
-	async def execute_query(self, query_name: str, parameters: Dict[str, Any]) -> pd.DataFrame:
+	async def execute_query(self, query_name: str, parameters: Dict[str, Any], or_query_def: Optional[QueryDefinition]) -> pd.DataFrame:
 		"""Execute a single query by name with given parameters"""
-		query_def = self.registry.get_query(query_name)
+		query_def = or_query_def if or_query_def else self.registry.get_query(query_name)
 		query_key = self.get_query_key(query_name, parameters)
 
 		# Return default data if available
@@ -364,12 +370,12 @@ class QueryManager:
 				print(f"🚨 Error executing query {query_name}: {e}")
 				raise
 
-	async def execute_queries(self, query_names: List[str], parameters: Dict[str, Any]) -> Dict[str, pd.DataFrame]:
+	async def execute_queries(self, query_names: List[str], parameters: Dict[str, Any], or_query_defs: Dict[str, QueryDefinition] = { }) -> Dict[str, pd.DataFrame]:
 		"""Execute multiple queries concurrently"""
 		await self.init_pool()
 
 		async def execute_single_query(name: str) -> tuple[str, pd.DataFrame]:
-			df = await self.execute_query(name, parameters)
+			df = await self.execute_query(name, parameters, or_query_defs.get(name))
 			return name, df
 
 		# Execute specified queries concurrently

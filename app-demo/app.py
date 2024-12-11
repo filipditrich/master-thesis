@@ -150,62 +150,51 @@ class MainApplication:
 									),
 								]
 							),
+							# TODO: Filter bar
+							html.Div(
+								className="flex items-center justify-center gap-4",
+								children=[
+									dmc.DateTimePicker(
+										id="filter-date-from",
+										label="Filter from",
+										value="2024-07-04T00:00:00",
+										w=250,
+									),
+									dmc.DateTimePicker(
+										id="filter-date-to",
+										label="Filter to",
+										value="2024-07-07T23:59:59",
+										w=250,
+									),
+									dmc.Select(
+										label="Select date",
+										id="filter-date-preset",
+										allowDeselect=False,
+										value="all",
+										data=[
+											{ "value": "1", "label": "Day 1" },
+											{ "value": "2", "label": "Day 2" },
+											{ "value": "3", "label": "Day 3" },
+											{ "value": "up-to-1", "label": "Up to Day 1" },
+											{ "value": "up-to-2", "label": "Up to Day 2" },
+											{ "value": "up-to-3", "label": "Up to Day 3" },
+											{ "value": "all", "label": "Whole festival" },
+										],
+										w=200,
+									),
+								]
+							),
 							# FIXME
 							fast_preview_playground(),
 							# Main content
 							html.Main(
 								className="grid grid-cols-1 gap-4",
 								children=[
-									# TODO: Customer Analysis
-									html.Section(
-										className="flex flex-col bg-white rounded-lg border border-zinc-200",
-										children=[
-											html.Div(
-												className="p-4",
-												children=[
-													html.Div(
-														className="flex items-center gap-4",
-														children=[
-															dmc.ThemeIcon(
-																size="xl",
-																radius="xl",
-																color="red",
-																variant="light",
-																children=DashIconify(icon="ix:customer-filled", width=25)
-															),
-															html.Div(
-																children=[
-																	dmc.Title(
-																		size="1.25rem",
-																		children='Customer analysis'
-																	),
-																	dmc.Text(
-																		"Insights into customer data and behavior during the event.",
-																		c="dimmed",
-																	),
-																]
-															)
-														],
-													),
-												]
-											),
-											# content
-											dmc.Grid(
-												gutter="md",
-												p="md",
-												grow=False,
-												children=[
-													# TODO
-													dmc.GridCol(span=12, children=dmc.Card("TODO", withBorder=True, className="bg-zinc-50"))
-												]
-											)
-										],
-									),
 									# TODO: Cashflow and Revenue Analysis
-									cashflow_section_children(self),
+									# cashflow_section_children(self),
 									# TODO: Performance Analysis
 									performance_section_children(self),
-									# TODO: Beverage consumption analysis
+									# TODO: Beverage Consumption analysis
 									html.Section(
 										className="flex flex-col bg-white rounded-lg border border-zinc-200",
 										children=[
@@ -650,51 +639,56 @@ class MainApplication:
 											)
 										],
 									),
+									# TODO: Customer Analysis
+									html.Section(
+										className="flex flex-col bg-white rounded-lg border border-zinc-200",
+										children=[
+											html.Div(
+												className="p-4",
+												children=[
+													html.Div(
+														className="flex items-center gap-4",
+														children=[
+															dmc.ThemeIcon(
+																size="xl",
+																radius="xl",
+																color="red",
+																variant="light",
+																children=DashIconify(icon="ix:customer-filled", width=25)
+															),
+															html.Div(
+																children=[
+																	dmc.Title(
+																		size="1.25rem",
+																		children='Customer analysis'
+																	),
+																	dmc.Text(
+																		"Insights into customer data and behavior during the event.",
+																		c="dimmed",
+																	),
+																]
+															)
+														],
+													),
+												]
+											),
+											# content
+											dmc.Grid(
+												gutter="md",
+												p="md",
+												grow=False,
+												children=[
+													# TODO
+													dmc.GridCol(span=12, children=dmc.Card("TODO", withBorder=True, className="bg-zinc-50"))
+												]
+											)
+										],
+									),
 								]
 							),
 							# TODO: Footer
 							html.Footer(
-								className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-zinc-200",
-								children=[
-									html.Div(
-										className="container mx-auto",
-										children=[
-											html.Div(
-												className="flex items-center gap-2",
-												children=[
-													dmc.DateTimePicker(
-														id="filter-date-from",
-														label="Filter from",
-														value="2024-07-04T00:00:00",
-														w=250,
-													),
-													dmc.DateTimePicker(
-														id="filter-date-to",
-														label="Filter to",
-														value="2024-07-07T23:59:59",
-														w=250,
-													),
-													dmc.Select(
-														label="Select date",
-														id="filter-date-preset",
-														allowDeselect=False,
-														value="all",
-														data=[
-															{ "value": "1", "label": "Day 1" },
-															{ "value": "2", "label": "Day 2" },
-															{ "value": "3", "label": "Day 3" },
-															{ "value": "up-to-1", "label": "Up to Day 1" },
-															{ "value": "up-to-2", "label": "Up to Day 2" },
-															{ "value": "up-to-3", "label": "Up to Day 3" },
-															{ "value": "all", "label": "Whole festival" },
-														],
-														w=200,
-													),
-												]
-											)
-										]
-									),
-								],
+								children=[]
 							)
 						]
 					),
@@ -715,8 +709,8 @@ class MainApplication:
 		def sync_date_preset(preset):
 			return days[preset] if preset in days else (days['1'][0], days['3'][1])
 
-		# register cashflow section callbacks
-		cashflow_section_callbacks(self)
+		# FIXME: register cashflow section callbacks
+		# cashflow_section_callbacks(self)
 
 		# register performance section callbacks
 		performance_section_callbacks(self)
