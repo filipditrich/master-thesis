@@ -3,13 +3,14 @@ from __future__ import annotations
 import datetime
 
 import dash as dash
-import dash_mantine_components as dmc
 import dash_ag_grid as dag
+import dash_mantine_components as dmc
 import dateutil as dateutil
 from dash import dcc, html
 from dash_iconify import DashIconify
 from pandas import Timestamp
-from db_utils import QueryDefinition, QueryManager, QueryParameter, format_number, format_date, interpolated_text_with_components, locale_cs_d3
+
+from db_utils import QueryDefinition, QueryManager, QueryParameter, format_date, format_number, interpolated_text_with_components, locale_cs_d3
 
 
 def performance_section_children(app):
@@ -25,7 +26,7 @@ def performance_section_children(app):
 							dmc.ThemeIcon(
 								size="xl",
 								radius="xl",
-								color="red",
+								color="green",
 								variant="light",
 								children=DashIconify(icon="icon-park-outline:analysis", width=25)
 							),
@@ -181,18 +182,11 @@ def performance_section_children(app):
 							dag.AgGrid(
 								id="performance-places",
 								style={ "height": "264px" },
-								# TODO
-								rowData=[{
-									'place_name': "TODO Place " + str(i),
-									'count': 0,
-									'sum': 0,
-									'commission': 0,
-								} for i in range(5)],
 								columnDefs=[
 									{ 'headerName': 'Place', 'field': 'place_name' },
-									{ 'headerName': 'Count', 'field': 'count', 'type': 'numericColumn' },
-									{ 'headerName': 'Sum', 'field': 'sum', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
-									{ 'headerName': 'Commission', 'field': 'commission', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
+									{ 'headerName': 'Count', 'field': 'count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+									{ 'headerName': 'Sum', 'field': 'sum', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value/100)" }, 'type': 'numericColumn' },
+									# { 'headerName': 'Commission', 'field': 'commission', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
 								],
 								defaultColDef={ "resizable": True, "sortable": True, "filter": True },
 								columnSize="sizeToFit",
@@ -206,18 +200,11 @@ def performance_section_children(app):
 							dag.AgGrid(
 								id="performance-vendors",
 								style={ "height": "264px" },
-								# TODO
-								rowData=[{
-									'place_name': "TODO Vendor " + str(i),
-									'count': 0,
-									'sum': 0,
-									'commission': 0,
-								} for i in range(5)],
 								columnDefs=[
 									{ 'headerName': 'Vendor', 'field': 'vendor_name' },
-									{ 'headerName': 'Count', 'field': 'count', 'type': 'numericColumn' },
-									{ 'headerName': 'Sum', 'field': 'sum', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
-									{ 'headerName': 'Commission', 'field': 'commission', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
+									{ 'headerName': 'Count', 'field': 'count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+									{ 'headerName': 'Sum', 'field': 'sum', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value/100)" }, 'type': 'numericColumn' },
+									# { 'headerName': 'Commission', 'field': 'commission', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
 								],
 								defaultColDef={ "resizable": True, "sortable": True, "filter": True },
 								columnSize="sizeToFit",
@@ -231,18 +218,11 @@ def performance_section_children(app):
 							dag.AgGrid(
 								id="performance-products",
 								style={ "height": "264px" },
-								# TODO
-								rowData=[{
-									'place_name': "TODO Product " + str(i),
-									'count': 0,
-									'sum': 0,
-									'commission': 0,
-								} for i in range(5)],
 								columnDefs=[
 									{ 'headerName': 'Product', 'field': 'product_name' },
-									{ 'headerName': 'Count', 'field': 'count', 'type': 'numericColumn' },
-									{ 'headerName': 'Sum', 'field': 'sum', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
-									{ 'headerName': 'Commission', 'field': 'commission', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
+									{ 'headerName': 'Count', 'field': 'count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+									{ 'headerName': 'Sum', 'field': 'sum', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value/100)" }, 'type': 'numericColumn' },
+									# { 'headerName': 'Commission', 'field': 'commission', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
 								],
 								defaultColDef={ "resizable": True, "sortable": True, "filter": True },
 								columnSize="sizeToFit",
@@ -711,3 +691,144 @@ def performance_section_callbacks(app):
 				)
 			]
 		);
+
+	# update top places table
+	@app.register_callback(
+		background=True,
+		output=(dash.Output("performance-places", "rowData")),
+		inputs=(
+				dash.Input("filter-date-from", "value"),
+				dash.Input("filter-date-to", "value"),
+		),
+	)
+	async def update_top_places_table(date_from, date_to):
+		results = await app.query_manager.execute_queries(
+			query_names=[
+				"top_places"
+			],
+			or_query_defs={
+				'top_places': QueryDefinition(
+					name="top_places",
+					sql=QueryManager.process_sql_query(
+						"""
+						SELECT
+							t.place_name,
+							COUNT(t.transaction_id) AS count,
+							SUM(t.amount) AS sum,
+							SUM(t.org_comm) AS commission
+						FROM pos_transactions_rich t
+						WHERE t.created BETWEEN :date_from$1 AND :date_to$2
+						GROUP BY t.place_name
+						ORDER BY sum DESC
+						LIMIT 5;
+						"""
+					),
+					parameters=[
+						QueryParameter("date_from", datetime.datetime),
+						QueryParameter("date_to", datetime.datetime)
+					],
+					default_data="FSCacheDefault",
+				),
+			},
+			parameters={
+				"date_from": dateutil.parser.parse(date_from),
+				"date_to": dateutil.parser.parse(date_to),
+			}
+		)
+		top_places = results['top_places']
+
+		return top_places.to_dict(orient='records')
+
+	# update top vendors table
+	@app.register_callback(
+		background=True,
+		output=(dash.Output("performance-vendors", "rowData")),
+		inputs=(
+				dash.Input("filter-date-from", "value"),
+				dash.Input("filter-date-to", "value"),
+		),
+	)
+	async def update_top_vendors_table(date_from, date_to):
+		results = await app.query_manager.execute_queries(
+			query_names=[
+				"top_vendors"
+			],
+			or_query_defs={
+				'top_vendors': QueryDefinition(
+					name="top_vendors",
+					sql=QueryManager.process_sql_query(
+						"""
+						SELECT
+							o.vendor_name,
+							COUNT(o.transaction_id) AS count,
+							SUM(o.total_amount) AS sum,
+							SUM(o.org_comm) AS commission
+						FROM pos_order_products_rich o
+						WHERE o.created BETWEEN :date_from$1 AND :date_to$2
+						GROUP BY o.vendor_name
+						ORDER BY sum DESC
+						LIMIT 5;
+						"""
+					),
+					parameters=[
+						QueryParameter("date_from", datetime.datetime),
+						QueryParameter("date_to", datetime.datetime)
+					],
+					default_data="FSCacheDefault",
+				),
+			},
+			parameters={
+				"date_from": dateutil.parser.parse(date_from),
+				"date_to": dateutil.parser.parse(date_to),
+			}
+		)
+		top_vendors = results['top_vendors']
+
+		return top_vendors.to_dict(orient='records')
+
+	# update top products table
+	@app.register_callback(
+		background=True,
+		output=(dash.Output("performance-products", "rowData")),
+		inputs=(
+				dash.Input("filter-date-from", "value"),
+				dash.Input("filter-date-to", "value"),
+		),
+	)
+	async def update_top_products_table(date_from, date_to):
+		results = await app.query_manager.execute_queries(
+			query_names=[
+				"top_products"
+			],
+			or_query_defs={
+				'top_products': QueryDefinition(
+					name="top_products",
+					sql=QueryManager.process_sql_query(
+						"""
+						SELECT
+							o.product_name,
+							COUNT(o.transaction_id) AS count,
+							SUM(o.total_amount) AS sum,
+							SUM(o.org_comm) AS commission
+						FROM pos_order_products_rich o
+						WHERE o.created BETWEEN :date_from$1 AND :date_to$2
+						GROUP BY o.product_name
+						ORDER BY sum DESC
+						LIMIT 5;
+						"""
+					),
+					parameters=[
+						QueryParameter("date_from", datetime.datetime),
+						QueryParameter("date_to", datetime.datetime)
+					],
+					default_data="FSCacheDefault",
+				),
+			},
+			parameters={
+				"date_from": dateutil.parser.parse(date_from),
+				"date_to": dateutil.parser.parse(date_to),
+			}
+		)
+		top_products = results['top_products']
+
+		return top_products.to_dict(orient='records')
