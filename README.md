@@ -19,12 +19,47 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Research-100%25-lime" />
   <img src="https://img.shields.io/badge/Development-90%25-green" />
-  <img src="https://img.shields.io/badge/Thesis-20%25-orange" />
+  <img src="https://img.shields.io/badge/Thesis-18.8%25-red" />
 </p>
+
+<table align="center">
+    <thead>
+        <tr>
+            <th>💬 Word Count</th>
+            <th>📄 Estimated Pages</th>
+            <th>🎯 Pages Goal</th>
+            <th>📔 Actual Pages </th>
+            <th>📆 Last Updated</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><!-- word-count-start -->2836<!-- word-count-end --></td>
+            <td><!-- estimated-pages-start -->11.3<!-- estimated-pages-end --></td>
+            <td>60</td>
+            <td><!-- actual-pages-start -->31<!-- actual-pages-end --></td>
+            <td><!-- last-updated-start -->2024-12-14<!-- last-updated-end --></td>
+        </tr>
+    </tbody>
+</table>
 
 ## Thesis PDF
 
-| Link                                                                                                                                  | Description                            |
-|---------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|
-| [Download PDF](https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf)                                | Download the PDF version of the thesis |
-| [View PDF](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf) | View the PDF version of the thesis     |
+<table align="center">
+    <thead>
+        <tr>
+            <th>🔗 Link</th>
+            <th>📄 Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf">Download PDF</a></td>
+            <td>Download the PDF version of the thesis</td>
+        </tr>
+        <tr>
+            <td><a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf">View PDF</a></td>
+            <td>View the PDF version of the thesis</td>
+        </tr>
+    </tbody>
+</table>
