@@ -13,7 +13,6 @@ It also briefly describes the tools, technologies and methods employed to answer
 
 \section{Environment and local setup}
 \label{sec:data-methodology-environment}
-\todo{PostgreSQL, Python, DataSpell, ...}
 
 To start off, we needed to set up some kind of environment where we would later work with the data.
 The data we would be working with was stored in a PostgreSQL database.
@@ -157,12 +156,151 @@ In the end, it resulted in a database with anonymized values per stated configur
 However, the original values were still present in the database, and the database could have been anytime easily restored to the original state if needed and vice versa.
 
 
-\section{Data Sources}
-\label{sec:data-methodology-sources}
-\todo{Describe the data sources, with what data we are working with.}
+\section{Data Structure}
+\label{sec:data-methodology-structure}
+Without exposing the internal database structure, the abstract data structure this study was working with can be described as follows:
+
+\subsection{Financial Data}
+\label{subsec:data-methodology-structure-financial}
+\textbf{Transactions} (approx.\ 300k rows): Transactional data, that holds the information about the type, amount, timestamps and links to products, places and other related entities.
+This analysis relies on and works with several transaction types, including \textbf{top-up charge} and \textbf{refund} transactions~\footnote{Top-up transactions mean funding or refunding chip credit balances.},
+\textbf{order sales} and \textbf{refund} transactions~\footnote{Order transactions mean spending the credit balance for products.}~and
+\textbf{chip registrations}\footnote{Chip registrations mean records of when the chip bracelets were registered by the system.}.
+
+\textbf{Credit Refunds} (approx.\ 15k rows): Post-event credit refund requested by the customers with the information about the amount, timestamp, customer and the bank account to which the refund was sent.
+This data enables our analysis to correctly handle disposable credit balances, more information about the anonymous customers~\footnote{Anonymous customer essentially means a user without registered account.}~and their behavior.
+
+\begin{blue-box}{Why is it important?}
+	These records also form the backbone of the analysis, enabling insights into revenue, sales trends, and customer behavior.
+\end{blue-box}
+
+\subsection{Customer Data}
+\label{subsec:data-methodology-structure-customer}
+
+\textbf{User Accounts} (approx.\ 5k rows): Registered customer accounts with the information about the user and its potential online order history and other related information.
+
+\textbf{Tickets and Orders} (approx.\ 30k rows): Information about the online sold tickets, its types, prices, timestamps, online order related information.
+
+\begin{blue-box}{Why is it important?}
+	With the above data, this analysis can work with more customer information supporting the customer behavior analysis, customer segmentation and other related analysis.
+\end{blue-box}
+
+\subsection{Event Data}
+\label{subsec:data-methodology-structure-event}
+
+\textbf{Places} (approx.\ 400 rows): Selling and top-up service points, zones for access control and its other relations.
+
+\textbf{Products} (approx.\ 500 rows): Essentially a product catalog including the product name, price, category, volume, seller ownership and seller-organizer deal related links.
+
+\textbf{Event Program} (approx.\ 140 rows): Event program schedule with the information about the stages, performers, times and other related information.
+
+\begin{blue-box}{Why is it important?}
+	This data provides more context to the event when combined with the financial and customer data above.
+	Enabling the analysis to work with the event program, its correlation with the sales, customer behavior and other related analysis.
+\end{blue-box}
+
+\subsection{Data Processing Views}
+\label{subsec:data-methodology-structure-views}
+To efficiently query the studied data during the analysis, several SQL views and functions were created to simplify and speed up the process.
+
+\textbf{Transaction Commission Calculation}: A function that calculates the commission for each transaction based on the product and the seller-organizer deal.
+This was a crucial method required to calculate and analyze the commission from event order sales contributing to the organizer's revenue.
+
+\textbf{Transaction Enrichment}: Since the transactional data consisted of several transaction types which were not easily distinguishable, a view was created to enrich the transaction data with the transaction type information.
+It also benefited from the transaction commission calculation function mentioned above which helped to easily calculate the commission for each transaction.
+
+\textbf{Chip Customers}: Probably the most complex function that returns the customers at the event.
+Since the transactional data is architected using Event Sourcing, the customer information is not directly available and needs to be compiled from the transactional history.
+This function was constructed in a way, where it supports time-based filtering and provides extensive insights into the customers, which is shown in table~\ref{tab:chip-customers-columns}~below:
+
+\begin{table}[H]
+	\centering
+	\footnotesize
+	\begin{tabular}{|>{\columncolor{unicorn_blue!5}}l|>{\columncolor{unicorn_blue!5}}l|}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{\color{white} Column Name} & \textbf{\color{white} Description}                           \\
+		\hline
+		\hline
+		CHIP\_ID                             & Unique chip identifier.                                      \\
+		CHIP\_TYPE                           & Type of chip (\eg~regular, VIP, online, staff).              \\
+		REG\_AT                              & Timestamp of chip registration.                              \\
+		FIRST\_TRX                           & First transaction timestamp associated with the chip.        \\
+		LAST\_TRX                            & Last transaction timestamp associated with the chip.         \\
+		LAST\_BALANCE                        & Last known balance at the specified time frame.              \\
+		ACTUAL\_BALANCE                      & Balance at the specified time frame after credit refunds.    \\
+		\hline
+		IS\_BLOCKED                          & Indicates if the chip is blocked due to suspicious activity. \\
+		HOURS\_ACTIVE                        & Total active hours of the chip (daily sum).                  \\
+		DAYS\_ACTIVE                         & Total number of days the chip was active.                    \\
+		\hline
+		T\_COUNT                             & Total number of transactions associated with the chip.       \\
+		O\_TOTAL\_CNT                        & Total number of orders placed using the chip.                \\
+		O\_TOTAL\_AMT                        & Total amount spent through orders.                           \\
+		O\_MAX\_AMT                          & Maximum amount spent in a single order.                      \\
+		O\_AVG\_AMT                          & Average amount spent per order.                              \\
+		O\_MODE\_AMT                         & Most common amount spent per order.                          \\
+		OS\_AVG\_AMT                         & Average amount spent on sales orders (excluding refunds).    \\
+		OS\_MODE\_AMT                        & Most common sale amount (excluding refunds).                 \\
+		TU\_TOTAL\_CNT                       & Total number of top-ups made to the chip.                    \\
+		TU\_TOTAL\_AMT                       & Total amount credited to the chip via top-ups.               \\
+		TU\_MAX\_AMT                         & Maximum amount credited in a single top-up.                  \\
+		TU\_AVG\_AMT                         & Average amount credited per top-up.                          \\
+		TU\_MODE\_AMT                        & Most common amount credited per top-up.                      \\
+		TU\_CARD\_BRAND                      & Used card brand for top-ups (\eg~Visa, Mastercard).          \\
+		\hline
+		BR\_AMT                              & Total amount refunded to the customer's bank account.        \\
+		BR\_EMAIL\_DOMAIN                    & Domain of the refund request email (\eg~gmail.com).          \\
+		BR\_COUNTRY                          & Country associated with the bank account for refund.         \\
+		BR\_REQ\_SOURCE                      & Source of the refund request (\eg~iOS, Android, Web).        \\
+		BR\_BANK\_NAME                       & Name of the Czech bank used for the refund.                  \\
+		BR\_CREATED                          & Timestamp when the refund request was created.               \\
+		BR\_APPROVED                         & Timestamp when the refund request was approved.              \\
+		\hline
+		A\_EMAIL\_DOMAIN                     & Email domain of the account.                                 \\
+		A\_COUNTRY\_NAME                     & Country associated with the account.                         \\
+		A\_REQ\_SOURCE                       & Source of the account creation (\eg~iOS, Android, Web).      \\
+		EO\_PAYMENT\_METHOD                  & Payment method for orders (\eg~card, bank transfer).         \\
+		EO\_CARD\_BRAND                      & Used card brand for online order (Visa, Mastercard)          \\
+		EO\_REQ\_SOURCE                      & Source of the order request (\eg~iOS, Android, Web).         \\
+		\hline
+	\end{tabular}
+	\caption{Customer chips function return table.}
+	\label{tab:chip-customers-columns}
+\end{table}
+
+
+\section{Tools and Technologies}
+\label{sec:data-methodology-tools}
+
+As mentioned earlier, this process utilized a variety of tools and technologies to handle the data and prepare for the analysis.
+These main tools and technologies included:
+\begin{itemize}
+	\item \textbf{PostgreSQL}: An open-source relational database management system used to store and query the data.
+	\item \textbf{PostGIS}: An extension of PostgreSQL that supports geospatial data, enabling spatial analysis and visualization.
+	\item \textbf{DataSpell}: An integrated development environment (IDE) for data science and analytics, used for database exploration and data visualization.
+	\item \textbf{Python}: Used for data preprocessing, querying, and analysis, along with libraries like Pandas for data manipulation.
+	\item \textbf{Claude AI}: Utilized for extracting data from unstructured sources (e.g., program schedules) and automating repetitive tasks like data entry.
+\end{itemize}
+
+Using such tools during this process provided a convenient environment for data handling and processing, initial analysis and ensuring the accuracy and efficiency for further analysis and results presentation.
 
 
 \section{Conclusion}
 \label{sec:data-methodology-conclusion}
-\todo{Conclude.}
+This chapter laid out the process of setting up the local environment, collecting and preparing the data, anonymizing sensitive information and introducing the data structure.
+
+Some key challenges, such as missing beverage volume information, data anonymization, and event program integration, were addressed through a combination of manual and automated processes.
+
+In the end, the use of SQL views for data enrichment and functions for further data processing ensured efficient querying and analysis.
+And hopefully laid the groundwork for answering the research questions and achieving the study's goals, as detailed in the later chapters.
+
+For better understanding and visualization of this initial comprehensive Knowledge Data Discover process, a simplified diagram was created; that can be seen in figure~\ref{fig:data-methodology-diagram}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{\ThesisFigures/diagrams/kdd-workflow}
+	\caption{Knowledge Data Discovery workflow diagram.}
+	\label{fig:data-methodology-diagram}
+\end{figure}
 

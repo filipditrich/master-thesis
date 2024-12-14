@@ -1,0 +1,140 @@
+@startuml
+skinparam ActivityBackgroundColor #f9f9f9
+skinparam ActivityBorderColor #333
+skinparam ArrowColor #666
+skinparam ActivityFontSize 11
+skinparam NoteBorderColor #999
+skinparam NoteBackgroundColor #fff
+skinparam NoteFontSize 10
+
+' Define specific activity styles
+skinparam activity {
+    BackgroundColor<<milestone>> #0B2A70
+    FontColor<<milestone>> #FFF
+    BorderColor<<milestone>> #40C8D3
+}
+
+skinparam partition {
+    BackgroundColor #F3F4F8
+    BorderColor #64748b
+}
+
+title Knowledge Discovery and Data Processing Workflow
+
+partition "1. Initial Analysis & Planning" {
+    start
+    :Analyze Production Database;
+    :Identify Required Tables;
+    note right: 21 tables selected
+    :Plan Data Export Strategy;
+
+    split
+        :Process Small Tables;
+        :Direct CSV Export;
+    split again
+        :Process Large Tables;
+        :Split Into Chunks;
+        :Join Using Python Script;
+        note right: e.g., Transactions table (140k+ rows)
+    end split
+}
+
+partition "2. Data Preprocessing" {
+    :Convert Timestamps;
+    :Fix Numeric Formats;
+    note right: Convert comma-separated values
+}
+
+partition "3. Local Environment Setup" {
+    :Install PostgreSQL;
+    :Add PostGIS Extension;
+    note right: Required for spatial data
+    :Setup Database Structure;
+    :Import Preprocessed CSV Files;
+    :Base Dataset Ready;<<milestone>>
+}
+
+partition "4. Data Enhancement & Cleanup" {
+    split
+        :Enhance Beverage Products;
+        :Add Volume Column;
+        note left
+            - 425 total products
+            - 159 beverage products
+            - Manual volume entry
+        end note
+    split again
+        :Process Depositable Items;
+        :Add Binary Flag;
+    split again
+        :Import Event Program;
+        :Extract from Website;
+        :AI-Assisted Data Entry;
+        note right
+            Used AI to extract
+            and prepare SQL
+            insert scripts
+        end note
+    end split
+}
+
+partition "5. Data Anonymization System" {
+    :Create Supporting Tables;
+    note left
+        - anonymization_config
+        - original_values
+    end note
+    :Configure Anonymization;
+    note right
+        JSON-based
+        configuration
+    end note
+
+    split
+        :Process Vendor Data;
+        note left: Vendor_1 format
+    split again
+        :Process Customer Data;
+        note right
+            Preserve email
+            domains
+        end note
+    split again
+        :Process Place Names;
+        note right
+            Keep non-sensitive
+            names (e.g., BAR L2)
+        end note
+    end split
+    :Anonymized Dataset Ready;<<milestone>>
+}
+
+partition "6. Analysis Preparation" {
+    split
+        :Create Transaction Commission Calculator;
+        note left
+            Based on product
+            and seller deals
+        end note
+    split again
+        :Build Transaction Enrichment View;
+        note right
+            Distinguish
+            transaction
+            types
+        end note
+    split again
+        :Develop Chip
+        Customers View;
+        note right
+            Event Sourcing
+            based with
+            30+ columns
+        end note
+    end split
+}
+
+:Final Dataset Ready for Analysis;<<milestone>>
+stop
+
+@enduml

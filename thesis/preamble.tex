@@ -15,12 +15,16 @@
 \usepackage{tcolorbox}
 % gray box preset
 \newtcolorbox{gray-box}[1]{colback=gray!5!white,colframe=gray!50!black,title=#1}
+\definecolor{unicorn_blue}{HTML}{0B2A70}
+\newtcolorbox{blue-box}[1]{colback=unicorn_blue!5!white,colframe=unicorn_blue,title=#1}
+
 
 %%%%% Setting the colors and syntax of the code
 %%%%% ---------------------------------------------------------------
 % TODO: Define the colors
 \usepackage{fvextra}
 \usepackage{xcolor}
+\usepackage{colortbl} % for colored rows/columns
 \definecolor{codekeyword}{rgb}{0.0,0.3,0.7}
 \definecolor{codestring}{rgb}{0.4,0.4,0.8}
 \definecolor{codecomment}{rgb}{0.2,0.2,0.2}
@@ -100,6 +104,7 @@
 \newcommand{\note}[1]{\newline\textcolor{blue}{\textbf{NOTE:} #1}\newline}
 \newcommand{\theEvent}{\textbf{The Event}}
 \newcommand{\theOrganizer}{\textbf{The Organizer}}
+\newcommand{\eg}{e.g.,}
 
 
 %%%%% Setting the acronyms
