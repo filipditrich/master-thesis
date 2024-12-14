@@ -19,7 +19,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Research-100%25-lime" />
   <img src="https://img.shields.io/badge/Development-90%25-green" />
-  <img src="https://img.shields.io/badge/Thesis-18.8%25-red" />
+  <img src="https://img.shields.io/badge/Thesis-21.2%25-red" />
 </p>
 
 <table align="center">
@@ -34,8 +34,8 @@
     </thead>
     <tbody>
         <tr>
-            <td><!-- word-count-start -->2836<!-- word-count-end --></td>
-            <td><!-- estimated-pages-start -->11.3<!-- estimated-pages-end --></td>
+            <td><!-- word-count-start -->3177<!-- word-count-end --></td>
+            <td><!-- estimated-pages-start -->12.7<!-- estimated-pages-end --></td>
             <td>60</td>
             <td><!-- actual-pages-start -->31<!-- actual-pages-end --></td>
             <td><!-- last-updated-start -->2024-12-14<!-- last-updated-end --></td>

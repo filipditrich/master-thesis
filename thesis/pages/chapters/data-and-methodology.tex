@@ -6,29 +6,68 @@
 %%% --------------------------------------------------------------
 \chapter{Data and Methodology}
 \label{ch:data-methodology}
-This chapter provides an overview of the data used for this research, the process of data extraction, preparation and preprocessing.
-The chapter also discusses the ethical considerations and mainly the process of data anonymization.
-And it also briefly describes the tools, technologies and methods employed to answer the research questions.
+This chapter address the process and challenges of local environment setup, obtaining, preparing and anonymizing the data.
+Most importantly, this chapter describes and explains the data that was used for this research.
+It also briefly describes the tools, technologies and methods employed to answer the research questions.
+
+
+\section{Environment and local setup}
+\label{sec:data-methodology-environment}
+\todo{PostgreSQL, Python, DataSpell, ...}
+
+To start off, we needed to set up some kind of environment where we would later work with the data.
+The data we would be working with was stored in a PostgreSQL database.
+
+Having direct access to the production database to perform the analysis was not a secure and ethical way to go.
+Exporting only the necessary and raw data from the production database was an initial thought, but we initially did not know what data we would need, and by exporting we would lose all the relations between the tables.
+
+Therefore, we decided to set up a local database with the same structure as the production database where we can query and analyze the data safely.
+The next step was to import the data from the production database to the local database.
+Importing or simple cloning the full database was also not an option, because only a small fraction of its subset was required.
+
+So a deep internal analysis of the tables that were relevant to our study was performed.
+This resulted in a list of total 21 tables that held the necessary data for the study and were necessary to be imported.
+
+\subsection{Data Obtaining and Preparation}
+\label{subsec:data-methodology-obtaining-preparation}
+
+Almost every table was easily queried for the event and exported from the production database to a local CSV file.
+But some tables (for example and not surprisingly, the \textit{transactions} table with over 140k rows) were too large to be exported in one piece, so we had to split them into smaller parts.
+Later, these parts were joined together to a single CSV file using a simple Python script.
+
+Since no direct access to the production database was used for the export but rather a database management tool, the export was not as fast as it could be and took a significant amount of time.
+Moreover, the exported data, most importantly the timestamps, were in a different format than we needed.
+And also all numeric values were exported as a formatted strings with a comma as a decimal separator.
+So a data preprocessing Python script was written to convert such invalid columns to the correct format.
+
+\subsection{Local Database Setup}
+\label{subsec:data-methodology-local-database-setup}
+Then a step to set up the local PostgreSQL database was needed.
+Due to the nature of this study, we wanted to keep the setup as simple as possible, so we used the default PostgreSQL installation without using any special environment using Docker or similar.
+However, during this process I made a mistake and forgot that a PostgreSQL with PostGIS extension was needed.
+So it required to re-set up the database with the PostGIS extension.
+
+The next step was to import the data from the CSV files to the local database.
+For further database handling, analysis and visualization, we used DataSpell, a Python IDE with a built-in database explorer and data visualization tools.
+DataSpell was then used for the local database import, which prior to it required some necessary database relations and constraints modifications, since the data was exported without them and were not relevant for the study.
+
+This whole process resulted in approximately 387k rows of data in the local database that were ready to be queried and analyzed.
+
+\subsection{Local Database Modifications}
+\label{subsec:data-methodology-local-database-modifications}
+\todo{Local modification of tables - product volume in ml and its classification, depositable products, ...}
+\todo{Local modification of tables - geo data to places and venue map visualization, but in the end not used.}
+\todo{Manual data creation (event program and performers)}
+
+
+\section{Data Anonymization}
+\label{sec:data-methodology-anonymization}
+\todo{Data needed to be anonymized, why, how and what was done for it.}
 
 
 \section{Data Sources}
 \label{sec:data-methodology-sources}
 \todo{Describe the data sources, with what data we are working with.}
-
-
-\section{Data Preparation}
-\label{sec:data-methodology-preparation}
-\todo{Explain the process of data extraction (copy, download, pre-process py script), local DB setup, DB modifications made for the data to be usable, limitations (seconds gone), etc.}
-
-
-\section{Ethical Considerations and Data Anonymization}
-\label{sec:data-methodologyethical-considerations-anonymization}
-\todo{Data needed to be anonymized, why, how and what was done for it.}
-
-
-\section{Tools, Technologies and Methods}
-\label{sec:data-methodology-tools-technologies-methods}
-\todo{PostgreSQL, Python, DataSpell, ...}
 
 
 \section{Conclusion}
