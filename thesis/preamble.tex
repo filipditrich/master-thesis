@@ -31,35 +31,35 @@
 % minted package setup
 \usepackage[outputdir=dist]{minted}
 \setminted{
-    frame=none,
-    breaklines=true,
-    fontsize=\footnotesize,
-    tabsize=2,
-    linenos,
-    numbersep=5pt,
-    xleftmargin=0pt,
-    baselinestretch=1.2,
-    style=friendly,
+	frame=none,
+	breaklines=true,
+	fontsize=\footnotesize,
+	tabsize=2,
+	linenos,
+	numbersep=5pt,
+	xleftmargin=0pt,
+	baselinestretch=1.2,
+	style=friendly,
 %   TODO: highlighting not working
-    highlightcolor=\color{lightyellow},
-    keywordstyle=\color{codekeyword},
-    stringstyle=\color{codestring},
-    commentstyle=\color{codecomment}\itshape,
-    morecomment=[s][\color{codejsdoc}]{/**}{*/},
-    numberstyle=\footnotesize\color{codelinenum}
+	highlightcolor=\color{lightyellow},
+	keywordstyle=\color{codekeyword},
+	stringstyle=\color{codestring},
+	commentstyle=\color{codecomment}\itshape,
+	morecomment=[s][\color{codejsdoc}]{/**}{*/},
+	numberstyle=\footnotesize\color{codelinenum}
 }
 
 % listings package setup
 \usepackage{listings}
 \lstset{
-    basicstyle=\ttfamily,
-    columns=fullflexible,
-    frame=single,
-    breaklines=true,
-    showstringspaces=false,
-    keywordstyle=\bfseries,
-    commentstyle=\itshape\color{gray},
-    captionpos=t
+	basicstyle=\ttfamily,
+	columns=fullflexible,
+	frame=single,
+	breaklines=true,
+	showstringspaces=false,
+	keywordstyle=\bfseries,
+	commentstyle=\itshape\color{gray},
+	captionpos=t
 }
 
 % wrap long URLs
@@ -94,6 +94,13 @@
 \usepackage{nameref}
 % will create a reference to a chapter, section, ... including the number and in bold
 \renewcommand{\fullref}[1]{\textbf{\nameref{#1}}}
+
+% utils
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:} #1}}
+\newcommand{\note}[1]{\textcolor{blue}{\textbf{NOTE:} #1}}
+\newcommand{\theEvent}{\textbf{The Event}}
+\newcommand{\theOrganizer}{\textbf{The Organizer}}
+
 
 %%%%% Setting the acronyms
 %%%%% ---------------------------------------------------------------
