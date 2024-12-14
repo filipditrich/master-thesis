@@ -95,6 +95,10 @@ def update_badge(content, progress, color):
 
 def update_readme(readme_path, stats):
 	"""Update README.md with LaTeX document statistics and progress badge."""
+	if not readme_path:
+		print(f"No readme file provided, skipping updating...")
+		return True
+
 	try:
 		with open(readme_path, 'r', encoding='utf-8') as file:
 			content = file.read()
@@ -169,16 +173,16 @@ def get_pdf_page_count(pdf_path):
 
 
 def main():
-	if len(sys.argv) != 4:
+	if len(sys.argv) < 3:
 		print("Usage: python readme_updater.py <tex_file> <pdf_file> <readme_file>")
 		return
 
 	tex_path = Path(sys.argv[1])
 	pdf_path = Path(sys.argv[2])
-	readme_path = Path(sys.argv[3])
+	readme_path = Path(sys.argv[3]) if len(sys.argv) > 3 else None
 
 	# Check if files exist
-	if not all(p.exists() for p in [tex_path, pdf_path, readme_path]):
+	if not all(p.exists() for p in [tex_path, pdf_path]):
 		print("Error: One or more input files do not exist")
 		return
 
