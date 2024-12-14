@@ -102,7 +102,59 @@ In the end, I doubt that this process was faster than manual data entry, but it 
 
 \section{Data Anonymization}
 \label{sec:data-methodology-anonymization}
-\todo{Data needed to be anonymized, why, how and what was done for it.}
+The Data Anonymization process was necessary due to requirements initially set by the data provider and later by the ethical considerations.
+This step was performed for the already imported data in the local database.
+It required identifying the sensitive data and replacing them with anonymized values.
+
+In this case, the most sensitive data were:
+\begin{itemize}
+	\item \textbf{Vendor names}: Since it included the legal names of the vendors, it was necessary to anonymize them.
+	\item \textbf{Selling places}: Some selling places were named after the vendors, so it was necessary to anonymize them as well.
+	\item \textbf{Customer information}: Some tables included customer information like names, emails, phone numbers, etc.
+\end{itemize}
+
+The process could have been done various ways, but the fact that this study will not be exposing internal database structure, it was decided to perform the anonymization directly in the database.
+
+However, if one-way anonymization were to be performed, it would permanently overwrite the original data, losing the possibility to switch from anonymized to original data.
+Therefore, a two-way anonymization process was chosen and performed.
+
+This was particularly useful during the analysis phase, where the results would contain the original data for better understanding, fact-checking and for the internal presentation and consultations with the organizer.
+
+It was done on the database level, where two new internal tables were introduced~–~\textit{public.anonymization\_config} and \textit{public.original\_values}.
+
+Where the \textit{public.anonymization\_config} table held the configuration about which schema, table and column should be anonymized and how.
+For the usage, a simple SQL function was created to define the anonymization configuration in a simple JSON format, that looked like in the~\fullref{lst:anonymization-configuration}.
+
+\begin{listing}[H]
+	\begin{minted}{sql}
+		SELECT configure_anonymization('[
+			{ "table": "schema.seller", "columns": ["legal_name", "name_int", "name_pub"] },
+			...
+			{ "table": "schema.user_account", "columns": ["email", "last_name", "first_name", "phone"] },
+			]'::JSONB
+		);
+	\end{minted}
+	\caption{Anonymization configuration example.}
+	\label{lst:anonymization-configuration}
+\end{listing}
+
+The \textit{public.original\_values} table was used to store the original values of the anonymized columns.
+Again, using a simple SQL function \textit{anonymize\_database()}, it would store the original values and anonymize the configured table columns.
+
+One particular challenge was anonymizing the values smartly.
+It could have been easily done by replacing the values with random strings, hashes or encrypted values.
+But working with data, where a vendor is named \textit{fa65165b923e9cc} is not very convenient.
+
+Therefore, a simple SQL function was written to anonymize the value depending on the configuration.
+This allowed to configure the anonymization to:
+\begin{itemize}
+	\item replace vendor names with values like \textit{Vendor 1},
+	\item customer emails with \textit{03b09592-d0eb-43a3-9941-30d38ade6bce@gmail.com} keeping the original email domain,
+	\item selling places with values like \textit{Place 1} where the original name contained sensitive information, but keep original values for places like \textit{BAR L2},~etc.
+\end{itemize}
+
+In the end, it resulted in a database with anonymized values per stated configuration, that could have been used for the analysis and results presentation safely.
+However, the original values were still present in the database, and the database could have been anytime easily restored to the original state if needed and vice versa.
 
 
 \section{Data Sources}
