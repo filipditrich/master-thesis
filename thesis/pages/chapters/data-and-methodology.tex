@@ -49,15 +49,55 @@ So it required to re-set up the database with the PostGIS extension.
 
 The next step was to import the data from the CSV files to the local database.
 For further database handling, analysis and visualization, we used DataSpell, a Python IDE with a built-in database explorer and data visualization tools.
-DataSpell was then used for the local database import, which prior to it required some necessary database relations and constraints modifications, since the data was exported without them and were not relevant for the study.
+DataSpell was then used for the local database import, which prior to it required some necessary database relations and constraints modifications, since the data was exported without them and was not relevant for the study.
 
 This whole process resulted in approximately 387k rows of data in the local database that were ready to be queried and analyzed.
 
 \subsection{Local Database Modifications}
 \label{subsec:data-methodology-local-database-modifications}
-\todo{Local modification of tables - product volume in ml and its classification, depositable products, ...}
-\todo{Local modification of tables - geo data to places and venue map visualization, but in the end not used.}
-\todo{Manual data creation (event program and performers)}
+Before any analysis was performed, some modifications to the local database were needed due to some known limitations and missing data.
+
+\subsubsection{Beverage Volumes}
+\label{subsubsec:data-methodology-local-database-modifications-volume}
+The first necessary limitation that the Beverage Consumption Analysis section heavily relied on was the missing information about beverage products volume in milliliters.
+This information was crucial for the analysis, so a new column was added to the relevant product information tables.
+However, the next step was to back-fill this information which was not easily automated.
+
+The First approach was to write a Python script that would try to find the volume information from the product name.
+This worked for some products, but not for all since the naming convention was not consistent.
+
+After several attempts to automate this process, it was decided to manually fill in the missing information since only 425 products were present in the database.
+Only 159 of them were of beverage type and thus eligible for the volume information.
+
+\subsubsection{Depositable Products}
+\label{subsubsec:data-methodology-local-database-modifications-depositable}
+Since one of the research questions was to analyze the depositable cups and this information was not easily available in the database, a new column was added to the product information tables.
+
+This was a simple binary column that indicated whether the product was depositable or not.
+Back-filling this information was also pretty straightforward since only one product was a depositable cup.
+
+\subsubsection{Venue Map Visualization}
+\label{subsubsec:data-methodology-local-database-modifications-venue-map}
+One of the initial ideas was to visualize the venue map with the locations of the selling places, top-up service points, stages and other important places.
+
+This would be invaluable, the database was partially ready for this, but the data would be significantly time-consuming to back-fill and the later analysis and visualization would require more time.
+
+Since these facts and the fast that this process of preparing the data took place before completing the list of data analysis questions, this idea was later abandoned.
+
+\subsubsection{Event Program}
+\label{subsubsec:data-methodology-local-database-modifications-program}
+To present some time-related data and its correlation with the event program, it would require to have the event program in the database.
+
+Again, the database was ready for this, but no event program was set up, since it was unnecessary for the event.
+Therefore, this required getting the event program from the festival website and manually insert it into the database.
+
+This was manually a very time-consuming process, but it was necessary for the analysis.
+For some simplification of the process, an AI tool was used to extract the data from the program schedule screenshots and instructed to prepare an SQL script that would insert the data into the database.
+
+This seemed like a good idea, but the AI tool was initially hallucinating and made up some incorrect data.
+But after several iterations, it successfully extracted the data and prepared the SQL script which was used and the event program was successfully inserted into the database.
+
+In the end, I doubt that this process was faster than manual data entry, but it was a good exercise and a good example of how AI can be used to automate some processes.
 
 
 \section{Data Anonymization}
