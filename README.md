@@ -17,9 +17,9 @@
 
 <h3 align="center">👨🏻‍🔬 Current Status</h3>
 <p align="center">
-  <img src="https://img.shields.io/badge/Research-65%25-yellow" />
-  <img src="https://img.shields.io/badge/Development-40%25-orange" />
-  <img src="https://img.shields.io/badge/Thesis-0%25-red" />
+  <img src="https://img.shields.io/badge/Research-100%25-lime" />
+  <img src="https://img.shields.io/badge/Development-90%25-green" />
+  <img src="https://img.shields.io/badge/Thesis-20%25-orange" />
 </p>
 
 ## Thesis PDF
