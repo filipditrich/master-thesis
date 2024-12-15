@@ -8,13 +8,121 @@
 \label{ch:data-analysis-and-results}
 
 This chapter presents the data analysis and results of the research.
-The data analysis is divided into four sections:~\fullref{sec:analysis-cashflow-and-revenue-sources},~\fullref{sec:analysis-performance-indicators},~\fullref{sec:analysis-beverage-consumption} and~\fullref{sec:analysis-customers}.
-Each section focuses on a different aspect of the data analysis trying to answer the research questions as previously defined in the~\fullref{chap:introduction}~chapter.
+The goal is to address the research questions outlined earlier, with a focus on providing actionable insights for the event organizer.
+
+The chapter is divided into several sections corresponding to key analytical areas:
+\begin{enumerate}
+	\item \fullref{sec:analysis-cashflow-and-revenue-sources},
+	\item \fullref{sec:analysis-performance-indicators},
+	\item \fullref{sec:analysis-beverage-consumption},
+	\item and~\fullref{sec:analysis-customers}
+\end{enumerate}
+
+Each section focuses on a different aspect of the data analysis trying to answer the research questions, present quantitative results, visualizations, and interpretations.
 
 
 \section{Cashflow and Revenue Sources Analysis}
 \label{sec:analysis-cashflow-and-revenue-sources}
-\todo{Haha.}
+
+This section provides a comprehensive view of the festival's financial performance and cash flows.
+It should answer critical questions about how finances were funded into the system, how were they processed, and what were the final outcomes.
+
+For this analysis, four questions were previously formulated.
+However, they were reordered to better fit the narrative of the analysis and logical flow of the chapter:
+\begin{enumerate}
+	\item \textit{How much and by what means was the balance topped up on the chips?}
+	\item \textit{What was the total sales of the event, how much of it was the sales of the organizer and how many external vendors?}
+	\item \textit{How much balance remained on all chips after the event and after refunds?}
+	\item \textit{What was the total revenue of the organizer and what does it consist of?}
+\end{enumerate}
+
+In the end, this section should provide a clear picture of the financial flows during the event and easy understanding of the generated revenue from various sources.
+
+\subsection{Chip Top-Up Analysis}
+\label{subsec:analysis-chip-top-up}
+\begin{gray-box}{Research Question}
+	\textit{How much and by what means was the balance topped up on the chips?}
+\end{gray-box}
+
+Attendees could top up their chip balances via online prepayments or on-site using cash or card.
+Additionally, the system allows to top-up~\enquote{artificial} credit for VIP-issued chips which is also a mean of funding the system.
+However, these VIP credits are later not refundable, but this will be discussed in the next section.
+
+This subsection quantifies these methods, highlighting their respective contributions to the overall top-up total.
+
+To get the results, it was necessary to find all top-up transactions and their respective payment methods used.
+This resulted in \bfmtnum{17704}~top-up transactions, with a total value of~\bfmtczk{14520973}.
+
+When looking at the grouping by payment methods, the results in~\autoref{fig:top-up-transactions-by-payment-method} give a clear picture of the distribution.
+
+\begin{figure}[H]
+	\centering
+	% First the pie chart
+	\includegraphics[width=0.75\textwidth]{\ThesisFigures/charts/topup-methods}
+	\vspace{1em}  % add some space between chart and table
+
+	% Then the table
+	\small
+	\begin{tabular}{@{}lrr@{}}
+		\toprule
+		\textbf{Payment Method}                & \textbf{Count} & \textbf{Total Value (CZK)} \\
+		\midrule
+		\colorindicator{chart2}Card terminal     & \fmtnum{8486}  & \fmtczk{7264503}           \\
+		\colorindicator{chart3}Cash              & \fmtnum{7561}  & \fmtczk{5782570}           \\
+		\colorindicator{chart1}Online pre top-up & \fmtnum{1634}  & \fmtczk{1436400}           \\
+		\colorindicator{chart4}VIP issued        & \fmtnum{23}    & \fmtczk{37500}             \\
+		\bottomrule
+	\end{tabular}
+	\caption{Top-Up Transactions by Payment Method}
+	\label{fig:top-up-transactions-by-payment-method}
+\end{figure}
+
+Thanks to the results, it is clear how many funds did the system receive and by what means.
+
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item Total top-up amount was~\bfmtczk{14520973}.
+		\item Most used payment method was card terminal at the event with 50\% of all top-ups.
+		\item Only around 10\% of the top-ups were done online.
+	\end{itemize}
+\end{blue-box}
+
+\subsection{Sales Analysis}
+\label{subsec:analysis-sales}
+\begin{gray-box}{Research Question}
+	\textit{What was the total sales of the event, how much of it was the sales of the organizer and how many external vendors?}
+\end{gray-box}
+
+The sales analysis was crucial for understanding the overall sales behavior and served as a basis for further insights tightly connected to the revenue sources.
+
+To answer the research question, it was necessary to find all sales transactions and their respective sellers and to divide them into two groups: the direct organizer's sales and external vendors' sales.
+And for better understanding, the sales were also grouped by the product categories (see~\autoref{tab:product-categories} for the list of categories).
+
+The results show that the total sales of the event were~\bfmtczk{11711807} with the organizer's sales being~\bfmtczk{8240264} and the external vendors' sales~\bfmtczk{3471543}.
+
+The organizer, most importantly, sold all the beer beverages and most of the non-alcoholic and alcoholic (spirits) beverages.
+Whereas the external vendors sold mainly the food, wine beverages and other uncategorized products.
+This can be seen in~\autoref{fig:sales-organizer-vs-vendors} below.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.99\textwidth]{\ThesisFigures/charts/sales-vendors}
+	\caption{Sales of the Organizer vs. External Vendors}
+	\label{fig:sales-organizer-vs-vendors}
+\end{figure}
+
+The organizer also sold not so little of uncategorized products, which after further investigation turned out to be ticket sales at the event amounting to~\bfmtczk{684700}.
+
+In total, the organizer direct sales were \textbf{70\%} of the total sales, which is a significant portion, and thus the organizer itself has even bigger influence on the event's financial performance.
+
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item Total sales of the event were~\bfmtczk{11711807}, where organizer sales were~\textbf{70\%} of the total.
+		\item The organizer sold all beer beverages and the majority of the non-alcoholic and alcoholic beverages.
+		\item The organizer also sold tickets at the event amounting to~\bfmtczk{684700}.
+		\item External vendors sold mainly food, wine beverages, and other uncategorized products.
+	\end{itemize}
+\end{blue-box}
 
 
 \section{Performance Indicators Analysis}

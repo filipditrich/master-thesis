@@ -33,6 +33,21 @@ colors = {
 	'peach': 'rgba(226, 139, 120, 1.0)',  # Soft peach
 }
 
+chart_colors = {
+	'chart1': '#2D7DD2',
+	'chart2': '#6C969D',
+	'chart3': '#97CC04',
+	'chart4': '#EEB902',
+	'chart5': '#474647',
+	'chart6': '#F45D01',
+	'chart7': '#9B6B6C',
+	'chart8': '#556F44',
+}
+
+
+def get_chart_color(name: str) -> str:
+	return chart_colors[name] if name in chart_colors else chart_colors['chart1']
+
 
 def get_color(name: str, alpha: Optional[float] = None) -> str:
 	base_color = colors[name] if name in colors else colors['indigo']

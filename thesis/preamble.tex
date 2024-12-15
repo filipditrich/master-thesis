@@ -10,12 +10,25 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.75\baselineskip}
 
+%%%%% Color definitions
+%%%%% ---------------------------------------------------------------
+\usepackage{xcolor}
+\definecolor{unicorn_blue}{HTML}{0B2A70}
+\definecolor{unicorn_blue_light}{HTML}{40C8D3}
+\definecolor{chart1}{HTML}{2D7DD2}  % Clear Blue
+\definecolor{chart2}{HTML}{6C969D}  % Golden Yellow
+\definecolor{chart3}{HTML}{97CC04}  % Lime Green
+\definecolor{chart4}{HTML}{EEB902}  % Orange
+\definecolor{chart5}{HTML}{474647}  % Dark Gray
+\definecolor{chart6}{HTML}{F45D01}  % Steel Blue
+\definecolor{chart7}{HTML}{9B6B6C}  % Dusty Rose
+\definecolor{chart8}{HTML}{556F44}  % Forest Green
+
 %%%%% Setting the color boxes/frames
 %%%%% ---------------------------------------------------------------
 \usepackage{tcolorbox}
 % gray box preset
 \newtcolorbox{gray-box}[1]{colback=gray!5!white,colframe=gray!50!black,title=#1}
-\definecolor{unicorn_blue}{HTML}{0B2A70}
 \newtcolorbox{blue-box}[1]{colback=unicorn_blue!5!white,colframe=unicorn_blue,title=#1}
 
 
@@ -23,7 +36,6 @@
 %%%%% ---------------------------------------------------------------
 % TODO: Define the colors
 \usepackage{fvextra}
-\usepackage{xcolor}
 \usepackage{colortbl} % for colored rows/columns
 \definecolor{codekeyword}{rgb}{0.0,0.3,0.7}
 \definecolor{codestring}{rgb}{0.4,0.4,0.8}
@@ -106,6 +118,33 @@
 \newcommand{\theOrganizer}{\textbf{The Organizer}}
 \newcommand{\eg}{e.g.,}
 
+% Formatting numbers
+\usepackage{siunitx} % for number formatting
+% configure siunitx for Czech number formatting
+\sisetup{
+	group-separator={,},
+	group-minimum-digits=4,
+	round-mode=places,
+	round-precision=0,
+	output-decimal-marker={.},
+}
+\newcommand{\fmtnum}[1]{\num{#1}}
+\newcommand{\fmtnump}[2][2]{\num[round-mode=places, round-precision=#1]{#2}}
+\newcommand{\fmtczk}[1]{\num{#1}~CZK}
+\newcommand{\fmtczkp}[2][2]{\num[round-mode=places, round-precision=#1]{#2}~CZK}
+% bold (using mathbf + textbf)
+\newcommand{\bfmtnum}[1]{\boldmath\textbf{\num[reset-math-version=false]{#1}}}
+\newcommand{\bfmtnump}[2][2]{\boldmath\textbf{\num[round-mode=places, round-precision=#1]{#2}}}
+\newcommand{\bfmtczk}[1]{\boldmath\textbf{\num[reset-math-version=false]{#1}~CZK}}
+\newcommand{\bfmtczkp}[2][2]{\boldmath\textbf{\num[round-mode=places, round-precision=#1]{#2}~CZK}}
+
+% Command for color box indicator
+\newcommand{\colorindicatorhex}[1]{%
+	\textcolor[HTML]{#1}{\rule{0.8em}{0.8em}}\hspace{0.5em}%
+}
+\newcommand{\colorindicator}[1]{%
+	\textcolor{#1}{\rule{0.8em}{0.8em}}\hspace{0.5em}%
+}
 
 %%%%% Setting the acronyms
 %%%%% ---------------------------------------------------------------

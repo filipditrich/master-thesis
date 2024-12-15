@@ -192,6 +192,30 @@ This data enables our analysis to correctly handle disposable credit balances, m
 
 \textbf{Products} (approx.\ 500 rows): Essentially a product catalog including the product name, price, category, volume, seller ownership and seller-organizer deal related links.
 
+Important information about products is their supported categorization that will later be used for the sales analysis and can be seen in~\autoref{tab:product-categories}.
+
+\begin{table}[H]
+	\centering
+	\footnotesize
+	\begin{tabular}{|>{\columncolor{unicorn_blue!5}}l|>{\columncolor{unicorn_blue!5}}l|}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{\color{white} Category} & \textbf{\color{white} Description}                                    \\
+		\hline
+		\hline
+		Nonalcoholic                      & Any non-alcoholic beverages (e.g., coffe, water, etc.)                \\
+		Beer                              & Any kind of beer.                                                     \\
+		Wine                              & Any kind of wine.                                                     \\
+		Other Alcohol                     & Any other kind of alcoholic beverages (e.g., shots, cocktails, etc.). \\
+		Salty                             & Any salty snacks.                                                     \\
+		Sweet                             & Any sweet snacks.                                                     \\
+		Other                             & Any other products that do not fit into the above categories.         \\
+		\hline
+	\end{tabular}
+	\caption{Product categories.}
+	\label{tab:product-categories}
+\end{table}
+
 \textbf{Event Program} (approx.\ 140 rows): Event program schedule with the information about the stages, performers, times and other related information.
 
 \begin{blue-box}{Why is it important?}
@@ -211,7 +235,7 @@ It also benefited from the transaction commission calculation function mentioned
 
 \textbf{Chip Customers}: Probably the most complex function that returns the customers at the event.
 Since the transactional data is architected using Event Sourcing, the customer information is not directly available and needs to be compiled from the transactional history.
-This function was constructed in a way, where it supports time-based filtering and provides extensive insights into the customers, which is shown in table~\ref{tab:chip-customers-columns}~below:
+This function was constructed in a way, where it supports time-based filtering and provides extensive insights into the customers, which is shown in~\autoref{tab:chip-customers-columns}~below:
 
 \begin{table}[H]
 	\centering
@@ -295,7 +319,7 @@ Some key challenges, such as missing beverage volume information, data anonymiza
 In the end, the use of SQL views for data enrichment and functions for further data processing ensured efficient querying and analysis.
 And hopefully laid the groundwork for answering the research questions and achieving the study's goals, as detailed in the later chapters.
 
-For better understanding and visualization of this initial comprehensive Knowledge Data Discover process, a simplified diagram was created; that can be seen in figure~\ref{fig:data-methodology-diagram}.
+For better understanding and visualization of this initial comprehensive Knowledge Data Discover process, a simplified diagram was created; that can be seen in~\autoref{fig:data-methodology-diagram}.
 
 \begin{figure}[H]
 	\centering
