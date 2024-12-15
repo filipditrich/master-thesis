@@ -81,6 +81,10 @@
 % wrap long URLs
 \PassOptionsToPackage{hyphens}{url}
 
+%%%%% Tables
+%%%%% ---------------------------------------------------------------
+\usepackage{tabularx}
+
 %%%%% Additional useful packages
 %%%%% ----------------------------------------------------------------
 \usepackage{amsmath}
@@ -134,9 +138,9 @@
 \newcommand{\fmtczkp}[2][2]{\num[round-mode=places, round-precision=#1]{#2}~CZK}
 % bold (using mathbf + textbf)
 \newcommand{\bfmtnum}[1]{\boldmath\textbf{\num[reset-math-version=false]{#1}}}
-\newcommand{\bfmtnump}[2][2]{\boldmath\textbf{\num[round-mode=places, round-precision=#1]{#2}}}
+\newcommand{\bfmtnump}[2][2]{\boldmath\textbf{\num[reset-math-version=false, round-mode=places, round-precision=#1]{#2}}}
 \newcommand{\bfmtczk}[1]{\boldmath\textbf{\num[reset-math-version=false]{#1}~CZK}}
-\newcommand{\bfmtczkp}[2][2]{\boldmath\textbf{\num[round-mode=places, round-precision=#1]{#2}~CZK}}
+\newcommand{\bfmtczkp}[2][2]{\boldmath\textbf{\num[reset-math-version=false, round-mode=places, round-precision=#1]{#2}~CZK}}
 
 % Command for color box indicator
 \newcommand{\colorindicatorhex}[1]{%

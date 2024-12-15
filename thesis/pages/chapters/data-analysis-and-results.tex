@@ -161,6 +161,81 @@ These results are important for the last part of this section, which is the tota
 	\end{itemize}
 \end{blue-box}
 
+\subsection{Total Revenue of the Organizer}
+\label{subsec:analysis-total-revenue}
+\begin{gray-box}{Research Question}
+	\textit{What was the total revenue of the organizer and what does it consist of?}
+\end{gray-box}
+
+The festival's financial model is based on a combination of revenue streams.
+
+The most important stream is the \textbf{commission from the vendor sales}, which is arranged in advance between the organizer and the vendors.
+The commission is, in this case, a percentage (ranging from 15\% to 30\% depending on the deal) of the vendor sales amount without VAT\@.
+
+Therefore, this required finding all sales transactions made at the external vendors' stands and calculating the commission based on the agreed percentage.
+However, this was not a straightforward task, since a transaction could contain multiple products even from different vendors.
+
+This required a more complex calculation, for which was used the previously mentioned data processing views which were designed for this purpose.
+In the end, the total revenue from sales commissions was~\bfmtczkp[2]{820712,79}.
+
+Another source of revenue is the \textbf{unclaimed chip balances}, which, after a credit refund period, are considered as taxable revenue for the organizer.
+This, thanks to the previous subsection, was found to be~\bfmtczk{334431}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.48\textwidth]{\ThesisFigures/charts/revenue-sources-direct}
+	\caption{Breakdown of Direct Revenue Streams}
+	\label{fig:revenue-breakdown-direct}
+\end{figure}
+
+Currently totalling~\bfmtczkp[2]{1155143,79} is the direct revenue of the organizer from the event and can be seen in~\autoref{fig:revenue-breakdown-direct} above.
+
+However, given the circumstances and setup of this event, there were also additional, but indirect revenue streams that were not included in the total revenue.
+These include \textbf{the online ticket sales}, which were sold by the organizer and \textbf{the direct sales of the organizer}.
+They were not included in the total direct revenue, as they may misinterpret the results since the analysis lacks expenses of the organizer.
+
+If we were to include these, the total revenue would increase by~\bfmtczk{11179700} from the online ticket sales and~\bfmtczk{8240264} from the direct sales, which would result in a total revenue of~\bfmtczkp[2]{20575107,79}.
+
+To better understand the revenue streams, the results are visualized in~\autoref{tab:revenue-summary-breakdown} and in~\autoref{fig:revenue-breakdown-total} below.
+
+\begin{table}[H]
+	\centering
+	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}r|}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{\color{white}Revenue Stream}         & \textbf{\color{white}Amount (CZK)} \\
+		\hline
+		\hline
+		\colorindicator{chart1}Vendor Commissions      & \fmtczkp[2]{820712.79}             \\
+		\colorindicator{chart2}Unclaimed Chip Balances & \fmtczk{334431}                    \\
+		\hline
+		\textbf{Total Direct Revenue}                  & \bfmtczkp[2]{1155143.79}           \\
+		\hline
+		\colorindicator{chart3}Online Ticket Sales     & \fmtczk{11179700}                  \\
+		\colorindicator{chart4}Organizer Direct Sales  & \fmtczk{8240264}                   \\
+		\hline
+		\textbf{Total Revenue (All Streams)}           & \bfmtczkp[2]{20575107.79}          \\
+		\hline
+	\end{tabularx}
+	\caption{Revenue Summary Breakdown}
+	\label{tab:revenue-summary-breakdown}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{\ThesisFigures/charts/revenue-sources-total}
+	\caption{Breakdown of All Revenue Streams}
+	\label{fig:revenue-breakdown-total}
+\end{figure}
+
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item Total direct revenue of the organizer was~\bfmtczkp[2]{1155143,79}.
+		\item Vendor sale commission contributed to~approximately 71\% of the total direct revenue.
+		\item With other indirect revenue streams, the total revenue would be~\bfmtczkp[2]{20575107,79}.
+	\end{itemize}
+\end{blue-box}
+
 
 \section{Performance Indicators Analysis}
 \label{sec:analysis-performance-indicators}
