@@ -15,6 +15,7 @@
 \usepackage{xcolor}
 \definecolor{unicorn_blue}{HTML}{0B2A70}
 \definecolor{unicorn_blue_light}{HTML}{40C8D3}
+\definecolor{tw_gray}{HTML}{6b7280}
 \definecolor{chart1}{HTML}{2D7DD2}  % Clear Blue
 \definecolor{chart2}{HTML}{6C969D}  % Golden Yellow
 \definecolor{chart3}{HTML}{97CC04}  % Lime Green
@@ -27,9 +28,11 @@
 %%%%% Setting the color boxes/frames
 %%%%% ---------------------------------------------------------------
 \usepackage{tcolorbox}
+\usepackage{fontawesome5}
 % gray box preset
 \newtcolorbox{gray-box}[1]{colback=gray!5!white,colframe=gray!50!black,title=#1}
 \newtcolorbox{blue-box}[1]{colback=unicorn_blue!5!white,colframe=unicorn_blue,title=#1}
+\newtcolorbox{info-box}[1]{colback=tw_gray!2,colframe=tw_gray!10,title={\textcolor{black}{\faQuestionCircle[regular]~~#1}}}
 
 
 %%%%% Setting the colors and syntax of the code

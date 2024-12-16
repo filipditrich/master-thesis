@@ -41,7 +41,7 @@ In the end, this section should provide a clear picture of the financial flows d
 \subsection{Chip Top-Up Analysis}
 \label{subsec:analysis-chip-top-up}
 \begin{gray-box}{Research Question}
-	\textit{How much and by what means was the balance topped up on the chips?}
+	\textit{\researchq{cashflow-top-up-balance}}
 \end{gray-box}
 
 Attendees could top up their chip balances via online prepayments or on-site using cash or card.
@@ -90,7 +90,7 @@ Thanks to the results, it is clear how many funds did the system receive and by 
 \subsection{Sales Analysis}
 \label{subsec:analysis-sales}
 \begin{gray-box}{Research Question}
-	\textit{What was the total sales of the event, how much of it was the sales of the organizer and how many external vendors?}
+	\textit{\researchq{cashflow-total-sales}}
 \end{gray-box}
 
 The sales analysis was crucial for understanding the overall sales behavior and served as a basis for further insights tightly connected to the revenue sources.
@@ -127,8 +127,9 @@ In total, the organizer direct sales were \textbf{70\%} of the total sales, whic
 \subsection{Remaining Chip Balances}
 \label{subsec:analysis-remaining-balances}
 \begin{gray-box}{Research Question}
-	\textit{How much balance remained on all chips after the event and after refunds?}
+	\textit{\researchq{cashflow-remaining-balance}}
 \end{gray-box}
+\todo{Better chart} % TODO
 
 The remaining chip balances are crucial for the event organizer as they represent the potential revenue that can be still claimed.
 Any unclaimed balances after a given refund period, which is usually up to 14~days after the event will be considered as organizer's taxable revenue.
@@ -164,7 +165,7 @@ These results are important for the last part of this section, which is the tota
 \subsection{Total Revenue of the Organizer}
 \label{subsec:analysis-total-revenue}
 \begin{gray-box}{Research Question}
-	\textit{What was the total revenue of the organizer and what does it consist of?}
+	\textit{\researchq{cashflow-total-revenue}}
 \end{gray-box}
 
 The festival's financial model is based on a combination of revenue streams.
@@ -187,6 +188,7 @@ This, thanks to the previous subsection, was found to be~\bfmtczk{334431}.
 	\caption{Breakdown of Direct Revenue Streams}
 	\label{fig:revenue-breakdown-direct}
 \end{figure}
+\todo{Better chart} % TODO
 
 Currently totalling~\bfmtczkp[2]{1155143,79} is the direct revenue of the organizer from the event and can be seen in~\autoref{fig:revenue-breakdown-direct} above.
 
@@ -227,6 +229,7 @@ To better understand the revenue streams, the results are visualized in~\autoref
 	\caption{Breakdown of All Revenue Streams}
 	\label{fig:revenue-breakdown-total}
 \end{figure}
+\todo{Better chart} % TODO
 
 \begin{blue-box}{Key Takeaways}
 	\begin{itemize}
@@ -256,18 +259,150 @@ This diagram can be seen in the~\autoref{fig:cash-flow-diagram} below.
 
 This diagram provides a clear overview of the financial flows during the festival and nicely summarizes the results of this analysis.
 
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item Total incoming money flow was~\bfmtczk{14520973} from top-up transactions and~\bfmtczk{726862} from non-chip sales.
+		\item Total sales amounted to~\bfmtczk{11711807}.
+		\item Which left a total of~\bfmtczk{3536028}~in unused credit before refunds.
+		\item After refunds and non-refundable chips, the remaining balance left was~\bfmtczk{334431} claimed as taxable revenue.
+		\item Commission from external vendor sales contributed to~\bfmtczkp[2]{820712,79}~of the total direct revenue.
+		\item Together, the total direct revenue of the organizer was~\bfmtczkp[2]{1155143,79}.
+	\end{itemize}
+\end{blue-box}
+
 
 \section{Performance Indicators Analysis}
 \label{sec:analysis-performance-indicators}
-\todo{Haha.}
+
+This section focuses on the performance indicators of the event.
+The goal is to identify key metrics that can be used to further evaluate the event and its success.
+The potential of this analysis is to measure the~\enquote{greatness}~and the size of the event in terms of performance.
+
+For this analysis, seven questions were previously formulated:
+\begin{itemize}
+	\item \textit{\researchq{performance-transactions}}
+	\item \textit{\researchq{performance-processing-during-peaks}}
+	\item \textit{\researchq{performance-delays-downtimes}}
+	\item \textit{\researchq{performance-best-selling-points}}
+	\item \textit{\researchq{performance-best-top-up-points}}
+	\item \textit{\researchq{performance-best-vendors}}
+	\item \textit{\researchq{performance-best-products}}
+\end{itemize}
+
+The results of this analysis should provide insights into the event's performance and help the organizer to understand the key metrics that can be used to evaluate the event's success.
+
+To answer these questions, this section is divided into two parts:
+\begin{enumerate}
+	\item \fullref{subsec:analysis-performance-indicators-transactions},
+	\item and~\fullref{subsec:analysis-performance-indicators-best}.
+\end{enumerate}
+
+\subsection{Transactions Processing Analysis}
+\label{subsec:analysis-performance-indicators-transactions}
+
+This subsection will focus on the processing of transactions during the event in pursuit of answering the three first research questions of this section.
+
+\begin{gray-box}{Research Question}
+	\textit{\researchq{performance-transactions}}
+\end{gray-box}
+
+This question actually consists of two sub-questions, which will be addressed separately.
+
+The first part questions the total number of transactions processed during the event.
+Which was actually pretty straightforward to answer, as the system was designed to track all transactions and their respective types.
+The resulted total number of transactions was~\bfmtnum{141381} consisting of \bfmtnum{110854}~sales transactions, \bfmtnum{17726}~top-up transactions and~\bfmtnum{12801}~chip register transactions.
+
+The second part focuses on rather time-related metrics and asks about the processing peak times during the festival.
+For this part, it was necessary to spread out the above transactions over the time and find the peaks.
+
+The results in~\autoref{fig:transactions-processing-peaks} below show the distribution of the processed transactions over time.
+It clearly identifies the peak on the last day of the festival at 18:00 amounting to~\bfmtnum{8986}~transactions.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.99\textwidth]{\ThesisFigures/charts/performance-transactions-in-time}
+	\caption{Transactions Processing Peaks}
+	\label{fig:transactions-processing-peaks}
+\end{figure}
+\todo{Better chart} % TODO
+
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item Total number of transactions processed was~\bfmtnum{141381} consisting mainly (7̃8\%) of order transactions.
+		\item The peak of transactions was on the last day of the festival at 18:00 with~\bfmtnum{8986}~transactions processed at that hour.
+	\end{itemize}
+\end{blue-box}
+
+The following two questions (\autoref{rq:performance-processing-during-peaks}~and~\autoref{rq:performance-delays-downtimes}), focus on processing times and potential delays during the event.
+
+\begin{gray-box}{Research Question}
+	\textit{\researchq{performance-processing-during-peaks}}
+\end{gray-box}
+
+The answer to this question is closely related to the previous one, as it requires the identification of the processing times during the peak times, which were already identified.
+
+It required finding the average processing time, meaning difference between the transaction creation and its completion times.
+
+\begin{info-box}{What causes the processing time?}
+	\textit{
+		Time when the transaction is created is the time when the in-place offline-supported system created the transaction, and the processed time is later when the central system receives the transaction and processes it.
+		The delays can be caused by various factors, such as network latency, offline mode active, system load, or even the transaction type.
+	}
+\end{info-box}
+
+The results show that the average processing time during the peak times was approximately~\bfmtnump[2]{40}~seconds.
+
+When slightly changing the displayed data, we also get the answer to the \autoref{rq:performance-delays-downtimes} about the potential delays and downtimes during the event.
+
+\begin{gray-box}{Research Question}
+	\textit{\researchq{performance-delays-downtimes}}
+\end{gray-box}
+
+The chart in the~\autoref{fig:performance-processing-peaks}~shows the distribution of the processing times over the time and identifies one high processing peak of approximately~\bfmtnump[2]{13}~minutes.
+This is highly unusual and indicates a vendor misuse of the system or accidentally put the system into offline mode.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.99\textwidth]{\ThesisFigures/charts/performance-processing-peaks}
+	\caption{Transactions Processing Peaks}
+	\label{fig:performance-processing-peaks}
+\end{figure}
+\todo{Better chart} % TODO
+
+Other high peaks are visible on the second day in the afternoon with ~ \bfmtnump[2]{5}~minutes processing time, which was probably caused by the initial load on that day.
+
+\begin{blue-box}{Key Takeaways}
+	\todo{-}
+\end{blue-box}
+
+These results provide insights into the system's performance during the event, its reliability, and potential bottlenecks.
+It also shows the festival's popularity and the system's ability to handle the load.
+
+\subsection{Best Selling \& Top-Up Points, Vendors, and Products Analysis}
+\label{subsec:analysis-performance-indicators-best}
+In this subsection, the main goal will be to address the last four research questions of this section and provide insights into the best: selling points, top-up points, vendors, and products.
+
+The problem with these question statements is that they are quite broad and can be interpreted in various ways.
+What does a~\enquote{best} mean in this context?
+
+It can be the most profitable, the best rated, the most visited, etc.
+But since we are exploring the performance indicators, the best should be understood as the~\enquote{busiest}.
+Which in terms of the system means \textbf{the most transactions created}.
+
+The first focus will be on the best top-up points since unlike the selling points, vendors and products, the top-up points are not linked to any specific product or vendor.
+\begin{gray-box}{Research Question}
+	\textit{\researchq{performance-best-top-up-points}}
+\end{gray-box}
+% TODO
+\todo{-}
 
 
 \section{Beverage Consumption Analysis}
 \label{sec:analysis-beverage-consumption}
-\todo{Haha.}
+\todo{-}
 
 
 \section{Customer Analysis}
 \label{sec:analysis-customers}
-\todo{Haha.}
+\todo{-}
 
