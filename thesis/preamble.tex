@@ -160,3 +160,36 @@
 \usepackage{titlesec}
 %\titlespacing*{\chapter}{0pt}{-10mm}{5mm}
 \titleformat{\chapter}{\normalfont\huge\bfseries}{\thechapter}{1em}{}
+
+%%%%% Counters and questions
+%%%%% ------------------------------------------------------------
+\usepackage{totcount}
+\usepackage{xparse}
+% counter for questions
+\newcounter{rqcounter}
+\regtotcounter{rqcounter}
+
+% Configure autoref format for research questions
+\makeatletter
+\def\therqcounter{\@arabic\c@rqcounter}
+\@addtoreset{rqcounter}{chapter}
+\def\autoref@rqcounter#1{\RQ{#1}}
+\def\RQ#1{\textup{RQ#1}}
+\makeatother
+
+% Command to define a new research question
+\NewDocumentCommand{\defresearchq}{m m}{
+	\refstepcounter{rqcounter}
+	\expandafter\edef\csname rqnum:\string#1\endcsname{\therqcounter}
+	\expandafter\label\expandafter{rq:#1}
+	\expandafter\newcommand\csname rq:\string#1\endcsname{
+		\textbf{\csname rqnum:\string#1\endcsname:} #2
+	}
+}
+
+% Command to use a research question
+\NewDocumentCommand{\researchq}{m}{
+	\hyperref[rq:#1]{\csname rq:\string#1\endcsname}
+}
+
+\renewcommand{\therqcounter}{RQ\arabic{rqcounter}}
