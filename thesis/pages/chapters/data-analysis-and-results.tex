@@ -800,6 +800,68 @@ Providing a better understanding of the event's performance and giving more cont
 
 \section{Beverage Consumption Analysis}
 \label{sec:analysis-beverage-consumption}
+
+Following up on the previous section, which showed that beverage consumption was undeniable the most significant part of the event, this section should analyze the beverage consumption in more detail.
+
+It should provide insights into the total consumption, more insights into the returnable cups, most consumed beverages and the most popular beverage brands answering the previously defined questions.
+
+The questions that will be answered in this section, after another slight logical reorder, are:
+\begin{itemize}
+	\item \textit{\researchq{beverage-returnable-cups}}
+	\item \textit{\researchq{beverage-total-consumption}}
+	\item \textit{\researchq{beverage-popular-category}}
+	\item \textit{\researchq{beverage-top-beer}}
+	\item \textit{\researchq{beverage-top-alcoholic}}
+	\item \textit{\researchq{beverage-top-non-alcoholic}}
+\end{itemize}
+
+For this section to answer all questions, it will be divided into three parts:
+\begin{enumerate}
+	\item \fullref{subsec:analysis-beverage-returnable-cups},
+	\item \fullref{subsec:analysis-beverage-total-consumption},
+	\item and~\fullref{subsec:analysis-beverage-popular-brands}.
+\end{enumerate}
+
+\subsection{Returnable Cups Analysis}
+\label{subsec:analysis-beverage-returnable-cups}
+
+Thanks to the slight modification to the local database and the data mentioned earlier in the~\autoref{subsec:data-methodology-local-database-modifications}, it was possible to track the returnable cups and their respective transactions.
+
+As this ability was not systematically present until now, it should provide a better understanding of the product sales and the returnable cups' usage.
+
+\begin{gray-box}{Research Question}
+	\textit{\researchq{beverage-returnable-cups}}
+\end{gray-box}
+
+To find the results, it was necessary not to find transactions with the returnable cups, but rather to find the actual contents of the transactions, as one transaction may contain multiple products and thus multiple returnable cups.
+The cups were sold by the organizer for the price of~\fmtczk{70} with a~\fmtnum{21}\% VAT.\
+
+After calculating the total issued and returned cups, the results in the~\autoref{fig:returnable-cups} below show the distribution of the returnable cups during the event.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq13-returnable-cups}
+	\caption{Depositable Cups}
+	\label{fig:returnable-cups}
+\end{figure}
+
+The results show that the total of~\bfmtnum{20045}~cups were issued during the event, and only~\bfmtnum{17322}~cups were returned resulting in a total of~\bfmtnump[2]{78.60}\%~return rate.
+
+This, however, does not mean that the remaining~\bfmtnum{4723}~cups were lost or even considered as a loss, since the cups were paid for.
+Most unreturned cups can be assumed were probably kept as a souvenir.
+
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item The total of~\bfmtnum{20045}~cups were issued during the event.
+		\item Only~\bfmtnum{17322}~cups were returned resulting in a~\bfmtnump[2]{78.60}\%~return rate.
+	\end{itemize}
+\end{blue-box}
+
+\subsection{Total Consumption Analysis}
+\label{subsec:analysis-beverage-total-consumption}
+
+\subsection{Popular Brands Analysis}
+\label{subsec:analysis-beverage-popular-brands}
 \todo{-}
 
 
