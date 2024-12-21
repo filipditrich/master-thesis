@@ -503,6 +503,7 @@ That makes sense because the top-ups were done more frequently than the initial 
 	\caption{Best Top-Up Points}
 	\label{fig:best-topup-points}
 \end{figure}
+\todo{Better chart} % TODO
 
 Especially \textbf{Odbavení} point processed only~\bfmtnum{529}~transactions but peaked at~\bfmtnum{125}~transactions per hour, which was much higher than the other check-in points and even higher than the best top-up points.
 
@@ -694,7 +695,107 @@ The results would not be so relevant and would not provide any additional insigh
 
 \subsubsection{Best Products}
 \label{subsubsec:analysis-best-products}
-\todo{-}
+
+The last focus will be on the best products, which are the products that were sold the most during the event.
+
+\begin{gray-box}{Research Question}
+	\textit{\researchq{performance-best-products}}
+\end{gray-box}
+
+Previously, the best products were predicted to be the beer beverages, as the organizer sold all the beer beverages at the festival.
+
+The results in the~\autoref{tab:best-products} below somehow confirm this prediction as the very best product was a depositable cup – \textbf{Kelímek – záloha} and the next four best products were beer beverages:
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}|}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{}
+		& \textbf{\color{white}Product}
+		& \textbf{\color{white}Sales}
+		& \textbf{\color{white}Refunds}
+		& \textbf{\color{white}Customers}
+		\\\hline\hline
+		% first rows
+		\csvreader[
+		head to column names,
+		late after line={\\\hline},
+		filter={\thecsvinputline<9}
+		]{\ResultsDir/rq11-best-products.csv}{
+			product_name=\colproduct,
+			customer_count=\colcustomers,
+			sales_count=\colsalescount,
+			refund_count=\colrefundcount
+		}{
+			\the\numexpr\thecsvinputline-1
+			& \colproduct
+			& \num[group-separator={,}]{\colsalescount}
+			& \num[group-separator={,}]{\colrefundcount}
+			& \num[group-separator={,}]{\colcustomers}
+		}
+		% separator
+		\noalign{\vspace{1mm}}
+		\multicolumn{5}{c}{\footnotesize{\textellipsis}}
+		\\
+		\noalign{\vspace{1mm}}
+		\hline
+		% last rows
+		\csvreader[
+		head to column names,
+		late after line={\\\hline},
+		filter={\thecsvinputline>326}
+		]{\ResultsDir/rq11-best-products.csv}{
+			product_name=\colproduct,
+			customer_count=\colcustomers,
+			sales_count=\colsalescount,
+			refund_count=\colrefundcount
+		}{
+			\the\numexpr\thecsvinputline-1
+			& \colproduct
+			& \num[group-separator={,}]{\colsalescount}
+			& \num[group-separator={,}]{\colrefundcount}
+			& \num[group-separator={,}]{\colcustomers}
+		}
+	\end{tabularx}
+	\caption{Best Products}
+	\label{tab:best-products}
+\end{table}
+
+As there were more than \bfmtnum{300}~products sold during the event, a better visualization of the results would be a bar chart showing the best product categories instead of individual products.
+This can be seen in the~\autoref{fig:best-product-category} below.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq11-best-product-category}
+	\caption{Best Products by Category}
+	\label{fig:best-product-category}
+\end{figure}
+\todo{Better chart} % TODO
+
+This chart now confirms the prediction about the beer beverages, as the \textbf{Beer} (Pivo) category was the most sold during the event with a little more than~\bfmtnum{40000}~orders processed.
+
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item The best product was a depositable cup followed by beer beverages.
+		\item Prediction about the beer beverages was confirmed, as the \textbf{Beer} (Pivo) category was the most sold during the event.
+	\end{itemize}
+\end{blue-box}
+
+This last analysis provided insights into the best products, which confirmed the previous predictions and will now serve as a basis for the next section, where the beverage consumption will be analyzed.
+
+\subsection{Summary}
+\label{subsec:analysis-performance-indicators-summary}
+
+Thanks to this section, the performance indicators of the event were analyzed, and the key metrics were identified.
+The results analyzed the transactional processing performance, identified several peak points during the event, and provided insights into the best sale points, top-up points, vendors, and products.
+Providing a better understanding of the event's performance and giving more context for the next analysis dealing with the beverage consumption.
 
 
 \section{Beverage Consumption Analysis}
