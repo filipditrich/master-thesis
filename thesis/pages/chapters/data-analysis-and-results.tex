@@ -124,12 +124,13 @@ In total, the organizer direct sales were \textbf{70\%} of the total sales, whic
 	\end{itemize}
 \end{blue-box}
 
+\todo{Better chart} % TODO
+
 \subsection{Remaining Chip Balances}
 \label{subsec:analysis-remaining-balances}
 \begin{gray-box}{Research Question}
 	\textit{\researchq{cashflow-remaining-balance}}
 \end{gray-box}
-\todo{Better chart} % TODO
 
 The remaining chip balances are crucial for the event organizer as they represent the potential revenue that can be still claimed.
 Any unclaimed balances after a given refund period, which is usually up to 14~days after the event will be considered as organizer's taxable revenue.
@@ -144,6 +145,7 @@ This left the total unclaimed balance at~\bfmtczk{334431}, which has been claime
 
 Since these numbers can be quite abstract, the results in a form of sankey diagram in~\autoref{fig:remaining-balances-sankey} below provide a clear picture of the flow of the funds.
 
+\todo{Better chart} % TODO
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.99\textwidth]{\ThesisFigures/charts/balances-sankey}
@@ -182,13 +184,13 @@ In the end, the total revenue from sales commissions was~\bfmtczkp[2]{820712,79}
 Another source of revenue is the \textbf{unclaimed chip balances}, which, after a credit refund period, are considered as taxable revenue for the organizer.
 This, thanks to the previous subsection, was found to be~\bfmtczk{334431}.
 
+\todo{Better chart} % TODO
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.48\textwidth]{\ThesisFigures/charts/revenue-sources-direct}
 	\caption{Breakdown of Direct Revenue Streams}
 	\label{fig:revenue-breakdown-direct}
 \end{figure}
-\todo{Better chart} % TODO
 
 Currently totalling~\bfmtczkp[2]{1155143,79} is the direct revenue of the organizer from the event and can be seen in~\autoref{fig:revenue-breakdown-direct} above.
 
@@ -223,13 +225,13 @@ To better understand the revenue streams, the results are visualized in~\autoref
 	\label{tab:revenue-summary-breakdown}
 \end{table}
 
+\todo{Better chart} % TODO
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.75\textwidth]{\ThesisFigures/charts/revenue-sources-total}
 	\caption{Breakdown of All Revenue Streams}
 	\label{fig:revenue-breakdown-total}
 \end{figure}
-\todo{Better chart} % TODO
 
 \begin{blue-box}{Key Takeaways}
 	\begin{itemize}
@@ -283,7 +285,7 @@ For this analysis, seven questions were previously formulated:
 	\item \textit{\researchq{performance-transactions}}
 	\item \textit{\researchq{performance-processing-during-peaks}}
 	\item \textit{\researchq{performance-delays-downtimes}}
-	\item \textit{\researchq{performance-best-selling-points}}
+	\item \textit{\researchq{performance-best-sale-points}}
 	\item \textit{\researchq{performance-best-top-up-points}}
 	\item \textit{\researchq{performance-best-vendors}}
 	\item \textit{\researchq{performance-best-products}}
@@ -318,13 +320,13 @@ For this part, it was necessary to spread out the above transactions over the ti
 The results in~\autoref{fig:transactions-processing-peaks} below show the distribution of the processed transactions over time.
 It clearly identifies the peak on the last day of the festival at 18:00 amounting to~\bfmtnum{8986}~transactions.
 
+\todo{Better chart} % TODO
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.99\textwidth]{\ThesisFigures/charts/performance-transactions-in-time}
 	\caption{Transactions Processing Peaks}
 	\label{fig:transactions-processing-peaks}
 \end{figure}
-\todo{Better chart} % TODO
 
 \begin{blue-box}{Key Takeaways}
 	\begin{itemize}
@@ -350,35 +352,39 @@ It required finding the average processing time, meaning difference between the 
 	}
 \end{info-box}
 
-The results show that the average processing time during the peak times was approximately~\bfmtnump[2]{40}~seconds.
+The results show that the average processing time during the peak times was approximately~\bfmtnum{40}~seconds.
 
-When slightly changing the displayed data, we also get the answer to the \autoref{rq:performance-delays-downtimes} about the potential delays and downtimes during the event.
+When slightly changing the displayed data, we also get the answer to the~\autoref{rq:performance-delays-downtimes} about the potential delays and downtimes during the event.
 
 \begin{gray-box}{Research Question}
 	\textit{\researchq{performance-delays-downtimes}}
 \end{gray-box}
 
-The chart in the~\autoref{fig:performance-processing-peaks}~shows the distribution of the processing times over the time and identifies one high processing peak of approximately~\bfmtnump[2]{13}~minutes.
+The chart in the~\autoref{fig:rq7-delays-in-processing}~shows the distribution of the processing times over the time and identifies one high processing peak of approximately~\bfmtnum{13}~minutes.
 This is highly unusual and indicates a vendor misuse of the system or accidentally put the system into offline mode.
 
+\todo{Better chart} % TODO
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.99\textwidth]{\ThesisFigures/charts/performance-processing-peaks}
-	\caption{Transactions Processing Peaks}
-	\label{fig:performance-processing-peaks}
+	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq7-delays-in-processing}
+	\caption{Transaction Processing Peaks}
+	\label{fig:rq7-delays-in-processing}
 \end{figure}
-\todo{Better chart} % TODO
 
-Other high peaks are visible on the second day in the afternoon with ~ \bfmtnump[2]{5}~minutes processing time, which was probably caused by the initial load on that day.
+Other high peaks are visible on the second day in the afternoon with ~ \bfmtnum{5}~minutes processing time, which was probably caused by the initial load on that day.
 
 \begin{blue-box}{Key Takeaways}
-	\todo{-}
+	\begin{itemize}
+		\item The average processing time during the peak times was~\bfmtnum{40}~seconds.
+		\item The highest processing peak was approximately~\bfmtnum{13}~minutes, indicating a potential misuse of the system.
+		\item Other high peaks were visible on the second day in the afternoon with ~ \bfmtnum{5}~minutes processing time.
+	\end{itemize}
 \end{blue-box}
 
 These results provide insights into the system's performance during the event, its reliability, and potential bottlenecks.
 It also shows the festival's popularity and the system's ability to handle the load.
 
-\subsection{Best Selling \& Top-Up Points, Vendors, and Products Analysis}
+\subsection{Best Sale \& Top-Up Points, Vendors, and Products Analysis}
 \label{subsec:analysis-performance-indicators-best}
 In this subsection, the main goal will be to address the last four research questions of this section and provide insights into the best: selling points, top-up points, vendors, and products.
 
@@ -387,13 +393,206 @@ What does a~\enquote{best} mean in this context?
 
 It can be the most profitable, the best rated, the most visited, etc.
 But since we are exploring the performance indicators, the best should be understood as the~\enquote{busiest}.
-Which in terms of the system means \textbf{the most transactions created}.
+Which in terms of the system and this analysis should mean \textbf{the most transactions created} and the point's ability to handle the load.
 
+\subsubsection{Best Top-Up Points}
+\label{subsubsec:analysis-best-top-up-points}
 The first focus will be on the best top-up points since unlike the selling points, vendors and products, the top-up points are not linked to any specific product or vendor.
 \begin{gray-box}{Research Question}
 	\textit{\researchq{performance-best-top-up-points}}
 \end{gray-box}
-% TODO
+
+To find these results, it required finding all top-up transactions, aggregate them in a bucket-like time frame and finally calculate their total counts, max peaks and averages over time.
+
+This resulted in the following findings in the~\autoref{tab:best-topup-points} below.
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}|}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{}
+		& \textbf{\color{white}Top-Up point}
+		& \textbf{\color{white}Customers}
+		& \textbf{\color{white}Transactions}
+		& \textbf{\color{white}Max trx./h}
+		\\\hline\hline
+		% first rows
+		\csvreader[
+		head to column names,
+		late after line={\\\hline},
+		filter={\thecsvinputline<6}
+		]{\ResultsDir/rq9-best-topup-points.csv}{
+			entity=\colentity,
+			customer_count=\colcustomers,
+			transaction_count=\coltrxcount,
+			max_hourly_peak=\colhourlypeak
+		}{
+			\the\numexpr\thecsvinputline-1
+			& \colentity
+			& \num[group-separator={,}]{\colcustomers}
+			& \num[group-separator={,}]{\coltrxcount}
+			& \num[group-separator={,}]{\colhourlypeak}
+		}
+		% separator
+		\noalign{\vspace{1mm}}
+		\multicolumn{5}{c}{\footnotesize{\textellipsis}}
+		\\
+		\noalign{\vspace{1mm}}
+		\hline
+		% middle rows
+		\csvreader[
+		head to column names,
+		late after line={\\\hline},
+		filter={\thecsvinputline>15 \AND \thecsvinputline<20}
+		]{\ResultsDir/rq9-best-topup-points.csv}{
+			entity=\colentity,
+			customer_count=\colcustomers,
+			transaction_count=\coltrxcount,
+			max_hourly_peak=\colhourlypeak
+		}{
+			\the\numexpr\thecsvinputline-1
+			& \colentity
+			& \num[group-separator={,}]{\colcustomers}
+			& \num[group-separator={,}]{\coltrxcount}
+			& \num[group-separator={,}]{\colhourlypeak}
+		}
+		% separator
+		\noalign{\vspace{1mm}}
+		\multicolumn{5}{c}{\footnotesize{\textellipsis}}
+		\\
+		\noalign{\vspace{1mm}}
+		\hline
+		% last rows
+		\csvreader[
+		head to column names,
+		late after line={\\\hline},
+		filter={\thecsvinputline>25}
+		]{\ResultsDir/rq9-best-topup-points.csv}{
+			entity=\colentity,
+			customer_count=\colcustomers,
+			transaction_count=\coltrxcount,
+			max_hourly_peak=\colhourlypeak
+		}{
+			\the\numexpr\thecsvinputline-1
+			& \colentity
+			& \num[group-separator={,}]{\colcustomers}
+			& \num[group-separator={,}]{\coltrxcount}
+			& \num[group-separator={,}]{\colhourlypeak}
+		}
+	\end{tabularx}
+	\caption{Best Top-Up Points}
+	\label{tab:best-topup-points}
+\end{table}
+
+This indicates that the most busy top-up points were somehow evenly distributed with approximately around \textbf{1000~transactions} processed during the event with average peaks of around \textbf{100~transactions/hour}.
+The least busy top-up points were the specific ones, such as the Support tent, VIP and Accreditation points, which were not used so much for top-ups.
+
+The overall distribution, shown in the~\autoref{fig:best-topup-points}, also shows that Top-up points were more busy than Check-in points.
+That makes sense because the top-ups were done more frequently than the initial check-ins, but the check-ins were done in a more concentrated time frame.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq9-best-topup-points}
+	\caption{Best Top-Up Points}
+	\label{fig:best-topup-points}
+\end{figure}
+
+Especially \textbf{Odbavení} point processed only~\bfmtnum{529}~transactions but peaked at~\bfmtnum{125}~transactions per hour, which was much higher than the other check-in points and even higher than the best top-up points.
+
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item The most busy top-up points processed around~\bfmtnum{1000}~transactions during the event.
+		\item The average peak of the top-up points was around~\bfmtnum{100}~transactions per hour.
+		\item The least busy top-up points were the specific ones, such as the Support tent, VIP and Accreditation points.
+		\item Check-in points were less busy than the top-up points, but the \textbf{Odbavení} point peaked at~\bfmtnum{125}~transactions per hour.
+	\end{itemize}
+\end{blue-box}
+
+\subsubsection{Best Sale Points}
+\label{subsubsec:analysis-best-sale-points}
+
+The next focus will be on the best sale points, which are the points where the most orders were created.
+
+\begin{gray-box}{Research Question}
+	\textit{\researchq{performance-best-sale-points}}
+\end{gray-box}
+
+The process of finding the best sale points was similar to the previous one, but this time it required finding all sales transactions and their respective points.
+
+Out of total of~\bfmtnum{145}~sale points, the best place was undeniable the \textbf{L20 PIVNÍ STAN 1} with total~\bfmtnum{10114}~orders processed and the maximum peak of~\bfmtnum{840}~orders per hour.
+
+Another interesting fact is the total unique users processed at the places.
+Where again the \textbf{L20 PIVNÍ STAN 1} processed~\bfmtnum{9159}~unique customers which, out of \bfmtnum{10009}~active customers, is a significant portion (\bfmtnump[2]{91.50}{}\%) of the total.
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}|}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{}
+		& \textbf{\color{white}Sale Point}
+		& \textbf{\color{white}Customers}
+		& \textbf{\color{white}Orders}
+		& \textbf{\color{white}Max orders./h}
+		\\\hline\hline
+		% first rows
+		\csvreader[
+		head to column names,
+		late after line={\\\hline},
+		filter={\thecsvinputline<9}
+		]{\ResultsDir/rq8-best-sale-points.csv}{
+			entity=\colentity,
+			customer_count=\colcustomers,
+			transaction_count=\coltrxcount,
+			max_hourly_peak=\colhourlypeak
+		}{
+			\the\numexpr\thecsvinputline-1
+			& \colentity
+			& \num[group-separator={,}]{\colcustomers}
+			& \num[group-separator={,}]{\coltrxcount}
+			& \num[group-separator={,}]{\colhourlypeak}
+		}
+	\end{tabularx}
+	\caption{Best Sale Points}
+	\label{tab:best-sale-points}
+\end{table}
+
+Based on this particular finding, we can assume that in the following analysis - the best vendors and products - the product preferences will be highly in favor of the beer beverages.
+And thus the best vendor will probably be the organizer, as they sold all the beer beverages at the festival.
+
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item The best sale point was the \textbf{L20 PIVNÍ STAN 1} with total~\bfmtnum{10114}~orders processed, which was~\bfmtnump[2]{9.12}\% of the total orders created.
+		\item The best sale point peaked at~\bfmtnum{840}~orders per hour.
+		\item The \textbf{L20 PIVNÍ STAN 1} processed~\bfmtnum{9159}~unique customers, which was~\bfmtnump[2]{91.50}\% of all active customers.
+	\end{itemize}
+\end{blue-box}
+
+In conclusion to these two questions, the results show clearly the busiest points of the festival and their ability to handle the load.
+However, the results can be visualized in a more interactive way, which would provide a better understanding of the data.
+
+One especially interesting visualization of the best sale and top-up points would be a heatmap of the festival area with the points and their respective transaction counts.
+As this was initially intended to be part of the analysis, it was unfortunately not possible to create it due to the lack of the necessary data.
+
+\subsubsection{Best Vendors}
+\label{subsubsec:analysis-best-vendors}
+\todo{-}
+
+\subsubsection{Best Products}
+\label{subsubsec:analysis-best-products}
 \todo{-}
 
 

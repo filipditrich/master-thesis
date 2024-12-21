@@ -1,0 +1,31 @@
+entity,transaction_count,customer_count,max_hourly_peak
+Pokladna 16,1139,1119,99
+Pokladna 2,1108,1103,106
+Pokladna 15,1043,1035,82
+Pokladna 4,1017,1007,107
+Pokladna 17,973,967,140
+Pokladna 19,913,907,107
+Pokladna 5,908,903,92
+Pokladna 3,882,877,113
+Pokladna 18,843,836,94
+Pokladna 8,838,829,61
+Pokladna 13,836,818,68
+Pokladna 6,794,787,85
+Pokladna 14,775,769,79
+Pokladna 1,774,768,102
+Pokladna 7,744,740,73
+Pokladna 9,711,699,72
+Pokladna 10,640,629,69
+Odbavení,529,529,125
+Pokladna 11,389,385,43
+Pokladna 12,338,327,39
+Pokladna 20,324,317,37
+Odbavení 4,240,240,38
+Odbavení 2,240,240,38
+Odbavení 3,214,214,37
+Odbavení 5,198,198,46
+Odbavení 6,191,191,32
+Support,85,64,11
+VIP,23,23,5
+Akreditace,17,17,8
+,0,0,0
