@@ -565,6 +565,29 @@ Where again the \textbf{L20 PIVNÍ STAN 1} processed~\bfmtnum{9159}~unique custo
 			& \num[group-separator={,}]{\coltrxcount}
 			& \num[group-separator={,}]{\colhourlypeak}
 		}
+		% separator
+		\noalign{\vspace{1mm}}
+		\multicolumn{5}{c}{\footnotesize{\textellipsis}}
+		\\
+		\noalign{\vspace{1mm}}
+		\hline
+		% last rows
+		\csvreader[
+		head to column names,
+		late after line={\\\hline},
+		filter={\thecsvinputline>132}
+		]{\ResultsDir/rq8-best-sale-points.csv}{
+			entity=\colentity,
+			customer_count=\colcustomers,
+			transaction_count=\coltrxcount,
+			max_hourly_peak=\colhourlypeak
+		}{
+			\the\numexpr\thecsvinputline-1
+			& \colentity
+			& \num[group-separator={,}]{\colcustomers}
+			& \num[group-separator={,}]{\coltrxcount}
+			& \num[group-separator={,}]{\colhourlypeak}
+		}
 	\end{tabularx}
 	\caption{Best Sale Points}
 	\label{tab:best-sale-points}
@@ -589,7 +612,85 @@ As this was initially intended to be part of the analysis, it was unfortunately 
 
 \subsubsection{Best Vendors}
 \label{subsubsec:analysis-best-vendors}
-\todo{-}
+
+To analyze the best vendors, in terms of performance, the same approach as with the sale points will be used.
+\begin{gray-box}{Research Question}
+	\textit{\researchq{performance-best-vendors}}
+\end{gray-box}
+
+The results in the~\autoref{tab:best-vendors} below show the distribution of the processed orders over the vendors.
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}|}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{}
+		& \textbf{\color{white}Vendor}
+		& \textbf{\color{white}Customers}
+		& \textbf{\color{white}Orders}
+		\\\hline\hline
+		% first rows
+		\csvreader[
+		head to column names,
+		late after line={\\\hline},
+		filter={\thecsvinputline<9}
+		]{\ResultsDir/rq10-best-vendors.csv}{
+			legal_name=\colentity,
+			customer_count=\colcustomers,
+			transaction_count=\coltrxcount,
+		}{
+			\the\numexpr\thecsvinputline-1
+			& \colentity
+			& \num[group-separator={,}]{\colcustomers}
+			& \num[group-separator={,}]{\coltrxcount}
+		}
+		% separator
+		\noalign{\vspace{1mm}}
+		\multicolumn{5}{c}{\footnotesize{\textellipsis}}
+		\\
+		\noalign{\vspace{1mm}}
+		\hline
+		% last rows
+		\csvreader[
+		head to column names,
+		late after line={\\\hline},
+		filter={\thecsvinputline>25}
+		]{\ResultsDir/rq10-best-vendors.csv}{
+			legal_name=\colentity,
+			customer_count=\colcustomers,
+			transaction_count=\coltrxcount,
+		}{
+			\the\numexpr\thecsvinputline-1
+			& \colentity
+			& \num[group-separator={,}]{\colcustomers}
+			& \num[group-separator={,}]{\coltrxcount}
+		}
+	\end{tabularx}
+	\caption{Best Vendors}
+	\label{tab:best-vendors}
+\end{table}
+
+As predicted in the previous section, the best vendor was the organizer, which processed the most orders and customers.
+The total of~\bfmtnum{89217}~orders was processed by the organizer, which was~\bfmtnump[2]{80.04}\% of the total orders created and served~\bfmtnum{9831}~unique customers, which was~\bfmtnump[2]{98.22}\% of all active customers.
+
+The second-best vendor, out of~\bfmtnum{27}~total, was some \textbf{Seller 05} with about~\bfmtnum{84104} orders less than the organizer.
+
+In these results, we did not go after the hourly maximums, as in the previous questions, as the vendors were not time-bound and could have been at multiple places simultaneously.
+The results would not be so relevant and would not provide any additional insights.
+
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item The best vendor was the organizer, which processed~\bfmtnum{89217}~orders (\bfmtnump[2]{80.04}\%~of the total orders).
+		\item The best vendor served~\bfmtnum{9831}~unique customers (\bfmtnump[2]{98.22}\%~of all active customers).
+		\item The second-best vendor was behind around~\bfmtnum{84104}~orders less than the best vendor.
+	\end{itemize}
+\end{blue-box}
 
 \subsubsection{Best Products}
 \label{subsubsec:analysis-best-products}
