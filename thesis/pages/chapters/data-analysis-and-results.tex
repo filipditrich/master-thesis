@@ -1073,6 +1073,86 @@ With a total of~\bfmtnum{6971}~liters consumed and~\bfmtnum{20487}~units sold, i
 	\end{itemize}
 \end{blue-box}
 
+\subsubsection{Alcoholic Brands Analysis}
+\label{subsubsec:analysis-beverage-popular-alcoholic}
+
+The last part of this section focuses on other alcoholic beverages, such as spirits, shots, cocktails, and other alcoholic beverages.
+
+\begin{gray-box}{Research Question}
+	\textit{\researchq{beverage-top-alcoholic}}
+\end{gray-box}
+
+This analysis consisted of a total of 23 different brands consisting mostly of spirits and shots.
+Results presented in this section may be more biased than the previous ones, as the brand determination was more difficult due to the lack of consistent labeling.
+Moreover, previously it was necessary to classify the products with the volume information, which is not so straightforward for shots and spirits.
+
+The results in the~\autoref{tab:beverage-top-alcoholic}~indicate that the most consumed alcoholic brand was the \textbf{Beefeater} with a total of~\bfmtnum{966}~liters consumed and~\bfmtnum{4628}~units sold.
+However, the second most consumed brand was \textbf{Absolut Vodka} with only \bfmtnum{335}~liters consumed, but with a much higher units sold count of~\bfmtnum{9177}.
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{4cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}|}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{}
+		& \textbf{\color{white}Alcoholic brand}
+		& \textbf{\color{white}Total consumption}
+		& \textbf{\color{white}Units sold}
+		\\\hline\hline
+		% rows
+		\csvreader[
+			head to column names,
+			late after line={\\\hline},
+		]{\ResultsDir/rq16-top-alco-brands.csv}{
+			subcategory=\colbrand,
+			total_consumption_ml=\colconsumption,
+			transaction_count=\coltrxcount,
+			total_sold=\colunits
+		}{
+			\the\numexpr\thecsvinputline-1
+			& \colbrand
+			& \num[group-separator={,}]{\colconsumption}~l
+			& \num[group-separator={,}]{\colunits}
+		}
+		\hline
+		\noalign{\vspace{1mm}}
+		\hline
+		\rowcolor{unicorn_blue!20}
+		\textbf{}
+		& \textbf{Total}
+		& {\bfmtnum{1980}}~l
+		& {\bfmtnum{26964}}
+		\\\hline
+	\end{tabularx}
+	\caption{Most Consumed Alcoholic Brands}
+	\label{tab:beverage-top-alcoholic}
+\end{table}
+
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item The most consumed alcoholic brand was the \textbf{Beefeater} with a total of~\bfmtnum{966}~liters consumed.
+		\item The second most consumed alcoholic brand was the \textbf{Absolut Vodka} with a total of~\bfmtnum{335}~liters consumed.
+	\end{itemize}
+\end{blue-box}
+
+\subsection{Summary}
+\label{subsec:analysis-beverage-consumption-summary}
+
+Insights into beverage consumption, covered in this section, should provide a better understanding of the overall preferences and total consumptions during the festival.
+As this data was not previously available, it was a valuable addition to the analysis and will play a significant role when presenting the results to the festival organizers.
+
+The results showed the total consumption of all beverages, the insightful view on returnable cups usage, and the most consumed beverage brands in the most popular categories.
+
+With the data available, there are still many more questions that could be answered, particularly in combination with customer data.
+However, clear bounds were set for this analysis to answer the most important questions asked by the festival organizers.
+
+The next section will focus on the customer analysis to get a better understanding of the festival visitors and their behavior.
+
 
 \section{Customer Analysis}
 \label{sec:analysis-customers}
