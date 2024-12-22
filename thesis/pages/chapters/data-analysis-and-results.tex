@@ -860,6 +860,55 @@ Most unreturned cups can be assumed were probably kept as a souvenir.
 \subsection{Total Consumption Analysis}
 \label{subsec:analysis-beverage-total-consumption}
 
+This focuses on the overall beverage consumption during the event.
+Again, thanks to local database modifications, it was possible to track the beverage consumption easily, as each product now had a volume attribute in milliliters.
+
+\begin{gray-box}{Research Question}
+	\textit{\researchq{beverage-total-consumption}}
+\end{gray-box}
+
+To find the results was quite straightforward, as it only required summing up the volumes of all sold products.
+
+However, to present the results, it was convenient to group the products into categories and show the total consumption of each category and thus answering also the next question~\autoref{rq:beverage-popular-category}.
+
+\begin{gray-box}{Research Question}
+	\textit{\researchq{beverage-popular-category}}
+\end{gray-box}
+
+These results are shown in the~\autoref{tab:beverage-total-consumption} below and show a total of~\bfmtnum{29342}~liters of beverages consumed during the event with the beer category being the most consumed.
+
+\begin{table}[H]
+	\centering
+	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}r|>{\columncolor{unicorn_blue!5}}r|}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{\color{white}Beverage Category}
+		& \textbf{\color{white}Volume}
+		& \textbf{\color{white}Ratio}
+		\\
+		\hline
+		\hline
+		\colorindicator{chart1}Beer                    & \fmtnum{19797}~l  & \fmtnump[2]{67.46}~\% \\
+		\colorindicator{chart2}Non-alcoholic           & \fmtnum{6987}~l   & \fmtnump[2]{23.81}~\% \\
+		\colorindicator{chart3}Spirits / other alcohol & \fmtnum{1992}~l   & \fmtnump[2]{6.78}~\%  \\
+		\colorindicator{chart4}Wine                    & \fmtnum{575}~l    & \fmtnump[2]{1.95}~\%  \\
+		\hline
+		\textbf{Total volume}                          & \bfmtnum{29342}~l & \fmtnum{100}~\%       \\
+		\hline
+	\end{tabularx}
+	\caption{Total Beverage Consumption}
+	\label{tab:beverage-total-consumption}
+\end{table}
+
+These results serve as a basis for the next questions, which focuses on the most consumed beverage brands rather than product categories.
+
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item The total of~\bfmtnum{29342}~liters of beverages were consumed during the event.
+		\item The beer category was the most consumed with~\bfmtnum{19797}~liters consumed.
+	\end{itemize}
+\end{blue-box}
+
 \subsection{Popular Brands Analysis}
 \label{subsec:analysis-beverage-popular-brands}
 \todo{-}
