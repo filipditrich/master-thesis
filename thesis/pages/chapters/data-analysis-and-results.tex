@@ -811,8 +811,8 @@ The questions that will be answered in this section, after another slight logica
 	\item \textit{\researchq{beverage-total-consumption}}
 	\item \textit{\researchq{beverage-popular-category}}
 	\item \textit{\researchq{beverage-top-beer}}
-	\item \textit{\researchq{beverage-top-alcoholic}}
 	\item \textit{\researchq{beverage-top-non-alcoholic}}
+	\item \textit{\researchq{beverage-top-alcoholic}}
 \end{itemize}
 
 For this section to answer all questions, it will be divided into three parts:
@@ -944,7 +944,7 @@ The results in the~\autoref{fig:beverage-top-beer}~below show the distribution o
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq14-top-beer-brands}
+	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq15-top-beer-brands}
 	\caption{Most Consumed Beer Brands}
 	\label{fig:beverage-top-beer}
 \end{figure}
@@ -973,7 +973,7 @@ A complete list of all ten brands from the festival is shown in the~\autoref{tab
 		\csvreader[
 			head to column names,
 			late after line={\\\hline},
-		]{\ResultsDir/rq14-top-beer-brands.csv}{
+		]{\ResultsDir/rq15-top-beer-brands.csv}{
 			subcategory=\colbrand,
 			total_consumption_ml=\colconsumption,
 			transaction_count=\coltrxcount,
@@ -984,6 +984,15 @@ A complete list of all ten brands from the festival is shown in the~\autoref{tab
 			& \num[group-separator={,}]{\colconsumption}~l
 			& \num[group-separator={,}]{\colunits}
 		}
+		\hline
+		\noalign{\vspace{1mm}}
+		\hline
+		\rowcolor{unicorn_blue!20}
+		\textbf{}
+		& \textbf{Total}
+		& {\bfmtnum{19793}}~l
+		& {\bfmtnum{53990}}
+		\\\hline
 	\end{tabularx}
 	\caption{Most Consumed Beer Brands}
 	\label{tab:beverage-top-beer}
@@ -996,6 +1005,71 @@ The price could have driven this as the Radegast was in average slightly cheaper
 	\begin{itemize}
 		\item The most consumed beer brand was \textbf{Radegast} with a total of~\bfmtnum{10366}~liters consumed.
 		\item The second most consumed beer brand was the \textbf{Pilsner Urquell} with half the consumption of the Radegast.
+	\end{itemize}
+\end{blue-box}
+
+\subsubsection{Non-alcoholic Brands Analysis}
+\label{subsubsec:analysis-beverage-popular-non-alcoholic}
+
+This next section is bound to the non-alcoholic beverages, which were the second most consumed category.
+
+\begin{gray-box}{Research Question}
+	\textit{\researchq{beverage-top-non-alcoholic}}
+\end{gray-box}
+
+Aggregated similarly as in the previous analysis, the results in the~\autoref{tab:beverage-top-non-alcoholic}~below show the distribution of the most consumed non-alcoholic brands during the event.
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{4cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}|}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{}
+		& \textbf{\color{white}Non-alcoholic brand}
+		& \textbf{\color{white}Total consumption}
+		& \textbf{\color{white}Units sold}
+		\\\hline\hline
+		% rows
+		\csvreader[
+			head to column names,
+			late after line={\\\hline},
+		]{\ResultsDir/rq17-top-non-alco-brands.csv}{
+			subcategory=\colbrand,
+			total_consumption_ml=\colconsumption,
+			transaction_count=\coltrxcount,
+			total_sold=\colunits
+		}{
+			\the\numexpr\thecsvinputline-1
+			& \colbrand
+			& \num[group-separator={,}]{\colconsumption}~l
+			& \num[group-separator={,}]{\colunits}
+		}
+		\hline
+		\noalign{\vspace{1mm}}
+		\hline
+		\rowcolor{unicorn_blue!20}
+		\textbf{}
+		& \textbf{Total}
+		& {\bfmtnum{6971}}~l
+		& {\bfmtnum{20487}}
+		\\\hline
+	\end{tabularx}
+	\caption{Most Consumed Non-alcoholic Brands}
+	\label{tab:beverage-top-non-alcoholic}
+\end{table}
+
+Results show a tight competition between the \textbf{Birell} and \textbf{ZON Lemonade} brands, with the Birell being the most consumed non-alcoholic beverage during the event.
+With a total of~\bfmtnum{6971}~liters consumed and~\bfmtnum{20487}~units sold, it was the most popular non-alcoholic beverage with a~\bfmtnump[2]{31.35}\%~share of the total.
+
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item The most consumed non-alcoholic brand was \textbf{Birell} with a total of~\bfmtnum{2186}~liters consumed.
+		\item The second most consumed non-alcoholic brand was the \textbf{ZON Lemonade}.
 	\end{itemize}
 \end{blue-box}
 
