@@ -261,7 +261,8 @@ def customers_section_callbacks(app):
 					parameters=[
 						QueryParameter("date_from", datetime.datetime),
 						QueryParameter("date_to", datetime.datetime)
-					]
+					],
+					default_data="FSCacheDefault"
 				)
 			},
 			parameters={

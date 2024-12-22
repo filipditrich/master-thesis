@@ -19,3 +19,31 @@ query_manager.registry.register_query(
 		default_data="FSCacheDefault"
 	)
 )
+
+# Time series query
+query_manager.registry.register_query(
+	QueryDefinition(
+		name="time_series",
+		sql=QueryManager.read_sql_query("time_series.sql"),
+		parameters=[
+			QueryParameter("date_from", datetime.datetime),
+			QueryParameter("date_to", datetime.datetime),
+			QueryParameter("granularity_minutes", int),
+			QueryParameter("day_start_hour", int)
+		],
+		default_data="FSCacheDefault"
+	)
+)
+
+# Event entry timeline query
+query_manager.registry.register_query(
+	QueryDefinition(
+		name="event_entry_timeline",
+		sql=QueryManager.read_sql_query("event_entry_timeline.sql"),
+		parameters=[
+			QueryParameter("date_from", datetime.datetime),
+			QueryParameter("date_to", datetime.datetime)
+		],
+		default_data="FSCacheDefault"
+	)
+)

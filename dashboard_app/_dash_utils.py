@@ -10,10 +10,8 @@ import dash
 CACHE_DIR = os.path.join(os.path.dirname(__file__), 'dash_cache')
 os.makedirs(CACHE_DIR, exist_ok=True)
 # cache configuration
-cache = diskcache.FanoutCache(
+cache = diskcache.Cache(
 	directory=CACHE_DIR,
-	shards=256,
-	timeout=60,
 	size_limit=3e9,
 	eviction_policy='least-recently-used',
 )
@@ -34,10 +32,8 @@ def create_cache_key(callback_id: str):
 	scoped_cache_dir = os.path.join(CACHE_DIR, callback_id)
 	os.makedirs(scoped_cache_dir, exist_ok=True)
 	return dash.DiskcacheManager(
-		cache=diskcache.FanoutCache(
+		cache=diskcache.Cache(
 			directory=scoped_cache_dir,
-			shards=16,
-			timeout=60,
 			size_limit=3e9,
 			eviction_policy='least-recently-used',
 		),
