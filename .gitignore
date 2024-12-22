@@ -4,11 +4,14 @@ thesis/dist/*
 
 # ignore unnecessary files
 .idea/
-cache/
-cached-queries/
 
 # database source and exports
 db/
 
 # db queries
 app-demo/queries/
+app-demo/cache/
+app-demo/cached-queries/
+
+# charts prep
+prep-charts.ipynb
