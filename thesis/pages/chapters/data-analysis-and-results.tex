@@ -911,7 +911,93 @@ These results serve as a basis for the next questions, which focuses on the most
 
 \subsection{Popular Brands Analysis}
 \label{subsec:analysis-beverage-popular-brands}
-\todo{-}
+
+This section dives deeper into the beverage preferences and focuses on the most consumed beverage brands for the most consumed categories:
+\begin{itemize}
+	\item \textbf{Beer} (Pivo),
+	\item \textbf{Non-alcoholic} (Nealko),
+	\item and \textbf{Spirits / other alcohol} (Ostatní alkohol).
+\end{itemize}
+
+To answer these questions, it required finding and grouping all beverage products and calculating their total consumption.
+This, however, was not so straightforward, as the products were not always labeled consistently.
+This meant that, for example, beers labeled as~\enquote{Radegast 10}~and~\enquote{Radegast 12}~were not grouped together which then produced biased results.
+
+To solve this issue, the products should be grouped by their brand and not by their name.
+This approach made sense, but the data did not contain the brand information, only the product name.
+
+A systematic approach would be to extend the database with brands and back-fill the products with a link to the brand.
+This would require a significant amount of work and time, which was not available at the time of this analysis.
+
+So a simpler and manual approach was taken, where the~\enquote{brand}~of the product was determined by the product name by stripping the unnecessary parts of the name containing either volume, beer grade, or other information.
+This helped produce better results, but still may not be perfectly accurate.
+
+\subsubsection{Beer Brands Analysis}
+\label{subsubsec:analysis-beverage-popular-beer}
+Starting with the most consumed and most popular category – beer.
+
+\begin{gray-box}{Research Question}
+	\textit{\researchq{beverage-top-beer}}
+\end{gray-box}
+
+The results in the~\autoref{fig:beverage-top-beer}~below show the distribution of the most consumed beer brands during the event.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq14-top-beer-brands}
+	\caption{Most Consumed Beer Brands}
+	\label{fig:beverage-top-beer}
+\end{figure}
+
+This distribution shows that the most consumed beer brand was \textbf{Radegast} with a total of~\bfmtnum{10366}~liters consumed and a~\bfmtnum{27329}~units sold.
+
+Second was the \textbf{Pilsner Urquell} with half the consumption of the Radegast followed by the \textbf{Frisco} and \textbf{Proud} brands.
+A complete list of all ten brands from the festival is shown in the~\autoref{tab:beverage-top-beer}~below.
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{4cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}|}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{}
+		& \textbf{\color{white}Beer brand}
+		& \textbf{\color{white}Total consumption}
+		& \textbf{\color{white}Units sold}
+		\\\hline\hline
+		% rows
+		\csvreader[
+			head to column names,
+			late after line={\\\hline},
+		]{\ResultsDir/rq14-top-beer-brands.csv}{
+			subcategory=\colbrand,
+			total_consumption_ml=\colconsumption,
+			transaction_count=\coltrxcount,
+			total_sold=\colunits
+		}{
+			\the\numexpr\thecsvinputline-1
+			& \colbrand
+			& \num[group-separator={,}]{\colconsumption}~l
+			& \num[group-separator={,}]{\colunits}
+		}
+	\end{tabularx}
+	\caption{Most Consumed Beer Brands}
+	\label{tab:beverage-top-beer}
+\end{table}
+
+These results indicate a very strong preference for the Radegast beer among the festival visitors.
+The price could have driven this as the Radegast was in average slightly cheaper than, for example, the Pilsner Urquell.
+
+\begin{blue-box}{Key Takeaways}
+	\begin{itemize}
+		\item The most consumed beer brand was \textbf{Radegast} with a total of~\bfmtnum{10366}~liters consumed.
+		\item The second most consumed beer brand was the \textbf{Pilsner Urquell} with half the consumption of the Radegast.
+	\end{itemize}
+\end{blue-box}
 
 
 \section{Customer Analysis}
