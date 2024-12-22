@@ -64,7 +64,7 @@ partition "4. Data Enhancement & Cleanup" {
             - Manual volume entry
         end note
     split again
-        :Process Depositable Items;
+        :Process Returnable Items;
         :Add Binary Flag;
     split again
         :Import Event Program;

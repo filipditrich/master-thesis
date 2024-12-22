@@ -801,11 +801,11 @@ Providing a better understanding of the event's performance and giving more cont
 \section{Beverage Consumption Analysis}
 \label{sec:analysis-beverage-consumption}
 
-Following up on the previous section, which showed that beverage consumption was undeniable the most significant part of the event, this section should analyze the beverage consumption in more detail.
+This section will provide a detailed analysis of beverage consumption, which was previously established as the most significant aspect of the event.
 
-It should provide insights into the total consumption, more insights into the returnable cups, most consumed beverages and the most popular beverage brands answering the previously defined questions.
+It should offer insights into overall consumption, detailed information on returnable cups, the most often drank beverages, and the leading beverage brands, addressing the previously established inquiries.
 
-The questions that will be answered in this section, after another slight logical reorder, are:
+This section will address the following questions, following a minor logical reorganization:
 \begin{itemize}
 	\item \textit{\researchq{beverage-returnable-cups}}
 	\item \textit{\researchq{beverage-total-consumption}}
@@ -815,7 +815,7 @@ The questions that will be answered in this section, after another slight logica
 	\item \textit{\researchq{beverage-top-alcoholic}}
 \end{itemize}
 
-For this section to answer all questions, it will be divided into three parts:
+This section will address all questions by dividing it into three parts:
 \begin{enumerate}
 	\item \fullref{subsec:analysis-beverage-returnable-cups},
 	\item \fullref{subsec:analysis-beverage-total-consumption},
@@ -825,35 +825,36 @@ For this section to answer all questions, it will be divided into three parts:
 \subsection{Returnable Cups Analysis}
 \label{subsec:analysis-beverage-returnable-cups}
 
-Thanks to the slight modification to the local database and the data mentioned earlier in the~\autoref{subsec:data-methodology-local-database-modifications}, it was possible to track the returnable cups and their respective transactions.
+Due to the little alteration of the local database and the previously referenced data in~\autoref{subsec:data-methodology-local-database-modifications}, it became possible to monitor the returnable cups and their associated transactions.
 
-As this ability was not systematically present until now, it should provide a better understanding of the product sales and the returnable cups' usage.
+This capability, previously absent, should enhance comprehension of product sales and the utilization of returnable cups.
 
 \begin{gray-box}{Research Question}
 	\textit{\researchq{beverage-returnable-cups}}
 \end{gray-box}
 
-To find the results, it was necessary not to find transactions with the returnable cups, but rather to find the actual contents of the transactions, as one transaction may contain multiple products and thus multiple returnable cups.
-The cups were sold by the organizer for the price of~\fmtczk{70} with a~\fmtnum{21}\% VAT.\
+To figure out the results, it was essential to analyze the actual contents of the transactions rather than merely identifying transactions including returnable cups,
+as a single transaction may encompass many products and hence multiple returnable cups.
+The organizer sold the cups for a price of ~\fmtczk{70} with a ~\fmtnum{21}\% VAT.\
 
-After calculating the total issued and returned cups, the results in the~\autoref{fig:returnable-cups} below show the distribution of the returnable cups during the event.
+Upon calculating the total number of issued and returned cups, the results depicted in~\autoref{fig:returnable-cups}~below illustrate the distribution of returnable cups throughout the event.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq13-returnable-cups}
-	\caption{Depositable Cups}
+	\caption{Returnable Cups}
 	\label{fig:returnable-cups}
 \end{figure}
 
-The results show that the total of~\bfmtnum{20045}~cups were issued during the event, and only~\bfmtnum{17322}~cups were returned resulting in a total of~\bfmtnump[2]{78.60}\%~return rate.
+The data indicate that a total of~\bfmtnum{20045}~cups was distributed during the event, with only~\bfmtnum{17322}~cups returned, yielding a return rate of~\bfmtnump[2]{78.60}\%.
 
-This, however, does not mean that the remaining~\bfmtnum{4723}~cups were lost or even considered as a loss, since the cups were paid for.
-Most unreturned cups can be assumed were probably kept as a souvenir.
+This, however, does not imply that the remaining~\bfmtnum{4723}~cups were lost or regarded as a loss, as the cups were purchased.
+Most unreturned cups can be presumed to have been retained as souvenirs.
 
 \begin{blue-box}{Key Takeaways}
 	\begin{itemize}
-		\item The total of~\bfmtnum{20045}~cups were issued during the event.
-		\item Only~\bfmtnum{17322}~cups were returned resulting in a~\bfmtnump[2]{78.60}\%~return rate.
+		\item The total of~\bfmtnum{20045}~cups were issued during the festival.
+		\item Only~\bfmtnum{17322}~cups returned resulted in a~\bfmtnump[2]{78.60}\%~return rate.
 	\end{itemize}
 \end{blue-box}
 
@@ -912,25 +913,25 @@ These results serve as a basis for the next questions, which focuses on the most
 \subsection{Popular Brands Analysis}
 \label{subsec:analysis-beverage-popular-brands}
 
-This section dives deeper into the beverage preferences and focuses on the most consumed beverage brands for the most consumed categories:
+This section explores beverage preferences, concentrating on the most popular brands within the leading categories:
 \begin{itemize}
 	\item \textbf{Beer} (Pivo),
 	\item \textbf{Non-alcoholic} (Nealko),
 	\item and \textbf{Spirits / other alcohol} (Ostatní alkohol).
 \end{itemize}
 
-To answer these questions, it required finding and grouping all beverage products and calculating their total consumption.
-This, however, was not so straightforward, as the products were not always labeled consistently.
-This meant that, for example, beers labeled as~\enquote{Radegast 10}~and~\enquote{Radegast 12}~were not grouped together which then produced biased results.
+Answering these issues required the identification and categorization of all beverage products, followed by the computation of their overall consumption.
+However, this was not entirely easy, as the products were not uniformly labeled.
+This indicated that beers labeled as~\enquote{Radegast 10} and~\enquote{Radegast 12} were not categorized together, resulting in biased outcomes.
 
-To solve this issue, the products should be grouped by their brand and not by their name.
-This approach made sense, but the data did not contain the brand information, only the product name.
+To address this issue, the products ought to be categorized by their brand rather than by their name.
+This methodology seemed logical; nevertheless, the data lacked brand information, containing simply the product name.
 
 A systematic approach would be to extend the database with brands and back-fill the products with a link to the brand.
 This would require a significant amount of work and time, which was not available at the time of this analysis.
 
-So a simpler and manual approach was taken, where the~\enquote{brand}~of the product was determined by the product name by stripping the unnecessary parts of the name containing either volume, beer grade, or other information.
-This helped produce better results, but still may not be perfectly accurate.
+A more straightforward and manual method was used, wherein the product's~\enquote{brand} was identified by extracting the essential parts of the product name, eliminating redundant elements such as volume, beer grade, or other details.
+This helped produce better results, however, still lack complete accuracy.
 
 \subsubsection{Beer Brands Analysis}
 \label{subsubsec:analysis-beverage-popular-beer}
@@ -940,7 +941,7 @@ Starting with the most consumed and most popular category – beer.
 	\textit{\researchq{beverage-top-beer}}
 \end{gray-box}
 
-The results in the~\autoref{fig:beverage-top-beer}~below show the distribution of the most consumed beer brands during the event.
+The results in~\autoref{fig:beverage-top-beer} below illustrate the distribution of the most frequently consumed beer brands during the event.
 
 \begin{figure}[H]
 	\centering
@@ -949,9 +950,9 @@ The results in the~\autoref{fig:beverage-top-beer}~below show the distribution o
 	\label{fig:beverage-top-beer}
 \end{figure}
 
-This distribution shows that the most consumed beer brand was \textbf{Radegast} with a total of~\bfmtnum{10366}~liters consumed and a~\bfmtnum{27329}~units sold.
+This distribution indicates that the most consumed beer brand was \textbf{Radegast}, with a total consumption of~\bfmtnum{10366}~liters and~\bfmtnum{27329} units sold.
 
-Second was the \textbf{Pilsner Urquell} with half the consumption of the Radegast followed by the \textbf{Frisco} and \textbf{Proud} brands.
+The second was \textbf{Pilsner Urquell}, which had half the consumption of \textbf{Radegast}, followed by the \textbf{Frisco} and \textbf{Proud} brands.
 A complete list of all ten brands from the festival is shown in the~\autoref{tab:beverage-top-beer}~below.
 
 \begin{table}[htbp]
@@ -969,7 +970,7 @@ A complete list of all ten brands from the festival is shown in the~\autoref{tab
 		& \textbf{\color{white}Total consumption}
 		& \textbf{\color{white}Units sold}
 		\\\hline\hline
-		% rows
+% rows
 		\csvreader[
 			head to column names,
 			late after line={\\\hline},
@@ -998,8 +999,8 @@ A complete list of all ten brands from the festival is shown in the~\autoref{tab
 	\label{tab:beverage-top-beer}
 \end{table}
 
-These results indicate a very strong preference for the Radegast beer among the festival visitors.
-The price could have driven this as the Radegast was in average slightly cheaper than, for example, the Pilsner Urquell.
+The data demonstrate a strong preference for Radegast beer among festival attendees.
+The price may have influenced this, as the Radegast was generally slightly less expensive than, for instance, the Pilsner Urquell.
 
 \begin{blue-box}{Key Takeaways}
 	\begin{itemize}
@@ -1034,7 +1035,7 @@ Aggregated similarly as in the previous analysis, the results in the~\autoref{ta
 		& \textbf{\color{white}Total consumption}
 		& \textbf{\color{white}Units sold}
 		\\\hline\hline
-		% rows
+% rows
 		\csvreader[
 			head to column names,
 			late after line={\\\hline},
@@ -1063,8 +1064,8 @@ Aggregated similarly as in the previous analysis, the results in the~\autoref{ta
 	\label{tab:beverage-top-non-alcoholic}
 \end{table}
 
-Results show a tight competition between the \textbf{Birell} and \textbf{ZON Lemonade} brands, with the Birell being the most consumed non-alcoholic beverage during the event.
-With a total of~\bfmtnum{6971}~liters consumed and~\bfmtnum{20487}~units sold, it was the most popular non-alcoholic beverage with a~\bfmtnump[2]{31.35}\%~share of the total.
+The results indicate a close rivalry between the \textbf{Birell} and \textbf{ZON Lemonade} brands, with Birell emerging as the most consumed non-alcoholic beverage at the event.
+A total of~\bfmtnum{6971}~liters drank and~\bfmtnum{20487}~units sold established it as the most popular non-alcoholic beverage, commanding a~\bfmtnump[2]{31.35}\%~share of the total consumption.
 
 \begin{blue-box}{Key Takeaways}
 	\begin{itemize}
@@ -1104,7 +1105,7 @@ However, the second most consumed brand was \textbf{Absolut Vodka} with only \bf
 		& \textbf{\color{white}Total consumption}
 		& \textbf{\color{white}Units sold}
 		\\\hline\hline
-		% rows
+% rows
 		\csvreader[
 			head to column names,
 			late after line={\\\hline},
