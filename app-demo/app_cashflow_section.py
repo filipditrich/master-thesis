@@ -745,7 +745,7 @@ def cashflow_section_callbacks(app):
 				id="sankey-chart",
 				figure=fig,
 				config={
-					"displayModeBar": False,
+					# "displayModeBar": False,
 				}
 			)
 		]

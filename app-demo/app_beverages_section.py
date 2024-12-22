@@ -97,7 +97,7 @@ def beverages_section_children(app):
 							)
 						]
 					),
-					# depositable cups
+					# returnable cups
 					dmc.GridCol(
 						span=4,
 						children=[
@@ -110,7 +110,7 @@ def beverages_section_children(app):
 										gap="xs",
 										className="grow",
 										children=[
-											dmc.Text("Depositable cups", size="sm", fw=500),
+											dmc.Text("Returnable cups", size="sm", fw=500),
 											dmc.Group(
 												gap="xs",
 												justify="space-between",

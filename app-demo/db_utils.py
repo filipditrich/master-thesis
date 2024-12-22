@@ -236,7 +236,7 @@ class QueryManager:
 	@staticmethod
 	def read_sql_query(filename: str) -> str:
 		"""Read a SQL query from queries/ directory repo"""
-		with open(f"./app-demo/queries/{filename}", "r") as f:
+		with open(f"./queries/{filename}", "r") as f:
 			sql_file = f.read()
 			return QueryManager.process_sql_query(sql_file)
 

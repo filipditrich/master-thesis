@@ -175,15 +175,33 @@ def performance_section_children(app):
 							)
 						]
 					),
-					# TODO: top places table
+					# TODO: top selling places table
 					dmc.GridCol(
-						span=4,
+						span=6,
 						children=[
 							dag.AgGrid(
-								id="performance-places",
+								id="performance-selling-places",
 								style={ "height": "264px" },
 								columnDefs=[
-									{ 'headerName': 'Place', 'field': 'place_name' },
+									{ 'headerName': 'Selling place', 'field': 'place_name' },
+									{ 'headerName': 'Count', 'field': 'count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+									{ 'headerName': 'Sum', 'field': 'sum', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value/100)" }, 'type': 'numericColumn' },
+									# { 'headerName': 'Commission', 'field': 'commission', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
+								],
+								defaultColDef={ "resizable": True, "sortable": True, "filter": True },
+								columnSize="sizeToFit",
+							)
+						]
+					),
+					# TODO: top top-up places table
+					dmc.GridCol(
+						span=6,
+						children=[
+							dag.AgGrid(
+								id="performance-topup-places",
+								style={ "height": "264px" },
+								columnDefs=[
+									{ 'headerName': 'Top-up point', 'field': 'place_name' },
 									{ 'headerName': 'Count', 'field': 'count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
 									{ 'headerName': 'Sum', 'field': 'sum', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value/100)" }, 'type': 'numericColumn' },
 									# { 'headerName': 'Commission', 'field': 'commission', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
@@ -195,7 +213,7 @@ def performance_section_children(app):
 					),
 					# TODO: top vendors table
 					dmc.GridCol(
-						span=4,
+						span=6,
 						children=[
 							dag.AgGrid(
 								id="performance-vendors",
@@ -213,7 +231,7 @@ def performance_section_children(app):
 					),
 					# TODO: top products table
 					dmc.GridCol(
-						span=4,
+						span=6,
 						children=[
 							dag.AgGrid(
 								id="performance-products",
@@ -690,25 +708,25 @@ def performance_section_callbacks(app):
 					]
 				)
 			]
-		);
+		)
 
-	# update top places table
+	# update top selling places table
 	@app.register_callback(
 		background=True,
-		output=(dash.Output("performance-places", "rowData")),
+		output=(dash.Output("performance-selling-places", "rowData")),
 		inputs=(
 				dash.Input("filter-date-from", "value"),
 				dash.Input("filter-date-to", "value"),
 		),
 	)
-	async def update_top_places_table(date_from, date_to):
+	async def update_top_selling_places_table(date_from, date_to):
 		results = await app.query_manager.execute_queries(
 			query_names=[
-				"top_places"
+				"top_selling_places"
 			],
 			or_query_defs={
-				'top_places': QueryDefinition(
-					name="top_places",
+				'top_selling_places': QueryDefinition(
+					name="top_selling_places",
 					sql=QueryManager.process_sql_query(
 						"""
 						SELECT
@@ -718,6 +736,7 @@ def performance_section_callbacks(app):
 							SUM(t.org_comm) AS commission
 						FROM pos_transactions_rich t
 						WHERE t.created BETWEEN :date_from$1 AND :date_to$2
+						AND t.is_order IS TRUE
 						GROUP BY t.place_name
 						ORDER BY sum DESC
 						LIMIT 5;
@@ -735,7 +754,55 @@ def performance_section_callbacks(app):
 				"date_to": dateutil.parser.parse(date_to),
 			}
 		)
-		top_places = results['top_places']
+		top_places = results['top_selling_places']
+
+		return top_places.to_dict(orient='records')
+
+	# update top topup places table
+	@app.register_callback(
+		background=True,
+		output=(dash.Output("performance-topup-places", "rowData")),
+		inputs=(
+				dash.Input("filter-date-from", "value"),
+				dash.Input("filter-date-to", "value"),
+		),
+	)
+	async def update_top_topup_places_table(date_from, date_to):
+		results = await app.query_manager.execute_queries(
+			query_names=[
+				"top_topup_places"
+			],
+			or_query_defs={
+				'top_topup_places': QueryDefinition(
+					name="top_topup_places",
+					sql=QueryManager.process_sql_query(
+						"""
+						SELECT
+							t.place_name,
+							COUNT(t.transaction_id) AS count,
+							SUM(t.amount) AS sum,
+							SUM(t.org_comm) AS commission
+						FROM pos_transactions_rich t
+						WHERE t.created BETWEEN :date_from$1 AND :date_to$2
+						AND t.is_order IS FALSE
+						GROUP BY t.place_name
+						ORDER BY sum DESC
+						LIMIT 5;
+						"""
+					),
+					parameters=[
+						QueryParameter("date_from", datetime.datetime),
+						QueryParameter("date_to", datetime.datetime)
+					],
+					default_data="FSCacheDefault",
+				),
+			},
+			parameters={
+				"date_from": dateutil.parser.parse(date_from),
+				"date_to": dateutil.parser.parse(date_to),
+			}
+		)
+		top_places = results['top_topup_places']
 
 		return top_places.to_dict(orient='records')
 
