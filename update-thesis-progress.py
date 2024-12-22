@@ -122,7 +122,7 @@ def update_readme(readme_path, stats):
 			'word-count': str(stats['word_count']),
 			'estimated-pages': str(stats['estimated_pages']),
 			'actual-pages': str(stats['actual_pages']),
-			'last-updated': datetime.now().strftime("%Y-%m-%d")
+			'last-updated': datetime.now().strftime("%Y-%m-%d %H:%M")
 		}
 
 		# Update each stat
