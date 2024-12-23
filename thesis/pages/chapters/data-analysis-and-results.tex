@@ -1371,6 +1371,110 @@ Minimal new registrations were consistently observed during the early morning ho
 	\end{itemize}
 \end{keytakeaways}
 
+%%% Customer / Event Attendance and Timeline Analysis / Top-Up Peaks
+%%% --------------------------------------------------------------
+
+\subsubsection{Time to First Transaction}
+\label{subsubsec:analysis-first-transaction}
+
+\begin{rqbox}
+	\textit{\researchq{customers-visitor-time}}
+\end{rqbox}
+
+The analysis reveals significant variations in how quickly different types of visitors made their first transaction after arrival.
+Overall, the average time to the first transaction was~\bfmtnum{79.55}~minutes.
+However, this number alone is misleading, as evidenced by the much lower median of~\bfmtnum{7}~minutes and mode of~\bfmtnum{3}~minutes.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq22-time-to-first-transaction}
+	\caption{Time from Arrival to First Transaction Analysis}
+	\label{fig:time-to-first-transaction}
+	\source
+\end{figure}
+
+Breaking down the analysis by visitor type\footnote{Visitor or rather, chip types are described in the~\fullref{tab:chip-types} table.}, reveals distinct patterns:
+
+\begin{itemize}
+	\item \textbf{Regular}: Quickest to transact, with an average of \bfmtnum{44.68} minutes and a median of only \bfmtnum{6} minutes
+	\item \textbf{Online}: Similar efficiency with an average of \bfmtnum{66.85} minutes and a median of \bfmtnum{7} minutes
+	\item \textbf{Guests}: Took longer, averaging \bfmtnum{140.59} minutes with a median of \bfmtnum{10} minutes
+	\item \textbf{Staff}: Showed significantly different behavior, with an average of \bfmtnum{583.92} minutes and a median of \bfmtnum{234} minutes
+\end{itemize}
+
+\begin{table}[H]
+	\centering
+	\small
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}l
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}X
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}X
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}X
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}X|
+	}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{\color{white}Visitor Type}
+		& \textbf{\color{white}Average}
+		& \textbf{\color{white}Mode}
+		& \textbf{\color{white}Median}
+		& \textbf{\color{white}Max}
+		\\
+		\hline
+		\colorindicator{chart1}Guest
+		& \bfmtnum{140.59}~min
+		& \bfmtnum{0}~min
+		& \bfmtnum{10}~min
+		& \bfmtnum{3176}~min
+		\\
+		\colorindicator{chart2}Regular
+		& \bfmtnum{44.68}~min
+		& \bfmtnum{0}~min
+		& \bfmtnum{6}~min
+		& \bfmtnum{2852}~min
+		\\
+		\colorindicator{chart3}Online
+		& \bfmtnum{66.85}~min
+		& \bfmtnum{3}~min
+		& \bfmtnum{7}~min
+		& \bfmtnum{3199}~min
+		\\
+		\colorindicator{chart4}Staff
+		& \bfmtnum{583.92}~min
+		& \bfmtnum{7}~min
+		& \bfmtnum{234}~min
+		& \bfmtnum{3492}~min
+		\\
+		\hline
+		\rowcolor{unicorn_blue!20}
+		\textbf{Overall}
+		& \bfmtnum{79.55}~min
+		& \bfmtnum{3}~min
+		& \bfmtnum{7}~min
+		& \bfmtnum{3492}~min
+		\\
+		\hline
+	\end{tabularx}
+	\caption{Time from Arrival to First Transaction}
+	\label{tab:time-to-first-transaction}
+	\source
+\end{table}
+
+The significant difference between average and median times across all categories suggests a right-skewed distribution, implying that while most visitors completed their first transaction quickly, others took much longer.
+This was especially true for regular attendees, who would sometimes arrive early to check in and then return later to make their first purchase.
+
+Staff members who were not there primarily to consume, on the other hand, exhibited a different behavior pattern, with their first transaction occurring later.
+This was most likely due to their responsibilities at the event, which may have prevented them from making purchases during working hours.
+
+\begin{keytakeaways}
+	\begin{itemize}
+		\item Most visitors (as indicated by the median) made their first transaction within~\bfmtnum{7}~minutes of arrival.
+		\item Regular visitors were the most efficient, typically transacting within~\bfmtnum{6}~minutes.
+		\item Staff members showed distinctly different behavior, likely due to their different role at the event.
+		\item The large gap between mean and median times suggests some visitors waited significantly longer than others before their first transaction.
+	\end{itemize}
+\end{keytakeaways}
+
 \subsection{Customer Segmentation and Digital Engagement}
 \label{subsec:analysis-customer-segmentation-engagement}
 \todo{Distribution and characteristics of customer types, Analysis of online vs on-site customer behavior, Digital service adoption (mobile app, online top-ups), Comparative analysis of spending patterns across segments, Impact of digital channels on customer behavior}
