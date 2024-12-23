@@ -29,10 +29,26 @@
 %%%%% ---------------------------------------------------------------
 \usepackage{tcolorbox}
 \usepackage{fontawesome5}
-% gray box preset
+% color box presets
 \newtcolorbox{gray-box}[1]{colback=gray!5!white,colframe=gray!50!black,title=#1}
 \newtcolorbox{blue-box}[1]{colback=unicorn_blue!5!white,colframe=unicorn_blue,title=#1}
 \newtcolorbox{info-box}[1]{colback=tw_gray!2,colframe=tw_gray!10,title={\textcolor{black}{\faQuestionCircle[regular]~~#1}}}
+
+% research question box as environment
+\NewDocumentEnvironment{rqbox}{}{
+	\begin{gray-box}{Research Question}
+		\small
+		}{
+	\end{gray-box}
+}
+
+% key takeaways box as environment
+\NewDocumentEnvironment{keytakeaways}{}{
+	\begin{blue-box}{Key Takeaways}
+		\small
+		}{
+	\end{blue-box}
+}
 
 
 %%%%% Setting the colors and syntax of the code
