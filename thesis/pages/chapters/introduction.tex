@@ -113,7 +113,7 @@ Cooperate in terms of providing valuable insights into what they would like to k
 
 \subsection*{In Cooperation with the Event Organizer}
 \label{subsec:introduction-objectives-cooperation}
-For this purpose, I have chosen a not more undisclosed event organizer, that has been a close and helpful partner of NFCtron for many seasons.
+For this purpose, I chose an undisclosed event organizer who has been a close and helpful partner of NFCtron for many seasons.
 Together with the organizer in the first step, we have stated the following requirements to perform the analysis:
 \begin{itemize}
 	\item \textbf{Requirement 1}: The event and organizer should be kept undisclosed.
@@ -126,7 +126,7 @@ As it cannot be disclosed any further, we will refer to the event as~\theEvent~a
 Now the important information about~\theEvent~for this study is the following:
 \begin{itemize}
 	\item \theEvent~is a music festival that has been organized for several years now.
-	\item \theEvent~takes place in the Czech Republic in the begging of July 2025.
+	\item \theEvent~takes place in the Czech Republic at the beginning of July 2025.
 	\item \theEvent~is a 3-day event with multiple stages and multiple vendors.
 	\item \theEvent~uses NFCtron system for cashless payments and access control.
 	\item \theEvent~had around 7,000 attendees in 2024 and had a roughly 43\% increase in 2025 to around 10,000 attendees.
@@ -140,10 +140,10 @@ The final step was to define questions or data analysis objectives that should b
 Together in the cooperation with~\theOrganizer~and several internal colleagues in NFCtron, we have defined the following questions for the data analysis:
 
 \subsubsection*{Cashflow and Revenue}
-\defresearchq{cashflow-total-revenue}{What was the total revenue of the organizer and what does it consist of?}
-\defresearchq{cashflow-top-up-balance}{How much and by what means was the balance topped up on the chips?}
-\defresearchq{cashflow-remaining-balance}{How much balance remained on all chips after the event and after refunds?}
-\defresearchq{cashflow-total-sales}{What was the total sales of the event, how much of it was the sales of the organizer and how many external vendors?}
+\defresearchq{cashflow-total-revenue}What was the organizer's total revenue and what did it consist of?
+\defresearchq{cashflow-top-up-balance}{How much and how was the balance topped up on the chips?}
+\defresearchq{cashflow-remaining-balance}{What is the remaining balance on all chips after the event and refunds?}
+\defresearchq{cashflow-total-sales}{What was the total sales of the event, how much of it was sold by the organizer, and how many external vendors?}
 \begin{itemize}
 	\item \textit{\researchq{cashflow-total-revenue}}
 	\item \textit{\researchq{cashflow-top-up-balance}}
@@ -151,14 +151,14 @@ Together in the cooperation with~\theOrganizer~and several internal colleagues i
 	\item \textit{\researchq{cashflow-total-sales}}
 \end{itemize}
 
-These questions should provide currently unclear insights into the cashflow and revenue sources of the event.
-Possible answers to these questions could provide the organizer with valuable insights into the economic aspects of the event and could help optimize the cashflow and revenue sources for the next event.
+These questions should shed light on the event's cash flow and revenue sources, which the platform does not currently cover in detail.
+Possible answers to these questions may provide the organizer with valuable insights into the event's economic aspects, allowing them to optimize cashflow and revenue sources for the following event.
 
 \subsubsection*{Performance}
-\defresearchq{performance-transactions}{How many transactions were processed in total and what was the largest "peak" in the volume of transactions processed by the system (and when)?}
+\defresearchq{performance-transactions}{How many transactions were processed in total, and when was the system's largest \enquote{peak} in transaction volume?}
 \defresearchq{performance-processing-during-peaks}{What was the average transaction processing time during peak hours?}
 \defresearchq{performance-delays-downtimes}{Were there any significant delays or downtimes in processing transactions?}
-\defresearchq{performance-best-sale-points}{What were the best-selling points?}
+\defresearchq{performance-best-sale-points}{What were the best sale places?}
 \defresearchq{performance-best-top-up-points}{What were the best top-up points?}
 \defresearchq{performance-best-vendors}{Who were the best vendors?}
 \defresearchq{performance-best-products}{What were the best products?}
@@ -175,12 +175,12 @@ Possible answers to these questions could provide the organizer with valuable in
 The current platform already provides some performance metrics, but these questions should provide more detailed insights into the performance of the event.
 
 \subsubsection*{Beverage Consumption}
-\defresearchq{beverage-total-consumption}{How much was the total consumption of drinks/fluids?}
-\defresearchq{beverage-returnable-cups}{How many returnable cups were issued, and how many were returned or not returned?}
-\defresearchq{beverage-popular-category}{What was the most popular drink category?}
-\defresearchq{beverage-top-beer}{What was the TOP beer brand, how much was consumed and sold?}
-\defresearchq{beverage-top-alcoholic}{What was the TOP brand of other alcoholic beverages, how much was consumed and sold?}
-\defresearchq{beverage-top-non-alcoholic}{What was the TOP brand of non-alcoholic beverages, how much was consumed and sold?}
+\defresearchq{beverage-total-consumption}{What was the total amount of beverage consumed?}
+\defresearchq{beverage-returnable-cups}{How many returnable cups were issued and returned/not returned?}
+\defresearchq{beverage-popular-category}{What was the most popular beverage category?}
+\defresearchq{beverage-top-beer}{What was the top beer brand, and how much was consumed and sold?}
+\defresearchq{beverage-top-alcoholic}{What was the most popular brand of other alcoholic beverages, and how much was consumed and sold?}
+\defresearchq{beverage-top-non-alcoholic}{What was the most popular non-alcoholic beverage brand, and how much was sold?}
 \begin{itemize}
 	\item \textit{\researchq{beverage-total-consumption}}
 	\item \textit{\researchq{beverage-returnable-cups}}
@@ -194,18 +194,18 @@ Currently, a more in-depth product analysis is missing in the platform and the m
 These questions should try to answer and give detailed insights into the beverage consumption, preferences and sales at the event.
 
 \subsubsection*{Customers}
-\defresearchq{customers-total-attendance}{What was the total attendance at the event, how many active customers were at the event each day?}
+\defresearchq{customers-total-attendance}{What was the total attendance at the event, and how many active customers were there each day?}
 \defresearchq{customers-bank-cards}{What is the distribution of bank cards used to refund credit?}
-\defresearchq{customers-card-schemes}{What is the distribution of card schemes used to top up credit on-site and online?}
-\defresearchq{customers-new-visitors}{What was the course of the event in terms of new visitors and when were the largest "peaks"?}
-\defresearchq{customers-visitor-time}{What is the average time of a visitor from arrival in the first transaction?}
-\defresearchq{customers-top-up-peaks}{What was the course of the event in terms of topping up credit on-site and when were the largest "peaks"?}
-\defresearchq{customers-top-up-more-than-once}{How many customers topped up credit more than once and how much only once?}
-\defresearchq{customers-drink-preferences}{What were the preferences for the type of drink throughout the day?}
-\defresearchq{customers-common-combinations}{What were the most common combinations of products?}
-\defresearchq{customers-top-up-online}{How many customers topped up credit in advance online?}
-\defresearchq{customers-distribution-types}{What was the distribution of customers by their type (on-site, online, staff, guest, VIP)?}
-\defresearchq{customers-mobile-app}{How many customers used the mobile application?}
+\defresearchq{customers-card-schemes}What is the distribution of card schemes used to top up credit both on-site and online?
+\defresearchq{customers-new-visitors}{What was the course of the event in terms of new visitors? And when were the largest "peaks"?}
+\defresearchq{customers-visitor-time}{What is the average time of a visitor from arrival to first transaction?}
+\defresearchq{customers-top-up-peaks}{What was the course of the event in terms of topping up credit on-site? And when were the largest "peaks"?}
+\defresearchq{customers-top-up-more-than-once}{How many customers topped up their credit multiple times, and how much only once?}
+\defresearchq{customers-drink-preferences}{What were the beverage preferences throughout the day?}
+\defresearchq{customers-common-combinations}{What were the most common product combinations?}
+\defresearchq{customers-top-up-online}{How many customers added credit in advance online?}
+\defresearchq{customers-distribution-types}{What was the distribution of customers by type (on-site, online, staff, guest, VIP)?}
+\defresearchq{customers-mobile-app}{How many customers use the mobile app?}
 \begin{itemize}
 	\item \textit{\researchq{customers-total-attendance}}
 	\item \textit{\researchq{customers-top-up-online}}
@@ -271,7 +271,7 @@ To ensure the feasibility and focus of the study, certain boundaries have been d
 \subsection*{Limitations}
 \label{subsec:introduction-limitations}
 \begin{itemize}
-	\item \textbf{Anonymized Data}: To protect privacy, all customer and vendor data has been anonymized, which may limit certain the analysis in some ways.
-	\item \textbf{Single Event Focus}: Insights and recommendations are based solely on data from~\theEvent, which may limit broader generalizations.
-	\item \textbf{Time Constraints}: Given the timeline of the thesis, certain advanced features (\eg predictive analytics) and technical implementations have been deprioritized but kept in mind for future work.
+	\item \textbf{Anonymized Data}: To protect privacy, all customer and vendor data has been anonymized, which may restrict the analysis in some ways.
+	\item \textbf{Single Event Focus}: Insights and recommendations are based only on data from~\theEvent, which may limit broader generalizations.
+	\item \textbf{Time Constraints}: Due to the thesis's timeline, advanced features (e.g., predictive analytics) and technical implementations were deprioritized, but will be considered for future work.
 \end{itemize}
