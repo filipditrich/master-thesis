@@ -32,15 +32,17 @@
 % color box presets
 \newtcolorbox{gray-box}[1]{colback=gray!5!white,colframe=gray!50!black,title=#1}
 \newtcolorbox{blue-box}[1]{colback=unicorn_blue!5!white,colframe=unicorn_blue,title=#1}
-\newtcolorbox{info-box}[1]{colback=tw_gray!2,colframe=tw_gray!10,title={\textcolor{black}{\faQuestionCircle[regular]~~#1}}}
+\newtcolorbox{light-gray-box}[1]{colback=tw_gray!2,colframe=tw_gray!10,title={\textcolor{black}{\faQuestionCircle[regular]~~#1}}}
 
 % research question box as environment
-\NewDocumentEnvironment{rqbox}{}{
+\NewDocumentEnvironment{rqbox}{m}{
 	\begin{gray-box}{Research Question}
 		\small
+		\rqfull{#1}
 		}{
 	\end{gray-box}
 }
+\newcommand{\makerqbox}[1]{\begin{rqbox}{#1}\end{rqbox}}
 
 % key takeaways box as environment
 \NewDocumentEnvironment{keytakeaways}{}{
@@ -48,6 +50,14 @@
 		\small
 		}{
 	\end{blue-box}
+}
+
+% info box as environment
+\NewDocumentEnvironment{infobox}{m}{
+	\begin{light-gray-box}{#1}
+		\small
+		}{
+	\end{light-gray-box}
 }
 
 
@@ -200,16 +210,41 @@
 % Command to define a new research question
 \NewDocumentCommand{\defresearchq}{m m}{
 	\refstepcounter{rqcounter}
+	% save RQ number
 	\expandafter\edef\csname rqnum:\string#1\endcsname{\therqcounter}
+	% save RQ label (RQ#)
+	\expandafter\edef\csname rqlabel:\string#1\endcsname{RQ\therqcounter}
+	% define label
 	\expandafter\label\expandafter{rq:#1}
+	% save question text
+	\expandafter\edef\csname rqtext:\string#1\endcsname{#2}
+	% full formatted RQ
 	\expandafter\newcommand\csname rq:\string#1\endcsname{
 		\textbf{\csname rqnum:\string#1\endcsname:} #2
 	}
 }
 
-% Command to use a research question
-\NewDocumentCommand{\researchq}{m}{
-	\hyperref[rq:#1]{\csname rq:\string#1\endcsname}
+
+% use a research question raw text
+\NewDocumentCommand{\rqtext}{m}{
+	\csname rqtext:\string#1\endcsname
 }
 
-\renewcommand{\therqcounter}{RQ\arabic{rqcounter}}
+% use a research question number (# only)
+\NewDocumentCommand{\rqnumber}{m}{
+	\csname rqnum:\string#1\endcsname
+}
+
+% use a research question (RQ#: Question text?)
+\NewDocumentCommand{\rqfull}{m}{
+	\hyperref[rq:#1]{
+		\textbf{\csname rqlabel:\string#1\endcsname}: \rqtext{#1}
+	}
+}
+
+% use a research question shortcut (RQ#)
+\NewDocumentCommand{\rqshort}{m}{
+	\hyperref[rq:#1]{\textbf{\csname rqlabel:\string#1\endcsname}}
+}
+
+\renewcommand{\therqcounter}{\arabic{rqcounter}}
