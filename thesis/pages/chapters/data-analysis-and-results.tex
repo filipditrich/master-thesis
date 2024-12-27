@@ -1585,20 +1585,75 @@ A small portion (\bfmtnump[2]{4.14}\%) of customers had no recorded platform pre
 
 \subsection{Payment Behavior Analysis}
 \label{subsec:analysis-customer-payment-behavior}
-% TODO
-\todo{Analysis of payment methods and card schemes, Credit top-up frequency patterns, Duration-based analysis of customer spending}
+This subsection examines patterns in how customers interacted with payment systems during the festival, including their banking preferences and top-up behaviors.
+
 % TODO
 \begin{rqbox}
 	\researchq{customers-bank-cards}
 \end{rqbox}
+
+The analysis of bank refunds reveals the distribution among Czech banking institutions shown in the~\autoref{fig:bank-refunds} below.
+
 % TODO
+\todo{Better chart}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq19-bank-refunds}
+	\caption{Bank Refunds Distribution}
+	\label{fig:bank-refunds}
+	\source
+\end{figure}
+
+% TODO: formatting
+\textbf{Česká spořitelna} and \textbf{ČSOB} dominated the refund distribution among identified banks, accounting for about 36\% of all refunds.
+A significant portion (25.8\%) showed as N/A, representing customers who didn't request for credit refund.
+
 \begin{rqbox}
 	\researchq{customers-card-schemes}
 \end{rqbox}
-% TODO
+
+% TODO: better chart
+\todo{Better chart}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq20-card-schemes}
+	\caption{Card Schemes Distribution}
+	\label{fig:card-schemes}
+	\source
+\end{figure}
+
+% TODO: formatting
+VISA cards were the predominant payment method, used in 48.3\% of transactions, followed by Mastercard at 28.9\%.
+The remaining 23\% (N/A) represent strictly-cash oriented customers, who did not use online top-up nor used card for any top-up at the festival.
+
 \begin{rqbox}
 	\researchq{customers-top-up-more-than-once}
 \end{rqbox}
+
+% TODO: better chart
+\todo{Better chart}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq24-top-up-behavior}
+	\caption{Top-up Behavior Analysis}
+	\label{fig:top-up-behavior}
+	\source
+\end{figure}
+
+% TODO: formatting
+The analysis of top-up behavior reveals that most customers (49.1\%) topped up only once during the festival.
+A significant portion (32.8\%) topped up twice, while only a small fraction of customers (5.7\%) topped up more than three times.
+
+% TODO: formatting
+\begin{keytakeaways}
+	\begin{itemize}
+		\item Traditional banks (Česká spořitelna, ČSOB, KB) handled the majority of refunds
+		\item VISA cards were predominantly used (48.3\%) compared to Mastercard (28.9\%)
+		\item The majority of customers (81.9\%) topped up their credit 1–2 times during the event
+		\item Very few customers (0.8\%) needed more than 4 top-ups
+		\item The average number of top-ups per customer was 1.8
+	\end{itemize}
+\end{keytakeaways}
 
 %%% Customer / Purchase Pattern Analysis
 %%% --------------------------------------------------------------
