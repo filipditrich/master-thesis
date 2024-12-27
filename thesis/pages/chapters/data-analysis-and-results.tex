@@ -54,26 +54,27 @@ This resulted in \bfmtnum{17704}~top-up transactions, with a total value of~\bfm
 
 When looking at the grouping by payment methods, the results in~\autoref{fig:top-up-transactions-by-payment-method} give a clear picture of the distribution.
 
-% TODO: Better chart and table
-\todo{Better chart and table}
 \begin{figure}[H]
 	\centering
-	% First the pie chart
-	\includegraphics[width=0.75\textwidth]{\ThesisFigures/charts/topup-methods}
-	\vspace{1em}  % add some space between chart and table
-
-	% Then the table
 	\small
-	\begin{tabular}{@{}lrr@{}}
-		\toprule
-		\textbf{Payment Method}                & \textbf{Count} & \textbf{Total Value (CZK)} \\
-		\midrule
-		\colorindicator{chart2}Card terminal     & \fmtnum{8486}  & \fmtczk{7264503}           \\
-		\colorindicator{chart3}Cash              & \fmtnum{7561}  & \fmtczk{5782570}           \\
-		\colorindicator{chart1}Online pre top-up & \fmtnum{1634}  & \fmtczk{1436400}           \\
-		\colorindicator{chart4}VIP issued        & \fmtnum{23}    & \fmtczk{37500}             \\
-		\bottomrule
-	\end{tabular}
+	\begin{tabularx}{0.95\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}r|>{\columncolor{unicorn_blue!5}}r|}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{\color{white}Payment Method}   & \textbf{\color{white}Count} & \textbf{\color{white}Total Value (CZK)} \\
+		\hline
+		\hline
+		\colorindicator{chart1}Card terminal     & \fmtnum{8486}               & \fmtczk{7264503}                        \\
+		\colorindicator{chart2}Cash              & \fmtnum{7561}               & \fmtczk{5782570}                        \\
+		\colorindicator{chart3}Online pre top-up & \fmtnum{1634}               & \fmtczk{1436400}                        \\
+		\colorindicator{chart4}VIP issued        & \fmtnum{23}                 & \fmtczk{37500}                          \\
+		\hline
+		\hline
+		\rowcolor{unicorn_blue!10}
+		\textbf{Total}                           & \bfmtnum{17704}             & \bfmtczk{14520973}                      \\
+		\hline
+	\end{tabularx}
+
+	\includegraphics[width=\textwidth]{\ResultsDir/rq2-topup-methods}
 	\caption{Top-Up Transactions by Payment Method}
 	\label{fig:top-up-transactions-by-payment-method}
 	\source
@@ -101,17 +102,15 @@ The sales analysis was crucial for understanding the overall sales behavior and 
 To answer the research question, it was necessary to find all sales transactions and their respective sellers and to divide them into two groups: the direct organizer's sales and external vendors' sales.
 And for better understanding, the sales were also grouped by the product categories (see~\autoref{tab:product-categories} for the list of categories).
 
-The results show that the total sales of the event were~\bfmtczk{11711807} with the organizer's sales being~\bfmtczk{8240264} and the external vendors' sales~\bfmtczk{3471543}.
+The results show that the total sales of the event were~\bfmtczk{11711807} with the organizer's sales being~\bfmtczk{8240264} and the external vendors' sales being~\bfmtczk{3471543}.
 
 The organizer, most importantly, sold all the beer beverages and most of the non-alcoholic and alcoholic (spirits) beverages.
 Whereas the external vendors sold mainly food, wine, beverages and other uncategorized products.
 This can be seen in~\autoref{fig:sales-organizer-vs-vendors} below.
 
-% TODO: Better chart
-\todo{Better chart}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\textwidth]{\ThesisFigures/charts/sales-vendors}
+	\includegraphics[width=0.95\textwidth]{\ResultsDir/rq4-organizer-vs-vendor-sales}
 	\caption{Sales of the Organizer vs. External Vendors}
 	\label{fig:sales-organizer-vs-vendors}
 	\source
@@ -1574,8 +1573,100 @@ A significant portion (32.8\%) topped up twice, while only a small fraction of c
 
 This section examines customer purchase behaviors throughout the festival, focusing on beverage preferences across different times of day and common product combinations.
 
-% TODO
+This section examines customer purchase behaviors throughout the festival, focusing on beverage preferences across different times of day and common product combinations.
+
+%%% Customer / Purchase Pattern Analysis / Beverage Preferences
+
+\subsubsection{Beverage Preferences Throughout the Day}
+\label{subsubsec:analysis-beverage-preferences}
+
 \makerqbox{customers-drink-preferences}
 
-% TODO
+To analyze beverage preferences throughout the day, sales data was aggregated by hour and beverage category.
+Figure \ref{fig:beverage-preferences} shows the distribution of alcoholic and non-alcoholic beverage sales over the course of the day.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{\ResultsDir/rq25-beverage-preferences}
+	\caption{Beverage Preferences Throughout the Day}
+	\label{fig:beverage-preferences}
+	\source
+\end{figure}
+
+Key observations:
+\begin{itemize}
+	\item Non-alcoholic beverages dominate sales in the morning hours (6:00-11:00).
+	\item Alcoholic beverage sales surge in the afternoon, peaking between 17:00-19:00.
+	\item The proportion of alcoholic sales remains high into the late evening hours.
+	\item Non-alcoholic sales see a smaller resurgence in the late evening, likely due to customers alternating between alcoholic and non-alcoholic drinks.
+\end{itemize}
+
+%%% Customer / Purchase Pattern Analysis / Common Product Combinations
+
+\subsubsection{Common Product Combinations}
+\label{subsubsec:analysis-common-combinations}
+
 \makerqbox{customers-common-combinations}
+
+Identifying frequently purchased product combinations can reveal important insights about customer preferences and behaviors.
+Two analyses were conducted: one including returnable cups and one excluding them, as the high frequency of cup purchases can obscure other meaningful patterns.
+
+\begin{table}[H]
+	\centering
+	\small
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}}X
+		|>{\columncolor{unicorn_blue!5}}X
+		|>{\columncolor{unicorn_blue!5}}r
+		|>{\columncolor{unicorn_blue!5}}r|
+	}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{\color{white}Product 1} & \textbf{\color{white}Product 2} & \textbf{\color{white}Combo Count}
+		& \textbf{\color{white}\% of Transactions}
+		\\
+		\hline
+		\csvreader[head to column names, late after line= \\]{rq26productcomboswithreturnable.csv}
+		{product1=\product, product2=\product, combination_count=\combos, percentage_of_all_transactions=\percentage}
+		{\product & \product & \num[group-separator={,}]{\combos} & \num[round-precision=2]{\percentage}\% }
+		\hline
+	\end{tabularx}
+	\caption{Most Common Product Combinations (Including Returnable Cups)}
+	\label{tab:common-combos-with-cups}
+\end{table}
+
+As expected, returnable cups feature prominently in the most common combinations.
+To reveal additional insights, the analysis was repeated excluding cup transactions.
+
+\begin{table}[H]
+	\centering
+	\small
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}}X
+		|>{\columncolor{unicorn_blue!5}}X
+		|>{\columncolor{unicorn_blue!5}}r
+		|>{\columncolor{unicorn_blue!5}}r|
+	}
+		\hline
+		\rowcolor{unicorn_blue}
+		\textbf{\color{white}Product 1} & \textbf{\color{white}Product 2} & \textbf{\color{white}Combo Count}
+		& \textbf{\color{white}\% of Transactions}
+		\\
+		\hline
+		\csvreader[head to column names, late after line= \\]{rq26productcombosnonreturnable.csv}
+		{product1=\product, product2=\product, combination_count=\combos, percentage_of_all_transactions=\percentage}
+		{\product & \product & \num[group-separator={,}]{\combos} & \num[round-precision=2]{\percentage}\% }
+		\hline
+	\end{tabularx}
+	\caption{Most Common Product Combinations (Excluding Returnable Cups)}
+	\label{tab:common-combos-no-cups}
+\end{table}
+
+Key takeaways:
+\begin{itemize}
+	\item Popular beers like Radegast and Pilsner Urquell are frequently purchased together, suggesting customers often buy rounds of the same beer.
+	\item Radegast is also commonly bought with non-alcoholic Birell, possibly indicating designated drivers or customers pacing their alcohol consumption.
+	\item Cider (Kingswood) and select spirits (Beefeater, Jameson) make notable appearances, revealing their popularity as complements or alternatives to beer.
+\end{itemize}
+
+This analysis provides a data-driven foundation for optimizing product placement, bundling, and cross-promotion strategies to drive incremental sales and enhance the customer experience.

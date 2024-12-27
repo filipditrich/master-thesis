@@ -19,122 +19,93 @@ skinparam partition {
     BorderColor #64748b
 }
 
-title Knowledge Discovery and Data Processing Workflow
-
-partition "1. Initial Analysis & Planning" {
+partition "Initial Analysis" {
     start
-    :Analyze Production Database;
-    :Identify Required Tables;
+    :Analyze DB;
+    :Select Tables;
     note right: 21 tables selected
-    :Plan Data Export Strategy;
+    :Plan Export Strategy;
 
     split
         :Process Small Tables;
         :Direct CSV Export;
     split again
         :Process Large Tables;
-        :Split Into Chunks;
-        :Join Using Python Script;
+        :Split in Chunks;
+        :Join with Python;
         note right: e.g., Transactions table (140k+ rows)
     end split
 }
 
-partition "2. Data Preprocessing" {
+partition "Preprocessing" {
     :Convert Timestamps;
-    :Fix Numeric Formats;
-    note right: Convert comma-separated values
+    :Fix Formats;
+'    note: Ensure numeric consistency
 }
 
-partition "3. Local Environment Setup" {
-    :Install PostgreSQL;
-    :Add PostGIS Extension;
-    note right: Required for spatial data
-    :Setup Database Structure;
-    :Import Preprocessed CSV Files;
+partition "Environment Setup" {
+    :Install PostgreSQL with PostGIS;
+    :Setup DB Structure;
+    :Import Preprocessed Files;
     :Base Dataset Ready;<<milestone>>
 }
 
-partition "4. Data Enhancement & Cleanup" {
+partition "Data Enhancement" {
     split
-        :Enhance Beverage Products;
-        :Add Volume Column;
+        :Enhance Beverage Data;
+        :Add Volume Info;
         note left
-            - 425 total products
-            - 159 beverage products
-            - Manual volume entry
+            - 425 products
+            - 159 beverages
+            - Manual entry
         end note
     split again
-        :Process Returnable Items;
+        :Process Returns;
         :Add Binary Flag;
     split again
-        :Import Event Program;
-        :Extract from Website;
-        :AI-Assisted Data Entry;
+        :Import Event Data;
+        :Extract from Web;
+        :AI-Assisted Entry;
         note right
-            Used AI to extract
-            and prepare SQL
-            insert scripts
+            AI-generated
+            SQL scripts
         end note
     end split
 }
 
-partition "5. Data Anonymization System" {
-    :Create Supporting Tables;
-    note left
-        - anonymization_config
-        - original_values
-    end note
+partition "Anonymization" {
+    :Setup Tables;
+    note left: Tables: config, values
     :Configure Anonymization;
-    note right
-        JSON-based
-        configuration
-    end note
+    note right: JSON-driven setup
 
     split
-        :Process Vendor Data;
-        note left: Vendor_1 format
+        :Process Vendors;
+        note left: Specific formats
     split again
-        :Process Customer Data;
-        note right
-            Preserve email
-            domains
-        end note
+        :Process Customers;
+        note right: Preserve domains
     split again
-        :Process Place Names;
+        :Process Locations;
         note right
             Keep non-sensitive
             names (e.g., BAR L2)
         end note
     end split
-    :Anonymized Dataset Ready;<<milestone>>
+    :Dataset Anonymized;<<milestone>>
 }
 
-partition "6. Analysis Preparation" {
+partition "Analysis Prep" {
     split
-        :Create Transaction Commission Calculator;
-        note left
-            Based on product
-            and seller deals
-        end note
+        :Build Commission Calculator;
     split again
-        :Build Transaction Enrichment View;
-        note right
-            Distinguish
-            transaction
-            types
-        end note
+        :Transaction Enrichment View;
     split again
-        :Develop Chip
-        Customers View;
-        note right
-            Event Sourcing
-            based with
-            30+ columns
-        end note
+        :Develop Customer View;
     end split
 }
 
-:Final Dataset Ready for Analysis;<<milestone>>
+:Final Dataset Ready;<<milestone>>
 stop
 
 @enduml
