@@ -1313,23 +1313,6 @@ The analysis reveals significant variations in how quickly different types of vi
 Overall, the average time to the first transaction was~\bfmtnum{79.55}~minutes.
 However, this number alone is misleading, as evidenced by the much lower median of~\bfmtnum{7}~minutes and mode of~\bfmtnum{3}~minutes.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.95\textwidth]{\ResultsDir/rq22-time-to-first-transaction}
-	\caption{Time from Arrival to First Transaction Analysis}
-	\label{fig:time-to-first-transaction}
-	\source
-\end{figure}
-
-Breaking down the analysis by visitor type\footnote{Visitor or rather, chip types are described in the~\fullref{tab:chip-types} table.}, reveals distinct patterns:
-
-\begin{itemize}
-	\item \textbf{Regular}: Quickest to transact, with an average of \bfmtnum{44.68} minutes and a median of only \bfmtnum{6} minutes
-	\item \textbf{Online}: Similar efficiency with an average of \bfmtnum{66.85} minutes and a median of \bfmtnum{7} minutes
-	\item \textbf{Guests}: Took longer, averaging \bfmtnum{140.59} minutes with a median of \bfmtnum{10} minutes
-	\item \textbf{Staff}: Showed significantly different behavior, with an average of \bfmtnum{583.92} minutes and a median of \bfmtnum{234} minutes
-\end{itemize}
-
 \begin{table}[H]
 	\centering
 	\small
@@ -1388,6 +1371,14 @@ Breaking down the analysis by visitor type\footnote{Visitor or rather, chip type
 	\source
 \end{table}
 
+Breaking down the analysis by visitor type\footnote{Visitor or rather, chip types are described in the~\fullref{tab:chip-types} table.}, reveals distinct patterns:
+\begin{itemize}
+	\item \textbf{Regular}: Quickest to transact, with an average of \bfmtnum{44.68} minutes and a median of only \bfmtnum{6} minutes
+	\item \textbf{Online}: Similar efficiency with an average of \bfmtnum{66.85} minutes and a median of \bfmtnum{7} minutes
+	\item \textbf{Guests}: Took longer, averaging \bfmtnum{140.59} minutes with a median of \bfmtnum{10} minutes
+	\item \textbf{Staff}: Showed significantly different behavior, with an average of \bfmtnum{583.92} minutes and a median of \bfmtnum{234} minutes
+\end{itemize}
+
 The significant difference between average and median times across all categories suggests a right-skewed distribution, implying that while most visitors completed their first transaction quickly, others took much longer.
 This was especially true for regular attendees, who would sometimes arrive early to check in and then return later to make their first purchase.
 
@@ -1416,7 +1407,7 @@ A total of~\bfmtnum{17233}~top-up transactions were processed, with activity var
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\textwidth]{\ResultsDir/rq23-topup-patterns}
+	\includegraphics[width=\textwidth]{\ResultsDir/rq23-topup-patterns}
 	\caption{Credit Top-up Patterns During Event}
 	\label{fig:topup-patterns}
 	\source
@@ -1424,7 +1415,7 @@ A total of~\bfmtnum{17233}~top-up transactions were processed, with activity var
 
 The data shows three major peak periods:
 \begin{itemize}
-	\item \textbf{Day 1 Peak}: The highest single-hour volume occurred at 16:00 with~\bfmtnum{1793}~top-ups
+	\item \textbf{Day 1 Peak}: The highest single-hour volume occurred at 16:00 with \bfmtnum{1793}~top-ups
 	\item \textbf{Day 2 Peak}: A moderate peak at 17:00 with~\bfmtnum{672}~top-ups
 	\item \textbf{Day 3 Peak}: A strong resurgence with~\bfmtnum{1162}~top-ups at 16:00
 \end{itemize}
@@ -1740,7 +1731,7 @@ This revealed the most popular product combination, without returnable cups incl
 
 There was also a notable high-combination of non-beverage products, such as \textbf{Klobása}, \textbf{Hermelín} or \textbf{Oštěpok} in combination with \textbf{Příloha} making it a seemingly popular food choice.
 
-Interpretation of the results of this analysis could have been done in many ways, for example, using a network graph to visualize the relationships between products.
+Interpretation of the results could have been done in many ways, for example, using a network graph to visualize the relationships between products.
 This, as exciting as it sounded, was not in the end the most suitable way to present the results in a clear and concise manner.
 
 \begin{keytakeaways}
@@ -1750,3 +1741,11 @@ This, as exciting as it sounded, was not in the end the most suitable way to pre
 		\item Returnable cups were, not surprisingly, a significant part of the most common combinations
 	\end{itemize}
 \end{keytakeaways}
+
+\subsection{Summary}
+\label{subsec:analysis-customer-summary}
+
+This section provided a thorough evaluation of festival attendees' habits, preferences, and segmentation.
+It provided practical information about visitor interactions with the festival by analyzing trends in attendance, payment methods, purchase preferences, and event product combinations that contributed most to overall sales.
+
+All previously defined questions were answered and presented in a simple and understandable way, providing hopefully valuable insights for the festival organizer.

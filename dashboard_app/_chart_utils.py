@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import Dict, List, Optional
 
@@ -56,8 +58,14 @@ chart_colors = [
 	"#FF8C94",  # Coral Pink
 ]
 
+chart_colors_named = {
+	'text': '#474647'
+}
 
-def get_chart_color(name: int) -> str:
+
+def get_chart_color(name: int | str) -> str:
+	if name in chart_colors_named:
+		return chart_colors_named[name]
 	return chart_colors[int(name) % len(chart_colors)]
 
 
