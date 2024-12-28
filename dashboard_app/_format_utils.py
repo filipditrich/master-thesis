@@ -20,7 +20,7 @@ d3.formatLocale({
     "decimal": ",",
     "thousands": " ",
     "grouping": [3],
-    "currency": ["", " Kč"],
+    "currency": ["", " CZK"],
     "nan": "",
 })
 """
@@ -104,9 +104,15 @@ def format_number_short(num: int | float) -> str:
 	num = round(num)
 	try:
 		if num >= 1_000_000:
-			return f"{num / 1_000_000:.1f} M"
+			should_float = num % 1_000_000 != 0
+			if should_float:
+				return f"{num / 1_000_000:.1f}M"
+			return f"{num / 1_000_000:.0f}M"
 		elif num >= 1_000:
-			return f"{num / 1_000:.1f} K"
+			should_float = num % 1_000 != 0
+			if should_float:
+				return f"{num / 1_000:.1f}K"
+			return f"{num / 1_000:.0f}K"
 		else:
 			return str(num)
 	except TypeError:
@@ -114,11 +120,11 @@ def format_number_short(num: int | float) -> str:
 
 
 def format_price(num: int | float) -> str:
-	"""Default price formatter with space as a thousand separator and 'Kč' suffix"""
+	"""Default price formatter with space as a thousand separator and 'CZK' suffix"""
 	try:
-		return format_number(round(num / 100)) + " Kč"
+		return format_number(round(num / 100)) + " CZK"
 	except TypeError:
-		return "0 Kč"
+		return "0 CZK"
 
 
 def format_price_short(num: int | float) -> str:
@@ -126,10 +132,16 @@ def format_price_short(num: int | float) -> str:
 	num = round(num / 100)
 	try:
 		if num >= 1_000_000:
-			return f"{num / 1_000_000:.1f}M Kč"
+			should_float = num % 1_000_000 != 0
+			if should_float:
+				return f"{num / 1_000_000:.1f}M CZK"
+			return f"{num / 1_000_000:.0f}M CZK"
 		elif num >= 1_000:
-			return f"{num / 1_000:.1f}K Kč"
+			should_float = num % 1_000 != 0
+			if should_float:
+				return f"{num / 1_000:.1f}K CZK"
+			return f"{num / 1_000:.0f}K CZK"
 		else:
-			return str(num) + " Kč"
+			return str(num) + " CZK"
 	except TypeError:
-		return "0 Kč"
+		return "0 CZK"

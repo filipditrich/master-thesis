@@ -57,20 +57,25 @@ When looking at the grouping by payment methods, the results in~\autoref{fig:top
 \begin{figure}[H]
 	\centering
 	\small
-	\begin{tabularx}{0.95\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}r|>{\columncolor{unicorn_blue!5}}r|}
+	\begin{tabularx}{0.95\textwidth}{
+		|>{\columncolor{unicorn_blue!5}}X
+		|>{\columncolor{unicorn_blue!5}}r
+		|>{\columncolor{unicorn_blue!5}}r|}
 		\hline
 		\rowcolor{unicorn_blue}
-		\textbf{\color{white}Payment Method}   & \textbf{\color{white}Count} & \textbf{\color{white}Total Value (CZK)} \\
+		\textbf{\color{white}Payment Method}
+		& \textbf{\color{white}Count}
+		& \textbf{\color{white}Total Value (CZK)} \\
 		\hline
 		\hline
-		\colorindicator{chart1}Card terminal     & \fmtnum{8486}               & \fmtczk{7264503}                        \\
-		\colorindicator{chart2}Cash              & \fmtnum{7561}               & \fmtczk{5782570}                        \\
-		\colorindicator{chart3}Online pre top-up & \fmtnum{1634}               & \fmtczk{1436400}                        \\
-		\colorindicator{chart4}VIP issued        & \fmtnum{23}                 & \fmtczk{37500}                          \\
+		\colorindicator{1}Card terminal     & \fmtnum{8486}   & \fmtczk{7264503}   \\
+		\colorindicator{2}Cash              & \fmtnum{7561}   & \fmtczk{5782570}   \\
+		\colorindicator{3}Online pre top-up & \fmtnum{1634}   & \fmtczk{1436400}   \\
+		\colorindicator{4}VIP issued        & \fmtnum{23}     & \fmtczk{37500}     \\
 		\hline
 		\hline
 		\rowcolor{unicorn_blue!10}
-		\textbf{Total}                           & \bfmtnum{17704}             & \bfmtczk{14520973}                      \\
+		\textbf{Total}                      & \bfmtnum{17704} & \bfmtczk{14520973} \\
 		\hline
 	\end{tabularx}
 
@@ -110,7 +115,7 @@ This can be seen in~\autoref{fig:sales-organizer-vs-vendors} below.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\textwidth]{\ResultsDir/rq4-organizer-vs-vendor-sales}
+	\includegraphics[width=\textwidth]{\ResultsDir/rq4-organizer-vs-vendor-sales}
 	\caption{Sales of the Organizer vs. External Vendors}
 	\label{fig:sales-organizer-vs-vendors}
 	\source
@@ -120,13 +125,12 @@ The organizer also sold not so little of uncategorized products, which after fur
 
 In total, the organizer direct sales were \textbf{70\%} of the total sales, which is a significant portion, and thus the organizer itself has even bigger influence on the event's financial performance.
 
-% TODO: summarize
 \begin{keytakeaways}
 	\begin{itemize}
 		\item Total sales of the event were~\bfmtczk{11711807}, where organizer sales were~\textbf{70\%} of the total.
 		\item The organizer sold all beer beverages and the majority of the non-alcoholic and alcoholic beverages.
 		\item The organizer also sold tickets at the event amounting to~\bfmtczk{684700}.
-		\item External vendors sold mainly food, wine beverages, and other uncategorized products.
+		\item External vendors sold food, wine, and other uncategorized products.
 	\end{itemize}
 \end{keytakeaways}
 
@@ -218,18 +222,18 @@ To better understand the revenue streams, the results are visualized in~\autoref
 	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}r|}
 		\hline
 		\rowcolor{unicorn_blue}
-		\textbf{\color{white}Revenue Stream}         & \textbf{\color{white}Amount (CZK)} \\
+		\textbf{\color{white}Revenue Stream}    & \textbf{\color{white}Amount (CZK)} \\
 		\hline
 		\hline
-		\colorindicator{chart1}Vendor Commissions      & \fmtczkp[2]{820712.79}             \\
-		\colorindicator{chart2}Unclaimed Chip Balances & \fmtczk{334431}                    \\
+		\colorindicator{1}Vendor Commissions      & \fmtczkp[2]{820712.79}             \\
+		\colorindicator{2}Unclaimed Chip Balances & \fmtczk{334431}                    \\
 		\hline
-		\textbf{Total Direct Revenue}                  & \bfmtczkp[2]{1155143.79}           \\
+		\textbf{Total Direct Revenue}             & \bfmtczkp[2]{1155143.79}           \\
 		\hline
-		\colorindicator{chart3}Online Ticket Sales     & \fmtczk{11179700}                  \\
-		\colorindicator{chart4}Organizer Direct Sales  & \fmtczk{8240264}                   \\
+		\colorindicator{3}Online Ticket Sales     & \fmtczk{11179700}                  \\
+		\colorindicator{4}Organizer Direct Sales  & \fmtczk{8240264}                   \\
 		\hline
-		\textbf{Total Revenue (All Streams)}           & \bfmtczkp[2]{20575107.79}          \\
+		\textbf{Total Revenue (All Streams)}      & \bfmtczkp[2]{20575107.79}          \\
 		\hline
 	\end{tabularx}
 	\caption{Revenue Summary Breakdown}
@@ -903,7 +907,7 @@ Again, thanks to local database modifications, it was possible to track the beve
 
 To find the results was quite straightforward, as it only required summing up the volumes of all sold products.
 
-However, to present the results, it was convenient to group the products into categories and show the total consumption of each category and thus answering also the next question~\autoref{rq:beverage-popular-category}.
+However, to present the results, it was convenient to group the products into categories and show the total consumption of each category and thus answering also the next question~\rqshort{beverage-popular-category}.
 
 \makerqbox{beverage-popular-category}
 
@@ -920,12 +924,12 @@ These results are shown in the~\autoref{tab:beverage-total-consumption} below an
 		\\
 		\hline
 		\hline
-		\colorindicator{chart1}Beer                    & \fmtnum{19797}~l  & \fmtnump[2]{67.46}~\% \\
-		\colorindicator{chart2}Non-alcoholic           & \fmtnum{6987}~l   & \fmtnump[2]{23.81}~\% \\
-		\colorindicator{chart3}Spirits / other alcohol & \fmtnum{1992}~l   & \fmtnump[2]{6.78}~\%  \\
-		\colorindicator{chart4}Wine                    & \fmtnum{575}~l    & \fmtnump[2]{1.95}~\%  \\
+		\colorindicator{1}Beer                    & \fmtnum{19797}~l  & \fmtnump[2]{67.46}~\% \\
+		\colorindicator{2}Non-alcoholic           & \fmtnum{6987}~l   & \fmtnump[2]{23.81}~\% \\
+		\colorindicator{3}Spirits / other alcohol & \fmtnum{1992}~l   & \fmtnump[2]{6.78}~\%  \\
+		\colorindicator{4}Wine                    & \fmtnum{575}~l    & \fmtnump[2]{1.95}~\%  \\
 		\hline
-		\textbf{Total volume}                          & \bfmtnum{29342}~l & \fmtnum{100}~\%       \\
+		\textbf{Total volume}                     & \bfmtnum{29342}~l & \fmtnum{100}~\%       \\
 		\hline
 	\end{tabularx}
 	\caption{Total Beverage Consumption}
@@ -978,6 +982,8 @@ Starting with the most consumed and most popular category – beer.
 
 The results in~\autoref{fig:beverage-top-beer} below illustrate the distribution of the most frequently consumed beer brands during the event.
 
+% TODO: better chart
+\todo{Better chart}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.95\textwidth]{\ResultsDir/rq15-top-beer-brands}
@@ -1343,29 +1349,29 @@ Breaking down the analysis by visitor type\footnote{Visitor or rather, chip type
 		& \textbf{\color{white}Max}
 		\\
 		\hline
-		\colorindicator{chart1}Guest
-		& \bfmtnum{140.59}~min
+		\colorindicator{1}Guest
+		& \textbf{2}~h~\textbf{21}~min
 		& \bfmtnum{0}~min
 		& \bfmtnum{10}~min
-		& \bfmtnum{3176}~min
+		& \textbf{52}~h~\textbf{56}~min
 		\\
-		\colorindicator{chart2}Regular
+		\colorindicator{2}Regular
 		& \bfmtnum{44.68}~min
 		& \bfmtnum{0}~min
 		& \bfmtnum{6}~min
-		& \bfmtnum{2852}~min
+		& \textbf{47}~h~\textbf{32}~min
 		\\
-		\colorindicator{chart3}Online
+		\colorindicator{3}Online
 		& \bfmtnum{66.85}~min
 		& \bfmtnum{3}~min
 		& \bfmtnum{7}~min
-		& \bfmtnum{3199}~min
+		& \textbf{44}~h~\textbf{51}~min
 		\\
-		\colorindicator{chart4}Staff
-		& \bfmtnum{583.92}~min
+		\colorindicator{4}Staff
+		& \textbf{9}~h~\textbf{44}~min
 		& \bfmtnum{7}~min
-		& \bfmtnum{234}~min
-		& \bfmtnum{3492}~min
+		& \textbf{3}~h~\textbf{54}~min
+		& \textbf{58}~h~\textbf{12}~min
 		\\
 		\hline
 		\rowcolor{unicorn_blue!20}
@@ -1373,7 +1379,7 @@ Breaking down the analysis by visitor type\footnote{Visitor or rather, chip type
 		& \bfmtnum{79.55}~min
 		& \bfmtnum{3}~min
 		& \bfmtnum{7}~min
-		& \bfmtnum{3492}~min
+		& \textbf{58}~h~\textbf{12}~min
 		\\
 		\hline
 	\end{tabularx}
@@ -1587,19 +1593,39 @@ Figure \ref{fig:beverage-preferences} shows the distribution of alcoholic and no
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\textwidth]{\ResultsDir/rq25-beverage-preferences}
+	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq25-beverage-preferences}
 	\caption{Beverage Preferences Throughout the Day}
 	\label{fig:beverage-preferences}
 	\source
 \end{figure}
 
-Key observations:
-\begin{itemize}
-	\item Non-alcoholic beverages dominate sales in the morning hours (6:00-11:00).
-	\item Alcoholic beverage sales surge in the afternoon, peaking between 17:00-19:00.
-	\item The proportion of alcoholic sales remains high into the late evening hours.
-	\item Non-alcoholic sales see a smaller resurgence in the late evening, likely due to customers alternating between alcoholic and non-alcoholic drinks.
-\end{itemize}
+These results reveal that non-alcoholic beverages, such as Coffee and Lemonades, were most popular around noon.
+Afternoon hours saw a shift towards light alcoholic beverages, with beer sales peaking in the late afternoon and early evening.
+
+The beer preferences also show and confirm previous findings that Radegast was the most popular beer brand, with Pilsner Urquell following closely behind, especially at the end of the festival on Day 3.
+
+Late evening hours saw a shift towards spirits and shots, with Absolut Vodka emerging as the most popular choice.
+
+Hours without any preferences indicate that no sales were recorded during those times, or that the sales were too low (\(\leq 10\)~products sold in an hour) to be considered significant.
+
+This showed no sales data throughout the night and early morning, which is expected.
+However, one interesting observation is the lack of sales at the end of the festival on Day 3 after 22:00, which would indicate the festival's closing time.
+
+\begin{infobox}{Why would a festival close at 22:00 on a Saturday?}
+	The festival ended prematurely on Day 3 due to an unexpected change in weather, which later resulted in evacuation of the festival grounds.
+\end{infobox}
+
+This information was not possible to extract from the data alone, but it was a known fact from the festival organizer.
+
+\begin{keytakeaways}
+	\begin{itemize}
+		\item Non-alcoholic beverages were most popular around noon.
+		\item Beer sales peaked in the late afternoon and early evening.
+		\item Radegast was the most popular beer brand throughout the festival.
+		\item Absolut Vodka was the most popular spirit in the late evening.
+		\item The festival ended prematurely on Day 3 due to an unexpected change in weather.
+	\end{itemize}
+\end{keytakeaways}
 
 %%% Customer / Purchase Pattern Analysis / Common Product Combinations
 
@@ -1608,13 +1634,17 @@ Key observations:
 
 \makerqbox{customers-common-combinations}
 
-Identifying frequently purchased product combinations can reveal important insights about customer preferences and behaviors.
-Two analyses were conducted: one including returnable cups and one excluding them, as the high frequency of cup purchases can obscure other meaningful patterns.
+Identifying frequently purchased product combinations can provide valuable insights into customer preferences and behavior.
+Two analyses were performed: one with returnable cups and one without, as the high frequency of cup purchases can obscure other meaningful patterns.
 
-\begin{table}[H]
+The initial results are shown in the~\autoref{fig:common-combos-with-cups}~below and ss expected, returnable cups appear prominently in the most popular combinations as it was necessary to purchase them for drinks.
+
+\begin{figure}[H]
 	\centering
 	\small
+	% table
 	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}}r
 		|>{\columncolor{unicorn_blue!5}}X
 		|>{\columncolor{unicorn_blue!5}}X
 		|>{\columncolor{unicorn_blue!5}}r
@@ -1622,26 +1652,49 @@ Two analyses were conducted: one including returnable cups and one excluding the
 	}
 		\hline
 		\rowcolor{unicorn_blue}
-		\textbf{\color{white}Product 1} & \textbf{\color{white}Product 2} & \textbf{\color{white}Combo Count}
-		& \textbf{\color{white}\% of Transactions}
+		\textbf{}
+		& \textbf{\color{white}Product A}
+		& \textbf{\color{white}Product B}
+		& \textbf{\color{white}Count}
+		& \textbf{\color{white}\% of total}
 		\\
 		\hline
-		\csvreader[head to column names, late after line= \\]{rq26productcomboswithreturnable.csv}
-		{product1=\product, product2=\product, combination_count=\combos, percentage_of_all_transactions=\percentage}
-		{\product & \product & \num[group-separator={,}]{\combos} & \num[round-precision=2]{\percentage}\% }
+		\csvreader[
+		head to column names,
+		late after line= \\,
+		filter={\thecsvinputline<9}
+		]{\ResultsDir/rq26-product-combos-with-returnable.csv}{
+			product1=\producta,
+			product2=\productb,
+			combination_count=\combos,
+			percentage_of_all_transactions=\percentage
+		}{
+			\colorindicator{\numexpr\thecsvinputline-1\relax}
+			& \producta
+			& \productb
+			& \num[group-separator={,}]{\combos}
+			& \num[round-precision=2]{\percentage}\%
+		}
 		\hline
 	\end{tabularx}
+	% space
+	\par\vspace*{0.5em}
+	% treemap
+	\includegraphics[width=\textwidth]{\ResultsDir/rq26-product-combos-with-returnable}
 	\caption{Most Common Product Combinations (Including Returnable Cups)}
-	\label{tab:common-combos-with-cups}
-\end{table}
+	\label{fig:common-combos-with-cups}
+	\source
+\end{figure}
 
-As expected, returnable cups feature prominently in the most common combinations.
-To reveal additional insights, the analysis was repeated excluding cup transactions.
 
-\begin{table}[H]
+To gain additional insights, the analysis was repeated while excluding returnable cups, as shown in the~\autoref{fig:common-combos-without-cups}~below.
+
+\begin{figure}[H]
 	\centering
 	\small
+	% table
 	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}}r
 		|>{\columncolor{unicorn_blue!5}}X
 		|>{\columncolor{unicorn_blue!5}}X
 		|>{\columncolor{unicorn_blue!5}}r
@@ -1649,24 +1702,51 @@ To reveal additional insights, the analysis was repeated excluding cup transacti
 	}
 		\hline
 		\rowcolor{unicorn_blue}
-		\textbf{\color{white}Product 1} & \textbf{\color{white}Product 2} & \textbf{\color{white}Combo Count}
-		& \textbf{\color{white}\% of Transactions}
+		\textbf{}
+		& \textbf{\color{white}Product A}
+		& \textbf{\color{white}Product B}
+		& \textbf{\color{white}Count}
+		& \textbf{\color{white}\%y~of~total}
 		\\
 		\hline
-		\csvreader[head to column names, late after line= \\]{rq26productcombosnonreturnable.csv}
-		{product1=\product, product2=\product, combination_count=\combos, percentage_of_all_transactions=\percentage}
-		{\product & \product & \num[group-separator={,}]{\combos} & \num[round-precision=2]{\percentage}\% }
+		\csvreader[
+		head to column names,
+		late after line= \\,
+		filter={\thecsvinputline<9}
+		]{\ResultsDir/rq26-product-combos-nonreturnable.csv}{
+			product1=\producta,
+			product2=\productb,
+			combination_count=\combos,
+			percentage_of_all_transactions=\percentage
+		}{
+			\colorindicator{\numexpr\thecsvinputline-1\relax}
+			& \producta
+			& \productb
+			& \num[group-separator={,}]{\combos}
+			& \num[round-precision=2]{\percentage}\%
+		}
 		\hline
 	\end{tabularx}
-	\caption{Most Common Product Combinations (Excluding Returnable Cups)}
-	\label{tab:common-combos-no-cups}
-\end{table}
+	% space
+	\par\vspace*{0.5em}
+	% treemap
+	\includegraphics[width=\textwidth]{\ResultsDir/rq26-product-combos-nonreturnable}
+	\caption{Most Common Product Combinations (Exlucing Returnable Cups)}
+	\label{fig:common-combos-without-cups}
+	\source
+\end{figure}
 
-Key takeaways:
-\begin{itemize}
-	\item Popular beers like Radegast and Pilsner Urquell are frequently purchased together, suggesting customers often buy rounds of the same beer.
-	\item Radegast is also commonly bought with non-alcoholic Birell, possibly indicating designated drivers or customers pacing their alcohol consumption.
-	\item Cider (Kingswood) and select spirits (Beefeater, Jameson) make notable appearances, revealing their popularity as complements or alternatives to beer.
-\end{itemize}
+This revealed the most popular product combination, without returnable cups included, was the \textbf{Absolut Vodka} and \textbf{Redbull} accounting to total of~\bfmtnump[2]{2.48}\%~of all transactions.
 
-This analysis provides a data-driven foundation for optimizing product placement, bundling, and cross-promotion strategies to drive incremental sales and enhance the customer experience.
+There was also a notable high-combination of non-beverage products, such as \textbf{Klobása}, \textbf{Hermelín} or \textbf{Oštěpok} in combination with \textbf{Příloha} making it a seemingly popular food choice.
+
+Interpretation of the results of this analysis could have been done in many ways, for example, using a network graph to visualize the relationships between products.
+This, as exciting as it sounded, was not in the end the most suitable way to present the results in a clear and concise manner.
+
+\begin{keytakeaways}
+	\begin{itemize}
+		\item The most common product combination was \textbf{Absolut Vodka} and \textbf{Redbull} (\bfmtnump[2]{2.48}\%~of all transactions)
+		\item The most common non-beverage combination was \textbf{Klobása} and \textbf{Příloha}
+		\item Returnable cups were, not surprisingly, a significant part of the most common combinations
+	\end{itemize}
+\end{keytakeaways}

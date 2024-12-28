@@ -33,20 +33,35 @@ colors = {
 	'peach': 'rgba(226, 139, 120, 1.0)',  # Soft peach
 }
 
-chart_colors = {
-	'chart1': '#2D7DD2',
-	'chart2': '#6C969D',
-	'chart3': '#97CC04',
-	'chart4': '#EEB902',
-	'chart5': '#474647',
-	'chart6': '#F45D01',
-	'chart7': '#9B6B6C',
-	'chart8': '#556F44',
-}
+# chart_colors = {
+# 	'chart1': '#2D7DD2',
+# 	'chart2': '#6C969D',
+# 	'chart3': '#97CC04',
+# 	'chart4': '#EEB902',
+# 	'chart5': '#474647',
+# 	'chart6': '#F45D01',
+# 	'chart7': '#9B6B6C',
+# 	'chart8': '#556F44',
+# }
+chart_colors = [
+	"#0B2A70",  # Dominant Thesis Color (Dark Blue)
+	"#40C8D3",  # Secondary Thesis Color (Light Blue)
+	"#6C969D",  # Light Teal Gray
+	"#97CC04",  # Vibrant Green
+	"#EEB902",  # Bright Yellow
+	"#F28E2B",  # Warm Orange
+	"#E15759",  # Vibrant Red
+	"#BAB0AC",  # Neutral Gray
+	"#84C1FF",  # Soft Blue
+	"#FF8C94",  # Coral Pink
+]
 
 
-def get_chart_color(name: str) -> str:
-	return chart_colors[name] if name in chart_colors else chart_colors['chart1']
+def get_chart_color(name: int) -> str:
+	return chart_colors[int(name) % len(chart_colors)]
+
+
+# return chart_colors[name] if name in chart_colors else chart_colors['chart1']
 
 
 def get_color(name: str, alpha: Optional[float] = None) -> str:

@@ -16,15 +16,37 @@
 \definecolor{unicorn_blue}{HTML}{0B2A70}
 \definecolor{unicorn_blue_light}{HTML}{40C8D3}
 \definecolor{tw_gray}{HTML}{6b7280}
-\definecolor{chart1}{HTML}{6C969D}
-\definecolor{chart2}{HTML}{97CC04}
-\definecolor{chart3}{HTML}{2D7DD2}
-\definecolor{chart4}{HTML}{EEB902}
-\definecolor{chart5}{HTML}{474647}
-\definecolor{chart6}{HTML}{F45D01}
-\definecolor{chart7}{HTML}{9B6B6C}
-\definecolor{chart8}{HTML}{556F44}
-%colors = ["#6C969D", "#97CC04", "#2D7DD2", "#EEB902", "#474647", "#F45D01", "#9B6B6C", "#556F44"]
+
+% chart color palette (sync with _chart_utils.py)
+\definecolor{chart1}{HTML}{0B2A70}  % Dominant Thesis Color (Dark Blue)
+\definecolor{chart2}{HTML}{40C8D3}  % Secondary Thesis Color (Light Blue)
+\definecolor{chart3}{HTML}{6C969D}  % Light Teal Gray
+\definecolor{chart4}{HTML}{97CC04}  % Vibrant Green
+\definecolor{chart5}{HTML}{EEB902}  % Bright Yellow
+\definecolor{chart6}{HTML}{F28E2B}  % Warm Orange
+\definecolor{chart7}{HTML}{E15759}  % Vibrant Red
+\definecolor{chart8}{HTML}{BAB0AC}  % Neutral Gray
+\definecolor{chart9}{HTML}{84C1FF}  % Soft Blue
+\definecolor{chart10}{HTML}{FF8C94} % Coral Pink
+
+% macro for each color
+\newcommand{\getchartcolor}[1]{%
+	\ifcase
+		#1\relax
+		chart1\or % 0 -> chart1
+		chart1\or % 0 -> chart1
+		chart2\or % 1 -> chart2
+		chart3\or % 2 -> chart3
+		chart4\or % 3 -> chart4
+		chart5\or % 4 -> chart5
+		chart6\or % 5 -> chart6
+		chart7\or % 6 -> chart7
+		chart8\or % 7 -> chart8
+		chart9\or % 8 -> chart9
+		chart10%   9 -> chart10
+	\fi
+}
+
 
 %%%%% Setting the color boxes/frames
 %%%%% ---------------------------------------------------------------
@@ -125,7 +147,7 @@
 \usepackage{bm}
 \usepackage{graphicx}
 \usepackage[labelfont=bf]{caption}
-\newcommand{\sourceDefaultLabel}{Own creation}
+\newcommand{\sourceDefaultLabel}{Author's elaboration}
 \newcommand{\sourceLabel}{Source:}
 \newcommand{\source}[1][\sourceDefaultLabel]{\caption*{\hfill\footnotesize{\sourceLabel~\textit{#1}}}}
 \usepackage{psfrag}
@@ -178,7 +200,7 @@
 	\textcolor[HTML]{#1}{\rule{0.8em}{0.8em}}\hspace{0.5em}%
 }
 \newcommand{\colorindicator}[1]{%
-	\textcolor{#1}{\rule{0.8em}{0.8em}}\hspace{0.5em}%
+	\textcolor{\getchartcolor{#1}}{\rule{0.8em}{0.8em}}\hspace{0.5em}%
 }
 
 %%%%% Setting the acronyms
