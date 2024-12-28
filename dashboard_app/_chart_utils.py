@@ -103,8 +103,8 @@ class SankeyDiagram:
 				'thickness': 20,
 				'line': { 'color': "black", 'width': 0.5 },
 				'label': node_labels,
-				# 'x': node_x,
-				# 'y': node_y,
+				'x': node_x,
+				'y': node_y,
 				'color': node_colors,
 			},
 			'link': {
