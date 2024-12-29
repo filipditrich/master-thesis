@@ -169,52 +169,15 @@ def customers_section_children(app):
 				p="md",
 				grow=True,
 				children=[
-					# Controls
 					dmc.GridCol(
 						span=12,
 						children=dmc.Group(
-							# position="left",
 							gap="md",
 							children=[
-								dmc.NumberInput(
-									id="min-count-slider",
-									label="Minimum Combination Count",
-									value=100,
-									min=10,
-									max=1000,
-									step=10,
-									style={ "width": 200 }
-								),
-								dmc.NumberInput(
-									id="top-n-products",
-									label="Top N Products",
-									value=15,
-									min=5,
-									max=30,
-									step=5,
-									style={ "width": 200 }
-								),
+								"TODO"
 							]
 						)
 					),
-					# Heatmap
-					dmc.GridCol(
-						span=6,
-						children=dmc.Card(
-							children=dcc.Graph(id="product-heatmap"),
-							withBorder=True,
-							className="bg-zinc-50"
-						)
-					),
-					# Network Graph
-					dmc.GridCol(
-						span=6,
-						children=dmc.Card(
-							children=dcc.Graph(id="product-network"),
-							withBorder=True,
-							className="bg-zinc-50"
-						)
-					)
 				]
 			)
 		],
@@ -222,58 +185,4 @@ def customers_section_children(app):
 
 
 def customers_section_callbacks(app):
-	@app.register_callback(
-		background=True,
-		output=(
-				dash.Output("product-heatmap", "figure"),
-				dash.Output("product-network", "figure")
-		),
-		inputs=(
-				dash.Input("min-count-slider", "value"),
-				dash.Input("top-n-products", "value"),
-				dash.Input("filter-date-from", "value"),
-				dash.Input("filter-date-to", "value"),
-		)
-	)
-	async def update_graphs(min_count, top_n, date_from, date_to):
-		# Load and process the data
-		# Note: You'll need to modify this part based on how your data is stored/accessed
-		results = await app.query_manager.execute_queries(
-			query_names=["product_network"],
-			or_query_defs={
-				'product_network': QueryDefinition(
-					name="product_network",
-					sql=QueryManager.process_sql_query(
-						"""
-						SELECT
-							tp1.name AS product1,
-							tp2.name AS product2,
-							COUNT(*) AS count
-						FROM pos_order_products_rich tp1
-							INNER JOIN pos_order_products_rich tp2 ON tp2.transaction_id = tp1.transaction_id
-						WHERE tp1.product_id < tp2.product_id
-							AND tp1.created BETWEEN :date_from$1 AND :date_to$2
-							AND tp2.created BETWEEN :date_from$1 AND :date_to$2
-						GROUP BY tp1.name, tp2.name
-						ORDER BY count DESC;
-						"""
-					),
-					parameters=[
-						QueryParameter("date_from", datetime.datetime),
-						QueryParameter("date_to", datetime.datetime)
-					],
-					default_data="FSCacheDefault"
-				)
-			},
-			parameters={
-				"date_from": parse_date(date_from),
-				"date_to": parse_date(date_to)
-			}
-		)
-		product_network = results['product_network']
-
-		# Create the visualizations
-		heatmap_fig = create_heatmap(product_network, top_n=top_n)
-		network_fig = create_network(product_network, min_count=min_count)
-
-		return heatmap_fig, network_fig
+	pass

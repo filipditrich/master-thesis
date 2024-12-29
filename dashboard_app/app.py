@@ -4,6 +4,7 @@ import asyncio
 
 import dash as dash
 import dash_mantine_components as dmc
+import pandas as pd
 from dash import html
 
 from dashboard_app._dash_utils import background_callback_manager, create_cache_key, external_script, index_string
@@ -80,7 +81,7 @@ class MainApplication:
 						# Call the original function with parsed arguments
 						return await func(_self, *parsed_args, **kwargs)
 					except Exception as e:
-						print(f"Error in callback {func.__name__}: {str(e)}")
+						print(f"🚨 Error in callback {func.__name__}: {str(e)}")
 						raise dash.exceptions.PreventUpdate
 
 				try:
@@ -100,7 +101,7 @@ class MainApplication:
 					return func(_self, *parsed_args, **kwargs)
 
 				except Exception as e:
-					print(f"Error in callback {func.__name__}: {str(e)}")
+					print(f"🚨 Error in callback {func.__name__}: {str(e)}")
 					raise dash.exceptions.PreventUpdate
 
 			# Register the callback with Dash
@@ -239,10 +240,11 @@ class MainApplication:
 
 # run the app
 if __name__ == '__main__':
+	print("\n\n\n\n\n\n\n\n\n\n")
+	print(f"-- Starting the dashboard app --")
+	print(f"-- Started at: {pd.Timestamp.now()} --")
+	print("----------------------------------------------")
 	Application = MainApplication()
 	app = Application.app
-	app.run(
-		debug=True,
-		port=4001,
-	)
+	app.run(debug=True, port=4001)
 # app.run_server(debug=False, host='192.168.0.167', port=4000)

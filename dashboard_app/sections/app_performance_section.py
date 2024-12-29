@@ -7,10 +7,9 @@ import dash_ag_grid as dag
 import dash_mantine_components as dmc
 from dash import dcc, html
 from dash_iconify import DashIconify
-from pandas import Timestamp
 
 from dashboard_app._db_utils import QueryDefinition, QueryManager, QueryParameter
-from dashboard_app._format_utils import format_date, format_number, interpolated_text_with_components, locale_cs_d3, parse_date
+from dashboard_app._format_utils import format_event_datetime, format_number, interpolated_text_with_components, locale_cs_d3, parse_date, to_timestamp
 
 
 def performance_section_children(app):
@@ -56,19 +55,39 @@ def performance_section_children(app):
 					# total customers
 					dmc.GridCol(
 						span=4,
-						id='total-customers-card',
+						className="with-loading",
+						children=[
+							dcc.Loading(
+								type="dot",
+								target_components={ "total-customers-card": "children" },
+								id="total-customers-card"
+							),
+						]
 					),
-					# TODO: total processed
+					# total processed
 					dmc.GridCol(
 						span=4,
-						id='total-transactions-card'
+						className="with-loading",
+						children=[
+							dcc.Loading(
+								type="dot",
+								target_components={ "total-transactions-card": "children" },
+								id="total-transactions-card"
+							),
+						]
 					),
-					# TODO: volume peaks
+					# volume peaks
 					dmc.GridCol(
 						span=4,
-						id='transaction-volume-peak-card',
+						className="with-loading",
+						children=[
+							dcc.Loading(
+								type="dot",
+								target_components={ "transaction-volume-peak-card": "children" },
+								id="transaction-volume-peak-card"
+							),
+						],
 					),
-
 					# time series chart
 					dmc.GridCol(
 						span=12,
@@ -175,75 +194,91 @@ def performance_section_children(app):
 							)
 						]
 					),
-					# TODO: top selling places table
 					dmc.GridCol(
-						span=6,
 						children=[
-							dag.AgGrid(
-								id="performance-selling-places",
-								style={ "height": "264px" },
-								columnDefs=[
-									{ 'headerName': 'Selling place', 'field': 'place_name' },
-									{ 'headerName': 'Count', 'field': 'count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
-									{ 'headerName': 'Sum', 'field': 'sum', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value/100)" }, 'type': 'numericColumn' },
-									# { 'headerName': 'Commission', 'field': 'commission', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
+							dmc.Tabs(
+								orientation="vertical",
+								variant="outline",
+								value="sale-points",
+								children=[
+									dmc.TabsList(
+										[
+											dmc.TabsTab("Sale Places", value="sale-points"),
+											dmc.TabsTab("Top-Up Points", value="topup-points"),
+											dmc.TabsTab("Vendors", value="vendors"),
+											dmc.TabsTab("Products", value="products"),
+										]
+									),
+									# sale places
+									dmc.TabsPanel(
+										value="sale-points",
+										className="p-2 border border-l-0 border-zinc-200",
+										children=[
+											dag.AgGrid(
+												id="performance-selling-places",
+												columnDefs=[
+													{ 'headerName': 'Selling place', 'field': 'entity' },
+													{ 'headerName': 'Trx processed', 'field': 'transaction_count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+													{ 'headerName': 'Customers processed', 'field': 'customer_count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+													{ 'headerName': 'Max hourly peak', 'field': 'max_hourly_peak', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+												],
+												defaultColDef={ "resizable": True, "sortable": True, "filter": True },
+												columnSize="responsiveSizeToFit",
+											)
+										]
+									),
+									# top-up points
+									dmc.TabsPanel(
+										value="topup-points",
+										className="p-2 border border-l-0 border-zinc-200",
+										children=[
+											dag.AgGrid(
+												id="performance-topup-places",
+												columnDefs=[
+													{ 'headerName': 'Top-up point', 'field': 'entity' },
+													{ 'headerName': 'Trx processed', 'field': 'transaction_count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+													{ 'headerName': 'Customers processed', 'field': 'customer_count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+													{ 'headerName': 'Max hourly peak', 'field': 'max_hourly_peak', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+												],
+												defaultColDef={ "resizable": True, "sortable": True, "filter": True },
+												columnSize="responsiveSizeToFit",
+											)]
+									),
+									# vendors
+									dmc.TabsPanel(
+										value="vendors",
+										className="p-2 border border-l-0 border-zinc-200",
+										children=[
+											dag.AgGrid(
+												id="performance-vendors",
+												columnDefs=[
+													{ 'headerName': 'Vendor', 'field': 'legal_name' },
+													{ 'headerName': 'Trx processed', 'field': 'transaction_count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+													{ 'headerName': 'Customers processed', 'field': 'customer_count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+												],
+												defaultColDef={ "resizable": True, "sortable": True, "filter": True },
+												columnSize="responsiveSizeToFit",
+											)]
+									),
+									# products
+									dmc.TabsPanel(
+										value="products",
+										className="p-2 border border-l-0 border-zinc-200",
+										children=[
+											dag.AgGrid(
+												id="performance-products",
+												columnDefs=[
+													{ 'headerName': 'Product', 'field': 'product_name' },
+													{ 'headerName': 'Sales count', 'field': 'sales_count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+													{ 'headerName': 'Refunds count', 'field': 'refund_count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+													{ 'headerName': 'Customers processed', 'field': 'customer_count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
+												],
+												defaultColDef={ "resizable": True, "sortable": True, "filter": True },
+												columnSize="responsiveSizeToFit",
+											)
+										]
+									),
 								],
-								defaultColDef={ "resizable": True, "sortable": True, "filter": True },
-								columnSize="sizeToFit",
-							)
-						]
-					),
-					# TODO: top top-up places table
-					dmc.GridCol(
-						span=6,
-						children=[
-							dag.AgGrid(
-								id="performance-topup-places",
-								style={ "height": "264px" },
-								columnDefs=[
-									{ 'headerName': 'Top-up point', 'field': 'place_name' },
-									{ 'headerName': 'Count', 'field': 'count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
-									{ 'headerName': 'Sum', 'field': 'sum', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value/100)" }, 'type': 'numericColumn' },
-									# { 'headerName': 'Commission', 'field': 'commission', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
-								],
-								defaultColDef={ "resizable": True, "sortable": True, "filter": True },
-								columnSize="sizeToFit",
-							)
-						]
-					),
-					# TODO: top vendors table
-					dmc.GridCol(
-						span=6,
-						children=[
-							dag.AgGrid(
-								id="performance-vendors",
-								style={ "height": "264px" },
-								columnDefs=[
-									{ 'headerName': 'Vendor', 'field': 'vendor_name' },
-									{ 'headerName': 'Count', 'field': 'count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
-									{ 'headerName': 'Sum', 'field': 'sum', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value/100)" }, 'type': 'numericColumn' },
-									# { 'headerName': 'Commission', 'field': 'commission', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
-								],
-								defaultColDef={ "resizable": True, "sortable": True, "filter": True },
-								columnSize="sizeToFit",
-							)
-						]
-					),
-					# TODO: top products table
-					dmc.GridCol(
-						span=6,
-						children=[
-							dag.AgGrid(
-								id="performance-products",
-								style={ "height": "264px" },
-								columnDefs=[
-									{ 'headerName': 'Product', 'field': 'product_name' },
-									{ 'headerName': 'Count', 'field': 'count', 'type': 'numericColumn', "valueFormatter": { "function": f"{locale_cs_d3}.format(',.0f')(params.value)" } },
-									{ 'headerName': 'Sum', 'field': 'sum', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value/100)" }, 'type': 'numericColumn' },
-									# { 'headerName': 'Commission', 'field': 'commission', "valueFormatter": { "function": f"{locale_cs_d3}.format('($,.0f')(params.value)" }, 'type': 'numericColumn' },
-								],
-								defaultColDef={ "resizable": True, "sortable": True, "filter": True },
-								columnSize="sizeToFit",
 							)
 						]
 					),
@@ -269,6 +304,7 @@ def performance_section_callbacks(app):
 	async def update_performance_time_series_section(date_from, date_to, transaction_type, metric, granularity):
 		results = await app.query_manager.execute_queries(
 			query_names=[
+				# TODO: when time improve (add chip registers and time processing stats)
 				"time_series",
 				"event_entry_timeline",
 			],
@@ -276,32 +312,12 @@ def performance_section_callbacks(app):
 				"date_from": parse_date(date_from),
 				"date_to": parse_date(date_to),
 				"granularity_minutes": int(granularity),
-				# when daily, start at 6am (4 UTC + 2 CEST) lmao timezones go brr
+				# when daily, start at 6am (4 UTC + 2 CEST), timezones go brr
 				"day_start_hour": int(4),
 			}
 		)
 		time_series_data = results['time_series'].to_dict(orient='records')
 		event_entry_timeline = results['event_entry_timeline']
-
-		def to_timestamp(dt):
-			# if dt is string
-			if isinstance(dt, str):
-				# return int(parse_date(dt).timestamp())
-				return parse_date(dt)
-
-			# if dt is Timestamp
-			if isinstance(dt, Timestamp):
-				# return int(dt.timestamp())
-				return dt
-
-			# if dt is int
-			if isinstance(dt, int):
-				# return dt
-				return parse_date(str(dt))
-
-			# if dt is something else
-			print("to_timestamp: unknown type", type(dt))
-			return dt
 
 		def get_row_data(rd):
 			if transaction_type == "all":
@@ -325,7 +341,7 @@ def performance_section_callbacks(app):
 					"commission": 0,
 				}[metric]
 
-			# TODO: check-ins
+			# TODO: check-ins (chip registers)
 
 			return {
 				"count": 0,
@@ -372,6 +388,8 @@ def performance_section_callbacks(app):
 		input_data = sorted(input_data, key=lambda x: x['slot_start'])
 		reference_lines = sorted(reference_lines, key=lambda x: x['x'])
 
+		# TODO: create plotly bar chart instead?
+
 		# TODO
 		return [
 			dmc.AreaChart(
@@ -392,6 +410,7 @@ def performance_section_callbacks(app):
 			)
 		]
 
+	# TODO: maybe move to customer analysis later
 	# update customers per days
 	@app.register_callback(
 		background=True,
@@ -412,16 +431,14 @@ def performance_section_callbacks(app):
 					name="customers_per_day",
 					sql=QueryManager.process_sql_query(
 						"""
-							SELECT
-								DATE_TRUNC('day', t.created) AS day,
-								COUNT(DISTINCT t.chip_id) AS active_chips
-							FROM pos_transactions_rich t
-							WHERE t.chip_id IS NOT NULL
-							GROUP BY day
+							SELECT * FROM customer_an_attendance(:date_from$1, :date_to$2)
 							ORDER BY active_chips DESC;
 						"""
 					),
-					parameters=[],
+					parameters=[
+						QueryParameter("date_from", datetime.datetime),
+						QueryParameter("date_to", datetime.datetime)
+					],
 					default_data="FSCacheDefault"
 				),
 				'total_active': QueryDefinition(
@@ -429,8 +446,8 @@ def performance_section_callbacks(app):
 					sql=QueryManager.process_sql_query(
 						"""
 						SELECT
-							COUNT(DISTINCT c.chip_id) AS total_active
-						FROM get_chip_customers(:date_from$1, :date_to$2) c
+							MAX(total_chips) as total_active
+						FROM customer_an_attendance(:date_from$1, :date_to$2)
 						"""
 					),
 					parameters=[
@@ -497,7 +514,7 @@ def performance_section_callbacks(app):
 									fw=500
 								),
 								dmc.Text(
-									f"on {format_date(most_active_day['day'], False)}",
+									f"on {format_event_datetime(most_active_day['day'], False)}",
 									size="sm",
 									c="dimmed"
 								),
@@ -528,9 +545,8 @@ def performance_section_callbacks(app):
 					sql=QueryManager.process_sql_query(
 						"""
 						SELECT
-							COUNT(t.transaction_id) AS total_transactions
-						FROM pos_transactions t
-						WHERE t.created BETWEEN :date_from$1 AND :date_to$2
+							SUM(t.count) as count
+						FROM performance_an_transaction_processing_hourly(:date_from$1, :date_to$2) t;
 						"""
 					),
 					parameters=[
@@ -545,7 +561,7 @@ def performance_section_callbacks(app):
 				"date_to": parse_date(date_to),
 			}
 		)
-		total_transactions = results['total_transactions'].iloc[0]['total_transactions']
+		total_transactions = results['total_transactions'].iloc[0]['count']
 
 		return dmc.Card(
 			className="h-full",
@@ -584,23 +600,6 @@ def performance_section_callbacks(app):
 							className="mt-auto",
 							c="dimmed"
 						),
-						dmc.Divider(),
-						dmc.Group(
-							gap="xs",
-							justify="space-between",
-							children=[
-								dmc.Text(
-									f"TODO",
-									size="sm",
-									fw=500
-								),
-								dmc.Text(
-									"TODO",
-									size="sm",
-									c="dimmed"
-								),
-							]
-						),
 					]
 				)
 			]
@@ -626,12 +625,11 @@ def performance_section_callbacks(app):
 					sql=QueryManager.process_sql_query(
 						"""
 						SELECT
-							DATE_TRUNC('minute', t.created) AS minute,
-							COUNT(t.transaction_id) AS transaction_count
-						FROM pos_transactions t
-						WHERE t.created BETWEEN :date_from$1 AND :date_to$2
-						GROUP BY minute
-						ORDER BY transaction_count DESC
+							t.hour,
+							SUM(t.count) as count
+						FROM performance_an_transaction_processing_hourly(:date_from$1, :date_to$2) t
+						GROUP BY t.hour
+						ORDER BY count DESC
 						LIMIT 1;
 						"""
 					),
@@ -664,7 +662,7 @@ def performance_section_callbacks(app):
 							justify="space-between",
 							children=[
 								dmc.Text(
-									f"{format_number(transaction_volume_peak['transaction_count'])} transactions per minute",
+									f"{format_number(transaction_volume_peak['count'])} transactions per hour",
 									size="xl",
 									fw=700
 								),
@@ -681,36 +679,19 @@ def performance_section_callbacks(app):
 							interpolated_text_with_components(
 								"was the highest peak on {date}",
 								{
-									"date": format_date(transaction_volume_peak['minute'], True)
+									"date": format_event_datetime(transaction_volume_peak['hour'], True)
 								}
 							),
 							size="sm",
 							className="mt-auto",
 							c="dimmed"
 						),
-						dmc.Divider(),
-						dmc.Group(
-							gap="xs",
-							justify="space-between",
-							children=[
-								dmc.Text(
-									f"TODO",
-									size="sm",
-									fw=500
-								),
-								dmc.Text(
-									"TODO",
-									size="sm",
-									c="dimmed"
-								),
-							]
-						),
 					]
 				)
 			]
 		)
 
-	# update top selling places table
+	# update top sale places table
 	@app.register_callback(
 		background=True,
 		output=(dash.Output("performance-selling-places", "rowData")),
@@ -729,17 +710,8 @@ def performance_section_callbacks(app):
 					name="top_selling_places",
 					sql=QueryManager.process_sql_query(
 						"""
-						SELECT
-							t.place_name,
-							COUNT(t.transaction_id) AS count,
-							SUM(t.amount) AS sum,
-							SUM(t.org_comm) AS commission
-						FROM pos_transactions_rich t
-						WHERE t.created BETWEEN :date_from$1 AND :date_to$2
-						AND t.is_order IS TRUE
-						GROUP BY t.place_name
-						ORDER BY sum DESC
-						LIMIT 5;
+						SELECT * FROM performance_an_best_sale_places(:date_from$1, :date_to$2)
+						LIMIT 10
 						"""
 					),
 					parameters=[
@@ -777,17 +749,8 @@ def performance_section_callbacks(app):
 					name="top_topup_places",
 					sql=QueryManager.process_sql_query(
 						"""
-						SELECT
-							t.place_name,
-							COUNT(t.transaction_id) AS count,
-							SUM(t.amount) AS sum,
-							SUM(t.org_comm) AS commission
-						FROM pos_transactions_rich t
-						WHERE t.created BETWEEN :date_from$1 AND :date_to$2
-						AND t.is_order IS FALSE
-						GROUP BY t.place_name
-						ORDER BY sum DESC
-						LIMIT 5;
+						SELECT * FROM performance_an_best_topup_points(:date_from$1, :date_to$2)
+						LIMIT 10
 						"""
 					),
 					parameters=[
@@ -825,16 +788,8 @@ def performance_section_callbacks(app):
 					name="top_vendors",
 					sql=QueryManager.process_sql_query(
 						"""
-						SELECT
-							o.vendor_name,
-							COUNT(o.transaction_id) AS count,
-							SUM(o.total_amount) AS sum,
-							SUM(o.org_comm) AS commission
-						FROM pos_order_products_rich o
-						WHERE o.created BETWEEN :date_from$1 AND :date_to$2
-						GROUP BY o.vendor_name
-						ORDER BY sum DESC
-						LIMIT 5;
+						SELECT * FROM performance_an_best_vendors(:date_from$1, :date_to$2)
+						LIMIT 10
 						"""
 					),
 					parameters=[
@@ -872,16 +827,8 @@ def performance_section_callbacks(app):
 					name="top_products",
 					sql=QueryManager.process_sql_query(
 						"""
-						SELECT
-							o.product_name,
-							COUNT(o.transaction_id) AS count,
-							SUM(o.total_amount) AS sum,
-							SUM(o.org_comm) AS commission
-						FROM pos_order_products_rich o
-						WHERE o.created BETWEEN :date_from$1 AND :date_to$2
-						GROUP BY o.product_name
-						ORDER BY sum DESC
-						LIMIT 5;
+						SELECT * FROM performance_an_best_products(:date_from$1, :date_to$2)
+						LIMIT 10
 						"""
 					),
 					parameters=[

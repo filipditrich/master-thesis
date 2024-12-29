@@ -84,7 +84,7 @@ def beverages_section_children(app):
 												interpolated_text_with_components(
 													"that is roughly equivalent to {hot_tubs} of beverage that has been consumed",
 													{
-														'hot_tubs': dmc.Text(format_number_short(12), fw=700, span=True),
+														'hot_tubs': dmc.Text(format_number_short(12) + " hot tubs", fw=700, span=True),
 													}
 												),
 												size="sm",
@@ -234,38 +234,7 @@ def beverages_section_children(app):
 												],
 												size="xl",
 											),
-											dmc.Divider(className="my-1"),
-											dmc.SimpleGrid(
-												cols=2,
-												spacing="xs",
-												className="grow",
-												children=[
-													dmc.Stack(
-														gap="xs",
-														className="bg-zinc-50 p-2 border border-zinc-200 rounded-sm",
-														children=[
-															dmc.Text("Beers per customer", size="xs"),
-															dmc.Text(
-																f"{format_number(4)} beers",
-																size="md",
-																fw=600
-															)
-														]
-													),
-													dmc.Stack(
-														gap="xs",
-														className="bg-zinc-50 p-2 border border-zinc-200 rounded-sm",
-														children=[
-															dmc.Text("Max consumed", size="xs"),
-															dmc.Text(
-																f"{format_number(48)} beers",
-																size="md",
-																fw=600
-															)
-														]
-													),
-												]
-											)
+
 										]
 									)
 								]
@@ -322,38 +291,6 @@ def beverages_section_children(app):
 												],
 												size="xl",
 											),
-											dmc.Divider(className="my-1"),
-											dmc.SimpleGrid(
-												cols=2,
-												spacing="xs",
-												className="grow",
-												children=[
-													dmc.Stack(
-														gap="xs",
-														className="bg-zinc-50 p-2 border border-zinc-200 rounded-sm",
-														children=[
-															dmc.Text("Drinks per customer", size="xs"),
-															dmc.Text(
-																f"{format_number(3)} drinks",
-																size="md",
-																fw=600
-															)
-														]
-													),
-													dmc.Stack(
-														gap="xs",
-														className="bg-zinc-50 p-2 border border-zinc-200 rounded-sm",
-														children=[
-															dmc.Text("Max consumed", size="xs"),
-															dmc.Text(
-																f"{format_number(96)} drinks",
-																size="md",
-																fw=600
-															)
-														]
-													),
-												]
-											)
 										]
 									)
 								]
@@ -410,38 +347,6 @@ def beverages_section_children(app):
 												],
 												size="xl",
 											),
-											dmc.Divider(className="my-1"),
-											dmc.SimpleGrid(
-												cols=2,
-												spacing="xs",
-												className="grow",
-												children=[
-													dmc.Stack(
-														gap="xs",
-														className="bg-zinc-50 p-2 border border-zinc-200 rounded-sm",
-														children=[
-															dmc.Text("Beverages per customer", size="xs"),
-															dmc.Text(
-																f"{format_number(2)} drinks",
-																size="md",
-																fw=600
-															)
-														]
-													),
-													dmc.Stack(
-														gap="xs",
-														className="bg-zinc-50 p-2 border border-zinc-200 rounded-sm",
-														children=[
-															dmc.Text("Max consumed", size="xs"),
-															dmc.Text(
-																f"{format_number(16)} drinks",
-																size="md",
-																fw=600
-															)
-														]
-													),
-												]
-											)
 										]
 									)
 								]

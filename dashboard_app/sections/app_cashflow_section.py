@@ -664,68 +664,71 @@ def cashflow_section_callbacks(app):
 		diagram = SankeyDiagram()
 
 		# top-ups
-		diagram.add_node('top_up_online', 'Online top-up', x=0.05, y=-0.2, color='indigo')
-		diagram.add_node('top_up_card', 'Card top-up', x=0.05, y=0.2, color='cool_gray')
-		diagram.add_node('top_up_cash', 'Cash top-up', x=0.05, y=0.4, color='cool_gray')
-		diagram.add_node('top_up_vip', 'VIP top-up', x=0.05, y=0.6, color='warm_gray')
+		diagram.add_node('top_up_online', 'Online top-up', x=0, y=-0.2, color='stone')
+		diagram.add_node('top_up_card', 'Card top-up', x=0, y=0.2, color='stone')
+		diagram.add_node('top_up_cash', 'Cash top-up', x=0, y=0.4, color='stone')
+		diagram.add_node('top_up_vip', 'VIP top-up', x=0, y=0.6, color='stone')
 
 		# chip balances
-		diagram.add_node('chip_balances', 'Chip balances', x=0.2, y=0.4, color='slate_blue')
+		diagram.add_node('chip_balances', 'Chip balances', x=0.15, y=0.4, color='stone')
 		diagram.add_flow('top_up_online', 'chip_balances', sankey_data['top_up_online'] / 100, color=None)
 		diagram.add_flow('top_up_card', 'chip_balances', sankey_data['top_up_card'] / 100, color=None)
 		diagram.add_flow('top_up_cash', 'chip_balances', sankey_data['top_up_cash'] / 100, color=None)
 		diagram.add_flow('top_up_vip', 'chip_balances', sankey_data['top_up_vip'] / 100, color=None)
 
 		# non-chip sales
-		diagram.add_node('non_chip_card', 'Card payments', x=0.2, y=0.6, color='light_steel')
-		diagram.add_node('non_chip_cash', 'Cash payments', x=0.2, y=0.65, color='light_steel')
+		diagram.add_node('non_chip_card', 'Card payments', x=0.15, y=0.6, color='stone')
+		diagram.add_node('non_chip_cash', 'Cash payments', x=0.15, y=0.65, color='stone')
 
 		# event finances
-		diagram.add_node('event_finances', 'Event finances', x=0.4, y=0.5, color='warm_gray')
+		diagram.add_node('event_finances', 'Event finances', x=0.33, y=0.5, color='stone')
 		diagram.add_flow('chip_balances', 'event_finances', sankey_data['top_up_total'] / 100, color=None)
 		diagram.add_flow('non_chip_card', 'event_finances', sankey_data['non_chip_card'] / 100, color=None)
 		diagram.add_flow('non_chip_cash', 'event_finances', sankey_data['non_chip_cash'] / 100, color=None)
 
 		# vendor sales
-		diagram.add_node('vendor_sales', 'Vendor sales', x=0.6, y=0.3, color='dusty_blue')
+		diagram.add_node('vendor_sales', 'Vendor sales', x=0.5, y=0.3, color='thesis_blue')
 		diagram.add_flow('event_finances', 'vendor_sales', sankey_data['vendor_sales'] / 100, color=None)
 
 		# external vendor sales
-		diagram.add_node('vendor_external_sales', 'External vendor sales', x=0.65, y=0.3, color='dusty_blue')
+		diagram.add_node('vendor_external_sales', 'External vendor sales', x=0.65, y=0.5, color='thesis_blue')
 		diagram.add_flow('vendor_sales', 'vendor_external_sales', sankey_data['vendor_external_sales'] / 100, color=None)
 		# external vendor payouts
-		diagram.add_node('vendor_external_payout', 'Vendor external payout', x=0.8, y=0.2, color='mint')
+		diagram.add_node('vendor_external_payout', 'Vendor external payout', x=0.9, y=0.5, color='thesis_blue')
 		diagram.add_flow('vendor_external_sales', 'vendor_external_payout', sankey_data['vendor_external_payout'] / 100, color=None)
 
 		# organizer vendor sales + expenses
-		diagram.add_node('vendor_organizer_sales', 'Organizer direct sales', x=0.65, y=0.3, color='dusty_blue')
+		diagram.add_node('vendor_organizer_sales', 'Organizer direct sales', x=0.65, y=0.2, color='thesis_blue')
 		diagram.add_flow('vendor_sales', 'vendor_organizer_sales', sankey_data['vendor_organizer_sales'] / 100, color=None)
-		diagram.add_node('vendor_organizer_expenses', 'Organizer sale expenses', x=0.65, y=0.3, color='dusty_blue')
+		diagram.add_node('vendor_organizer_expenses', 'Organizer sale expenses', x=0.9, y=0.2, color='thesis_blue')
 		diagram.add_flow('vendor_organizer_sales', 'vendor_organizer_expenses', sankey_data['vendor_organizer_expenses'] / 100, color=None)
 
 		# unused credit
-		diagram.add_node('balance_unused', 'Unused credit', x=0.6, y=0.8, color='peach')
+		diagram.add_node('balance_unused', 'Unused credit', x=0.5, y=0.9, color='crimson')
 		diagram.add_flow('event_finances', 'balance_unused', sankey_data['balance_unused'] / 100, color=None)
 
 		# unclaimed credit
-		diagram.add_node('balance_unused_unclaimed', 'Unclaimed credit', x=0.6, y=0.8, color='peach')
-		diagram.add_flow('balance_unused', 'balance_unused_unclaimed', sankey_data['balance_unused_unclaimed'] / 100, color=None)
+		diagram.add_node('balance_unused_unclaimed', 'Unclaimed credit', x=0.8, y=0.8, color='lime')
+		diagram.add_flow('balance_unused', 'balance_unused_unclaimed', sankey_data['balance_unused_unclaimed'] / 100, color='lime')
 
 		# refunded credit
-		diagram.add_node('balance_unused_refunded', 'Refunded credit', x=0.6, y=0.8, color='peach')
+		diagram.add_node('balance_unused_refunded', 'Refunded credit', x=0.9, y=0.9, color='crimson')
 		diagram.add_flow('balance_unused', 'balance_unused_refunded', sankey_data['balance_unused_refunded'] / 100, color=None)
 
 		# organizer revenue
-		diagram.add_node('organizer_revenue', 'Organizer revenue', x=0.99, y=0.7, color='lavender')
-		diagram.add_flow('vendor_external_sales', 'organizer_revenue', sankey_data['vendor_external_commission'] / 100, color=None)
+		diagram.add_node('organizer_revenue', 'Organizer revenue', x=1, y=0.7, color='lime')
+		diagram.add_flow('vendor_external_sales', 'organizer_revenue', sankey_data['vendor_external_commission'] / 100, color='lime')
 		diagram.add_flow('vendor_organizer_sales', 'organizer_revenue', (sankey_data['vendor_organizer_sales'] - sankey_data['vendor_organizer_expenses']) / 100, color=None)
 		diagram.add_flow('balance_unused_unclaimed', 'organizer_revenue', sankey_data['balance_unused_unclaimed_organizer'] / 100, color=None)
 
 		# Create the figure
+		plotly_dict = diagram.to_plotly()
+		node_dict = plotly_dict['node']
 		fig = go.Figure(
 			data=[go.Sankey(
 				arrangement='snap',
-				**diagram.to_plotly()
+				node=node_dict,
+				link=plotly_dict['link']
 			)]
 		)
 
@@ -734,7 +737,7 @@ def cashflow_section_callbacks(app):
 			font_size=12,
 			height=325,
 			width=800,
-			margin=dict(l=25, r=25, t=25, b=25),
+			margin=dict(l=10, r=25, t=10, b=10),
 			plot_bgcolor='rgba(0,0,0,0)',
 			paper_bgcolor='rgba(0,0,0,0)'
 		)

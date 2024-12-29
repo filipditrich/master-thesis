@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import datetime
 
+import pandas as pd
+
 from dashboard_app._db_utils import QueryDefinition, QueryManager, QueryParameter, get_db_config
 
 # Initialize the query manager

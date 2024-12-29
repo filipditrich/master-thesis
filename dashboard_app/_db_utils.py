@@ -11,6 +11,8 @@ from typing import Any, Callable, Dict, List, Optional
 import asyncpg
 import pandas as pd
 
+LOG_CACHE = False
+
 
 def get_db_config():
 	return {
@@ -180,7 +182,8 @@ class QueryManager:
 		if query_def.default_data is not None:
 			if query_def.default_data == "FSCacheDefault":
 				try:
-					print(f"⚡ Returning cached data for query {query_name}")
+					if LOG_CACHE:
+						print(f"⚡ Returning cached data for query {query_name}")
 					# read CSV from cache
 					file_path = os.path.join(os.getcwd(), "dashboard_app", "cached-queries", f"{query_key}.csv")
 					csv = pd.read_csv(file_path)
@@ -191,7 +194,8 @@ class QueryManager:
 				except Exception as e:
 					pass
 			else:
-				print(f"Returning default data for query {query_name}")
+				if LOG_CACHE:
+					print(f"Returning default data for query {query_name}")
 				return query_def.default_data
 
 		# Initialize pool if needed
@@ -224,7 +228,8 @@ class QueryManager:
 						df = await transformer.transform(df)
 
 					# Save the result to local file cache
-					print(f"💾 Saving query {query_name} to cache as {query_key}")
+					if LOG_CACHE:
+						print(f"💾 Saving query {query_name} to cache as {query_key}")
 					try:
 						# get the directories from query_key
 						dir_path = "/".join(query_key.split("/")[:-1])

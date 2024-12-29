@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Optional
 
 import dateutil
+import matplotlib.dates as mdates
 import pandas as pd
 from dash import html
 
@@ -115,12 +116,55 @@ def format_percent(num: int | float) -> str:
 def format_date(date: str, with_time: Optional[bool] = False) -> str:
 	"""Default localized (CZ) date formatter"""
 	try:
+		dt = to_timestamp(dt)
 		if with_time:
-			return pd.to_datetime(date).strftime("%d.%m. %H:%M")
+			return dt.strftime("%d.%m. %H:%M")
 		else:
-			return pd.to_datetime(date).strftime("%d.%m.")
+			return dt.strftime("%d.%m.")
 	except TypeError:
 		return "Unknown date"
+
+
+def to_timestamp(dt) -> pd.Timestamp:
+	try:
+		if isinstance(dt, str):
+			dt = pd.to_datetime(dt)
+		elif isinstance(dt, (int, float)):
+			dt = mdates.num2date(dt)
+		elif isinstance(dt, pd.Timestamp):
+			dt = dt
+		else:
+			raise ValueError("Unknown type")
+		return dt
+	except Exception as e:
+		# if dt is something else
+		print("to_timestamp: unknown type", type(dt))
+		return dt
+
+
+# Function to format event datetime
+def format_event_datetime(dt, include_time=True):
+	"""Format datetime to event-relative format (Day 1, Day 2, Day 3)"""
+	try:
+		dt = to_timestamp(dt)
+
+		event_days = {
+			pd.Timestamp('2024-07-04').date(): 'Day 1',
+			pd.Timestamp('2024-07-05').date(): 'Day 2',
+			pd.Timestamp('2024-07-06').date(): 'Day 3'
+		}
+
+		date_only = dt.date()
+		day_label = event_days.get(date_only, dt.strftime('%d.%m.'))
+
+		if include_time:
+			return f"{day_label} {dt.strftime('%H:00')}"
+
+		return day_label
+	except Exception as e:
+		print(f"Error formatting date: {dt}")
+		print(e)
+		return None
 
 
 def format_number_short(num: int | float) -> str:
