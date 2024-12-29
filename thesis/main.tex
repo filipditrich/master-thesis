@@ -75,7 +75,7 @@
 \newcommand{\ResultsDir}{./results}
 \newcommand{\CoreFigures}{/figures}
 
-%%%%% TODO:
+% TODO:
 %% - [x] setup the structure and technical setup
 %% - [] add copy of the assignment PDF
 
@@ -87,37 +87,39 @@
 %% - [x] NOTE: Limitations: Anonymized data: ".which may limit certain the analysis in some ways" tu něco nesedí (str 20)
 %% - [x] NOTE: Data and methodology: "This chapter address" => addresses
 %% - [x] NOTE: Best Sale points: str. 50, přeposlední odstavec: "Another interesting fact is the total unique users processed at the places" - tomu nerozumím - nechybí v té větě neco?
-%% - [] NOTE: "Out of total of 145 sale points, the best place was undeniable the L20 PIVNÍ STAN 1" - tady jsem se rozesmál. Je to důležité, ale zároveň naprosto samozřejmé zjištění.
+%% - [x] NOTE: "Out of total of 145 sale points, the best place was undeniable the L20 PIVNÍ STAN 1" - tady jsem se rozesmál. Je to důležité, ale zároveň naprosto samozřejmé zjištění.
 %% - [] NOTE: Každý blok research question zakončujete frází typu: "answers to these question should provide valuable/detailed insights" občas to obměňte
 %% - [] NOTE: Na několika místech začínáte novou větu (nikoliv otázku) slovem "Which" (např. 2. odstavec sekce 2.2, 3. odstavec v introduction a možná ještě někde). Mám dojem, že to angličtině nedovoluje - which je vztažné zájmenou a mělo by podle mě uvozovat vedlejší větu v souvětí. Možná se mýlím, ale připadá mi to divné.
 
 % TODO: Graphical revision notes (charts)
 %% - [x] NOTE: Table 1.1: překlep - coffe
-%% - [] NOTE: Figure 1.1: nevím, jestli je to jen u mě, ale to schéma se mi renderuje v mizerné kvalitě na hranici čitelnosti
-%% - [] NOTE: Figure 2.1: Zvažte, jestli chcete tento typ grafu. Na donut chart to má trochu malou díru, až to hraničí z pie chartem. Pie charts jsou lidově populární, ale datasci lidé je nemají rádi (z dobrých důvodů). Jako alternativy se nabízí např. horizontální barplot, treemap nebo waflle (aspoň myslím) diagram. Tohle je low-priority poznámka. Řešil bych to, až když nebudete mít co jiného dělat. Pokud práci bude oponovat např. Karel Šafr, pravděpodobně se u těchto grafů zastaví ;)
-%% - [] NOTE: Figure 2.1: Necháte-li donut/pie chart, alespoň bych doplnil ta procenta do přidružené tabulky.
-%% - [] NOTE: Str. 37: o těch overfull boxes kvůli 3,471,543 CZK a 684,700 CZK asi víte.
-%% - [] NOTE: Figure 2.2: podle mě mírně nešťastný. Ty grafy vedle sebe se trochu špatně porovnávají. Navíc každý znich má jinou yscale, tj. výška sloupce dobře nepřenáší hodnotu. Organizer beer vypadá na první pohled stejně jako external salty. Sloučil bych je do jednoho, nejspíš jako horizontální barplot. Každý bar by odpovídal jedné kategorii produktu, a měl by dvě části (třeba světlou a tmavou dané barvy), jednu reprezentující podíl organizor vendors na prodeji proudktu, druhou podíl external vendors. Tahle varianta více zdůrazňuje jejich rozdílné zastoupení v katergoriích. Alternativně, pokud byste chtěl zdůraznit spíše produktové složení sales organizer vs. external, představoval bych si dva horizontální bars (organizer a external), každý rozdělený na sekce podle produktů. V této druhé variantě bude navíc lépe vidět podíl organizer vs external na celkových sales. Záleží na tom, co chcete spíše zdůraznit. Navíc myslím, že non-alcoholic a beer jste označil stejnou barvou.
-%% - [] NOTE: Figure 2.3: souhlasím. Sankey diagram je cool, ale tady to zabíjí dominantní spent on sales větev. Něco jako waffle chart?
-%% - [] NOTE: Figure 2.4: tady imho ten donut/pie chart vadí ze všeho nejméně, protože ta data jsou jednoduchá a dobře čitelná. Ale zvolil bych ho nakonec nějak konzistentně s předchozími grafy.
-%% - [] NOTE: Figure 2.5: asi stejně jako Figure 2.1
-%% - [] NOTE: Figure 2.6: super.
-%% - [] NOTE: Figure 2.7: velmi malý font, špatně čitelné.
-%% - [] NOTE: Figure 2.8: to je hádám velmi WIP
-%% - [] NOTE: Figure 2.13 a 2.14: mále písmo, špatně čitelné.
+%% - [x] NOTE: Figure 1.1: nevím, jestli je to jen u mě, ale to schéma se mi renderuje v mizerné kvalitě na hranici čitelnosti
+%% - [x] NOTE: Figure 2.1: Zvažte, jestli chcete tento typ grafu. Na donut chart to má trochu malou díru, až to hraničí z pie chartem. Pie charts jsou lidově populární, ale datasci lidé je nemají rádi (z dobrých důvodů). Jako alternativy
+%% se nabízí např. horizontální barplot, treemap nebo waflle (aspoň myslím) diagram. Tohle je low-priority poznámka. Řešil bych to, až když nebudete mít co jiného dělat. Pokud práci bude oponovat např. Karel Šafr, pravděpodobně se u těchto grafů zastaví ;)
+%% - [x] NOTE: Figure 2.1: Necháte-li donut/pie chart, alespoň bych doplnil ta procenta do přidružené tabulky.
+%% - [x] NOTE: Str. 37: o těch overfull boxes kvůli 3,471,543 CZK a 684,700 CZK asi víte.
+%% - [x] NOTE: Figure 2.2: podle mě mírně nešťastný. Ty grafy vedle sebe se trochu špatně porovnávají. Navíc každý znich má jinou yscale, tj. výška sloupce dobře nepřenáší hodnotu. Organizer beer vypadá na první pohled stejně jako
+%% external salty. Sloučil bych je do jednoho, nejspíš jako horizontální barplot. Každý bar by odpovídal jedné kategorii produktu, a měl by dvě části (třeba světlou a tmavou dané barvy), jednu reprezentující podíl organizor vendors na prodeji proudktu, druhou podíl external vendors. Tahle varianta více zdůrazňuje jejich rozdílné zastoupení v katergoriích. Alternativně, pokud byste chtěl zdůraznit spíše produktové složení sales organizer vs. external, představoval bych si dva horizontální bars (organizer a external), každý rozdělený na sekce podle produktů. V této druhé variantě bude navíc lépe vidět podíl organizer vs external na celkových sales. Záleží na tom, co chcete spíše zdůraznit. Navíc myslím, že non-alcoholic a beer jste označil stejnou barvou.
+%% - [x] NOTE: Figure 2.3: souhlasím. Sankey diagram je cool, ale tady to zabíjí dominantní spent on sales větev. Něco jako waffle chart?
+%% - [x] NOTE: Figure 2.4: tady imho ten donut/pie chart vadí ze všeho nejméně, protože ta data jsou jednoduchá a dobře čitelná. Ale zvolil bych ho nakonec nějak konzistentně s předchozími grafy.
+%% - [x] NOTE: Figure 2.5: asi stejně jako Figure 2.1
+%% - [x] NOTE: Figure 2.6: super.
+%% - [x] NOTE: Figure 2.7: velmi malý font, špatně čitelné.
+%% - [x] NOTE: Figure 2.8: to je hádám velmi WIP
+%% - [x] NOTE: Figure 2.13 a 2.14: mále písmo, špatně čitelné.
 
 % TODO: Charts and figures list:
 %% - [🟢] Figure 2.1: Top-Up Transactions by Payment Method                  -- hopefully ok
 %% - [🟢] Figure 2.2: Sales of the Organizer vs. External Vendors            -- hopefully ok
-%% - [🟢] Figure 2.3: Remaining Chip Balances Sankey Diagram                 -- not readable, small font
+%% - [🟢] Figure 2.3: Remaining Chip Balances Sankey Diagram                 -- hopefully OK
 %% - [🚮] Figure 2.4: Breakdown of Direct Revenue Streams                    -- discarded
 %% - [🟢] Figure 2.5: Breakdown of All Revenue Streams                       -- hopefully OK
 %% - [🟠] Figure 2.6: Overall Cash Flow Diagram                              -- improve coloring and fonts
 %% - [🟢] Figure 2.7: Transactions Peaks                                     -- hopefully OK
 %% - [🟢] Figure 2.8: Transaction Processing Times                           -- hopefully OK
-%% - [🔴] Figure 2.9: Best Top-Up Points                                     -- TBD
-%% - [🟢] Figure 2.10: Best Products by Category                             -- 🟢
-%% - [🟢] Figure 2.11: Returnable Cups                                       -- better labels, not readable
+%% - [🟢] Figure 2.9: Best Top-Up Points                                     -- hopefully OK
+%% - [🟢] Figure 2.10: Best Products by Category                             -- hopefully OK
+%% - [🟢] Figure 2.11: Returnable Cups                                       -- hopefully OK
 %% - [🟢] Figure 2.12: Most Consumed Beer Brands                             -- hopefully OK
 %% - [🟢] Figure 2.13: Visitor Arrival Patterns  							 -- hopefully OK
 %% - [🟢] Figure 2.14: Credit Top-up Patterns During Event                   -- hopefully OK
