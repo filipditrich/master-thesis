@@ -197,54 +197,39 @@ In the end, the total revenue from sales commissions was~\bfmtczkp[2]{820712,79}
 Another source of revenue is the \textbf{unclaimed chip balances}, which, after a credit refund period, are considered as taxable revenue for the organizer.
 This, thanks to the previous subsection, was found to be~\bfmtczk{334431}.
 
-% TODO: better chart
-\todo{Better chart}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.48\textwidth]{\ThesisFigures/charts/revenue-sources-direct}
-	\caption{Breakdown of Direct Revenue Streams}
-	\label{fig:revenue-breakdown-direct}
-	\source
-\end{figure}
-
-Currently totalling~\bfmtczkp[2]{1155143,79} is the direct revenue of the organizer from the event and can be seen in~\autoref{fig:revenue-breakdown-direct} above.
-
+Currently totalling~\bfmtczkp[2]{1155143,79} is the direct revenue of the organizer from the event.
 However, given the circumstances and setup of this event, there were also additional, but indirect revenue streams that were not included in the total revenue.
 These include \textbf{the online ticket sales}, which were sold by the organizer and \textbf{the direct sales of the organizer}.
 They were not included in the total direct revenue, as they may misinterpret the results since the analysis lacks expenses of the organizer.
 
 If we were to include these, the total revenue would increase by~\bfmtczk{11179700} from the online ticket sales and~\bfmtczk{8240264} from the direct sales, which would result in a total revenue of~\bfmtczkp[2]{20575107,79}.
 
-To better understand the revenue streams, the results are visualized in~\autoref{tab:revenue-summary-breakdown} and in~\autoref{fig:revenue-breakdown-total} below.
+To better understand the revenue streams, the results are visualized in~\autoref{fig:revenue-breakdown-total}~below.
 
-\begin{table}[H]
+\begin{figure}[H]
 	\centering
+	% chart
+	\includegraphics[width=\textwidth]{\ResultsDir/rq1-total-revenue-breakdown}
+	% space
+	\par\vspace*{0.5em}
+	% table
 	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}r|}
 		\hline
 		\rowcolor{unicorn_blue}
-		\textbf{\color{white}Revenue Stream}    & \textbf{\color{white}Amount (CZK)} \\
+		\textbf{\color{white}Revenue Stream}    & \textbf{\color{white}Amount} \\
 		\hline
 		\hline
-		\colorindicator{1}Vendor Commissions      & \fmtczkp[2]{820712.79}             \\
-		\colorindicator{2}Unclaimed Chip Balances & \fmtczk{334431}                    \\
+		\colorindicator{3}Vendor Commissions      & \fmtczkp[2]{820712.79}       \\
+		\colorindicator{4}Unclaimed Chip Balances & \fmtczk{334431}              \\
 		\hline
-		\textbf{Total Direct Revenue}             & \bfmtczkp[2]{1155143.79}           \\
+		\textbf{Total Direct Revenue}             & \bfmtczkp[2]{1155143.79}     \\
 		\hline
-		\colorindicator{3}Online Ticket Sales     & \fmtczk{11179700}                  \\
-		\colorindicator{4}Organizer Direct Sales  & \fmtczk{8240264}                   \\
+		\colorindicator{2}Online Ticket Sales     & \fmtczk{11179700}            \\
+		\colorindicator{1}Organizer Direct Sales  & \fmtczk{8240264}             \\
 		\hline
-		\textbf{Total Revenue (All Streams)}      & \bfmtczkp[2]{20575107.79}          \\
+		\textbf{Total Revenue (All Streams)}      & \bfmtczkp[2]{20575107.79}    \\
 		\hline
 	\end{tabularx}
-	\caption{Revenue Summary Breakdown}
-	\label{tab:revenue-summary-breakdown}
-\end{table}
-
-% TODO: better chart
-\todo{Better chart}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\textwidth]{\ThesisFigures/charts/revenue-sources-total}
 	\caption{Breakdown of All Revenue Streams}
 	\label{fig:revenue-breakdown-total}
 	\source
@@ -1584,7 +1569,7 @@ Figure~\ref{fig:beverage-preferences}~shows the distribution of alcoholic and no
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[\textwidth]{\ResultsDir/rq25-beverage-preferences}
+	\includegraphics[width=\textwidth]{\ResultsDir/rq25-beverage-preferences}
 	\caption{Beverage Preferences Throughout the Day}
 	\label{fig:beverage-preferences}
 	\source
