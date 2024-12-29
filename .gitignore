@@ -2,6 +2,9 @@
 thesis/dist/*
 !thesis/dist/*.pdf
 
+# ignore unnecessary thesis files
+thesis/auto-bibtex/
+
 # ignore unnecessary files
 .idea/
 

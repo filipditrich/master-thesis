@@ -1449,11 +1449,9 @@ This indicates that while many customers purchased tickets online, most preferre
 The festival attracted a total of 10,009 attendees across different categories.
 This distribution is shown in the~\autoref{fig:customer-distribution} below.
 
-% TODO: better chart
-\todo{Better chart}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\textwidth]{\ResultsDir/rq28-customer-distribution}
+	\includegraphics[width=\textwidth]{\ResultsDir/rq28-customer-distribution}
 	\caption{Customer Distribution by Type}
 	\label{fig:customer-distribution}
 	\source
@@ -1467,11 +1465,9 @@ Regular on-site customers made up~\bfmtnump[2]{6.66}\%~of attendees, while staff
 The festival provided multiple platforms for customers to interact with the system.
 In the figure~\autoref{fig:customer-app-usage}~below is shown this breakdown.
 
-% TODO: better chart
-\todo{Better chart}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\textwidth]{\ResultsDir/rq29-customer-app-usage}
+	\includegraphics[width=\textwidth]{\ResultsDir/rq29-customer-app-usage}
 	\caption{Customer App Usage}
 	\label{fig:customer-app-usage}
 	\source
@@ -1497,67 +1493,72 @@ A small portion (\bfmtnump[2]{4.14}\%) of customers had no recorded platform pre
 
 \subsection{Payment Behavior Analysis}
 \label{subsec:analysis-customer-payment-behavior}
-This subsection examines patterns in how customers interacted with payment systems during the festival, including their banking preferences and top-up behaviors.
+This subsection focuses mainly on the payment segmentation and behavior of festival attendees.
 
-% TODO
+By segmenting the customers based on their payment data,
+such as their card issuing banks\footnote{Card Issuing bank is the bank responsible for issuing payment cards to customers. Issuers manage cardholder accounts, authorise transactions, and handle billing\cite{tl_what_are_card_schemes_and_how_do_they_work}.}~and
+used payment card schemes\footnote{Card Scheme, such as Mastercard or Visa, are a payment network provider who processes card payments globally\cite{tl_what_are_card_schemes_and_how_do_they_work}.}~schemes,
+the analysis should find interesting patterns and answer the defined research questions.
+
 \makerqbox{customers-bank-cards}
 
 The analysis of bank refunds reveals the distribution among Czech banking institutions shown in the~\autoref{fig:bank-refunds} below.
 
-% TODO
-\todo{Better chart}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\textwidth]{\ResultsDir/rq19-bank-refunds}
+	\includegraphics[width=\textwidth]{\ResultsDir/rq19-bank-refunds}
 	\caption{Bank Refunds Distribution}
 	\label{fig:bank-refunds}
 	\source
 \end{figure}
 
-% TODO: formatting
-\textbf{Česká spořitelna} and \textbf{ČSOB} dominated the refund distribution among identified banks, accounting for about 36\% of all refunds.
-A significant portion (25.8\%) showed as N/A, representing customers who didn't request for credit refund.
+Out of~\bfmtnum{7430}~online credit refunds that were requested, the data shows that \textbf{Česká spořitelna} was the leading bank, accounting for~\bfmtnump[1]{33.3}\%~of all refunds.
+Followed by \textbf{ČSOB} and \textbf{Komerční banka} with~\bfmtnump[1]{15}\%~and~\bfmtnump[1]{13.4}\%~share respectively.
 
 \makerqbox{customers-card-schemes}
 
-% TODO: better chart
-\todo{Better chart}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\textwidth]{\ResultsDir/rq20-card-schemes}
+	\includegraphics[width=\textwidth]{\ResultsDir/rq20-card-schemes}
 	\caption{Card Schemes Distribution}
 	\label{fig:card-schemes}
 	\source
 \end{figure}
 
-% TODO: formatting
-VISA cards were the predominant payment method, used in 48.3\% of transactions, followed by Mastercard at 28.9\%.
-The remaining 23\% (N/A) represent strictly-cash oriented customers, who did not use online top-up nor used card for any top-up at the festival.
+Out of total \bfmtnum{12626}~card transactions done both online (online ticket purchases, credit top-ups in advance) and onsite (onsite top-ups at festival, onsite physical ticket purchases), only two card schemes were identified:
+\begin{itemize}
+	\item \textbf{VISA} cards were used in~\bfmtnump[1]{62.4}\%~of transactions, making them the dominant card scheme.
+	\item \textbf{Mastercard} cards followed at~\bfmtnump[1]{37.6}\%~of transactions.
+\end{itemize}
 
-\makerqbox{customers-top-up-more-than-once}
+This distribution rather nicely follows the local trend, where VISA is the most used card scheme with \bfmtnum{65}\%~market share and Mastercard with \bfmtnum{35}\%~market share\cite{spbk_czech_profil_karty}.
 
-% TODO: better chart
-\todo{Better chart}
+\makerqbox{customers-top-up-frequency}
+
+Analyzing onsite top-up frequency behavior at the festival reveals the distribution of top-up counts among customers, as shown in the~\autoref{fig:top-up-behavior} below.
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\textwidth]{\ResultsDir/rq24-top-up-behavior}
+	\includegraphics[width=\textwidth]{\ResultsDir/rq24-topup-frequency}
 	\caption{Top-up Behavior Analysis}
 	\label{fig:top-up-behavior}
 	\source
 \end{figure}
 
-% TODO: formatting
-The analysis of top-up behavior reveals that most customers (49.1\%) topped up only once during the festival.
-A significant portion (32.8\%) topped up twice, while only a small fraction of customers (5.7\%) topped up more than three times.
+The analysis of top-up behavior reveals that most customers (\bfmtnump[1]{44.9}\%) topped up only once during the festival.
+A significant portion (\bfmtnump[1]{29.8}\%) topped up twice, while only a small fraction of customers (\bfmtnump[0]{5}\%) topped up more than three times.
 
-% TODO: formatting
+Interesting finding is that around~\bfmtnump[0]{9}\%~of customers did not top up at onsite at all.
+This meant for Online customers that they preloaded their credit before the event and did not need nor required to top up during the festival.
+
+For other on-site registered customers, it meant they did not use their chip bracelet for payments at all, but only as an entry ticket or for access control purposes.
+
 \begin{keytakeaways}
 	\begin{itemize}
-		\item Traditional banks (Česká spořitelna, ČSOB, KB) handled the majority of refunds
-		\item VISA cards were predominantly used (48.3\%) compared to Mastercard (28.9\%)
-		\item The majority of customers (81.9\%) topped up their credit 1–2 times during the event
-		\item Very few customers (0.8\%) needed more than 4 top-ups
-		\item The average number of top-ups per customer was 1.8
+		\item The most common bank for refunds was \textbf{Česká spořitelna} (\bfmtnump[1]{33.3}\%)
+		\item \textbf{VISA} cards were predominantly used (\bfmtnum{62}\%) compared to \textbf{Mastercard} (\bfmtnum{37}\%)
+		\item The majority of customers (\bfmtnump[1]{74.7}\%) topped up their credit 1 or 2 times during the event
+		\item Very few customers (\bfmtnum{5}\%) needed four or more top-ups
 	\end{itemize}
 \end{keytakeaways}
 
@@ -1579,11 +1580,11 @@ This section examines customer purchase behaviors throughout the festival, focus
 \makerqbox{customers-drink-preferences}
 
 To analyze beverage preferences throughout the day, sales data was aggregated by hour and beverage category.
-Figure \ref{fig:beverage-preferences} shows the distribution of alcoholic and non-alcoholic beverage sales over the course of the day.
+Figure~\ref{fig:beverage-preferences}~shows the distribution of alcoholic and non-alcoholic beverage sales over the course of the day.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.99\textwidth]{\ResultsDir/rq25-beverage-preferences}
+	\includegraphics[\textwidth]{\ResultsDir/rq25-beverage-preferences}
 	\caption{Beverage Preferences Throughout the Day}
 	\label{fig:beverage-preferences}
 	\source

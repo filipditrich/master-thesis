@@ -7,10 +7,13 @@ import pandas as pd
 from dash import html
 
 
-def format_number(num: int | float) -> str:
+def format_number(num: int | float, floating_points: Optional[int] = 0) -> str:
 	"""Default number formatter with space as a thousand separator"""
 	try:
-		return "{:,}".format(num).replace(",", " ")
+		if floating_points is not None:
+			return f"{num:,.{floating_points}f}".replace(",", " ")
+		else:
+			return "{:,}".format(num).replace(",", " ")
 	except TypeError as e:
 		return "-"
 
