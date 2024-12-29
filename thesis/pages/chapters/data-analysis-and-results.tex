@@ -312,33 +312,30 @@ This question actually consists of two sub-questions, which will be addressed se
 
 The first part questions the total number of transactions processed during the event.
 Which was actually pretty straightforward to answer, as the system was designed to track all transactions and their respective types.
-The resulted total number of transactions was~\bfmtnum{141381} consisting of \bfmtnum{110854}~sales transactions, \bfmtnum{17726}~top-up transactions and~\bfmtnum{12801}~chip register transactions.
+The resulted total number of transactions was~\bfmtnum{141381} consisting of~\bfmtnum{110854}~sales transactions, \bfmtnum{17726}~top-up transactions and~\bfmtnum{12801}~chip register transactions.
 
 The second part focuses on rather time-related metrics and asks about the processing peak times during the festival.
-For this part, it was necessary to spread out the above transactions over the time and find the peaks.
+For this part, it was necessary to spread out the above transactions over time and find the peaks.
 
-The results in~\autoref{fig:transactions-processing-peaks} below show the distribution of the processed transactions over time.
+The results in the~\autoref{fig:transactions-peaks} below show the distribution of the processed transactions over time.
 It clearly identifies the peak on the last day of the festival at 18:00 amounting to~\bfmtnum{8986}~transactions.
 
-% TODO: better chart
-\todo{Better chart}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\textwidth]{\ThesisFigures/charts/performance-transactions-in-time}
-	\caption{Transactions Processing Peaks}
-	\label{fig:transactions-processing-peaks}
+	\includegraphics[width=\textwidth]{\ResultsDir/rq5-transaction-peaks}
+	\caption{Transactions Peaks}
+	\label{fig:transactions-peaks}
 	\source
 \end{figure}
 
-% TODO: summarize
 \begin{keytakeaways}
 	\begin{itemize}
-		\item Total number of transactions processed was~\bfmtnum{141381} consisting mainly (7̃8\%) of order transactions.
+		\item Total number of transactions processed was~\bfmtnum{141381} consisting mainly (\bfmtnum{78}\%) of order transactions.
 		\item The peak of transactions was on the last day of the festival at 18:00 with~\bfmtnum{8986}~transactions processed at that hour.
 	\end{itemize}
 \end{keytakeaways}
 
-The following two questions (\autoref{rq:performance-processing-during-peaks}~and~\autoref{rq:performance-delays-downtimes}), focus on processing times and potential delays during the event.
+The following two questions (\rqshort{performance-processing-during-peaks}~and~\rqshort{performance-delays-downtimes}), focus on processing times and potential delays during the event.
 
 \makerqbox{performance-processing-during-peaks}
 
@@ -352,32 +349,30 @@ It required finding the average processing time, meaning difference between the 
 	The delays can be caused by various factors, such as network latency, offline mode active, system load, or even the transaction type.
 \end{infobox}
 
-The results show that the average processing time during the peak times was approximately~\bfmtnum{40}~seconds.
+The results show that the average processing time during the peak times was approximately~\bfmtnum{47}~seconds.
 
-When slightly changing the displayed data, we also get the answer to the~\autoref{rq:performance-delays-downtimes} about the potential delays and downtimes during the event.
+When slightly changing the displayed data, we also get the answer to the~\rqshort{performance-delays-downtimes} about the potential delays and downtimes during the event.
 
 \makerqbox{performance-delays-downtimes}
 
-The chart in the~\autoref{fig:rq7-delays-in-processing}~shows the distribution of the processing times over the time and identifies one high processing peak of approximately~\bfmtnum{13}~minutes.
+The chart in the~\autoref{fig:rq7-processing-times}~shows the distribution of the processing times over the time and identifies one high processing peak of approximately~\bfmtnum{11}~minutes.
 This is highly unusual and indicates a vendor misuse of the system or accidentally put the system into offline mode.
 
-% TODO: better chart
-\todo{Better chart}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\textwidth]{\ResultsDir/rq7-delays-in-processing}
-	\caption{Transaction Processing Peaks}
-	\label{fig:rq7-delays-in-processing}
+	\includegraphics[width=\textwidth]{\ResultsDir/rq7-processing-times}
+	\caption{Transaction Processing Times}
+	\label{fig:rq7-processing-times}
 	\source
 \end{figure}
 
-Other high peaks are visible on the second day in the afternoon with ~ \bfmtnum{5}~minutes processing time, which was probably caused by the initial load on that day.
+Other high peaks are visible on the second day in the afternoon with approximately~\bfmtnum{3}~minutes processing time, which was probably caused by the initial load on that day.
 
 \begin{keytakeaways}
 	\begin{itemize}
-		\item The average processing time during the peak times was~\bfmtnum{40}~seconds.
-		\item The highest processing peak was approximately~\bfmtnum{13}~minutes, indicating a potential misuse of the system.
-		\item Other high peaks were visible on the second day in the afternoon with ~ \bfmtnum{5}~minutes processing time.
+		\item The average processing time during the peak times was~\bfmtnum{47}~seconds.
+		\item The highest processing peak was approximately~\bfmtnum{11}~minutes, indicating a potential misuse of the system.
+		\item Other high peaks were visible on the second day in the afternoon with approx.\~\bfmtnum{3}~minutes processing time.
 	\end{itemize}
 \end{keytakeaways}
 

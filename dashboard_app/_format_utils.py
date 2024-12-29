@@ -83,6 +83,27 @@ def format_volume(num: int | float, float_places: int = 0) -> str:
 		return "0 litres"
 
 
+def format_duration(mins: int | float) -> str:
+	"""Default duration formatter with hours, minutes and seconds"""
+	try:
+		hours = int(mins // 60)
+		minutes = int(mins % 60)
+		seconds = int((mins % 1) * 60)
+		if hours > 0:
+			return f"{hours} h {minutes} min"
+		elif minutes > 0 and seconds > 0:
+			return f"{minutes} min {seconds} s"
+		elif minutes > 0:
+			return f"{minutes} min"
+		elif seconds > 0:
+			return f"{seconds} s"
+		else:
+			return "0 min"
+
+	except TypeError:
+		return "0 min"
+
+
 def format_percent(num: int | float) -> str:
 	"""Default percent formatter with 1 decimal place"""
 	try:
