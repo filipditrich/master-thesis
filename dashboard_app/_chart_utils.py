@@ -21,19 +21,19 @@ class SankeyFlow:
 	color: str
 
 
-colors = {
-	'indigo': 'rgba(101, 116, 205, 1.0)',  # Soft indigo for online
-	'cool_gray': 'rgba(149, 165, 166, 1.0)',  # Professional gray
-	'slate_blue': 'rgba(162, 181, 205, 1.0)',  # Slate blue for payments
-	'light_steel': 'rgba(176, 190, 197, 1.0)',  # Light steel blue
-	'warm_gray': 'rgba(188, 184, 177, 1.0)',  # Warm gray
-	'sage': 'rgba(134, 179, 167, 1.0)',  # Sage green
-	'dusty_blue': 'rgba(130, 177, 197, 1.0)',  # Dusty blue
-	'lavender': 'rgba(156, 147, 190, 1.0)',  # Soft lavender
-	'rose': 'rgba(199, 144, 144, 1.0)',  # Dusty rose
-	'mint': 'rgba(134, 182, 151, 1.0)',  # Mint green
-	'peach': 'rgba(226, 139, 120, 1.0)',  # Soft peach
-}
+# colors = {
+# 	'indigo': 'rgba(101, 116, 205, 1.0)',  # Soft indigo for online
+# 	'cool_gray': 'rgba(149, 165, 166, 1.0)',  # Professional gray
+# 	'slate_blue': 'rgba(162, 181, 205, 1.0)',  # Slate blue for payments
+# 	'light_steel': 'rgba(176, 190, 197, 1.0)',  # Light steel blue
+# 	'warm_gray': 'rgba(188, 184, 177, 1.0)',  # Warm gray
+# 	'sage': 'rgba(134, 179, 167, 1.0)',  # Sage green
+# 	'dusty_blue': 'rgba(130, 177, 197, 1.0)',  # Dusty blue
+# 	'lavender': 'rgba(156, 147, 190, 1.0)',  # Soft lavender
+# 	'rose': 'rgba(199, 144, 144, 1.0)',  # Dusty rose
+# 	'mint': 'rgba(134, 182, 151, 1.0)',  # Mint green
+# 	'peach': 'rgba(226, 139, 120, 1.0)',  # Soft peach
+# }
 
 # chart_colors = {
 # 	'chart1': '#2D7DD2',
@@ -45,6 +45,18 @@ colors = {
 # 	'chart7': '#9B6B6C',
 # 	'chart8': '#556F44',
 # }
+colors = {
+	'thesis_blue': 'rgba(11, 42, 112, 0.8)',
+	'aqua': 'rgba(64, 200, 211, 0.8)',
+	'teal_gray': 'rgba(108, 150, 157, 0.8)',
+	'lime': 'rgba(151, 204, 4, 0.8)',
+	'gold': 'rgba(238, 185, 2, 0.8)',
+	'tangerine': 'rgba(242, 142, 43, 0.8)',
+	'crimson': 'rgba(225, 87, 89, 0.8)',
+	'stone': 'rgba(186, 176, 172, 0.8)',
+	'sky': 'rgba(132, 193, 255, 0.8)',
+	'coral': 'rgba(255, 140, 148, 0.8)',
+}
 chart_colors = [
 	"#0B2A70",  # Dominant Thesis Color (Dark Blue)
 	"#40C8D3",  # Secondary Thesis Color (Light Blue)
@@ -73,7 +85,7 @@ def get_chart_color(name: int | str) -> str:
 
 
 def get_color(name: str, alpha: Optional[float] = None) -> str:
-	base_color = colors[name] if name in colors else colors['indigo']
+	base_color = colors[name] if name in colors else name if name.startswith('rgba') else 'rgba(255, 255, 255, 1.0)'
 	if alpha is not None:
 		return change_alpha(base_color, alpha)
 
