@@ -19,7 +19,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Research-100%25-lime" />
   <img src="https://img.shields.io/badge/Development-90%25-green" />
-  <img src="https://img.shields.io/badge/Thesis-92.2%25-green" />
+  <img src="https://img.shields.io/badge/Thesis-95.4%25-green" />
   <img src="https://img.shields.io/badge/Revisions-0%25-red" />
 </p>
 
@@ -61,6 +61,13 @@
     </thead>
     <!-- progress-table-start -->
     <tbody>
+        <tr>
+            <td>15498</td>
+            <td>62.0</td>
+            <td>104</td>
+            <td>2024-12-30 08:27 PM</td>
+            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
+        </tr>
         <tr>
             <td>14965</td>
             <td>59.9</td>
