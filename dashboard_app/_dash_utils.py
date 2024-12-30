@@ -20,9 +20,7 @@ cache = diskcache.Cache(
 launch_uid = uuid4()
 background_callback_manager = dash.DiskcacheManager(
 	cache,
-	cache_by=[
-		lambda: launch_uid,
-	],
+	cache_by=[lambda: launch_uid],
 	expire=300
 )
 

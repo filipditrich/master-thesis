@@ -143,7 +143,7 @@ def update_readme(readme_path, stats):
 		return False
 
 
-def calculate_progress(estimated_pages, target_pages=60):
+def calculate_progress(estimated_pages, target_pages=65):
 	"""Calculate progress percentage based on estimated pages."""
 	progress = (estimated_pages / target_pages) * 100
 	return min(100, round(progress, 1))

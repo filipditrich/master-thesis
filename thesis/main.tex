@@ -51,6 +51,15 @@
 	pdfnewwindow,
 	breaklinks
 }
+\addto\extrasenglish{%
+	\renewcommand{\chapterautorefname}{\textbf{Chapter}}
+	\renewcommand{\sectionautorefname}{\textbf{Section}}
+	\renewcommand{\subsectionautorefname}{\textbf{Subsection}}
+	\renewcommand{\subsubsectionautorefname}{\textbf{Subsubsection}}
+	\renewcommand{\figureautorefname}{\textbf{Figure}}
+	\renewcommand{\tableautorefname}{\textbf{Table}}
+	\newcommand{\listingautorefname}{\textbf{Source Code}}
+}
 
 %%%%% Bibliography setup
 %%%%% ---------------------------------------------------------------
@@ -60,7 +69,7 @@
 %%%%% Table of contents setup
 %%%%% ---------------------------------------------------------------
 \usepackage[nottoc]{tocbibind}
-\renewcommand{\listingscaption}{Source code}
+\renewcommand{\listingscaption}{Source Code}
 \renewcommand{\listoflistingscaption}{List of Source Codes}
 \usepackage[titles]{tocloft}
 \renewcommand\cftchapafterpnum{\vskip0pt}
@@ -85,9 +94,10 @@
 
 % TODO (MEDIUM prio):
 %% - [] revise Data Analysis and Results chapter - shorten, formatting, corrections, and references, improve wording
+%% --- [] NOTE: Každý blok research question zakončujete frází typu: "answers to these question should provide valuable/detailed insights" občas to obměňte
 %% - [] write the abstract and keywords
 
-% TODO (low prio):
+% TODO (LOW prio):
 %% - [] revise all figures, tables, and charts - content correctness, graphical finalization, alignment, etc.
 %% - [] overall revision - grammatical correctness and final visual adjustments (line breaks, indentation, new pages, etc.)
 %% - [] update the acknowledgements
@@ -96,11 +106,50 @@
 
 % TODO (backlog):
 %% - [x] setup the structure and technical setup
+%% - [] FIX: references order is wrong somehow
 %% - [] FIX: Wrong RQ numbering - rename charts, match with the correct RQ nums (Customers Analysis+)
 %% - [] use acronyms or remove List of Acronyms
 %% - [] improve KDD diagram and sankey charts if time allows
 
-% TODO: Text revision notes
+% TODO: Charts and figures list:
+%% - [🟢] Figure 2.1: Top-Up Transactions by Payment Method                  -- hopefully ok
+%% - [🟢] Figure 2.2: Sales of the Organizer vs. External Vendors            -- hopefully ok
+%% - [🟢] Figure 2.3: Remaining Chip Balances Sankey Diagram                 -- hopefully OK
+%% - [🟠] Figure 2.4: Breakdown of All Revenue Streams                       -- better labels (truncated Sel..)
+%% - [🟠] Figure 2.5: Overall Cash Flow Diagram                              -- improve coloring and fonts
+%% - [🟢] Figure 2.6: Transactions Peaks                                     -- hopefully OK
+%% - [🟢] Figure 2.7: Transaction Processing Times                           -- hopefully OK
+%% - [🟢] Figure 2.8: Best Top-Up Points                                     -- hopefully OK
+%% - [🟢] Figure 2.9: Best Products by Category                              -- hopefully OK
+%% - [🟠] Figure 2.10: Returnable Cups                                       -- unite color scheme
+%% - [🟢] Figure 2.11: Most Consumed Beer Brands                             -- hopefully OK
+%% - [🟢] Figure 2.12: Visitor Arrival Patterns  							 -- hopefully OK
+%% - [🟢] Figure 2.13: Credit Top-up Patterns During Event                   -- hopefully OK
+%% - [🟠] Figure 2.14: Customer Distribution by Type         		         -- convert to barplot maaan
+%% - [🟢] Figure 2.15: Customer App Usage   							     -- hopefully OK
+%% - [🟢] Figure 2.16: Bank Refunds Distribution                             -- hopefully OK
+%% - [🟠] Figure 2.17: Card Schemes Distribution                             -- unite colors or justify brand color choise (visa, mastercard)
+%% - [🟢] Figure 2.18: Top-up Behavior Analysis                              -- hopefully OK
+%% - [🟢] Figure 2.19: Beverage Preferences Throughout the Day               -- hopefully OK
+%% - [🟠] Figure 2.20: Product Combinations (Including Returnable Cups)      -- does not make sense, replace with something else
+%% - [🟠] Figure 2.21: Product Combinations (Exlucing Returnable Cups)       -- does not make sense, replace with something else
+
+% Revision notes (23. 12. 2024)
+%% - Úprava parádní, dobře strukturované. Líbí se mi zvýrazněné zásadní pojmy, boxy Why is this important a jasné značení a zavedení pojmů.
+%% - Drobná slabina kapitoly jedna je, že je poněkud abstraktní v tom smyslu, že mluvíte o hromadě kroků, které vlastně nejsou nikde ukázané. Ale hádám, že z podstaty práce s daty, která musí zůstat skrytá, s tím nejde nic dělat. Mám dojem, že to víte, ale že jste odvedl dobrou práci tím, že jste to vynahradil celkem důkladnám popisem. Za mě je to v pořádku, ale počítejte s tím, že do toho možná bude někdo rýpat.
+%% - Pozor na opakující se fráze. Není to zásadní chyba, ale pokud máte v úvodních a závěrečných odstavících často podobné fráze typu "was crucial for understanding", "provide useful insights", "this section focuses on" atd., při souvislém čtení to bije do očí. Všimnete si toho, až si práci přečtete v kuse. Důležitost a hodnotu insights jste stanovil v kapitole 1, takže v kapitole 2 už bych ji moc neopakoval a soustředil se spíš na výsledky. Tak ty fráze občas pozměňte, nebo vynechte. Low-priority.
+%% - Ta results sekce je dlouhá. Už v téhle fázi má práce 77 stran. Nebál bych se to zkrátit a výsledky spíše shrnout. Zdůraznit nějaké zásadnější nebo zajímavější výsledky (třeba ty rozdíly v chování různých zákazníků), nebo takové výsledky, jejichž získání bylo nějak nestandardní nebo obtížné (třeba best vendor s ohledem na to, co znamená best). V té sekci totiž máte hromadu kapitol, které mají v zásadě stejnou strukturu a máte je sepsané stejnými frázemi (viz předchozí bod). Zkondenzujte to - ještě bude kapitola o dashboardu. Grafy dobré, tabulky dobré, krátký komentář dobrý, místy delší, ale celkově zredukovat. Ale nechte si to asi až nakonec, ať tím teď příliš neztrácíte čas.
+%% - HIGH-PRIORITY V práci nemáte vůbec žádné externí zdroje. Jasně, vaše práce je spíš product development a data crunch než scientific research, ale tohle se obecně bude považovat za problém. K těm samotným výsledkům a věcem, které se přímo týkají The Event a The Organizer samozřejmě žádné zdroje mít nemůžete, ale například ke zvoleným metodám analýzy, nějaké diskuzi té anonymizace, k volbě nástrojů atd. by to něco potřebovalo. Nemusí toho být moc, ale něco jo (nějakých 10-15 zdrojů by bylo fajn. K metodám spíše knihy, k nástrojům lze sáhnout i po webech, ale ne osobní blogy atd. Při diskuzi technických postupů se lze odkazovat i na dokumentaci apod.)
+
+% Revision notes (30. 12. 2024)
+%% Poznámky ke kapitole 3:
+%% - Směr dobrý, jdete k věci - to je správné. Dobře, že jste se vůbec nepouštěl do vysvětlování toho, jak funguje dash a plotly - od toho je dokumentace.
+%% - To cachování by chtělo trochu rozvést. Ukázky kódu jsou v tomto případě asi celkem ospravedlněné, ale chtělo by to nějak více popsat, co se vlastně děje. Podobně, jak ve future directions zvažujete využití Celery a Redis, bylo by
+%%   dobré vysvětlit proč (co to vlastně dělá a proč to chcete). Nemusí to být nijak složité.
+%% - Tenhle odstavec (str 84) je podle mě trochu matoucí: "This implementation led to cache key collisions, where callbacks with identical inputs were cached using the same key, resulting in incorrect cached data being returned." Jeden by
+%%   čekal, že callbacky s identickými vstupy budou cachovány pod stejným klíčem. Kde je chyba?
+
+% Text revision notes
 %% - [x] NOTE: In cooperation with the event organizer: I have chose a "not more undisclosed event organizer" (str 14) - je to správně? Nerozumím tomu.
 %% - [x] NOTE: The Event definition: The Event takes place in the begging (str 15)
 %% - [x] NOTE: Cashflow and revenue: "these questions should provide currently unclear insights" - podivná formulace, nerozumím jí
@@ -110,9 +159,8 @@
 %% - [x] NOTE: Best Sale points: str. 50, přeposlední odstavec: "Another interesting fact is the total unique users processed at the places" - tomu nerozumím - nechybí v té větě neco?
 %% - [x] NOTE: "Out of total of 145 sale points, the best place was undeniable the L20 PIVNÍ STAN 1" - tady jsem se rozesmál. Je to důležité, ale zároveň naprosto samozřejmé zjištění.
 %% - [x] NOTE: Na několika místech začínáte novou větu (nikoliv otázku) slovem "Which" (např. 2. odstavec sekce 2.2, 3. odstavec v introduction a možná ještě někde). Mám dojem, že to angličtině nedovoluje - which je vztažné zájmenou a mělo by podle mě uvozovat vedlejší větu v souvětí. Možná se mýlím, ale připadá mi to divné.
-%% - [] NOTE: Každý blok research question zakončujete frází typu: "answers to these question should provide valuable/detailed insights" občas to obměňte
 
-% TODO: Graphical revision notes (charts)
+% Graphical revision notes (charts)
 %% - [x] NOTE: Table 1.1: překlep - coffe
 %% - [x] NOTE: Figure 1.1: nevím, jestli je to jen u mě, ale to schéma se mi renderuje v mizerné kvalitě na hranici čitelnosti
 %% - [x] NOTE: Figure 2.1: Zvažte, jestli chcete tento typ grafu. Na donut chart to má trochu malou díru, až to hraničí z pie chartem. Pie charts jsou lidově populární, ale datasci lidé je nemají rádi (z dobrých důvodů). Jako alternativy
@@ -128,37 +176,11 @@
 %% - [x] NOTE: Figure 2.7: velmi malý font, špatně čitelné.
 %% - [x] NOTE: Figure 2.8: to je hádám velmi WIP
 %% - [x] NOTE: Figure 2.13 a 2.14: mále písmo, špatně čitelné.
-
-% TODO: Charts and figures list:
-%% - [🟢] Figure 2.1: Top-Up Transactions by Payment Method                  -- hopefully ok
-%% - [🟢] Figure 2.2: Sales of the Organizer vs. External Vendors            -- hopefully ok
-%% - [🟢] Figure 2.3: Remaining Chip Balances Sankey Diagram                 -- hopefully OK
-%% - [🚮] Figure 2.4: Breakdown of Direct Revenue Streams                    -- discarded
-%% - [🟢] Figure 2.5: Breakdown of All Revenue Streams                       -- hopefully OK
-%% - [🟠] Figure 2.6: Overall Cash Flow Diagram                              -- improve coloring and fonts
-%% - [🟢] Figure 2.7: Transactions Peaks                                     -- hopefully OK
-%% - [🟢] Figure 2.8: Transaction Processing Times                           -- hopefully OK
-%% - [🟢] Figure 2.9: Best Top-Up Points                                     -- hopefully OK
-%% - [🟢] Figure 2.10: Best Products by Category                             -- hopefully OK
-%% - [🟢] Figure 2.11: Returnable Cups                                       -- hopefully OK
-%% - [🟢] Figure 2.12: Most Consumed Beer Brands                             -- hopefully OK
-%% - [🟢] Figure 2.13: Visitor Arrival Patterns  							 -- hopefully OK
-%% - [🟢] Figure 2.14: Credit Top-up Patterns During Event                   -- hopefully OK
-%% - [🟢] Figure 2.15: Customer Distribution by Type         		         -- hopefully OK
-%% - [🟢] Figure 2.16: Customer App Usage   							     -- hopefully OK
-%% - [🟢] Figure 2.17: Bank Refunds Distribution                             -- hopefully OK
-%% - [🟢] Figure 2.18: Card Schemes Distribution                             -- hopefully OK
-%% - [🟢] Figure 2.19: Top-up Behavior Analysis                              -- hopefully OK
-%% - [🟢] Figure 2.20: Beverage Preferences Throughout the Day               -- hopefully OK
-%% - [🟢] Figure 2.21: Product Combinations (Including Returnable Cups)      -- hopefully OK
-%% - [🟢] Figure 2.22: Product Combinations (Exlucing Returnable Cups)       -- hopefully OK
-
-% Revision notes (23. 12. 2024)
-%% - Úprava parádní, dobře strukturované. Líbí se mi zvýrazněné zásadní pojmy, boxy Why is this important a jasné značení a zavedení pojmů.
-%% - Drobná slabina kapitoly jedna je, že je poněkud abstraktní v tom smyslu, že mluvíte o hromadě kroků, které vlastně nejsou nikde ukázané. Ale hádám, že z podstaty práce s daty, která musí zůstat skrytá, s tím nejde nic dělat. Mám dojem, že to víte, ale že jste odvedl dobrou práci tím, že jste to vynahradil celkem důkladnám popisem. Za mě je to v pořádku, ale počítejte s tím, že do toho možná bude někdo rýpat.
-%% - Pozor na opakující se fráze. Není to zásadní chyba, ale pokud máte v úvodních a závěrečných odstavících často podobné fráze typu "was crucial for understanding", "provide useful insights", "this section focuses on" atd., při souvislém čtení to bije do očí. Všimnete si toho, až si práci přečtete v kuse. Důležitost a hodnotu insights jste stanovil v kapitole 1, takže v kapitole 2 už bych ji moc neopakoval a soustředil se spíš na výsledky. Tak ty fráze občas pozměňte, nebo vynechte. Low-priority.
-%% - Ta results sekce je dlouhá. Už v téhle fázi má práce 77 stran. Nebál bych se to zkrátit a výsledky spíše shrnout. Zdůraznit nějaké zásadnější nebo zajímavější výsledky (třeba ty rozdíly v chování různých zákazníků), nebo takové výsledky, jejichž získání bylo nějak nestandardní nebo obtížné (třeba best vendor s ohledem na to, co znamená best). V té sekci totiž máte hromadu kapitol, které mají v zásadě stejnou strukturu a máte je sepsané stejnými frázemi (viz předchozí bod). Zkondenzujte to - ještě bude kapitola o dashboardu. Grafy dobré, tabulky dobré, krátký komentář dobrý, místy delší, ale celkově zredukovat. Ale nechte si to asi až nakonec, ať tím teď příliš neztrácíte čas.
-%% - HIGH-PRIORITY V práci nemáte vůbec žádné externí zdroje. Jasně, vaše práce je spíš product development a data crunch než scientific research, ale tohle se obecně bude považovat za problém. K těm samotným výsledkům a věcem, které se přímo týkají The Event a The Organizer samozřejmě žádné zdroje mít nemůžete, ale například ke zvoleným metodám analýzy, nějaké diskuzi té anonymizace, k volbě nástrojů atd. by to něco potřebovalo. Nemusí toho být moc, ale něco jo (nějakých 10-15 zdrojů by bylo fajn. K metodám spíše knihy, k nástrojům lze sáhnout i po webech, ale ne osobní blogy atd. Při diskuzi technických postupů se lze odkazovat i na dokumentaci apod.)
+%% - [] Figure 2.4: nevím, co jsou Sel...
+%% - [] Figure 2.10: o nic nejde, ale tenhle graf vybočuje z barevného schématu, které používáte jinde
+%% - [] Figure 2.14: proč to není barplot, jako ostatní? Uchází mi něco? Např. fig 2.16 zobrazuje stejný typ dat -zobrazoval bych je stejně.
+%% - [] Figure 2.17: ten je dobrý. Když zbyde čas, sjednotil bych barevné schéma s ostatními a trochu zvýraznil ty nadpisy
+%% - [] Figure 2.20 a 2.21: nerozumím, co to zobrazuje. neumím si vůbec spojit obsah tabulky s temi barevnými plochami. Buď vysvětlit, nebo nahradit (spíše nahradit)
 
 
 %%%%% Main document part
