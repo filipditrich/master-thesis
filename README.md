@@ -19,7 +19,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Research-100%25-lime" />
   <img src="https://img.shields.io/badge/Development-90%25-green" />
-  <img src="https://img.shields.io/badge/Thesis-95.4%25-green" />
+  <img src="https://img.shields.io/badge/Thesis-100.0%25-green" />
   <img src="https://img.shields.io/badge/Revisions-0%25-red" />
 </p>
 
@@ -62,18 +62,25 @@
     <!-- progress-table-start -->
     <tbody>
         <tr>
-            <td>15498</td>
-            <td>62.0</td>
-            <td>104</td>
-            <td>2024-12-30 08:27 PM</td>
+            <td>16321</td>
+            <td>65.3</td>
+            <td>106</td>
+            <td>2024-12-30 10:49 PM</td>
             <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
         </tr>
         <tr>
-            <td>14965</td>
+            <td>15830</td>
+            <td>63.3</td>
+            <td>104</td>
+            <td>2024-12-30 10:12 PM</td>
+            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
+        </tr>
+        <tr>
+            <td>14964</td>
             <td>59.9</td>
             <td>102</td>
-            <td>2024-12-30 06:28 PM</td>
-            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
+            <td>2024-12-30 05:21 PM</td>
+            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/706e48d80c4f107162227d84359666e1494efc13/thesis/dist/main.pdf" target="_blank">👀 View</a></td>
         </tr>
         <tr>
             <td>13752</td>
