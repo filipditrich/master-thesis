@@ -481,7 +481,7 @@ def create_isolated_cache_manager(callback_id):
 	\begin{subsection}{Cashflow and Revenue Analysis Section}
 		\label{subsec:implementation-results-structure-cashflow}
 
-		The financial section gives organizers an immediate overview of money flows through the festival system.
+		The financial section gives an immediate overview of money flows through the festival system.
 		Three key metrics at the top show the total revenue (\bfmtczk{1155162}), available balances (\bfmtczk{334450}), and total chip top-ups (\bfmtczk{14520973}).
 
 		\begin{figure}[H]
@@ -492,7 +492,7 @@ def create_isolated_cache_manager(callback_id):
 		\end{figure}
 
 		The centerpiece Sankey diagram visualizes how money moves through the system—from initial top-ups through various payment channels to final settlements.
-		This helps organizers track the conversion of chip credits into sales and monitor refund volumes.
+		This helps to track the conversion of chip credits into sales and monitor refund volumes.
 
 		Below, sales data splits between organizer (\bfmtczk{8240264}) and vendor (\bfmtczk{3471543}) categories, with detailed breakdowns for beverages, food, and other revenue streams.
 	\end{subsection}
@@ -500,7 +500,7 @@ def create_isolated_cache_manager(callback_id):
 	\begin{subsection}{Performance Analysis Section}
 		\label{subsec:implementation-results-structure-performance}
 
-		The performance section helps organizers understand operational dynamics throughout the festival.
+		The performance section helps to understand operational dynamics throughout the festival.
 		Key metrics prominently display the festival's scale: \bfmtnum{10009}~active customers, \bfmtnum{141378}~processed transactions, and a peak volume of~\bfmtnum{8986}~transactions per hour.
 
 		\begin{figure}[H]
@@ -558,11 +558,50 @@ def create_isolated_cache_manager(callback_id):
 \end{section}
 
 
-%%% TODO: Section: Future Directions
+%%% Section: Missing Features and Future Development
 %%% --------------------------------------------------------------
-\begin{section}{Future Directions}
-	\label{sec:future-directions}
-	\todo{Write}
+\begin{section}{Missing Features and Future Development}
+	\label{sec:future-development}
+
+	While the current implementation successfully demonstrates our analysis results, there are several directions for future development and improvement.
+
+	\begin{subsection}{Technical Improvements}
+		\label{subsec:future-technical}
+
+		From a technical perspective, several key improvements would be needed for production deployment:
+
+		\textbf{Infrastructure and Deployment}: The current implementation is limited to local setup with a local database.
+		Significant architectural changes would be needed to enable external access and proper production deployment.
+
+		\textbf{Performance Optimization}: SQL queries would require optimization for larger datasets.
+		Implementation of materialized views\footnote{
+			Materialized views are essentially database tables that store the results of a query and can be used to improve query performance\cite{tpgdg_current_rules_materializedviews}.
+		} and better query planning would improve response times with production-scale data.
+
+		\textbf{Caching Solution}: A production-grade caching system using Redis would replace the current development-focused implementation.
+		This would improve dashboard responsiveness and enable handling multiple concurrent users.
+
+		\textbf{Data Formatting}: Enhanced date formatting and chart configurations would improve data presentation.
+		The current implementation uses basic formatting which would need refinement for production use.
+	\end{subsection}
+
+	\begin{subsection}{Analytical Enhancements}
+		\label{subsec:future-analytical}
+
+		From an analytical perspective, several key features would enhance the dashboard's utility:
+
+		\textbf{Customer Analysis}: Complete implementation of the customer analysis section would provide valuable insights into attendee behavior.
+		This would enable better understanding of customer segments and their preferences.
+
+		\textbf{Performance Metrics}: Expansion of the performance section with detailed time processing metrics would provide better operational insights.
+		This would help identify bottlenecks and optimization opportunities.
+
+		\textbf{Timeline Navigation}: A dynamic timeline player would allow users to observe festival data evolution over time.
+		This would enable to replay the festival's progression and identify critical moments or patterns.
+
+		\textbf{Interactive Elements}: Additional interactive features would allow users to switch between different metrics and apply more granular filters.
+		This flexibility would help to discover deeper insights and test different hypotheses about festival operations.
+	\end{subsection}
 \end{section}
 
 
