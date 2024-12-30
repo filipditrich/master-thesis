@@ -467,133 +467,102 @@ def create_isolated_cache_manager(callback_id):
 	\end{subsection}
 \end{section}
 
-%%% TODO: Section: Implementation Results
+%%% Section: Implementation Results
 %%% --------------------------------------------------------------
 \begin{section}{Implementation Results}
 	\label{sec:implementation-results}
 
-	Despite the technical challenges encountered, the dashboard prototype successfully demonstrates the key findings from our analysis.
-	The implementation provides interactive visualizations of the festival transaction data, organized to reflect our analytical approach.
+	The dashboard prototype successfully demonstrates key findings from our festival analysis through interactive visualizations.
+	Drawing from our analytical framework, we organized the interface into four main sections that provide different perspectives on the event data.
 
-	\begin{subsection}{Dashboard Structure and Visualization}
-		\label{subsec:implementation-results-structure}
+	A global date-range filter sits at the top of the dashboard, allowing users to analyze any time period during the festival.
+	Pre-configured options for each festival day make it easy to quickly compare different phases of the event.
 
-		\todo{Add screenshots of the dashboard and describe the structure and visualizations}
-		The dashboard is structured into four main sections, directly corresponding to our analysis areas from the~\fullref{ch:data-analysis-and-results}:
+	\begin{subsection}{Cashflow and Revenue Analysis Section}
+		\label{subsec:implementation-results-structure-cashflow}
 
-		\begin{subsubsection}{Cashflow and Revenue Analysis}
-			\label{subsubsec:implementation-results-structure-cashflow}
+		The financial section gives organizers an immediate overview of money flows through the festival system.
+		Three key metrics at the top show the total revenue (\bfmtczk{1155162}), available balances (\bfmtczk{334450}), and total chip top-ups (\bfmtczk{14520973}).
 
-			The Cashflow Analysis section visualizes overall financial and cashflow patterns using Sankey diagrams and breakdown of revenue streams.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-cashflow-section}
+			\caption{Cashflow and Revenue Analysis Section}
+			\label{fig:dashboard-cashflow-analysis}
+		\end{figure}
 
-			% TODO
-			\todo{Better screenshot after finalization}
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-cashflow-section}
-				\caption{Cashflow and Revenue Analysis Section}
-				\label{fig:dashboard-cashflow-analysis}
-			\end{figure}
-		\end{subsubsection}
+		The centerpiece Sankey diagram visualizes how money moves through the system—from initial top-ups through various payment channels to final settlements.
+		This helps organizers track the conversion of chip credits into sales and monitor refund volumes.
 
-		\begin{subsubsection}{Performance Analysis}
-			\label{subsubsec:implementation-results-structure-performance}
-
-			This section focuses on the festival's performance metrics, including mostly transaction processing peaks, capabilities and overall performance.
-
-			% TODO
-			\todo{Better screenshot after finalization}
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-performance-section}
-				\caption{Performance Analysis Section}
-				\label{fig:dashboard-performance-metrics}
-			\end{figure}
-		\end{subsubsection}
-
-		\begin{subsubsection}{Beverage Consumption Analysis}
-			\label{subsubsec:implementation-results-structure-beverage}
-
-			The Beverage Consumption Analysis section of the dashboard visualizes total beverage statistics, including total consumption amount, returnable cups and most popular beverages.
-
-			% TODO
-			\todo{Better screenshot after finalization}
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-beverage-section}
-				\caption{Beverage Consumption Analysis Section}
-				\label{fig:dashboard-beverage-sales}
-			\end{figure}
-		\end{subsubsection}
-
-		\begin{subsubsection}{Customer Analysis}
-			\label{subsubsec:implementation-results-structure-customer}
-
-			The Customer Analysis section presents crucial findings about customer segmentation, behavior and sale patterns.
-			This section highly benefited from the data analysis performed in the previous chapter and provides a detailed overview of customer demographics and their behavior during the festival.
-
-			% TODO
-			\todo{Better screenshot after finalization}
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-customer-section}
-				\caption{Customer Analysis Section}
-				\label{fig:dashboard-customer-behavior}
-			\end{figure}
-		\end{subsubsection}
-
-		Each section is then located in the overall dashboard layout, where users can navigate between sections and explore the data more interactively than on paper.
-
-		The dashboard benefits from filtering capabilities, allowing users to explore the data based on specific criteria and timeframes.
-		For example, the whole dashboard can be filtered to a specific festival day, or a specific time range.
+		Below, sales data splits between organizer (\bfmtczk{8240264}) and vendor (\bfmtczk{3471543}) categories, with detailed breakdowns for beverages, food, and other revenue streams.
 	\end{subsection}
 
-	\begin{subsection}{Technical Implementation Outcomes}
-		\label{subsec:implementation-results-technical}
-		\todo{Better wording, more details}
-		The final implementation achieved several key technical outcomes:
+	\begin{subsection}{Performance Analysis Section}
+		\label{subsec:implementation-results-structure-performance}
 
-		\begin{itemize}
-			\item Effective query management system for handling complex data requests
-			\item Dual-layer caching strategy that significantly improved development iteration speed
-			\item Workable solution for handling concurrent callback operations in development
-			\item Integration of Mantine components for improved visual presentation
-		\end{itemize}
+		The performance section helps organizers understand operational dynamics throughout the festival.
+		Key metrics prominently display the festival's scale: \bfmtnum{10009}~active customers, \bfmtnum{141378}~processed transactions, and a peak volume of~\bfmtnum{8986}~transactions per hour.
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-performance-section}
+			\caption{Performance Analysis Section}
+			\label{fig:dashboard-performance-analysis}
+		\end{figure}
+
+		The main graph shows transaction volumes across all three days, with the highest peak visible on Day~3 at~18:00.
+
+		The control panel can be used to filter by transaction types and adjust time granularity for detailed analysis.
+
+		A table below highlights the busiest operational points, showing how many transactions and customers each location handled, as well as for individual vendors or products.
 	\end{subsection}
 
-	\begin{subsection}{Known Limitations}
-		\label{subsec:implementation-results-limitations}
-		\todo{Better wording, more details}
-		As a prototype implementation, the dashboard has several known limitations:
+	\begin{subsection}{Beverage Consumption Analysis Section}
+		\label{subsec:implementation-results-structure-beverage}
 
-		\begin{itemize}
-			\item Callback caching solution is not suitable for production deployment
-			\item Limited to local development environment
-			\item Performance optimization focused on development workflow rather than end-user experience
-			\item Async handling could be improved with more robust implementation
-			\item \todo{Add more limitations we know of}
-		\end{itemize}
+		The beverage section tracks consumption patterns and returnable cup management.
+		At a glance, a total consumption (\bfmtnum{29343}~liters), returnable cups issued (\bfmtnum{22045}), and the return rate of~\bfmtnump[2]{78.4}\% can immediately be seen.
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-beverage-section}
+			\caption{Beverage Consumption Analysis Section}
+			\label{fig:dashboard-beverage-analysis}
+		\end{figure}
+
+		Breaking down by category, \textbf{Radegast} led beer sales with \bfmtnum{10525}~liters and \bfmtnum{27752}~units sold.
+		\textbf{Birell} dominated non-alcoholic beverages with \bfmtnum{21846}~liters, while \textbf{Beefeater} led spirits with \bfmtnum{966}~liters consumed.
+	\end{subsection}
+
+	\begin{subsection}{Customer Analysis Section}
+		\label{subsec:implementation-results-structure-customer}
+
+		While currently still in development, the customer analysis section aims to provide insights into attendee behavior patterns.
+		The planned implementation focuses on four key areas of visitor analysis.
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-customer-section}
+			\caption{Customer Analysis Section (Implementation in Progress)}
+			\label{fig:dashboard-customer-analysis}
+		\end{figure}
+
+		The attendance timeline will show how \bfmtnum{10009}~unique visitors were distributed across the festival, with Day~3 seeing peak attendance of~\bfmtnum{8066}~visitors.
+		Customer segmentation will break down the \bfmtnump[2]{89.66}\%~online ticket purchasers and track platform preferences, including the \bfmtnump[2]{40.69}\%~mobile app usage rate.
+		Payment analysis will visualize card scheme preferences (VISA~\bfmtnump[2]{62.4}\%, Mastercard~\bfmtnump[2]{37.6}\%) and top-up patterns.
+
+		This section represents a key area for future development, particularly for exploring customer behavior patterns.
+		Unfortunately, due to the time constraints, it was not possible to finish the implementation of this section during the thesis project.
+		However, the key findings from the analysis were already prepared and ready to be implemented.
 	\end{subsection}
 \end{section}
+
 
 %%% TODO: Section: Future Directions
 %%% --------------------------------------------------------------
 \begin{section}{Future Directions}
-	\label{sec:implementation-future-directions}
-
-	While the current implementation successfully demonstrates our analysis results, several technical improvements could enhance the dashboard:
-
-	\begin{itemize}
-		\item Implementation of a more robust callback caching solution using Celery and Redis
-		\item Improved async handling with better consideration of Python's async patterns
-		\item Optimization of query performance and caching strategies
-		\item Enhanced error handling and recovery mechanisms
-		\item Deployment to cloud services for broader accessibility and scalability
-		\item \todo{Add more future directions we plan(ed) to do}
-	\end{itemize}
-
-	These improvements would primarily focus on technical robustness rather than feature expansion, addressing the key limitations identified during development.
-
-	\todo{Describe our previously mentioned personal motivation to do this dashboard and the outcomes of it.}
-	\todo{Describe how it already helped us in the work field and enabled us to deliver several updates to our existing dashboard in NFCtron Hub.}
+	\label{sec:future-directions}
+	\todo{Write}
 \end{section}
+
+
