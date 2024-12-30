@@ -5,6 +5,7 @@ import PyPDF2
 from datetime import datetime
 
 
+# Previous functions remain the same until update_readme
 def clean_latex_text(text):
 	"""Remove LaTeX commands and environments."""
 	# Remove comments
@@ -93,6 +94,21 @@ def update_badge(content, progress, color):
 	return re.sub(badge_pattern, f'\\1-{progress:.1f}%25-{color}\\2', content)
 
 
+def extract_table_data(content):
+	"""Extract existing table data from README."""
+	table_pattern = r'<tbody>\s*<tr>.*?</tr>\s*</tbody>'
+	match = re.search(table_pattern, content, re.DOTALL)
+	if not match:
+		return []
+
+	rows = []
+	row_pattern = r'<tr>\s*<td>(.*?)</td>\s*<td>(.*?)</td>\s*<td>(.*?)</td>\s*<td>(.*?)</td>\s*<td>(.*?)</td>\s*</tr>'
+	for row_match in re.finditer(row_pattern, match.group(0)):
+		groups = [cell.strip() for cell in row_match.groups()]
+		rows.append({ 'data': groups[:4], 'link': groups[4] })
+	return rows
+
+
 def update_readme(readme_path, stats):
 	"""Update README.md with LaTeX document statistics and progress badge."""
 	if not readme_path:
@@ -107,11 +123,67 @@ def update_readme(readme_path, stats):
 		progress = calculate_progress(stats['estimated_pages'])
 		progress_color = get_progress_color(progress)
 
-		# Update badge first
+		# Update badge
 		content = update_badge(content, progress, progress_color)
 
-		# Update other stats
-		updates = {
+		# Find the progress table using markers
+		table_start = '<!-- progress-table-start -->'
+		table_end = '<!-- progress-table-end -->'
+		if table_start not in content or table_end not in content:
+			print("Progress table markers not found in README")
+			return False
+
+		# Extract existing table data
+		table_pattern = f"{table_start}.*?{table_end}"
+		table_match = re.search(table_pattern, content, re.DOTALL)
+		if not table_match:
+			return False
+
+		table_content = table_match.group(0)
+		existing_rows = extract_table_data(table_content)
+
+		# Create new row with current stats
+		current_time = datetime.now().strftime("%Y-%m-%d %I:%M %p")
+		new_row = {
+			'data': [
+				str(stats['word_count']),
+				str(stats['estimated_pages']),
+				str(stats['actual_pages']),
+				current_time
+			],
+			'link': '<a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a>'
+		}
+
+		# Check if stats have changed from last update
+		should_add_row = True
+		if existing_rows:
+			last_row = existing_rows[0]
+			if (last_row['data'][0] == new_row['data'][0] and
+					last_row['data'][1] == new_row['data'][1] and
+					last_row['data'][2] == new_row['data'][2]):
+				should_add_row = False
+
+		# Update rows list
+		all_rows = [new_row] + existing_rows if should_add_row else existing_rows
+
+		# Create updated table HTML
+		table_rows = ""
+		for row in all_rows:
+			table_rows += f"""        <tr>
+            <td>{row['data'][0]}</td>
+            <td>{row['data'][1]}</td>
+            <td>{row['data'][2]}</td>
+            <td>{row['data'][3]}</td>
+            <td>{row['link']}</td>
+        </tr>
+"""
+
+		# Replace only the progress table content
+		table_html = f"{table_start}\n    <tbody>\n{table_rows}    </tbody>\n    {table_end}"
+		content = re.sub(table_pattern, table_html, content, flags=re.DOTALL)
+
+		# Update markers for current stats
+		markers = {
 			'<!-- word-count-start -->': '<!-- word-count-end -->',
 			'<!-- estimated-pages-start -->': '<!-- estimated-pages-end -->',
 			'<!-- actual-pages-start -->': '<!-- actual-pages-end -->',
@@ -122,14 +194,14 @@ def update_readme(readme_path, stats):
 			'word-count': str(stats['word_count']),
 			'estimated-pages': str(stats['estimated_pages']),
 			'actual-pages': str(stats['actual_pages']),
-			'last-updated': datetime.now().strftime("%Y-%m-%d %H:%M")
+			'last-updated': current_time
 		}
 
-		# Update each stat
-		for key in updates:
+		# Update each marker
+		for key in markers:
 			stat_type = key.replace('<!-- ', '').replace('-start -->', '')
-			pattern = f"{key}.*?{updates[key]}"
-			replacement = f"{key}{values[stat_type]}{updates[key]}"
+			pattern = f"{key}.*?{markers[key]}"
+			replacement = f"{key}{values[stat_type]}{markers[key]}"
 			content = re.sub(pattern, replacement, content, flags=re.DOTALL)
 
 		# Write updated content
