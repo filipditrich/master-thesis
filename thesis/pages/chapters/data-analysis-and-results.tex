@@ -79,8 +79,8 @@ When looking at the grouping by payment methods, the results in~\autoref{fig:top
 		\hline
 	\end{tabularx}
 
-	\includegraphics[width=\textwidth]{\ResultsDir/rq2-topup-methods}
-	\caption{Top-Up Transactions by Payment Method}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq2-topup-methods}
+	\caption{\rqshorttext{cashflow-top-up-balance} Top-Up Transactions by Payment Method}
 	\label{fig:top-up-transactions-by-payment-method}
 	\source
 \end{figure}
@@ -100,6 +100,7 @@ Thanks to the results, it is clear how many funds did the system receive and by 
 
 \subsection{Sales Analysis}
 \label{subsec:analysis-sales}
+
 \makerqbox{cashflow-total-sales}
 
 The sales analysis was crucial for understanding the overall sales behavior and served as a basis for further insights tightly connected to the revenue sources.
@@ -115,8 +116,8 @@ This can be seen in~\autoref{fig:sales-organizer-vs-vendors} below.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq4-organizer-vs-vendor-sales}
-	\caption{Sales of the Organizer vs. External Vendors}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq4-organizer-vs-vendor-sales}
+	\caption{\rqshorttext{cashflow-total-sales} Sales of the Organizer vs. External Vendors}
 	\label{fig:sales-organizer-vs-vendors}
 	\source
 \end{figure}
@@ -157,8 +158,8 @@ Since these numbers can be quite abstract, the results in a form of sankey diagr
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq3-remaining-balances}
-	\caption{Remaining Chip Balances Sankey Diagram}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq3-remaining-balances}
+	\caption{\rqshorttext{cashflow-remaining-balance} Remaining Chip Balances Sankey Diagram}
 	\label{fig:remaining-balances-sankey}
 	\source
 \end{figure}
@@ -207,7 +208,7 @@ To better understand the revenue streams, the results are visualized in~\autoref
 \begin{figure}[H]
 	\centering
 	% chart
-	\includegraphics[width=\textwidth]{\ResultsDir/rq1-total-revenue-breakdown}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq1-total-revenue-breakdown}
 	% space
 	\par\vspace*{0.5em}
 	% table
@@ -228,7 +229,7 @@ To better understand the revenue streams, the results are visualized in~\autoref
 		\textbf{Total Revenue (All Streams)}      & \bfmtczkp[2]{20575107.79}    \\
 		\hline
 	\end{tabularx}
-	\caption{Breakdown of All Revenue Streams}
+	\caption{\rqshorttext{cashflow-total-revenue} Breakdown of All Revenue Streams}
 	\label{fig:revenue-breakdown-total}
 	\source
 \end{figure}
@@ -322,8 +323,8 @@ It clearly identifies the peak on the last day of the festival at 18:00 amountin
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq5-transaction-peaks}
-	\caption{Transactions Peaks}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq5-transaction-peaks}
+	\caption{\rqshorttext{performance-transactions} Transactions Peaks}
 	\label{fig:transactions-peaks}
 	\source
 \end{figure}
@@ -360,8 +361,8 @@ This is highly unusual and indicates a vendor misuse of the system or accidental
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq7-processing-times}
-	\caption{Transaction Processing Times}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq7-processing-times}
+	\caption{\rqshorttext{performance-delays-downtimes} Transaction Processing Times}
 	\label{fig:rq7-processing-times}
 	\source
 \end{figure}
@@ -429,7 +430,7 @@ This resulted in the following findings in the~\autoref{tab:best-topup-points} b
 		head to column names,
 		late after line={\\\hline},
 		filter={\thecsvinputline<6}
-		]{\ResultsDir/rq9-best-topup-points.csv}{
+		]{\DataDir/rq9-best-topup-points.csv}{
 			entity=\colentity,
 			customer_count=\colcustomers,
 			transaction_count=\coltrxcount,
@@ -452,7 +453,7 @@ This resulted in the following findings in the~\autoref{tab:best-topup-points} b
 		head to column names,
 		late after line={\\\hline},
 		filter={\thecsvinputline>15 \AND \thecsvinputline<20}
-		]{\ResultsDir/rq9-best-topup-points.csv}{
+		]{\DataDir/rq9-best-topup-points.csv}{
 			entity=\colentity,
 			customer_count=\colcustomers,
 			transaction_count=\coltrxcount,
@@ -475,7 +476,7 @@ This resulted in the following findings in the~\autoref{tab:best-topup-points} b
 		head to column names,
 		late after line={\\\hline},
 		filter={\thecsvinputline>25}
-		]{\ResultsDir/rq9-best-topup-points.csv}{
+		]{\DataDir/rq9-best-topup-points.csv}{
 			entity=\colentity,
 			customer_count=\colcustomers,
 			transaction_count=\coltrxcount,
@@ -488,7 +489,7 @@ This resulted in the following findings in the~\autoref{tab:best-topup-points} b
 			& \num[group-separator={,}]{\colhourlypeak}
 		}
 	\end{tabularx}
-	\caption{Best Top-Up Points}
+	\caption{\rqshorttext{performance-best-top-up-points} Best Top-Up Points}
 	\label{tab:best-topup-points}
 \end{table}
 
@@ -500,8 +501,8 @@ That makes sense because the top-ups were done more frequently than the initial 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq9-best-topup-points}
-	\caption{Best Top-Up Points}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq9-best-topup-points}
+	\caption{\rqshorttext{performance-best-top-up-points} Best Top-Up Points}
 	\label{fig:best-topup-points}
 	\source
 \end{figure}
@@ -557,7 +558,7 @@ The \textbf{L20 PIVNÍ STAN 1} processed~\bfmtnum{9159}~unique customers, accoun
 		head to column names,
 		late after line={\\\hline},
 		filter={\thecsvinputline<9}
-		]{\ResultsDir/rq8-best-sale-points.csv}{
+		]{\DataDir/rq8-best-sale-points.csv}{
 			entity=\colentity,
 			customer_count=\colcustomers,
 			transaction_count=\coltrxcount,
@@ -580,7 +581,7 @@ The \textbf{L20 PIVNÍ STAN 1} processed~\bfmtnum{9159}~unique customers, accoun
 		head to column names,
 		late after line={\\\hline},
 		filter={\thecsvinputline>132}
-		]{\ResultsDir/rq8-best-sale-points.csv}{
+		]{\DataDir/rq8-best-sale-points.csv}{
 			entity=\colentity,
 			customer_count=\colcustomers,
 			transaction_count=\coltrxcount,
@@ -593,7 +594,7 @@ The \textbf{L20 PIVNÍ STAN 1} processed~\bfmtnum{9159}~unique customers, accoun
 			& \num[group-separator={,}]{\colhourlypeak}
 		}
 	\end{tabularx}
-	\caption{Best Sale Points}
+	\caption{\rqshorttext{performance-best-sale-points} Best Sale Points}
 	\label{tab:best-sale-points}
 \end{table}
 
@@ -647,7 +648,7 @@ The results in the~\autoref{tab:best-vendors} below show the distribution of the
 		head to column names,
 		late after line={\\\hline},
 		filter={\thecsvinputline<9}
-		]{\ResultsDir/rq10-best-vendors.csv}{
+		]{\DataDir/rq10-best-vendors.csv}{
 			legal_name=\colentity,
 			customer_count=\colcustomers,
 			transaction_count=\coltrxcount,
@@ -668,7 +669,7 @@ The results in the~\autoref{tab:best-vendors} below show the distribution of the
 		head to column names,
 		late after line={\\\hline},
 		filter={\thecsvinputline>25}
-		]{\ResultsDir/rq10-best-vendors.csv}{
+		]{\DataDir/rq10-best-vendors.csv}{
 			legal_name=\colentity,
 			customer_count=\colcustomers,
 			transaction_count=\coltrxcount,
@@ -679,7 +680,7 @@ The results in the~\autoref{tab:best-vendors} below show the distribution of the
 			& \num[group-separator={,}]{\coltrxcount}
 		}
 	\end{tabularx}
-	\caption{Best Vendors}
+	\caption{\rqshorttext{performance-best-vendors} Best Vendors}
 	\label{tab:best-vendors}
 \end{table}
 
@@ -736,7 +737,7 @@ The results in the~\autoref{tab:best-products} below somehow confirm this predic
 		head to column names,
 		late after line={\\\hline},
 		filter={\thecsvinputline<9}
-		]{\ResultsDir/rq11-best-products.csv}{
+		]{\DataDir/rq11-best-products.csv}{
 			product_name=\colproduct,
 			customer_count=\colcustomers,
 			sales_count=\colsalescount,
@@ -759,7 +760,7 @@ The results in the~\autoref{tab:best-products} below somehow confirm this predic
 		head to column names,
 		late after line={\\\hline},
 		filter={\thecsvinputline>326}
-		]{\ResultsDir/rq11-best-products.csv}{
+		]{\DataDir/rq11-best-products.csv}{
 			product_name=\colproduct,
 			customer_count=\colcustomers,
 			sales_count=\colsalescount,
@@ -772,7 +773,7 @@ The results in the~\autoref{tab:best-products} below somehow confirm this predic
 			& \num[group-separator={,}]{\colcustomers}
 		}
 	\end{tabularx}
-	\caption{Best Products}
+	\caption{\rqshorttext{performance-best-products} Best Products}
 	\label{tab:best-products}
 \end{table}
 
@@ -781,8 +782,8 @@ This can be seen in the~\autoref{fig:best-product-category} below.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq11-best-product-category}
-	\caption{Best Products by Category}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq11-best-product-category}
+	\caption{\rqshorttext{performance-best-products} Best Products by Category}
 	\label{fig:best-product-category}
 	\source
 \end{figure}
@@ -848,8 +849,8 @@ Upon calculating the total number of issued and returned cups, the results depic
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq13-returnable-cups}
-	\caption{Returnable Cups}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq13-returnable-cups}
+	\caption{\rqshorttext{beverage-returnable-cups} Returnable Cups}
 	\label{fig:returnable-cups}
 	\source
 \end{figure}
@@ -904,7 +905,7 @@ These results are shown in the~\autoref{tab:beverage-total-consumption} below an
 		\textbf{Total volume}                     & \bfmtnum{29342}~l & \fmtnum{100}~\%       \\
 		\hline
 	\end{tabularx}
-	\caption{Total Beverage Consumption}
+	\caption{\rqshorttext{beverage-total-consumption} Total Beverage Consumption}
 	\label{tab:beverage-total-consumption}
 \end{table}
 
@@ -956,8 +957,8 @@ The results in~\autoref{fig:beverage-top-beer} below illustrate the distribution
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq15-top-beer-brands}
-	\caption{Most Consumed Beer Brands}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq15-top-beer-brands}
+	\caption{\rqshorttext{beverage-top-beer} Most Consumed Beer Brands}
 	\label{fig:beverage-top-beer}
 	\source
 \end{figure}
@@ -986,7 +987,7 @@ A complete list of all ten brands from the festival is shown in the~\autoref{tab
 		\csvreader[
 			head to column names,
 			late after line={\\\hline},
-		]{\ResultsDir/rq15-top-beer-brands.csv}{
+		]{\DataDir/rq15-top-beer-brands.csv}{
 			subcategory=\colbrand,
 			total_consumption_ml=\colconsumption,
 			transaction_count=\coltrxcount,
@@ -1007,7 +1008,7 @@ A complete list of all ten brands from the festival is shown in the~\autoref{tab
 		& {\bfmtnum{53990}}
 		\\\hline
 	\end{tabularx}
-	\caption{Most Consumed Beer Brands}
+	\caption{\rqshorttext{beverage-top-beer} Most Consumed Beer Brands}
 	\label{tab:beverage-top-beer}
 \end{table}
 
@@ -1052,7 +1053,7 @@ Aggregated similarly as in the previous analysis, the results in the~\autoref{ta
 		\csvreader[
 			head to column names,
 			late after line={\\\hline},
-		]{\ResultsDir/rq17-top-non-alco-brands.csv}{
+		]{\DataDir/rq17-top-non-alco-brands.csv}{
 			subcategory=\colbrand,
 			total_consumption_ml=\colconsumption,
 			transaction_count=\coltrxcount,
@@ -1073,7 +1074,7 @@ Aggregated similarly as in the previous analysis, the results in the~\autoref{ta
 		& {\bfmtnum{20487}}
 		\\\hline
 	\end{tabularx}
-	\caption{Most Consumed Non-alcoholic Brands}
+	\caption{\rqshorttext{beverage-top-non-alcoholic} Most Consumed Non-alcoholic Brands}
 	\label{tab:beverage-top-non-alcoholic}
 \end{table}
 
@@ -1123,7 +1124,7 @@ However, the second most consumed brand was \textbf{Absolut Vodka} with only \bf
 		\csvreader[
 			head to column names,
 			late after line={\\\hline},
-		]{\ResultsDir/rq16-top-alco-brands.csv}{
+		]{\DataDir/rq16-top-alco-brands.csv}{
 			subcategory=\colbrand,
 			total_consumption_ml=\colconsumption,
 			transaction_count=\coltrxcount,
@@ -1144,7 +1145,7 @@ However, the second most consumed brand was \textbf{Absolut Vodka} with only \bf
 		& {\bfmtnum{26964}}
 		\\\hline
 	\end{tabularx}
-	\caption{Most Consumed Alcoholic Brands}
+	\caption{\rqshorttext{beverage-top-alcoholic} Most Consumed Alcoholic Brands}
 	\label{tab:beverage-top-alcoholic}
 \end{table}
 
@@ -1242,8 +1243,8 @@ The analysis of visitor arrival patterns reveals distinct peak periods across th
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq21-arrival-patterns}
-	\caption{Visitor Arrival Patterns}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq24-arrival-patterns}
+	\caption{\rqshorttext{customers-new-visitors} Visitor Arrival Patterns}
 	\label{fig:visitor-arrival-patterns}
 	\source
 \end{figure}
@@ -1335,7 +1336,7 @@ However, this number alone is misleading, as evidenced by the much lower median 
 		\\
 		\hline
 	\end{tabularx}
-	\caption{Time from Arrival to First Transaction}
+	\caption{\rqshorttext{customers-visitor-time} Time to First Transaction}
 	\label{tab:time-to-first-transaction}
 	\source
 \end{table}
@@ -1376,8 +1377,8 @@ A total of~\bfmtnum{17233}~top-up transactions were processed, with activity var
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq23-topup-patterns}
-	\caption{Credit Top-up Patterns During Event}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq26-topup-patterns}
+	\caption{\rqshorttext{customers-top-up-peaks} Credit Top-up Patterns During Event}
 	\label{fig:topup-patterns}
 	\source
 \end{figure}
@@ -1421,8 +1422,8 @@ This distribution is shown in the~\autoref{fig:customer-distribution} below.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq28-customer-distribution}
-	\caption{Customer Distribution by Type}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq20-customer-distribution}
+	\caption{\rqshorttext{customers-distribution-types} Customer Distribution by Type}
 	\label{fig:customer-distribution}
 	\source
 \end{figure}
@@ -1437,8 +1438,8 @@ In the figure~\autoref{fig:customer-app-usage}~below is shown this breakdown.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq29-customer-app-usage}
-	\caption{Customer App Usage}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq21-customer-app-usage}
+	\caption{\rqshorttext{customers-mobile-app} Customer App Usage}
 	\label{fig:customer-app-usage}
 	\source
 \end{figure}
@@ -1476,8 +1477,8 @@ The analysis of bank refunds reveals the distribution among Czech banking instit
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq19-bank-refunds}
-	\caption{Bank Refunds Distribution}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq22-bank-refunds}
+	\caption{\rqshorttext{customers-bank-cards} Bank Refunds Distribution}
 	\label{fig:bank-refunds}
 	\source
 \end{figure}
@@ -1489,8 +1490,8 @@ Followed by \textbf{ČSOB} and \textbf{Komerční banka} with~\bfmtnump[1]{15}\%
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq20-card-schemes}
-	\caption{Card Schemes Distribution}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq23-card-schemes}
+	\caption{\rqshorttext{customers-card-schemes} Card Schemes Distribution}
 	\label{fig:card-schemes}
 	\source
 \end{figure}
@@ -1509,8 +1510,8 @@ Analyzing onsite top-up frequency behavior at the festival reveals the distribut
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq24-topup-frequency}
-	\caption{Top-up Behavior Analysis}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq27-topup-frequency}
+	\caption{\rqshorttext{customers-top-up-frequency} Top-up Behavior Analysis}
 	\label{fig:top-up-behavior}
 	\source
 \end{figure}
@@ -1554,8 +1555,8 @@ Figure~\ref{fig:beverage-preferences}~shows the distribution of alcoholic and no
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{\ResultsDir/rq25-beverage-preferences}
-	\caption{Beverage Preferences Throughout the Day}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq28-beverage-preferences}
+	\caption{\rqshorttext{customers-drink-preferences} Beverage Preferences Throughout the Day}
 	\label{fig:beverage-preferences}
 	\source
 \end{figure}
@@ -1624,7 +1625,7 @@ The initial results are shown in the~\autoref{fig:common-combos-with-cups}~below
 		head to column names,
 		late after line= \\,
 		filter={\thecsvinputline<9}
-		]{\ResultsDir/rq26-product-combos-with-returnable.csv}{
+		]{\DataDir/rq29-product-combos-with-returnable.csv}{
 			product1=\producta,
 			product2=\productb,
 			combination_count=\combos,
@@ -1641,8 +1642,8 @@ The initial results are shown in the~\autoref{fig:common-combos-with-cups}~below
 	% space
 	\par\vspace*{0.5em}
 	% treemap
-	\includegraphics[width=\textwidth]{\ResultsDir/rq26-product-combos-with-returnable}
-	\caption{Most Common Product Combinations (Including Returnable Cups)}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq29-product-combos-with-returnable}
+	\caption{\rqshorttext{customers-common-combinations} Most Common Product Combinations with Cups}
 	\label{fig:common-combos-with-cups}
 	\source
 \end{figure}
@@ -1667,14 +1668,14 @@ To gain additional insights, the analysis was repeated while excluding returnabl
 		& \textbf{\color{white}Product A}
 		& \textbf{\color{white}Product B}
 		& \textbf{\color{white}Count}
-		& \textbf{\color{white}\%y~of~total}
+		& \textbf{\color{white}\%~of~total}
 		\\
 		\hline
 		\csvreader[
 		head to column names,
 		late after line= \\,
 		filter={\thecsvinputline<9}
-		]{\ResultsDir/rq26-product-combos-nonreturnable.csv}{
+		]{\DataDir/rq29-product-combos-nonreturnable.csv}{
 			product1=\producta,
 			product2=\productb,
 			combination_count=\combos,
@@ -1691,8 +1692,8 @@ To gain additional insights, the analysis was repeated while excluding returnabl
 	% space
 	\par\vspace*{0.5em}
 	% treemap
-	\includegraphics[width=\textwidth]{\ResultsDir/rq26-product-combos-nonreturnable}
-	\caption{Most Common Product Combinations (Exlucing Returnable Cups)}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq29-product-combos-nonreturnable}
+	\caption{\rqshorttext{customers-common-combinations} Most Common Product Combinations without Cups}
 	\label{fig:common-combos-without-cups}
 	\source
 \end{figure}

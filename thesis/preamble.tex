@@ -270,4 +270,9 @@
 	\hyperref[rq:#1]{\textbf{\csname rqlabel:\string#1\endcsname}}
 }
 
+% use a research question shortcut (RQ#) - non-hyperlinked
+\NewDocumentCommand{\rqshorttext}{m}{
+	\csname rqlabel:\string#1\endcsname\textbf{}
+}
+
 \renewcommand{\therqcounter}{\arabic{rqcounter}}
