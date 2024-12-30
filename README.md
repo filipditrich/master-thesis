@@ -10,7 +10,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/University-Unicorn%20University-darkblue" />
-    <img src="https://img.shields.io/badge/Supervisor-Mgr._Václav_Alt-white" />
+    <img src="https://img.shields.io/badge/Supervisor-Mgr._Václav_Alt,_Ph.D.-white" />
     <br/>
     <img src="https://img.shields.io/badge/Field-Software_Engineering_and_Big_Data-moccasin" />
 </p>
@@ -61,6 +61,13 @@
     </thead>
     <!-- progress-table-start -->
     <tbody>
+        <tr>
+            <td>16374</td>
+            <td>65.5</td>
+            <td>106</td>
+            <td>2024-12-30 10:56 PM</td>
+            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
+        </tr>
         <tr>
             <td>16321</td>
             <td>65.3</td>
