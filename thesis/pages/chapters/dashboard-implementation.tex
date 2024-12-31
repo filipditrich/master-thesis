@@ -1,8 +1,8 @@
 %%% Dashboard Implementation
 %%%%%%% Wording: ⏳
 %%%%%%% Styling: ⏳
-%%%%%%% References: ⏳
-%%%%% Grammar: ⏳
+%%%%%%% References: ✅
+%%%%% Grammar: ✅
 %%% --------------------------------------------------------------
 \chapter{Dashboard Implementation}
 \label{ch:dashboard-implementation}
@@ -40,11 +40,11 @@ While not intended for production deployment, the prototype successfully demonst
 	\begin{subsection}{Technology Selection}
 		\label{subsec:implementation-development-approach-technology}
 
-		The dashboard was build using Dash and Plotly, chosen primarily for their familiarity from prior personal experience in the academic field and their great capability for relatively fast data app prototyping\cite{plotly_dash_plotly_com}.
+		The dashboard was built using Dash and Plotly, chosen primarily for their familiarity from prior personal experience in the academic field and their great capability for relatively fast data app prototyping\cite{plotly_dash_plotly_com}.
 
 		The technology stack included:
 		\begin{itemize}
-			\item Dash \& Plotly\footnote{\url{https://dash.plotly.com/}} using Python for the core dashboard framework
+			\item Dash~\&~Plotly\footnote{\url{https://dash.plotly.com/}} using Python for the core dashboard framework
 			\item Dash Mantine Components\footnote{\url{https://www.dash-mantine-components.com}} for enhanced UI elements
 			\item PostgreSQL\footnote{\url{https://www.postgresql.org/}} for local data storage
 		\end{itemize}
@@ -56,7 +56,7 @@ While not intended for production deployment, the prototype successfully demonst
 	\begin{subsection}{Local Development Focus}
 		\label{subsec:implementation-development-approach-local}
 
-		The dashboard was developed exclusively for local environment, focusing on demonstrating analytical capabilities rather than production readiness.
+		The dashboard was developed exclusively for the local environment, focusing on demonstrating analytical capabilities rather than production readiness.
 
 		This decision was influenced by several factors:
 		\begin{itemize}
@@ -118,16 +118,16 @@ query_manager.registry.register_query(
 		This class has been the core of the dashboard's data management, allowing multiple approaches to data loading and caching strategies.
 
 		It allowed defining raw SQL queries with \texttt{QueryManager\.process\_sql\_query}, which safely handled parameter substitution and query formatting.
-		Or it could have loaded SQL query from an external file (due to the complexity of the query) and then executed it with parameters.
+		Or it could have loaded an SQL query from an external file (due to the complexity of the query) and then executed it with parameters.
 
 		On top of that, it allowed for defining default data loading strategies, such as loading data from a local CSV cache, which significantly sped up the development process.
-		More to this is described in the following section.
+		More of this is described in the following section.
 	\end{subsection}
 
 	\begin{subsection}{Dual Caching Strategy}
 		\label{subsec:implementation-core-architecture-caching}
 
-		For the purpose of optimizing the development process, the implementation utilizes two caching mechanisms that are complementary to one another.
+		To optimize the development process, the implementation uses two caching mechanisms that are complementary to one another.
 
 		\begin{subsubsection}{Query Result Caching}
 			\label{subsubsec:implementation-core-architecture-query-cache}
@@ -135,12 +135,12 @@ query_manager.registry.register_query(
 			Since the dashboard relies on several complex SQL queries to load data, it was crucial to optimize query execution during development.
 			Running these queries repeatedly during development significantly slowed down the development process.
 
-			Thus, a very simple file-based caching system was implemented to store query results as CSV files, preventing redundant database queries during development.
-			It, simply by defining a \texttt{default\_data} parameter in the \texttt{QueryDefinition} class, allowed to turn on the caching for specific queries which did not need to be reloaded every time.
+			Thus, a basic file-based caching system was implemented to store query results as CSV files, preventing redundant database queries during development.
+			It, simply by defining a \texttt{default\_data} parameter in the \texttt{QueryDefinition} class, allowed turning on the caching for specific queries which did not need to be reloaded every time.
 
-			The query execution handler shown in~\autoref{lst:dashboard-implementation-query-cache} below\footnote{
-				The implementation is rather a simplified pseudo-implementation, as the \texttt{execute\_query} method is more complex and contains additional logic for results formatting, database connection retries and error handling.
-			}, demonstrates the simple implementation of this caching strategy.
+			The query execution handler shown in the~\autoref{lst:dashboard-implementation-query-cache} below
+			\footnote{The implementation is rather a simplified pseudo-implementation, as the \texttt{execute\_query} method is more complex and contains additional logic for results formatting, database connection retries and error handling},
+			demonstrates the simple implementation of this caching strategy.
 
 			\begin{listing}[H]
 				\caption{Query Result Caching Implementation}
@@ -178,7 +178,8 @@ def execute_query(self, query_name: str, parameters: Dict[str, Any], or_query_de
 			\label{subsubsec:implementation-core-architecture-callback-cache}
 
 			Since the dashboard, when not using cached data, relied on long-running data processing operations, it was crucial to use Dash's background callbacks feature.
-			These background callbacks run in a separate background proceses in a queue, allowing the main Dash application to remain responsive while the callback processes the data and then returns the result to the main application\cite{plotly_dash_plotly_com_background_callbacks}.
+			These background callbacks run in a separate background process in a queue,
+			allowing the main Dash application to remain responsive while the callback processes the data and then returns the result to the main application\cite{plotly_dash_plotly_com_background_callbacks}.
 
 			Dash provides two options for background callback backends:
 
@@ -188,7 +189,7 @@ def execute_query(self, query_name: str, parameters: Dict[str, Any], or_query_de
 			\textbf{Celery}: Runs the callback logic in a Celery worker\cite{celery_userguide_workers} and returns results to the Dash app through a Celery broker like Redis.
 			This is recommended for production as it queues the background callbacks, running them one-by-one in the order that they were received by dedicated Celery worker(s).
 
-			For our development purposes, we used the DiskCache backend, as it was easier to set up and use for local development:
+			For our development, we used the DiskCache backend, as it was easier to set up and use for local development:
 
 			\begin{listing}[H]
 				\caption{DiskCache Background Callback Manager Setup}
@@ -279,16 +280,15 @@ def register_callback(self, output, inputs, prevent_initial_call=False, backgrou
 
 		The implementation addressed several development needs:
 		\begin{itemize}
-			\item \textbf{Async/Await Pattern Support}: The system allowed to use familiar async/await syntax in our Python callbacks, maintaining consistency with the query execution manager which was already implemented using async
+			\item \textbf{Async/Await Pattern Support}: The system allowed using familiar async/await syntax in our Python callbacks, maintaining consistency with the query execution manager which was already implemented using async
 			patterns.
 			\item \textbf{Unified Error Handling}: Instead of implementing error handling in each callback separately, the decorator provided centralized, but simple, error management and logging, reducing code duplication and ensuring
 			consistent error handling across all callbacks.
-			\item \textbf{Flexible Processing Modes}: The system seamlessly supported both synchronous and asynchronous operations through a single interface, automatically managing asyncio\footnote{
-				asyncio is a Python library to write concurrent code using the async/await syntax\cite{psf_library_asyncio}.
-			} event loops when needed.
+			\item \textbf{Flexible Processing Modes}: The system seamlessly supported both synchronous and asynchronous operations through a single interface, automatically managing asyncio event loops
+			\footnote{Asyncio is a Python library to write concurrent code using the async/await syntax\cite{psf_library_asyncio}} when needed.
 		\end{itemize}
 
-		This unified approach simplified, the possibly complex and boiler-plated, callback implementations, as shown in~\autoref{lst:dashboard-implementation-callback-usage}:
+		This unified approach simplified the possibly complex and boiler-plated, callback implementations, as shown in~\autoref{lst:dashboard-implementation-callback-usage}:
 
 		\begin{listing}[H]
 			\caption{Callback Registration Example}
@@ -324,7 +324,7 @@ async def update_sankey_diagram(self, start_date, end_date):
 		\begin{itemize}
 			\item \textbf{Cashflow and Revenue Analysis},
 			\item \textbf{Performance Analysis},
-			\item \textbf{Beverage Consumption Analysis}
+			\item \textbf{Beverage Consumption Analysis},
 			\item and \textbf{Customer Analysis}.
 		\end{itemize}
 
@@ -376,9 +376,8 @@ background_callback_manager = dash.DiskcacheManager(
 				\label{lst:dashboard-implementation-cache-initial}
 			\end{listing}
 
-			However, since our dashboard had several callbacks registered, and many having the same inputs, because of the modular structure of the dashboard\footnote{
-				Each section of the dashboard had its own callbacks, but many of them shared the same inputs, such as date range filters.
-			}, this approach led to cache key collisions.
+			However, since our dashboard had several callbacks registered, and many had the same inputs,
+			due to the modular structure of the dashboard\footnote{Each dashboard section had its own callbacks; but many of them shared the same inputs, such as date range filters}, this approach led to cache key collisions.
 
 			\begin{infobox}{Why Cache Key Collisions Occurred}
 				\textbf{Cache Key Collisions} occurred because the DiskcacheManager used the same cache key for callbacks with identical inputs.
@@ -390,7 +389,7 @@ background_callback_manager = dash.DiskcacheManager(
 		\begin{subsubsection}{First Solution Attempt}
 			\label{subsubsec:implementation-technical-challenges-caching-first}
 
-			To address cache key collisions, we tried to implement unique~\textt{DiskacheManager} instance for each unique callback, based on the it's~\texttt{callback\_id}:
+			To address cache key collisions, we tried to implement a unique~\textt{DiskacheManager} instance for each unique callback, based on it's~\texttt{callback\_id}:
 
 			\begin{listing}[H]
 				\caption{Unique Cache Managers Per Callback}
@@ -414,15 +413,14 @@ def create_callback_manager(callback_id):
 			\label{subsubsec:implementation-technical-challenges-caching-scaling}
 
 			As the number of callbacks increased, we encountered SQLite concurrent connection issues.
-			The local SQLite database used by DiskcacheManager\footnote{\url{https://grantjenks.com/docs/diskcache/}} couldn't handle multiple concurrent write connections effectively, causing the dashboard to crash during loading.
-			It was caused because each callback had its own DiskcacheManager instance, which created a separate SQLite connection for each callback and all of them were trying to write to the same SQLite database file.
+			The local SQLite database used by DiskcacheManager\footnote{\url{https://grantjenks.com/docs/diskcache/}} could not handle multiple concurrent write connections effectively, causing the dashboard to crash during loading.
+			It was caused because each callback had its own DiskcacheManager instance, which created a separate SQLite connection for each callback, and all of them were trying to write to the same SQLite database file.
 
 			A more robust solution, recommended for production setup in Dash documentation – Celery~\&~Redis
-			\footnote{
-				Celery is a distributed task queue that allows for background task execution, while Redis is an in-memory data structure store used as a database, cache, and message broker\cite{reintech_blog_combining_celery_redis_caching_task_queuing}\cite{celery_getting_started_introduction}\cite{redis_latest}.
-			}, was considered as a solution to this issue.
+			\footnote{Celery is a distributed task queue that allows for background task execution, while Redis is an in-memory data structure store used as a database, cache, and message broker\cite{reintech_blog_combining_celery_redis_caching_task_queuing}\cite{celery_getting_started_introduction}\cite{redis_latest}},
+			was considered as a solution to this issue.
 
-			Such a solution looked promising, since it would allow for each callback to define \texttt{cache\_by} parameter.
+			Such a solution looked promising since it would allow for each callback to define \texttt{cache\_by} parameter.
 			This would be unique for each callback, and then the Celery worker would process the tasks in the order they were received, effectively preventing concurrent SQLite connection issues.
 
 			Due to the complexity of the setup, especially the Celery, and relatively a lack of instructions and functional examples, it was not easy to make it work in the local development environment.
@@ -431,7 +429,7 @@ def create_callback_manager(callback_id):
 			The Celery worker was not registering the tasks from the Dash app, despite following all available guides and examples.
 			This resulted in no tasks being processed by the Celery worker, and the dashboard was not able to load any data.
 
-			Eventually, after an unsuccessful 12–hour overnight journey, we decided to look for a simpler solution as a result of the frustration, lack of progress and time constraints.
+			Eventually, after an unsuccessful 12–hour overnight journey, we decided to look for a simpler solution as a result of the frustration, lack of progress, and time constraints.
 
 			Then a simple and dumb, yet effective solution was found, which was to create a separate cache directory for each callback, effectively isolating the SQLite database for each callback:
 
@@ -483,6 +481,7 @@ def create_isolated_cache_manager(callback_id):
 
 		The financial section gives an immediate overview of money flows through the festival system.
 		Three key metrics at the top show the total revenue (\bfmtczk{1155162}), available balances (\bfmtczk{334450}), and total chip top-ups (\bfmtczk{14520973}).
+		A visual representation of this section is shown in~\autoref{fig:dashboard-cashflow-analysis}.
 
 		\begin{figure}[h]
 			\centering
@@ -503,6 +502,7 @@ def create_isolated_cache_manager(callback_id):
 
 		The performance section helps to understand operational dynamics throughout the festival.
 		Key metrics prominently display the festival's scale: \bfmtnum{10009}~active customers, \bfmtnum{141378}~processed transactions, and a peak volume of~\bfmtnum{8986}~transactions per hour.
+		A visual representation of this section is shown in~\autoref{fig:dashboard-performance-analysis}.
 
 		\begin{figure}[h]
 			\centering
@@ -524,6 +524,7 @@ def create_isolated_cache_manager(callback_id):
 
 		The beverage section tracks consumption patterns and returnable cup management.
 		At a glance, a total consumption (\bfmtnum{29343}~liters), returnable cups issued (\bfmtnum{22045}), and the return rate of~\bfmtnump[2]{78.4}\% can immediately be seen.
+		A visual representation of this section is shown in~\autoref{fig:dashboard-beverage-analysis}.
 
 		\begin{figure}[h]
 			\centering
@@ -543,13 +544,13 @@ def create_isolated_cache_manager(callback_id):
 		While currently still in development, the customer analysis section aims to provide insights into attendee behavior patterns.
 		The planned implementation focuses on four key areas of visitor analysis.
 
-		\begin{figure}[h]
-			\centering
-			\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-customer-section}
-			\caption{Customer Analysis Section (Implementation in Progress)}
-			\source
-			\label{fig:dashboard-customer-analysis}
-		\end{figure}
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-customer-section}
+%	\caption{Customer Analysis Section (Implementation in Progress)}
+%	\source
+%	\label{fig:dashboard-customer-analysis}
+%\end{figure}
 
 		The attendance timeline will show how \bfmtnum{10009}~unique visitors were distributed across the festival, with Day~3 seeing peak attendance of~\bfmtnum{8066}~visitors.
 		Customer segmentation will break down the \bfmtnump[2]{89.66}\%~online ticket purchasers and track platform preferences, including the \bfmtnump[2]{40.69}\%~mobile app usage rate.
@@ -578,9 +579,8 @@ def create_isolated_cache_manager(callback_id):
 		Significant architectural changes would be needed to enable external access and proper production deployment with a more robust database solution and data layer separation.
 
 		\textbf{Performance Optimization}: SQL queries would require optimization for larger datasets.
-		Implementation of materialized views\footnote{
-			Materialized views are essentially database tables that store the results of a query and can be used to improve query performance\cite{tpgdg_current_rules_materializedviews}.
-		} and better query planning would improve response times with production-scale data.
+		Implementation of materialized views and better query planning would improve response times with production-scale data.
+		\footnote{Materialized views are essentially database tables that store the results of a query and can be used to improve query performance\cite{tpgdg_current_rules_materializedviews}}
 
 		\textbf{Caching Solution}: A production-grade caching system using Redis would replace the current development-focused implementation.
 		This would improve dashboard responsiveness and enable handling multiple concurrent users.
