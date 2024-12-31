@@ -61,7 +61,7 @@
     </thead>
     <!-- progress-table-start -->
     <tbody>
-       <tr>
+        <tr>
             <td>16737</td>
             <td>66.9</td>
             <td>107</td>
