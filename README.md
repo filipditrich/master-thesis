@@ -69,34 +69,6 @@
             <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
         </tr>
         <tr>
-            <td>16605</td>
-            <td>66.4</td>
-            <td>106</td>
-            <td>2024-12-30 11:26 PM</td>
-            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
-        </tr>
-        <tr>
-            <td>16374</td>
-            <td>65.5</td>
-            <td>106</td>
-            <td>2024-12-30 10:56 PM</td>
-            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
-        </tr>
-        <tr>
-            <td>16321</td>
-            <td>65.3</td>
-            <td>106</td>
-            <td>2024-12-30 10:49 PM</td>
-            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
-        </tr>
-        <tr>
-            <td>15830</td>
-            <td>63.3</td>
-            <td>104</td>
-            <td>2024-12-30 10:12 PM</td>
-            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
-        </tr>
-        <tr>
             <td>14964</td>
             <td>59.9</td>
             <td>102</td>

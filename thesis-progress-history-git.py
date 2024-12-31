@@ -100,9 +100,38 @@ def main():
         </tr>
 """
 
-	# Update README
+	# Extract current stats from top row
 	with open(readme_path, 'r') as f:
 		content = f.read()
+
+	current_stats = { }
+	table_pattern = r'<!-- progress-table-start -->.*?<!-- progress-table-end -->'
+	table_match = re.search(table_pattern, content, re.DOTALL)
+	if table_match:
+		row_pattern = r'<tr>\s*<td>(.*?)</td>\s*<td>(.*?)</td>\s*<td>(.*?)</td>\s*<td>(.*?)</td>\s*<td>.*?</td>\s*</tr>'
+		first_row = re.search(row_pattern, table_match.group(0))
+		if first_row:
+			current_stats = {
+				'word_count': first_row.group(1),
+				'estimated_pages': first_row.group(2),
+				'actual_pages': first_row.group(3)
+			}
+		else:
+			current_stats = extract_stats(content)
+	else:
+		current_stats = extract_stats(content)
+
+	# Use current stats as the most recent entry
+	if current_stats and all(key in current_stats for key in ['word_count', 'estimated_pages', 'actual_pages']):
+		current_time = datetime.now().strftime("%Y-%m-%d %I:%M %p")
+		historical_data.append(
+			{
+				'date': datetime.now().isoformat(),
+				'hash': 'main',
+				'pdf_link': get_pdf_link('main'),
+				**current_stats
+			}
+		)
 
 	# Replace table content
 	table_pattern = r'<!-- progress-table-start -->.*?<!-- progress-table-end -->'
