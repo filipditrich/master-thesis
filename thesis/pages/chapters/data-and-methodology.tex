@@ -133,7 +133,7 @@ For the usage, a simple SQL function was created to define the anonymization con
 			]'::JSONB
 		);
 	\end{minted}
-	\caption{Anonymization configuration example.}
+	\caption{Anonymization configuration example}
 	\label{lst:anonymization-configuration}
 \end{listing}
 
@@ -214,6 +214,7 @@ Important information about products is their supported categorization that will
 	\end{tabularx}
 	\caption{Product categories}
 	\label{tab:product-categories}
+	\source
 \end{table}
 
 \textbf{Event Program} (approx.\ 140 rows): Event program schedule with the information about the stages, performers, times and other related information.
@@ -289,8 +290,9 @@ This function was constructed in a way, where it supports time-based filtering a
 		EO\_REQ\_SOURCE                      & Source of the order request (\eg~iOS, Android, Web).         \\
 		\hline
 	\end{tabularx}
-	\caption{Customer chips function return table.}
+	\caption{Customer chips function return table}
 	\label{tab:chip-customers-columns}
+	\source
 \end{table}
 
 For further understanding, an enumeration of chip types should be mentioned; that can be seen in~\autoref{tab:chip-types}.
@@ -313,6 +315,7 @@ For further understanding, an enumeration of chip types should be mentioned; tha
 	\end{tabularx}
 	\caption{Chip types enumeration}
 	\label{tab:chip-types}
+	\source
 \end{table}
 
 

@@ -488,6 +488,7 @@ def create_isolated_cache_manager(callback_id):
 			\centering
 			\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-cashflow-section}
 			\caption{Cashflow and Revenue Analysis Section}
+			\source
 			\label{fig:dashboard-cashflow-analysis}
 		\end{figure}
 
@@ -507,6 +508,7 @@ def create_isolated_cache_manager(callback_id):
 			\centering
 			\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-performance-section}
 			\caption{Performance Analysis Section}
+			\source
 			\label{fig:dashboard-performance-analysis}
 		\end{figure}
 
@@ -527,6 +529,7 @@ def create_isolated_cache_manager(callback_id):
 			\centering
 			\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-beverage-section}
 			\caption{Beverage Consumption Analysis Section}
+			\source
 			\label{fig:dashboard-beverage-analysis}
 		\end{figure}
 
@@ -544,6 +547,7 @@ def create_isolated_cache_manager(callback_id):
 			\centering
 			\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-customer-section}
 			\caption{Customer Analysis Section (Implementation in Progress)}
+			\source
 			\label{fig:dashboard-customer-analysis}
 		\end{figure}
 
@@ -571,7 +575,7 @@ def create_isolated_cache_manager(callback_id):
 		From a technical perspective, several key improvements would be needed for production deployment:
 
 		\textbf{Infrastructure and Deployment}: The current implementation is limited to local setup with a local database.
-		Significant architectural changes would be needed to enable external access and proper production deployment.
+		Significant architectural changes would be needed to enable external access and proper production deployment with a more robust database solution and data layer separation.
 
 		\textbf{Performance Optimization}: SQL queries would require optimization for larger datasets.
 		Implementation of materialized views\footnote{
