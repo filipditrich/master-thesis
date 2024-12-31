@@ -43,8 +43,10 @@ So a data preprocessing Python script was written to convert such invalid column
 \label{subsec:data-methodology-local-database-setup}
 Then a step to set up the local PostgreSQL database was needed.
 Due to the nature of this study, we wanted to keep the setup as simple as possible, so we used the default PostgreSQL installation without using any special environment using Docker or similar.
-However, during this process I made a mistake and forgot that a PostgreSQL with PostGIS extension was needed.
-So it required to re-set up the database with the PostGIS extension.
+However, during this process I made a mistake and forgot that a PostgreSQL with PostGIS\footnote{
+	PostGIS is a spatial database extender for PostgreSQL object-relational database\cite{postgis_postgis_net}.
+} extension was needed.
+This, unfortunately, required to re-set up the database with the PostGIS extension.
 
 The next step was to import the data from the CSV files to the local database.
 For further database handling, analysis and visualization, we used DataSpell, a Python IDE with a built-in database explorer and data visualization tools.
@@ -105,6 +107,11 @@ The Data Anonymization process was necessary due to requirements initially set b
 This step was performed for the already imported data in the local database.
 It required identifying the sensitive data and replacing them with anonymized values.
 
+\begin{infobox}{What is Data Anonymization?}
+	\textbf{Data anonymization} involves removing or encrypting sensitive data, including personally identifiable information (PII), protected health information (PHI), and other non-personal commercial sensitive data such as revenue or IP, from a data set.
+	Its intent is to protect data subjects' privacy and confidentiality, while still allowing data to be retained and used\cite{hd_data_anonymization_techniques}.
+\end{infobox}
+
 In this case, the most sensitive data were:
 \begin{itemize}
 	\item \textbf{Vendor names}: Since it included the legal names of the vendors, it was necessary to anonymize them.
@@ -122,12 +129,12 @@ This was particularly useful during the analysis phase, where the results would 
 It was done on the database level, where two new internal tables were introduced~–~\textit{public.anonymization\_config} and \textit{public.original\_values}.
 
 Where the \textit{public.anonymization\_config} table held the configuration about which schema, table and column should be anonymized and how.
-For the usage, a simple SQL function was created to define the anonymization configuration in a simple JSON format, that looked like in the~\fullref{lst:anonymization-configuration}.
+For the usage, a simple SQL function was created to define the anonymization configuration in a simple JSON format that looked like in the~\autoref{lst:anonymization-configuration}.
 
-\begin{listing}[H]
+\begin{listing}[h]
 	\begin{minted}{sql}
 		SELECT configure_anonymization('[
-			{ "table": "schema.seller", "columns": ["legal_name", "name_int", "name_pub"] },
+			{ "table": "schema.seller", "columns": ["legal_name", "name"] },
 			...
 			{ "table": "schema.user_account", "columns": ["email", "last_name", "first_name", "phone"] },
 			]'::JSONB
@@ -194,7 +201,7 @@ This data enables our analysis to correctly handle disposable credit balances, m
 
 Important information about products is their supported categorization that will later be used for the sales analysis and can be seen in~\autoref{tab:product-categories}.
 
-\begin{table}[H]
+\begin{table}[h]
 	\centering
 	\footnotesize
 	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}l|}
@@ -236,9 +243,9 @@ It also benefited from the transaction commission calculation function mentioned
 
 \textbf{Chip Customers}: Probably the most complex function that returns the customers at the event.
 Since the transactional data is architected using Event Sourcing, the customer information is not directly available and needs to be compiled from the transactional history.
-This function was constructed in a way, where it supports time-based filtering and provides extensive insights into the customers, which is shown in~\autoref{tab:chip-customers-columns}~below:
+This function was constructed in a way, where it supports time-based filtering and provides extensive insights into the customers, which is shown in~\autoref{tab:chip-customers-columns}.
 
-\begin{table}[H]
+\begin{table}[h]
 	\centering
 	\footnotesize
 	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}l|}
@@ -297,7 +304,7 @@ This function was constructed in a way, where it supports time-based filtering a
 
 For further understanding, an enumeration of chip types should be mentioned; that can be seen in~\autoref{tab:chip-types}.
 
-\begin{table}[H]
+\begin{table}[h]
 	\centering
 	\footnotesize
 	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}l|}
@@ -325,11 +332,11 @@ For further understanding, an enumeration of chip types should be mentioned; tha
 As mentioned earlier, this process utilized a variety of tools and technologies to handle the data and prepare for the analysis.
 These main tools and technologies included:
 \begin{itemize}
-	\item \textbf{PostgreSQL}: An open-source relational database management system used to store and query the data.
-	\item \textbf{PostGIS}: An extension of PostgreSQL that supports geospatial data, enabling spatial analysis and visualization.
-	\item \textbf{DataSpell}: An integrated development environment (IDE) for data science and analytics, used for database exploration and data visualization.
-	\item \textbf{Python}: Used for data preprocessing, querying, and analysis, along with libraries like Pandas for data manipulation.
-	\item \textbf{Claude AI}: Utilized for extracting data from unstructured sources (e.g., program schedules) and automating repetitive tasks like data entry.
+	\item \textbf{PostgreSQL}: An open-source relational database management system used to store and query the data\footnote{\url{https://www.postgresql.org/}}.
+	\item \textbf{PostGIS}: An extension of PostgreSQL that supports geospatial data, enabling spatial analysis and visualization\footnote{\url{https://postgis.net/}}.
+	\item \textbf{DataSpell}: An integrated development environment (IDE) for data science and analytics, used for database exploration and data visualization\footnote{\url{https://www.jetbrains.com/dataspell/}}.
+	\item \textbf{Python}: Used for data preprocessing, querying, and analysis, along with libraries like Pandas and Matplotlib for data manipulation\footnote{\url{https://www.python.org/}, \url{https://pandas.pydata.org/}, \url{https://matplotlib.org/}}.
+	\item \textbf{Claude AI}: Utilized for extracting data from unstructured sources (e.g., program schedules) and automating repetitive tasks like data entry\footnote{\url{https://claude.ai/}}.
 \end{itemize}
 
 Using such tools during this process provided a convenient environment for data handling and processing, initial analysis and ensuring the accuracy and efficiency for further analysis and results presentation.
@@ -344,9 +351,11 @@ Some key challenges, such as missing beverage volume information, data anonymiza
 In the end, the use of SQL views for data enrichment and functions for further data processing ensured efficient querying and analysis.
 And hopefully laid the groundwork for answering the research questions and achieving the study's goals, as detailed in the later chapters.
 
-For better understanding and visualization of this initial comprehensive Knowledge Data Discover process, a simplified diagram was created; that can be seen in~\autoref{fig:data-methodology-diagram}.
+For better understanding and visualization of this initial comprehensive Knowledge Data Discover process\footnote{
+	Knowledge Data Discovery (KDD) is the process of discovering useful knowledge from a collection of data\cite{uord_kdd_1_kdd}.
+}, a simplified diagram, which can be seen in the~\autoref{fig:data-methodology-diagram}, was created to illustrate the workflow of the process.
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{\ThesisFigures/diagrams/kdd-workflow}
 	\caption{Knowledge Data Discovery workflow diagram}

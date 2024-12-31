@@ -170,8 +170,8 @@ def execute_query(self, query_name: str, parameters: Dict[str, Any], or_query_de
 
 			It firstly generates a unique query key based on the query name and its parameters in a form of hash, which then later was used as a directory and file path to the cached CSV data.
 
-			Then if the caching is enabled for the query, it tries to read the CSV file from the cache directory and return it as a result.
-			Otherwise, it exectures the DB query directly as usual and then saves the result to the cache directory for future use.
+			Then, if the caching is enabled for the query, it tries to read the CSV file from the cache directory and return it as a result.
+			Otherwise, it executes the DB query directly as usual and then saves the result to the cache directory for future use.
 		\end{subsubsection}
 
 		\begin{subsubsection}{Background Callback Caching}
@@ -390,7 +390,7 @@ background_callback_manager = dash.DiskcacheManager(
 		\begin{subsubsection}{First Solution Attempt}
 			\label{subsubsec:implementation-technical-challenges-caching-first}
 
-			To address cache key collisions, we tried to implmenet unique \textt{DiskacheManager} instance for each unique callback, based on the it's \texttt{callback_id}:
+			To address cache key collisions, we tried to implement unique~\textt{DiskacheManager} instance for each unique callback, based on the it's~\texttt{callback\_id}:
 
 			\begin{listing}[H]
 				\caption{Unique Cache Managers Per Callback}
@@ -414,12 +414,12 @@ def create_callback_manager(callback_id):
 			\label{subsubsec:implementation-technical-challenges-caching-scaling}
 
 			As the number of callbacks increased, we encountered SQLite concurrent connection issues.
-			The local SQLite database used by DiskcacheManager\cite{gj_diskcache} couldn't handle multiple concurrent write connections effectively, causing the dashboard to crash during loading.
+			The local SQLite database used by DiskcacheManager\footnote{\url{https://grantjenks.com/docs/diskcache/}} couldn't handle multiple concurrent write connections effectively, causing the dashboard to crash during loading.
 			It was caused because each callback had its own DiskcacheManager instance, which created a separate SQLite connection for each callback and all of them were trying to write to the same SQLite database file.
 
-			A more robust solution, recommended for production setup in Dash documentation – Celery\cite{celery_getting_started_introduction}~\&~Redis\cite{redis_latest}
+			A more robust solution, recommended for production setup in Dash documentation – Celery~\&~Redis
 			\footnote{
-				Celery is a distributed task queue that allows for background task execution, while Redis is an in-memory data structure store used as a database, cache, and message broker\cite{reintech_blog_combining_celery_redis_caching_task_queuing}.
+				Celery is a distributed task queue that allows for background task execution, while Redis is an in-memory data structure store used as a database, cache, and message broker\cite{reintech_blog_combining_celery_redis_caching_task_queuing}\cite{celery_getting_started_introduction}\cite{redis_latest}.
 			}, was considered as a solution to this issue.
 
 			Such a solution looked promising, since it would allow for each callback to define \texttt{cache\_by} parameter.
@@ -484,7 +484,7 @@ def create_isolated_cache_manager(callback_id):
 		The financial section gives an immediate overview of money flows through the festival system.
 		Three key metrics at the top show the total revenue (\bfmtczk{1155162}), available balances (\bfmtczk{334450}), and total chip top-ups (\bfmtczk{14520973}).
 
-		\begin{figure}[H]
+		\begin{figure}[h]
 			\centering
 			\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-cashflow-section}
 			\caption{Cashflow and Revenue Analysis Section}
@@ -504,7 +504,7 @@ def create_isolated_cache_manager(callback_id):
 		The performance section helps to understand operational dynamics throughout the festival.
 		Key metrics prominently display the festival's scale: \bfmtnum{10009}~active customers, \bfmtnum{141378}~processed transactions, and a peak volume of~\bfmtnum{8986}~transactions per hour.
 
-		\begin{figure}[H]
+		\begin{figure}[h]
 			\centering
 			\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-performance-section}
 			\caption{Performance Analysis Section}
@@ -525,7 +525,7 @@ def create_isolated_cache_manager(callback_id):
 		The beverage section tracks consumption patterns and returnable cup management.
 		At a glance, a total consumption (\bfmtnum{29343}~liters), returnable cups issued (\bfmtnum{22045}), and the return rate of~\bfmtnump[2]{78.4}\% can immediately be seen.
 
-		\begin{figure}[H]
+		\begin{figure}[h]
 			\centering
 			\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-beverage-section}
 			\caption{Beverage Consumption Analysis Section}
@@ -543,7 +543,7 @@ def create_isolated_cache_manager(callback_id):
 		While currently still in development, the customer analysis section aims to provide insights into attendee behavior patterns.
 		The planned implementation focuses on four key areas of visitor analysis.
 
-		\begin{figure}[H]
+		\begin{figure}[h]
 			\centering
 			\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-customer-section}
 			\caption{Customer Analysis Section (Implementation in Progress)}
