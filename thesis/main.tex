@@ -204,40 +204,40 @@
 	\include{pages/acknowledgements}
 %%% ✅ first page
 	\include{pages/firstpage}
-%%% ⏳abstract % TODO: check grammar and styling
+%%% ⏳abstract
 	\include{pages/abstract}
-%%% table of contents
+%%% ✅ table of contents
 	\newpage
 	\pagestyle{plain}
 	\tableofcontents
-%%% chapters
+%%% ⏳ chapters
 	% ⏳ chapter - introduction
 	\input{pages/chapters/introduction}
 	% ⏳ chapter - methodology
 	\input{pages/chapters/data-and-methodology}
-	% chapter - data analysis and results
+	% ⏳ chapter - data analysis and results
 	\input{pages/chapters/data-analysis-and-results}
 	% ⏳ chapter - implementation of the analytical dashboard
 	\input{pages/chapters/dashboard-implementation}
 	% ⏳ chapter - conclusion
 	\input{pages/chapters/conclusion}
-%%% bibliography
+%%% ✅ bibliography
 	\begin{flushleft}
 		\bibliography{/Users/filipditrich/University/master_thesis/thesis/main,/Users/filipditrich/University/master_thesis/thesis/auto}
 	\end{flushleft}
-%%% list of figures
+%%% ✅ list of figures
 	\listoffigures
 	\textit{Note: Unless stated otherwise, all figures are the author's rendition.}
-%%% list of tables
+%%% ✅ list of tables
 	\listoftables
 	\textit{Note: Unless stated otherwise, all tables are the author's rendition.}
-%%% list of charts
+%%% ✅ list of charts
 	\listofcharts
 	\textit{Note: Unless stated otherwise, all charts are the author's rendition.}
-%%% list of source codes
+%%% ✅ list of source codes
 	\listoflistings
-%%% appendix
+%%% ⏳ appendix
 	\input{pages/appendix}
-%%% extended summary
+%%% ⏳ extended summary
 	\addtocontents{toc}{\protect\contentsline{chapter}{Extended Summary}{}{}}
 \end{document}

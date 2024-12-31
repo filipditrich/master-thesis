@@ -1,8 +1,8 @@
 %%% Data Analysis and Results
 %%%%%%% Wording: ⏳
 %%%%%%% Styling: ⏳
-%%%%%%% References: ⏳
-%%%%% Grammar: ⏳
+%%%%%%% References: ✅
+%%%%% Grammar: ✅
 %%% --------------------------------------------------------------
 \chapter{Data Analysis and Results}
 \label{ch:data-analysis-and-results}
@@ -12,8 +12,8 @@ The goal is to address the research questions outlined earlier, with a focus on 
 
 The chapter is divided into several sections corresponding to key analytical areas:\\
 \begin{enumerate}
-	\item \fullref{sec:analysis-cashflow-and-revenue-sources},
-	\item \fullref{sec:analysis-performance-indicators},
+	\item \fullref{sec:analysis-cashflow-and-revenue-sources}
+	\item \fullref{sec:analysis-performance-indicators}
 	\item \fullref{sec:analysis-beverage-consumption},
 	\item and~\fullref{sec:analysis-customers}
 \end{enumerate}
@@ -28,12 +28,12 @@ Each section focuses on a different aspect of the data analysis trying to answer
 \label{sec:analysis-cashflow-and-revenue-sources}
 
 This section provides a comprehensive view of the festival's financial performance and cash flows.
-It should answer critical questions about how finances were funded into the system, how were they processed, and what were the final outcomes.
+It should answer critical questions about how finances were funded into the system, how they were processed, and what were the outcomes.
 
 For this analysis, four questions were previously formulated.
 However, they were reordered to better fit the narrative of the analysis and logical flow of the chapter.
 
-In the end, this section should provide a clear picture of the financial flows during the event and easy understanding of the generated revenue from various sources.
+In the end, this section should provide a clear picture of the financial flows during the event and an easy understanding of the generated revenue from various sources.
 
 %%% Cashflow / Chip Top-Up Analysis
 %%% --------------------------------------------------------------
@@ -44,7 +44,7 @@ In the end, this section should provide a clear picture of the financial flows d
 \makerqbox{cashflow-top-up-balance}
 
 Attendees could top up their chip balances via online prepayments or on-site using cash or card.
-Additionally, the system allows to top-up~\enquote{artificial} credit for VIP-issued chips which is also a mean of funding the system.
+Additionally, the system allows top-up~\enquote{artificial} credit for VIP-issued chips, which is also a mean of funding the system.
 However, these VIP credits are later not refundable, but this will be discussed in the next section.
 
 This subsection quantifies these methods, highlighting their respective contributions to the overall top-up total.
@@ -57,6 +57,7 @@ When looking at the grouping by payment methods, the results in~\autoref{chart:t
 \begin{chart}[h]
 	\centering
 	\small
+	% @formatter:off
 	\begin{tabularx}{0.95\textwidth}{
 		|>{\columncolor{unicorn_blue!5}}X
 		|>{\columncolor{unicorn_blue!5}}r
@@ -68,29 +69,29 @@ When looking at the grouping by payment methods, the results in~\autoref{chart:t
 		& \textbf{\color{white}Total Value (CZK)} \\
 		\hline
 		\hline
-		\colorindicator{1}Card terminal     & \fmtnum{8486}   & \fmtczk{7264503}   \\
-		\colorindicator{2}Cash              & \fmtnum{7561}   & \fmtczk{5782570}   \\
-		\colorindicator{3}Online pre top-up & \fmtnum{1634}   & \fmtczk{1436400}   \\
-		\colorindicator{4}VIP issued        & \fmtnum{23}     & \fmtczk{37500}     \\
+		\colorindicator{1}Card terminal & \fmtnum{8486}& \fmtczk{7264503}   \\
+		\colorindicator{2}Cash & \fmtnum{7561}& \fmtczk{5782570}   \\
+		\colorindicator{3}Online pre-top-up & \fmtnum{1634}& \fmtczk{1436400}   \\
+		\colorindicator{4}VIP issued & \fmtnum{23}& \fmtczk{37500}     \\
 		\hline
 		\hline
 		\rowcolor{unicorn_blue!10}
-		\textbf{Total}                      & \bfmtnum{17704} & \bfmtczk{14520973} \\
+		\textbf{Total} & \bfmtnum{17704}& \bfmtczk{14520973} \\
 		\hline
 	\end{tabularx}
-
+	% @formatter:on
 	\includegraphics[width=\textwidth]{\ChartsDir/rq2-topup-methods}
 	\caption{\rqshorttext{cashflow-top-up-balance} Top-Up Transactions by Payment Method}
 	\label{chart:top-up-transactions-by-payment-method}
 	\source
 \end{chart}
 
-Thanks to the results, it is clear how many funds did the system receive and by what means.
+Thanks to the results, it is clear how many funds the system received and by what means.
 
 \begin{keytakeaways}
 	\begin{itemize}
 		\item The total top-up amount was~\bfmtczk{14520973}.
-		\item The most used payment method was card terminal at the event with 50\% of all top-ups.
+		\item The most used payment method was the card terminal at the event with 50\% of all top-ups.
 		\item Only around 10\% of the top-ups were done online.
 	\end{itemize}
 \end{keytakeaways}
@@ -111,8 +112,8 @@ And for better understanding, the sales were also grouped by the product categor
 The results show that the total sales of the event were~\bfmtczk{11711807} with the organizer's sales being~\bfmtczk{8240264} and the external vendors' sales being~\bfmtczk{3471543}.
 
 The organizer, most importantly, sold all the beer beverages and most of the non-alcoholic and alcoholic (spirits) beverages.
-Whereas the external vendors sold mainly food, wine, beverages and other uncategorized products.
-This can be seen in~\autoref{chart:sales-organizer-vs-vendors} below.
+Whereas the external vendors sold mainly the food, wine, beverages, and other uncategorized products.
+This can be seen in the~\autoref{chart:sales-organizer-vs-vendors} below.
 
 \begin{chart}[h]
 	\centering
@@ -122,13 +123,13 @@ This can be seen in~\autoref{chart:sales-organizer-vs-vendors} below.
 	\source
 \end{chart}
 
-The organizer also sold not so little of uncategorized products, which after further investigation turned out to be ticket sales at the event amounting to~\bfmtczk{684700}.
+The organizer also sold not so few of the uncategorized products, which after further investigation turned out to be ticket sales at the event amounting to~\bfmtczk{684700}.
 
 In total, the organizer direct sales were \textbf{70\%} of the total sales, which is a significant portion, and thus the organizer itself has even bigger influence on the event's financial performance.
 
 \begin{keytakeaways}
 	\begin{itemize}
-		\item Total sales of the event were~\bfmtczk{11711807}, where organizer sales were~\textbf{70\%} of the total.
+		\item Total sales of the event were~\bfmtczk{11711807}, where organizer's sales were~\textbf{70\%} of the total.
 		\item The organizer sold all beer beverages and the majority of the non-alcoholic and alcoholic beverages.
 		\item The organizer also sold tickets at the event amounting to~\bfmtczk{684700}.
 		\item External vendors sold food, wine, and other uncategorized products.
@@ -144,7 +145,7 @@ In total, the organizer direct sales were \textbf{70\%} of the total sales, whic
 \makerqbox{cashflow-remaining-balance}
 
 The remaining chip balances are crucial for the event organizer as they represent the potential revenue that can be still claimed.
-Any unclaimed balances after a given refund period, which is usually up to 14~days after the event will be considered as organizer's taxable revenue.
+Any unclaimed balances following a specified refund period, typically up to 14~days post-event, will be deemed taxable revenue for the organizer.
 
 Out of the total top-up amount of~\bfmtczk{14520973}, the total spent credit amounted to~\bfmtczk{10984945}, which left a total of~\bfmtczk{3536028} on the chips before refunds.
 After refunds – done both at the event (\bfmtczk{15379}) and later via online bank refund requests (\bfmtczk{3163567}) – the remaining balance was reduced to~\bfmtczk{357082}.
@@ -154,7 +155,7 @@ The system also reported integrity errors in the data, which resulted in a total
 
 This left the total unclaimed balance at~\bfmtczk{334431}, which has been claimed by the organizer as taxable revenue.
 
-Since these numbers can be quite abstract, the results in a form of sankey diagram in~\autoref{chart:remaining-balances-sankey}~below provide a clear picture of the flow of the funds.
+Since these numbers can be quite abstract, the results in a form of sankey diagram in~\autoref{chart:remaining-balances-sankey}~below provide an accurate picture of how the money flows.
 
 \begin{chart}[h]
 	\centering
@@ -164,7 +165,7 @@ Since these numbers can be quite abstract, the results in a form of sankey diagr
 	\source
 \end{chart}
 
-Thanks to this breakdown, it is clear how the remaining balances were reduced and what was the final outcome.
+Thanks to this breakdown, it is clear how the remaining balances were reduced and what was the outcome.
 These results are important for the last part of this section, which is the total revenue of the organizer.
 
 \begin{keytakeaways}
@@ -190,7 +191,7 @@ The commission is, in this case, a percentage (ranging from 15\% to 30\% dependi
 Therefore, this required finding all sales transactions made at the external vendors' stands and calculating the commission based on the agreed percentage.
 However, this was not a straightforward task, since a transaction could contain multiple products even from different vendors.
 
-This required a more complex calculation, for which was used the previously mentioned data processing views which were designed for this purpose.
+This required a more complex calculation, for which were used the previously mentioned data processing views which were designed for this purpose.
 In the end, the total revenue from sales commissions was~\bfmtczkp[2]{820712,79}.
 
 Another source of revenue is the \textbf{unclaimed chip balances}, which, after a credit refund period, are considered as taxable revenue for the organizer.
@@ -212,23 +213,25 @@ To better understand the revenue streams, the results are visualized in~\autoref
 	% space
 	\par\vspace*{0.5em}
 	% table
+	% @formatter:off
 	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}r|}
 		\hline
 		\rowcolor{unicorn_blue}
-		\textbf{\color{white}Revenue Stream}    & \textbf{\color{white}Amount} \\
+		\textbf{\color{white}Revenue Stream} & \textbf{\color{white}Amount} \\
 		\hline
 		\hline
-		\colorindicator{3}Vendor Commissions      & \fmtczkp[2]{820712.79}       \\
-		\colorindicator{4}Unclaimed Chip Balances & \fmtczk{334431}              \\
+		\colorindicator{3}Vendor Commissions & \fmtczkp[2]{820712.79} \\
+		\colorindicator{4}Unclaimed Chip Balances & \fmtczk{334431} \\
 		\hline
-		\textbf{Total Direct Revenue}             & \bfmtczkp[2]{1155143.79}     \\
+		\textbf{Total Direct Revenue} & \bfmtczkp[2]{1155143.79} \\
 		\hline
-		\colorindicator{2}Online Ticket Sales     & \fmtczk{11179700}            \\
-		\colorindicator{1}Organizer Direct Sales  & \fmtczk{8240264}             \\
+		\colorindicator{2}Online Ticket Sales & \fmtczk{11179700} \\
+		\colorindicator{1}Organizer Direct Sales & \fmtczk{8240264} \\
 		\hline
-		\textbf{Total Revenue (All Streams)}      & \bfmtczkp[2]{20575107.79}    \\
+		\textbf{Total Revenue (All Streams)} & \bfmtczkp[2]{20575107.79} \\
 		\hline
 	\end{tabularx}
+	% @formatter:on
 	\caption{\rqshorttext{cashflow-total-revenue} Breakdown of All Revenue Streams}
 	\label{chart:revenue-breakdown-total}
 	\source
@@ -266,10 +269,9 @@ This diagram can be seen in the~\autoref{chart:cash-flow-diagram} below.
 
 This diagram provides a clear overview of the financial flows during the festival and nicely summarizes the results of this analysis.
 
-% TODO: summarize
 \begin{keytakeaways}
 	\begin{itemize}
-		\item Total incoming money flow was~\bfmtczk{14520973} from top-up transactions and~\bfmtczk{726862} from non-chip sales.
+		\item The total incoming money flow was~\bfmtczk{14520973} from top-up transactions and~\bfmtczk{726862} from non-chip sales.
 		\item Total sales amounted to~\bfmtczk{11711807}.
 		\item This left a total of~\bfmtczk{3536028}~in unused credit before refunds.
 		\item After refunds and non-refundable chips, the remaining balance left was~\bfmtczk{334431} claimed as taxable revenue.
@@ -285,13 +287,12 @@ This diagram provides a clear overview of the financial flows during the festiva
 \section{Performance Indicators Analysis}
 \label{sec:analysis-performance-indicators}
 
-% TODO: rephrase
-This section focuses on the performance indicators of the event.
+This section emphasizes the event's performance metrics.
 The goal is to identify key metrics that can be used to further evaluate the event and its success.
 The potential of this analysis is to measure the~\enquote{greatness}~and the size of the event in terms of performance.
 
 This analysis aims to provide answers to previously defined research questions about the event's performance.
-For the purpose of this analysis, they were slightly reordered and grouped into the two subsections listed below:
+For this analysis, they were slightly reordered and grouped into the two subsections listed below:
 \begin{enumerate}
 	\item \fullref{subsec:analysis-performance-indicators-transactions}
 	\item and~\fullref{subsec:analysis-performance-indicators-best}
@@ -313,13 +314,13 @@ This question actually consists of two sub-questions, which will be addressed se
 
 The first part questions the total number of transactions processed during the event.
 This was actually quite simple to answer, as the system was designed to track all transactions and their types.
-The resulted total number of transactions was~\bfmtnum{141381} consisting of~\bfmtnum{110854}~sales transactions, \bfmtnum{17726}~top-up transactions and~\bfmtnum{12801}~chip register transactions.
+The resulting total number of transactions was~\bfmtnum{141381} consisting of~\bfmtnum{110854}~sales transactions, \bfmtnum{17726}~top-up transactions and~\bfmtnum{12801}~chip register transactions.
 
 The second part focuses on rather time-related metrics and asks about the processing peak times during the festival.
 For this part, it was necessary to spread out the above transactions over time and find the peaks.
 
 The results in the~\autoref{chart:transactions-peaks} below show the distribution of the processed transactions over time.
-It clearly identifies the peak on the last day of the festival at 18:00 amounting to~\bfmtnum{8986}~transactions.
+It clearly identifies the peak on the last day of the festival at 18:00, amounting to~\bfmtnum{8986}~transactions.
 
 \begin{chart}[h]
 	\centering
@@ -336,16 +337,16 @@ It clearly identifies the peak on the last day of the festival at 18:00 amountin
 	\end{itemize}
 \end{keytakeaways}
 
-The following two questions (\rqshort{performance-processing-during-peaks}~and~\rqshort{performance-delays-downtimes}), focus on processing times and potential delays during the event.
+The following two questions (\rqshort{performance-processing-during-peaks}~and~\rqshort{performance-delays-downtimes}) focus on processing times and potential delays during the event.
 
 \makerqbox{performance-processing-during-peaks}
 
 The answer to this question is closely related to the previous one, as it requires the identification of the processing times during the peak times, which were already identified.
 
-It required finding the average processing time, meaning difference between the transaction creation and its completion times.
+It required finding the average processing time, meaning the difference between the transaction creation and its completion times.
 
 \begin{infobox}{What causes the processing time?}
-	Time when the transaction is created is the time when the in-place offline-supported system created the transaction, and the processed time is later when the central system receives the transaction and processes it.
+	The time when the transaction is created is the time when the in-place offline-supported system created the transaction, and the processed time is later when the central system receives the transaction and processes it.
 
 	The delays can be caused by various factors, such as network latency, offline mode active, system load, or even the transaction type.
 \end{infobox}
@@ -357,7 +358,7 @@ When slightly changing the displayed data, we also get the answer to the~\rqshor
 \makerqbox{performance-delays-downtimes}
 
 The chart in the~\autoref{chart:rq7-processing-times}~shows the distribution of the processing times over the time and identifies one high processing peak of approximately~\bfmtnum{11}~minutes.
-This is highly unusual and indicates a vendor misuse of the system or accidentally put the system into offline mode.
+This is highly unusual and indicates a vendor's misuse of the system or accidentally put the system into offline mode.
 
 \begin{chart}[h]
 	\centering
@@ -400,17 +401,18 @@ In terms of the system and this analysis, it should mean \textbf{the most transa
 \subsubsection{Best Top-Up Points}
 \label{subsubsec:analysis-best-top-up-points}
 
-The first focus will be on the best top-up points since unlike the selling points, vendors and products, the top-up points are not linked to any specific product or vendor.
+The first focus will be on the best top-up points since unlike the selling points, vendors, and products, the top-up points are not linked to any specific product or vendor.
 
 \makerqbox{performance-best-top-up-points}
 
-To find these results, it required finding all top-up transactions, aggregate them in a bucket-like time frame and finally calculate their total counts, max peaks and averages over time.
+To find these results, it required finding all top-up transactions, aggregating them in a bucket-like time frame and finally calculating their total counts, max peaks, and averages over time.
 
 This resulted in the following findings in the~\autoref{tab:best-topup-points} below.
 
 \begin{table}[htbp]
 	\centering
 	\small
+	% @formatter:off
 	\begin{tabularx}{\textwidth}{
 		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
 		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
@@ -489,13 +491,14 @@ This resulted in the following findings in the~\autoref{tab:best-topup-points} b
 			& \num[group-separator={,}]{\colhourlypeak}
 		}
 	\end{tabularx}
+	% @formatter:on
 	\caption{\rqshorttext{performance-best-top-up-points} Best Top-Up Points}
 	\label{tab:best-topup-points}
 	\source
 \end{table}
 
 This indicates that the most busy top-up points were somehow evenly distributed with approximately around \textbf{1000~transactions} processed during the event with average peaks of around \textbf{100~transactions/hour}.
-The least busy top-up points were the specific ones, such as the Support tent, VIP and Accreditation points, which were not used so much for top-ups.
+The least busy top-up points were the specific ones, such as the Support tent, VIP, and Accreditation points, which were not used so much for top-ups.
 
 The overall distribution, shown in the~\autoref{chart:best-topup-points}, also shows that Top-up points were more busy than Check-in points.
 That makes sense because the top-ups were done more frequently than the initial check-ins, but the check-ins were done in a more concentrated time frame.
@@ -513,9 +516,9 @@ Especially \textbf{Odbavení} point processed only~\bfmtnum{529}~transactions bu
 % TODO: summarize
 \begin{keytakeaways}
 	\begin{itemize}
-		\item The most busy top-up points processed around~\bfmtnum{1000}~transactions during the event.
+		\item The most busy top-up points are processed around~\bfmtnum{1000}~transactions during the event.
 		\item The average peak of the top-up points was around~\bfmtnum{100}~transactions per hour.
-		\item The least busy top-up points were the specific ones, such as the Support tent, VIP and Accreditation points.
+		\item The least busy top-up points were the specific ones, such as the Support tent, VIP, and Accreditation points.
 		\item Check-in points were less busy than the top-up points, but the \textbf{Odbavení} point peaked at~\bfmtnum{125}~transactions per hour.
 	\end{itemize}
 \end{keytakeaways}
@@ -532,7 +535,7 @@ The next focus will be on the best sale points, which are the points where the m
 
 The process of finding the best sale points was similar to the previous one, but this time it required finding all sales transactions and their respective points.
 
-Out of total of~\bfmtnum{145}~sale points, the best place was undeniable the \textbf{L20 PIVNÍ STAN 1} with total~\bfmtnum{10114}~orders processed and the maximum peak of~\bfmtnum{840}~orders per hour.
+Out of the total of~\bfmtnum{145}~sale points, the best place was undeniable the \textbf{L20 PIVNÍ STAN 1} with total~\bfmtnum{10114}~orders processed and the maximum peak of~\bfmtnum{840}~orders per hour.
 
 Another interesting fact is the number of unique users processed at the places.
 The \textbf{L20 PIVNÍ STAN 1} processed~\bfmtnum{9159}~unique customers, accounting for a significant portion (\bfmtnump[2]{91.50}{}\%) of the total.
@@ -540,6 +543,7 @@ The \textbf{L20 PIVNÍ STAN 1} processed~\bfmtnum{9159}~unique customers, accoun
 \begin{table}[htbp]
 	\centering
 	\small
+	% @formatter:off
 	\begin{tabularx}{\textwidth}{
 		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
 		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
@@ -595,6 +599,7 @@ The \textbf{L20 PIVNÍ STAN 1} processed~\bfmtnum{9159}~unique customers, accoun
 			& \num[group-separator={,}]{\colhourlypeak}
 		}
 	\end{tabularx}
+	% @formatter:on
 	\caption{\rqshorttext{performance-best-sale-points} Best Sale Points}
 	\label{tab:best-sale-points}
 	\source
@@ -633,6 +638,7 @@ The results in the~\autoref{tab:best-vendors} below show the distribution of the
 \begin{table}[htbp]
 	\centering
 	\small
+	% @formatter:off
 	\begin{tabularx}{\textwidth}{
 		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
 		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
@@ -682,6 +688,7 @@ The results in the~\autoref{tab:best-vendors} below show the distribution of the
 			& \num[group-separator={,}]{\coltrxcount}
 		}
 	\end{tabularx}
+	% @formatter:on
 	\caption{\rqshorttext{performance-best-vendors} Best Vendors}
 	\label{tab:best-vendors}
 	\source
@@ -721,6 +728,7 @@ The results in the~\autoref{tab:best-products} below somehow confirm this predic
 \begin{table}[htbp]
 	\centering
 	\small
+	% @formatter:off
 	\begin{tabularx}{\textwidth}{
 		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
 		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
@@ -776,6 +784,7 @@ The results in the~\autoref{tab:best-products} below somehow confirm this predic
 			& \num[group-separator={,}]{\colcustomers}
 		}
 	\end{tabularx}
+	% @formatter:on
 	\caption{\rqshorttext{performance-best-products} Best Products}
 	\label{tab:best-products}
 	\source
@@ -820,11 +829,9 @@ Providing a better understanding of the event's performance and giving more cont
 \section{Beverage Consumption Analysis}
 \label{sec:analysis-beverage-consumption}
 
-% TODO: rephrase, too repetitive
-This section will provide a detailed analysis of beverage consumption, which was previously established as the most significant aspect of the event.
+This section provides a detailed analysis of beverage consumption, which was previously determined to be the most important aspect of the event.
 
-% TODO: rephrase, too repetitive
-It should offer insights into overall consumption, detailed information on returnable cups, the most often drank beverages, and the leading beverage brands, addressing the previously established inquiries.
+It should provide insights into overall consumption, as well as detailed information on returnable cups, the most popular beverages, and the leading beverage brands, while also answering the previously stated questions.
 
 This section will address the next six research questions, after a minor logical reorganization into three groups:
 \begin{enumerate}
@@ -888,10 +895,11 @@ However, to present the results, it was convenient to group the products into ca
 
 \makerqbox{beverage-popular-category}
 
-These results are shown in the~\autoref{tab:beverage-total-consumption} below and show a total of~\bfmtnum{29342}~liters of beverages consumed during the event with the beer category being the most consumed.
+These results are shown in the~\autoref{tab:beverage-total-consumption} below and show a total of~\bfmtnum{29342}~liters of beverages consumed during the event, with the beer category being the most consumed.
 
-\begin{table}[h]
+\begin{table}[htbp]
 	\centering
+	% @formatter:off
 	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}r|>{\columncolor{unicorn_blue!5}}r|}
 		\hline
 		\rowcolor{unicorn_blue}
@@ -901,14 +909,15 @@ These results are shown in the~\autoref{tab:beverage-total-consumption} below an
 		\\
 		\hline
 		\hline
-		\colorindicator{1}Beer                    & \fmtnum{19797}~l  & \fmtnump[2]{67.46}~\% \\
-		\colorindicator{2}Non-alcoholic           & \fmtnum{6987}~l   & \fmtnump[2]{23.81}~\% \\
-		\colorindicator{3}Spirits / other alcohol & \fmtnum{1992}~l   & \fmtnump[2]{6.78}~\%  \\
-		\colorindicator{4}Wine                    & \fmtnum{575}~l    & \fmtnump[2]{1.95}~\%  \\
+		\colorindicator{1}Beer & \fmtnum{19797}~l & \fmtnump[2]{67.46}~\% \\
+		\colorindicator{2}Non-alcoholic & \fmtnum{6987}~l & \fmtnump[2]{23.81}~\% \\
+		\colorindicator{3}Spirits / other alcohol & \fmtnum{1992}~l & \fmtnump[2]{6.78}~\% \\
+		\colorindicator{4}Wine & \fmtnum{575}~l & \fmtnump[2]{1.95}~\% \\
 		\hline
-		\textbf{Total volume}                     & \bfmtnum{29342}~l & \fmtnum{100}~\%       \\
+		\textbf{Total volume} & \bfmtnum{29342}~l & \fmtnum{100}~\% \\
 		\hline
 	\end{tabularx}
+	% @formatter:on
 	\caption{\rqshorttext{beverage-total-consumption} Total Beverage Consumption}
 	\label{tab:beverage-total-consumption}
 	\source
@@ -918,7 +927,7 @@ These results serve as a basis for the next questions, which focuses on the most
 
 \begin{keytakeaways}
 	\begin{itemize}
-		\item The total of~\bfmtnum{29342}~liters of beverages were consumed during the event.
+		\item A total of~\bfmtnum{29342}~liters of beverages were consumed during the event.
 		\item The beer category was the most consumed with~\bfmtnum{19797}~liters consumed.
 	\end{itemize}
 \end{keytakeaways}
@@ -929,9 +938,9 @@ These results serve as a basis for the next questions, which focuses on the most
 \subsection{Popular Brands Analysis}
 \label{subsec:analysis-beverage-popular-brands}
 
-This section explores beverage preferences, concentrating on the most popular brands within the leading categories:
+This section explores beverage preferences, concentrating on the most popular brands within the leading categories:\\
 \begin{itemize}
-	\item \fullref{subsubsec:analysis-beverage-popular-beer},
+	\item \fullref{subsubsec:analysis-beverage-popular-beer}
 	\item \fullref{subsubsec:analysis-beverage-popular-non-alcoholic},
 	\item and~\fullref{subsubsec:analysis-beverage-popular-alcoholic}.
 \end{itemize}
@@ -958,7 +967,7 @@ Starting with the most consumed and most popular category – beer.
 
 \makerqbox{beverage-top-beer}
 
-The results in~\autoref{chart:beverage-top-beer} below illustrate the distribution of the most frequently consumed beer brands during the event.
+The results in the~\autoref{chart:beverage-top-beer} below illustrate the distribution of the most frequently consumed beer brands during the event.
 
 \begin{chart}[h]
 	\centering
@@ -976,6 +985,7 @@ A complete list of all ten brands from the festival is shown in the~\autoref{tab
 \begin{table}[htbp]
 	\centering
 	\small
+	% @formatter:off
 	\begin{tabularx}{\textwidth}{
 		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
 		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
@@ -1013,6 +1023,7 @@ A complete list of all ten brands from the festival is shown in the~\autoref{tab
 		& {\bfmtnum{53990}}
 		\\\hline
 	\end{tabularx}
+	% @formatter:on
 	\caption{\rqshorttext{beverage-top-beer} Most Consumed Beer Brands}
 	\label{tab:beverage-top-beer}
 	\source
@@ -1043,6 +1054,7 @@ Aggregated similarly as in the previous analysis, the results in the~\autoref{ta
 \begin{table}[htbp]
 	\centering
 	\small
+	% @formatter:off
 	\begin{tabularx}{\textwidth}{
 		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
 		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
@@ -1080,6 +1092,7 @@ Aggregated similarly as in the previous analysis, the results in the~\autoref{ta
 		& {\bfmtnum{20487}}
 		\\\hline
 	\end{tabularx}
+	% @formatter:on
 	\caption{\rqshorttext{beverage-top-non-alcoholic} Most Consumed Non-alcoholic Brands}
 	\label{tab:beverage-top-non-alcoholic}
 	\source
@@ -1106,7 +1119,7 @@ The last part of this section focuses on other alcoholic beverages, such as spir
 \makerqbox{beverage-top-alcoholic}
 
 This analysis consisted of a total of 23 different brands consisting mostly of spirits and shots.
-Results presented in this section may be more biased than the previous ones, as the brand determination was more difficult due to the lack of consistent labeling.
+The results presented in this section may be more biased than the previous ones, as the brand determination was more challenging due to the lack of consistent labeling.
 Moreover, previously it was necessary to classify the products with the volume information, which is not so straightforward for shots and spirits.
 
 The results in the~\autoref{tab:beverage-top-alcoholic}~indicate that the most consumed alcoholic brand was the \textbf{Beefeater} with a total of~\bfmtnum{966}~liters consumed and~\bfmtnum{4628}~units sold.
@@ -1115,6 +1128,7 @@ However, the second most consumed brand was \textbf{Absolut Vodka} with only \bf
 \begin{table}[htbp]
 	\centering
 	\small
+	% @formatter:off
 	\begin{tabularx}{\textwidth}{
 		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
 		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
@@ -1152,6 +1166,7 @@ However, the second most consumed brand was \textbf{Absolut Vodka} with only \bf
 		& {\bfmtnum{26964}}
 		\\\hline
 	\end{tabularx}
+	% @formatter:on
 	\caption{\rqshorttext{beverage-top-alcoholic} Most Consumed Alcoholic Brands}
 	\label{tab:beverage-top-alcoholic}
 	\source
@@ -1189,11 +1204,11 @@ This section will focus on customer analysis, which should provide interesting i
 
 Because the organizers lacked deeper insights into festival attendees, this analysis should contribute significantly to a better understanding of the event.
 
-The analysis addresses the remaining research questions, which have been reorganized into four logical groups to improve the narrative flow:
+The analysis addresses the remaining research questions, which have been reorganized into four logical groups to improve the narrative flow:\\
 \begin{enumerate}
-	\item \fullref{subsec:analysis-customer-event-attendance-timeline},
+	\item \fullref{subsec:analysis-customer-event-attendance-timeline}
 	\item \fullref{subsec:analysis-customer-segmentation},
-	\item \fullref{subsec:analysis-customer-payment-behavior},
+	\item \fullref{subsec:analysis-customer-payment-behavior}
 	\item and~\fullref{subsec:analysis-customer-purchase-pattern}.
 \end{enumerate}
 
@@ -1203,7 +1218,7 @@ The analysis addresses the remaining research questions, which have been reorgan
 \subsection{Event Attendance and Timeline Analysis}
 \label{subsec:analysis-customer-event-attendance-timeline}
 
-This section should provide information about attendees' initial behavior, total attendance throughout the festival, and subsequent top-up behavior.
+This section should provide information about attendees' initial behavior, total attendance throughout the festival, and later top-up behavior.
 
 %%% Customer / Event Attendance and Timeline Analysis / Total Attendance and Daily Activity
 %%% --------------------------------------------------------------
@@ -1211,10 +1226,9 @@ This section should provide information about attendees' initial behavior, total
 \subsubsection{Total Attendance and Daily Activity}
 \label{subsubsec:analysis-total-attendance}
 
-% FIXME
 \makerqbox{customers-total-attendance}
 
-The analysis shows that the festival attracted a total of~\bfmtnum{10009}~unique customers over the three-day duration.
+The analysis shows that the festival drew total~\bfmtnum{10009}~unique customers over the three-day period.
 However, the daily attendance figures show interesting patterns in how these customers were distributed throughout the festival days.
 
 Looking at the daily active customers:
@@ -1261,7 +1275,7 @@ The data reveals three distinct patterns across the festival days:
 
 \begin{itemize}
 	\item \textbf{Day 1 (Thursday)}: A rapid peak of approximately~\bfmtnum{1873}~new visitors was observed during the 16:00 hour, which was the time of the highest arrival activity.
-	The day showed a clear pattern of increasing arrivals from 14:00 to 16:00, followed by a gradual decline resulting in a total of~\bfmtnum{6433}~new visitors.
+	The day showed a clear pattern of increasing arrivals from 14:00 to 16:00, followed by a gradual decline resulting in~\bfmtnum{6433}~new visitors.
 	\item \textbf{Day 2 (Friday)}: A modest peak of~\bfmtnum{215}~visitors at 15:00, but significantly lower new arrivals than on Day 1.
 	This decrease in the number of new arrivals was expected, as a significant number of visitors had already completed the registration process on Day 1.
 	\item \textbf{Day 3 (Saturday)}: The weekend attendees' influx was clear in the resurgence of new arrivals, which reached a peak of~\bfmtnum{728}~new visitors at 14:00.
@@ -1275,7 +1289,7 @@ Minimal new arrivals were consistently observed during the early morning hours (
 		\item Highest single-hour registration peak:~\bfmtnum{1873}~visitors (Day 1, 16:00).
 		\item The registration window that was most effective was from 14:00 to 17:00 on all days.
 		\item Day 1 accounted for approximately~\bfmtnump[2]{64.39}\%~of total arrivals.
-		\item Weekend (Day 3) saw renewed registration activity with peak of~\bfmtnum{728}~new visitors.
+		\item Weekend (Day 3) saw renewed registration activity with the peak of~\bfmtnum{728}~new visitors.
 	\end{itemize}
 \end{keytakeaways}
 
@@ -1291,9 +1305,10 @@ The analysis reveals significant variations in how quickly different types of vi
 Overall, the average time to the first transaction was~\bfmtnum{79.55}~minutes.
 However, this number alone is misleading, as evidenced by the much lower median of~\bfmtnum{7}~minutes and mode of~\bfmtnum{3}~minutes.
 
-\begin{table}[h]
+\begin{table}[htbp]
 	\centering
 	\small
+	% @formatter:off
 	\begin{tabularx}{\textwidth}{
 		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}l
 		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}X
@@ -1344,6 +1359,7 @@ However, this number alone is misleading, as evidenced by the much lower median 
 		\\
 		\hline
 	\end{tabularx}
+	% @formatter:on
 	\caption{\rqshorttext{customers-visitor-time} Time to First Transaction}
 	\label{tab:time-to-first-transaction}
 	\source
@@ -1351,10 +1367,10 @@ However, this number alone is misleading, as evidenced by the much lower median 
 
 Breaking down the analysis by visitor type\footnote{Visitor or rather, chip types are described in the~\fullref{tab:chip-types} table.}, reveals distinct patterns:
 \begin{itemize}
-	\item \textbf{Regular}: Quickest to transact, with an average of \bfmtnum{44.68} minutes and a median of only \bfmtnum{6} minutes
-	\item \textbf{Online}: Similar efficiency with an average of \bfmtnum{66.85} minutes and a median of \bfmtnum{7} minutes
-	\item \textbf{Guests}: Took longer, averaging \bfmtnum{140.59} minutes with a median of \bfmtnum{10} minutes
-	\item \textbf{Staff}: Showed significantly different behavior, with an average of \bfmtnum{583.92} minutes and a median of \bfmtnum{234} minutes
+	\item \textbf{Regular}: Quickest to transact, with an average of~\bfmtnum{44.68}~minutes and a median of only~\bfmtnum{6}~minutes
+	\item \textbf{Online}: Similar efficiency with an average of~\bfmtnum{66.85}~minutes and a median of~\bfmtnum{7}~minutes
+	\item \textbf{Guests}: Took longer, averaging~\bfmtnum{140.59}~minutes with a median of~\bfmtnum{10}~minutes
+	\item \textbf{Staff}: Showed significantly different behavior, with an average of~\bfmtnum{583.92}~minutes and a median of~\bfmtnum{234}~minutes
 \end{itemize}
 
 The significant difference between average and median times across all categories suggests a right-skewed distribution, implying that while most visitors completed their first transaction quickly, others took much longer.
@@ -1367,7 +1383,7 @@ This was most likely due to their responsibilities at the event, which may have 
 	\begin{itemize}
 		\item Most visitors (as indicated by the median) made their first transaction within~\bfmtnum{7}~minutes of arrival.
 		\item Regular visitors were the most efficient, typically transacting within~\bfmtnum{6}~minutes.
-		\item Staff members showed distinctly different behavior, likely due to their different role at the event.
+		\item Staff members showed distinctly different behavior, likely due to their different roles at the event.
 		\item The large gap between mean and median times suggests some visitors waited significantly longer than others before their first transaction.
 	\end{itemize}
 \end{keytakeaways}
@@ -1381,7 +1397,7 @@ This was most likely due to their responsibilities at the event, which may have 
 \makerqbox{customers-top-up-peaks}
 
 The examination of credit top-up patterns reveals distinct peak periods and daily patterns throughout the event.
-A total of~\bfmtnum{17233}~top-up transactions were processed, with activity varying significantly throughout the day.
+The system processed~\bfmtnum{17233}~top–up transactions, with activity varying significantly throughout the day.
 
 \begin{chart}[h]
 	\centering
@@ -1403,10 +1419,10 @@ The overnight hours (00:00–12:00) saw minimal top-up activity.
 
 \begin{keytakeaways}
 	\begin{itemize}
-		\item Peak top-up activity consistently occurred during late afternoon hours
-		\item Day 1 saw the highest single-hour volume with \bfmtnum{1793} top-ups
-		\item Clear daily pattern of afternoon peaks and overnight lulls
-		\item Day 3 showed sustained high activity with multiple hours exceeding \bfmtnum{800} top-ups
+		\item Peak top-up activity consistently occurred during late afternoon hours.
+		\item Day 1 saw the highest single-hour volume with~\bfmtnum{1793}~top-ups.
+		\item Clear daily pattern of afternoon peaks and overnight lulls.
+		\item Day 3 showed sustained high activity with multiple hours exceeding~\bfmtnum{800}~top-ups.
 	\end{itemize}
 \end{keytakeaways}
 
@@ -1442,7 +1458,7 @@ Regular on-site customers made up~\bfmtnump[2]{6.66}\%~of attendees, while staff
 \makerqbox{customers-mobile-app}
 
 The system provides several ways for customers to interact with the festival, including mobile apps and web platform.
-These can be used for ticket purchases, credit top-ups, credit refunds and other services.
+These can be used for ticket purchases, credit top-ups, credit refunds, and other services.
 In the~\autoref{chart:customer-app-usage}~below is shown this breakdown.
 
 \begin{chart}[h]
@@ -1453,7 +1469,7 @@ In the~\autoref{chart:customer-app-usage}~below is shown this breakdown.
 	\source
 \end{chart}
 
-The analysis reveals a significant adoption of mobile app, with~\bfmtnump[2]{40.69}\%~of customers using either iOS (\bfmtnump[2]{25.36}\%) or Android (\bfmtnump[2]{15.33}\%) app.
+The analysis reveals a significant adoption of mobile apps, with~\bfmtnump[2]{40.69}\%~of customers using either iOS (\bfmtnump[2]{25.36}\%) or Android (\bfmtnump[2]{15.33}\%) app.
 The web platform remained the most popular choice, used by~\bfmtnump[2]{55.17}\%~of customers.
 A small portion (\bfmtnump[2]{4.14}\%) of customers had no recorded platform preference whatsoever.
 
@@ -1461,7 +1477,7 @@ A small portion (\bfmtnump[2]{4.14}\%) of customers had no recorded platform pre
 	\begin{itemize}
 		\item Only~\bfmtnump[2]{18.2}\%~of online ticket holders preloaded their credit before the event
 		\item Online ticket purchases dominated attendance (\bfmtnump[2]{89.66}\%~of all customers)
-		\item Mobile app adoption was substantial, with~\bfmtnump[2]{40.69}\%~of customers using mobile platforms
+		\item Mobile app adoption was significant, with~\bfmtnump[2]{40.69}\%~of customers using mobile platforms
 		\item iOS app usage (\bfmtnump[2]{25.36}\%) was notably higher than Android (\bfmtnump[2]{15.33}\%)
 		\item The web platform remained the preferred choice for most customers (\bfmtnump[2]{55.17}\%)
 	\end{itemize}
@@ -1476,8 +1492,9 @@ A small portion (\bfmtnump[2]{4.14}\%) of customers had no recorded platform pre
 This subsection focuses mainly on the payment segmentation and behavior of festival attendees.
 
 By segmenting the customers based on their payment data,
-such as their card issuing banks\footnote{Card Issuing bank is the bank responsible for issuing payment cards to customers. Issuers manage cardholder accounts, authorise transactions, and handle billing\cite{jc_what_are_card_schemes_and_how_do_they_work}.}~and
-used payment card schemes\footnote{Card Scheme, such as Mastercard or Visa, are a payment network provider who processes card payments globally\cite{jc_what_are_card_schemes_and_how_do_they_work}.}~schemes,
+such as their card-issuing banks
+\footnote{Card Issuing bank is the bank responsible for issuing payment cards to customers; Issuers manage cardholder accounts, authorize transactions, and handle billing\cite{jc_what_are_card_schemes_and_how_do_they_work}} and used
+payment card schemes\footnote{Card Scheme, such as Mastercard or Visa, are a payment network provider who processes card payments globally\cite{jc_what_are_card_schemes_and_how_do_they_work}}~schemes,
 the analysis should find interesting patterns and answer the defined research questions.
 
 \makerqbox{customers-bank-cards}
@@ -1492,7 +1509,7 @@ The analysis of bank refunds reveals the distribution among Czech banking instit
 	\source
 \end{chart}
 
-Out of~\bfmtnum{7430}~online credit refunds that were requested, the data shows that \textbf{Česká spořitelna} was the leading bank, accounting for~\bfmtnump[1]{33.3}\%~of all refunds.
+Out of the~\bfmtnum{7430}~online credit refunds that were requested, the data shows that \textbf{Česká spořitelna} was the leading bank, accounting for~\bfmtnump[1]{33.3}\%~of all refunds.
 Followed by \textbf{ČSOB} and \textbf{Komerční banka} with~\bfmtnump[1]{15}\%~and~\bfmtnump[1]{13.4}\%~share respectively.
 
 \makerqbox{customers-card-schemes}
@@ -1528,7 +1545,7 @@ Analyzing onsite top-up frequency behavior at the festival reveals the distribut
 The analysis of top-up behavior reveals that most customers (\bfmtnump[1]{44.9}\%) topped up only once during the festival.
 A significant portion (\bfmtnump[1]{29.8}\%) topped up twice, while only a small fraction of customers (\bfmtnump[0]{5}\%) topped up more than three times.
 
-Interesting finding is that around~\bfmtnump[0]{9}\%~of customers did not top up at onsite at all.
+An interesting finding is that around~\bfmtnump[0]{9}\%~of customers did not top up at onsite at all.
 This meant for Online customers that they preloaded their credit before the event and did not need nor required to top up during the festival.
 
 For other on-site registered customers, it meant they did not use their chip bracelet for payments at all, but only as an entry ticket or for access control purposes.
@@ -1614,6 +1631,7 @@ The initial results are shown in the~\autoref{chart:common-combos-with-cups}~bel
 	\centering
 	\small
 	% table
+	% @formatter:off
 	\begin{tabularx}{\textwidth}{
 		|>{\columncolor{unicorn_blue!5}}X
 		|>{\columncolor{unicorn_blue!5}}X
@@ -1625,12 +1643,12 @@ The initial results are shown in the~\autoref{chart:common-combos-with-cups}~bel
 		\textbf{\color{white}Product A}
 		& \textbf{\color{white}Product B}
 		& \textbf{\color{white}Count}
-		& \textbf{\color{white}\% of total}
+		& \textbf{\color{white}\%~of~total }
 		\\
 		\hline
 		\csvreader[
 		head to column names,
-		late after line= \\,
+		late after line={\\\hline},
 		filter={\thecsvinputline<9}
 		]{\DataDir/rq29-product-combos-with-returnable.csv}{
 			product1=\producta,
@@ -1645,6 +1663,7 @@ The initial results are shown in the~\autoref{chart:common-combos-with-cups}~bel
 		}
 		\hline
 	\end{tabularx}
+	% @formatter:on
 	% space
 	\par\vspace*{0.5em}
 	% treemap
@@ -1661,6 +1680,7 @@ To gain additional insights, the analysis was repeated while excluding returnabl
 	\centering
 	\small
 	% table
+	% @formatter:off
 	\begin{tabularx}{\textwidth}{
 		|>{\columncolor{unicorn_blue!5}}X
 		|>{\columncolor{unicorn_blue!5}}X
@@ -1692,6 +1712,7 @@ To gain additional insights, the analysis was repeated while excluding returnabl
 		}
 		\hline
 	\end{tabularx}
+	% @formatter:on
 	% space
 	\par\vspace*{0.5em}
 	% treemap
@@ -1703,7 +1724,7 @@ To gain additional insights, the analysis was repeated while excluding returnabl
 
 This revealed the most popular product combination, without returnable cups included, was the \textbf{Absolut Vodka} and \textbf{Redbull} accounting to total of~\bfmtnump[2]{2.48}\%~of all transactions.
 
-There was also a notable high-combination of non-beverage products, such as \textbf{Klobása}, \textbf{Hermelín} or \textbf{Oštěpok} in combination with \textbf{Příloha} making it a seemingly popular food choice.
+There was also a notable high combination of non-beverage products, such as \textbf{Klobása}, \textbf{Hermelín}, or \textbf{Oštěpok} in combination with \textbf{Příloha}, making it a seemingly popular food choice.
 
 Interpretation of the results could have been done in many ways, for example, using a network graph to visualize the relationships between products.
 This, as exciting as it sounded, was not in the end the most suitable way to present the results in a clear and concise manner.
@@ -1731,7 +1752,7 @@ All previously defined questions were answered and presented in a simple and und
 \section{Conclusion}
 \label{sec:analysis-conclusion}
 
-The analyses in this chapter provide a comprehensive look at the festival's behavior, including data-driven insights on operational effectiveness, financial performance, and customer behavior.
+The analyses in this chapter provide a comprehensive look at the festival's behavior, including data-oriented insights on operational effectiveness, financial performance, and customer behavior.
 By fully addressing every research question, the results provide an in-depth knowledge of the festival dynamics and offer practical suggestions for upcoming seasons.
 
 Analysis of cash flow dynamics and income sources revealed important revenue-generating systems and their interactions.
