@@ -191,19 +191,21 @@
 %%%%% Main document part
 %%%%% ------------------------------------------------------------
 \begin{document}
-%%% title page
-	\include{pages/hard-title} % FIXME: remove
+%%% ⏳ hard cover % TODO: check year
+	% FIXME: remove
+	\include{pages/hard-cover}
+%%% ⏳ cover page % TODO: check year
 	\include{pages/cover}
 %%% TODO: copy of the assignment
 %    \includepdf[pages={1}]{\ThesisFigures/zadani-zp.pdf}
 %    \includepdf[pages={2}]{\ThesisFigures/zadani-zp.pdf}
-%%% declaration
+%%% ✅ declaration
 	\include{pages/statutory-declaration}
-%%% acknowledgements
+%%% ✅ acknowledgements
 	\include{pages/acknowledgements}
-%%% first page
+%%% ✅ first page
 	\include{pages/firstpage}
-%%% abstract
+%%% ⏳abstract % TODO: check grammar and styling
 	\include{pages/abstract}
 %%% table of contents
 	\newpage
