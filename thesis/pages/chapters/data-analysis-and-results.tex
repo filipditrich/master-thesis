@@ -1606,7 +1606,6 @@ The initial results are shown in the~\autoref{fig:common-combos-with-cups}~below
 	\small
 	% table
 	\begin{tabularx}{\textwidth}{
-		|>{\columncolor{unicorn_blue!5}}r
 		|>{\columncolor{unicorn_blue!5}}X
 		|>{\columncolor{unicorn_blue!5}}X
 		|>{\columncolor{unicorn_blue!5}}r
@@ -1614,8 +1613,7 @@ The initial results are shown in the~\autoref{fig:common-combos-with-cups}~below
 	}
 		\hline
 		\rowcolor{unicorn_blue}
-		\textbf{}
-		& \textbf{\color{white}Product A}
+		\textbf{\color{white}Product A}
 		& \textbf{\color{white}Product B}
 		& \textbf{\color{white}Count}
 		& \textbf{\color{white}\% of total}
@@ -1631,8 +1629,7 @@ The initial results are shown in the~\autoref{fig:common-combos-with-cups}~below
 			combination_count=\combos,
 			percentage_of_all_transactions=\percentage
 		}{
-			\colorindicator{\numexpr\thecsvinputline-1\relax}
-			& \producta
+			\producta
 			& \productb
 			& \num[group-separator={,}]{\combos}
 			& \num[round-precision=2]{\percentage}\%
@@ -1656,7 +1653,6 @@ To gain additional insights, the analysis was repeated while excluding returnabl
 	\small
 	% table
 	\begin{tabularx}{\textwidth}{
-		|>{\columncolor{unicorn_blue!5}}r
 		|>{\columncolor{unicorn_blue!5}}X
 		|>{\columncolor{unicorn_blue!5}}X
 		|>{\columncolor{unicorn_blue!5}}r
@@ -1664,8 +1660,7 @@ To gain additional insights, the analysis was repeated while excluding returnabl
 	}
 		\hline
 		\rowcolor{unicorn_blue}
-		\textbf{}
-		& \textbf{\color{white}Product A}
+		\textbf{\color{white}Product A}
 		& \textbf{\color{white}Product B}
 		& \textbf{\color{white}Count}
 		& \textbf{\color{white}\%~of~total}
@@ -1675,14 +1670,13 @@ To gain additional insights, the analysis was repeated while excluding returnabl
 		head to column names,
 		late after line= \\,
 		filter={\thecsvinputline<9}
-		]{\DataDir/rq29-product-combos-nonreturnable.csv}{
+		]{\DataDir/rq29-product-combos-without-returnable.csv}{
 			product1=\producta,
 			product2=\productb,
 			combination_count=\combos,
 			percentage_of_all_transactions=\percentage
 		}{
-			\colorindicator{\numexpr\thecsvinputline-1\relax}
-			& \producta
+			\producta
 			& \productb
 			& \num[group-separator={,}]{\combos}
 			& \num[round-precision=2]{\percentage}\%
@@ -1692,7 +1686,7 @@ To gain additional insights, the analysis was repeated while excluding returnabl
 	% space
 	\par\vspace*{0.5em}
 	% treemap
-	\includegraphics[width=\textwidth]{\ChartsDir/rq29-product-combos-nonreturnable}
+	\includegraphics[width=\textwidth]{\ChartsDir/rq29-product-combos-without-returnable}
 	\caption{\rqshorttext{customers-common-combinations} Most Common Product Combinations without Cups}
 	\label{fig:common-combos-without-cups}
 	\source

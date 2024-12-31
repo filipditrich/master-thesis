@@ -1,21 +1,21 @@
-product1,product2,combination_count,percentage_of_all_transactions
-Radegast,Kelímek - záloha,5202,4.69
-Absolut Vodka,Redbull,2457,2.22
-Frisco,Kelímek - záloha,1793,1.62
-Birell,Kelímek - záloha,1728,1.56
-Pilsner Urquell,Kelímek - záloha,1627,1.47
-ZON Lemonade,Kelímek - záloha,1509,1.36
-Absolut Vodka,Kelímek - záloha,1174,1.06
-Beefeater,Kelímek - záloha,977,0.88
-Lemonade,Kelímek - záloha,767,0.69
-Klobása,Příloha,759,0.68
-Water,Kelímek - záloha,607,0.55
-Proud,Kelímek - záloha,597,0.54
-Redbull,Kelímek - záloha,585,0.53
-Jack Daniels,Kelímek - záloha,545,0.49
-BEERPONG - PIVO,BEERPONG - STARTOVNÉ,422,0.38
-Havana,Kelímek - záloha,327,0.29
-Chléb,Ořez prasate,299,0.27
-Malibu + Pineapple,Kelímek - záloha,245,0.22
-Hermelín,Příloha,198,0.18
-Pilsner Urquell,ZON Lemonade,167,0.15
+product1,product2,combination_count,percentage_of_all_transactions,product1_total_count,product2_total_count,product1_percentage,product2_percentage
+Kelímek - záloha,Radegast,5202,4.69,29148,20675,26.29,18.65
+Absolut Vodka,Redbull,2457,2.22,5191,3380,4.68,3.05
+Frisco,Kelímek - záloha,1793,1.62,6647,29148,6,26.29
+Birell,Kelímek - záloha,1728,1.56,4373,29148,3.94,26.29
+Kelímek - záloha,Pilsner Urquell,1627,1.47,29148,10490,26.29,9.46
+Kelímek - záloha,ZON Lemonade,1509,1.36,29148,4103,26.29,3.7
+Absolut Vodka,Kelímek - záloha,1174,1.06,5191,29148,4.68,26.29
+Beefeater,Kelímek - záloha,977,0.88,3297,29148,2.97,26.29
+Kelímek - záloha,Lemonade,767,0.69,29148,1844,26.29,1.66
+Klobása,Příloha,759,0.68,775,1216,0.7,1.1
+Kelímek - záloha,Water,607,0.55,29148,2250,26.29,2.03
+Kelímek - záloha,Proud,597,0.54,29148,2452,26.29,2.21
+Kelímek - záloha,Redbull,585,0.53,29148,3380,26.29,3.05
+Jack Daniels,Kelímek - záloha,545,0.49,1379,29148,1.24,26.29
+BEERPONG - PIVO,BEERPONG - STARTOVNÉ,422,0.38,439,429,0.4,0.39
+Havana,Kelímek - záloha,327,0.29,1312,29148,1.18,26.29
+Chléb,Ořez prasate,299,0.27,301,496,0.27,0.45
+Kelímek - záloha,Malibu + Pineapple,245,0.22,29148,622,26.29,0.56
+Hermelín,Příloha,198,0.18,242,1216,0.22,1.1
+Pilsner Urquell,ZON Lemonade,167,0.15,10490,4103,9.46,3.7
