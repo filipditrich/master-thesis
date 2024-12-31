@@ -139,6 +139,22 @@
 \usepackage{csvsimple}
 \usepackage{booktabs}
 
+%%%%% Chart environment setup
+%%%%% ---------------------------------------------------------------
+\usepackage{newfloat}
+\DeclareFloatingEnvironment[
+	fileext=loc,
+	listname={List of Charts},
+	name=Chart,
+	placement=tbhp,
+	within=chapter
+]{chart}
+
+% Setup autoref for charts
+\makeatletter
+\newcommand*{\chartautorefname}{\textbf{Chart}}
+\makeatother
+
 %%%%% Additional useful packages
 %%%%% ----------------------------------------------------------------
 \usepackage{amsmath}

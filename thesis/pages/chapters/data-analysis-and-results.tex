@@ -52,9 +52,9 @@ This subsection quantifies these methods, highlighting their respective contribu
 To get the results, it was necessary to find all top-up transactions and their respective payment methods used.
 This resulted in \bfmtnum{17704}~top-up transactions, with a total value of~\bfmtczk{14520973}.
 
-When looking at the grouping by payment methods, the results in~\autoref{fig:top-up-transactions-by-payment-method} give a clear picture of the distribution.
+When looking at the grouping by payment methods, the results in~\autoref{chart:top-up-transactions-by-payment-method} give a clear picture of the distribution.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\small
 	\begin{tabularx}{0.95\textwidth}{
@@ -81,9 +81,9 @@ When looking at the grouping by payment methods, the results in~\autoref{fig:top
 
 	\includegraphics[width=\textwidth]{\ChartsDir/rq2-topup-methods}
 	\caption{\rqshorttext{cashflow-top-up-balance} Top-Up Transactions by Payment Method}
-	\label{fig:top-up-transactions-by-payment-method}
+	\label{chart:top-up-transactions-by-payment-method}
 	\source
-\end{figure}
+\end{chart}
 
 Thanks to the results, it is clear how many funds did the system receive and by what means.
 
@@ -112,15 +112,15 @@ The results show that the total sales of the event were~\bfmtczk{11711807} with 
 
 The organizer, most importantly, sold all the beer beverages and most of the non-alcoholic and alcoholic (spirits) beverages.
 Whereas the external vendors sold mainly food, wine, beverages and other uncategorized products.
-This can be seen in~\autoref{fig:sales-organizer-vs-vendors} below.
+This can be seen in~\autoref{chart:sales-organizer-vs-vendors} below.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq4-organizer-vs-vendor-sales}
 	\caption{\rqshorttext{cashflow-total-sales} Sales of the Organizer vs. External Vendors}
-	\label{fig:sales-organizer-vs-vendors}
+	\label{chart:sales-organizer-vs-vendors}
 	\source
-\end{figure}
+\end{chart}
 
 The organizer also sold not so little of uncategorized products, which after further investigation turned out to be ticket sales at the event amounting to~\bfmtczk{684700}.
 
@@ -154,15 +154,15 @@ The system also reported integrity errors in the data, which resulted in a total
 
 This left the total unclaimed balance at~\bfmtczk{334431}, which has been claimed by the organizer as taxable revenue.
 
-Since these numbers can be quite abstract, the results in a form of sankey diagram in~\autoref{fig:remaining-balances-sankey}~below provide a clear picture of the flow of the funds.
+Since these numbers can be quite abstract, the results in a form of sankey diagram in~\autoref{chart:remaining-balances-sankey}~below provide a clear picture of the flow of the funds.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq3-remaining-balances}
 	\caption{\rqshorttext{cashflow-remaining-balance} Remaining Chip Balances Sankey Diagram}
-	\label{fig:remaining-balances-sankey}
+	\label{chart:remaining-balances-sankey}
 	\source
-\end{figure}
+\end{chart}
 
 Thanks to this breakdown, it is clear how the remaining balances were reduced and what was the final outcome.
 These results are important for the last part of this section, which is the total revenue of the organizer.
@@ -203,9 +203,9 @@ They were not included in the total direct revenue, as they may misinterpret the
 
 If we were to include these, the total revenue would increase by~\bfmtczk{11179700} from the online ticket sales and~\bfmtczk{8240264} from the direct sales, which would result in a total revenue of~\bfmtczkp[2]{20575107,79}.
 
-To better understand the revenue streams, the results are visualized in~\autoref{fig:revenue-breakdown-total}~below.
+To better understand the revenue streams, the results are visualized in~\autoref{chart:revenue-breakdown-total}~below.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	% chart
 	\includegraphics[width=\textwidth]{\ChartsDir/rq1-total-revenue-breakdown}
@@ -230,9 +230,9 @@ To better understand the revenue streams, the results are visualized in~\autoref
 		\hline
 	\end{tabularx}
 	\caption{\rqshorttext{cashflow-total-revenue} Breakdown of All Revenue Streams}
-	\label{fig:revenue-breakdown-total}
+	\label{chart:revenue-breakdown-total}
 	\source
-\end{figure}
+\end{chart}
 
 \begin{keytakeaways}
 	\begin{itemize}
@@ -254,15 +254,15 @@ The results covered the top-up transactions, sales analysis, remaining chip bala
 Nevertheless, results covered in these subsections are only a part of the whole picture and can be interpreted in various ways.
 
 For this particular challenge, a summarized cash flow diagram of payments was created, containing thus only the direct revenue streams.
-This diagram can be seen in the~\autoref{fig:cash-flow-diagram} below.
+This diagram can be seen in the~\autoref{chart:cash-flow-diagram} below.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
-	\includegraphics[width=0.95\textwidth]{\ThesisFigures/charts/revenue-cash-flows}
+	\includegraphics[width=\textwidth]{\ChartsDir/revenue-cash-flows}
 	\caption{Overall Cash Flow Diagram}
-	\label{fig:cash-flow-diagram}
+	\label{chart:cash-flow-diagram}
 	\source
-\end{figure}
+\end{chart}
 
 This diagram provides a clear overview of the financial flows during the festival and nicely summarizes the results of this analysis.
 
@@ -318,16 +318,16 @@ The resulted total number of transactions was~\bfmtnum{141381} consisting of~\bf
 The second part focuses on rather time-related metrics and asks about the processing peak times during the festival.
 For this part, it was necessary to spread out the above transactions over time and find the peaks.
 
-The results in the~\autoref{fig:transactions-peaks} below show the distribution of the processed transactions over time.
+The results in the~\autoref{chart:transactions-peaks} below show the distribution of the processed transactions over time.
 It clearly identifies the peak on the last day of the festival at 18:00 amounting to~\bfmtnum{8986}~transactions.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq5-transaction-peaks}
 	\caption{\rqshorttext{performance-transactions} Transactions Peaks}
-	\label{fig:transactions-peaks}
+	\label{chart:transactions-peaks}
 	\source
-\end{figure}
+\end{chart}
 
 \begin{keytakeaways}
 	\begin{itemize}
@@ -356,16 +356,16 @@ When slightly changing the displayed data, we also get the answer to the~\rqshor
 
 \makerqbox{performance-delays-downtimes}
 
-The chart in the~\autoref{fig:rq7-processing-times}~shows the distribution of the processing times over the time and identifies one high processing peak of approximately~\bfmtnum{11}~minutes.
+The chart in the~\autoref{chart:rq7-processing-times}~shows the distribution of the processing times over the time and identifies one high processing peak of approximately~\bfmtnum{11}~minutes.
 This is highly unusual and indicates a vendor misuse of the system or accidentally put the system into offline mode.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq7-processing-times}
 	\caption{\rqshorttext{performance-delays-downtimes} Transaction Processing Times}
-	\label{fig:rq7-processing-times}
+	\label{chart:rq7-processing-times}
 	\source
-\end{figure}
+\end{chart}
 
 Other high peaks are visible on the second day in the afternoon with approximately~\bfmtnum{3}~minutes processing time, which was probably caused by the initial load on that day.
 
@@ -497,16 +497,16 @@ This resulted in the following findings in the~\autoref{tab:best-topup-points} b
 This indicates that the most busy top-up points were somehow evenly distributed with approximately around \textbf{1000~transactions} processed during the event with average peaks of around \textbf{100~transactions/hour}.
 The least busy top-up points were the specific ones, such as the Support tent, VIP and Accreditation points, which were not used so much for top-ups.
 
-The overall distribution, shown in the~\autoref{fig:best-topup-points}, also shows that Top-up points were more busy than Check-in points.
+The overall distribution, shown in the~\autoref{chart:best-topup-points}, also shows that Top-up points were more busy than Check-in points.
 That makes sense because the top-ups were done more frequently than the initial check-ins, but the check-ins were done in a more concentrated time frame.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq9-best-topup-points}
 	\caption{\rqshorttext{performance-best-top-up-points} Best Top-Up Points}
-	\label{fig:best-topup-points}
+	\label{chart:best-topup-points}
 	\source
-\end{figure}
+\end{chart}
 
 Especially \textbf{Odbavení} point processed only~\bfmtnum{529}~transactions but peaked at~\bfmtnum{125}~transactions per hour, which was much higher than the other check-in points and even higher than the best top-up points.
 
@@ -782,15 +782,15 @@ The results in the~\autoref{tab:best-products} below somehow confirm this predic
 \end{table}
 
 As there were more than \bfmtnum{300}~unique products sold during the event, a better visualization of the results would be a bar chart showing the best product categories instead of individual products.
-This can be seen in the~\autoref{fig:best-product-category} below.
+This can be seen in the~\autoref{chart:best-product-category} below.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq11-best-product-category}
 	\caption{\rqshorttext{performance-best-products} Best Products by Category}
-	\label{fig:best-product-category}
+	\label{chart:best-product-category}
 	\source
-\end{figure}
+\end{chart}
 
 This chart now confirms the prediction about the beer beverages, as the \textbf{Beer} (Pivo) category was the most sold during the event with a little more than~\bfmtnum{40000}~orders processed.
 
@@ -845,19 +845,19 @@ This capability, previously absent, should enhance comprehension of product sale
 
 \makerqbox{beverage-returnable-cups}
 
-To figure out the results, it was essential to analyze the actual contents of the transactions rather than merely identifying transactions including returnable cups,
+To chart out the results, it was essential to analyze the actual contents of the transactions rather than merely identifying transactions including returnable cups,
 as a single transaction may encompass many products and hence multiple returnable cups.
 The organizer sold the cups for a price of ~\fmtczk{70} with a ~\fmtnum{21}\% VAT.\
 
-Upon calculating the total number of issued and returned cups, the results depicted in~\autoref{fig:returnable-cups}~below illustrate the distribution of returnable cups throughout the event.
+Upon calculating the total number of issued and returned cups, the results depicted in~\autoref{chart:returnable-cups}~below illustrate the distribution of returnable cups throughout the event.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq13-returnable-cups}
 	\caption{\rqshorttext{beverage-returnable-cups} Returnable Cups}
-	\label{fig:returnable-cups}
+	\label{chart:returnable-cups}
 	\source
-\end{figure}
+\end{chart}
 
 The data indicate that a total of~\bfmtnum{20045}~cups was distributed during the event, with only~\bfmtnum{17322}~cups returned, yielding a return rate of~\bfmtnump[2]{78.60}\%.
 
@@ -958,15 +958,15 @@ Starting with the most consumed and most popular category – beer.
 
 \makerqbox{beverage-top-beer}
 
-The results in~\autoref{fig:beverage-top-beer} below illustrate the distribution of the most frequently consumed beer brands during the event.
+The results in~\autoref{chart:beverage-top-beer} below illustrate the distribution of the most frequently consumed beer brands during the event.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq15-top-beer-brands}
 	\caption{\rqshorttext{beverage-top-beer} Most Consumed Beer Brands}
-	\label{fig:beverage-top-beer}
+	\label{chart:beverage-top-beer}
 	\source
-\end{figure}
+\end{chart}
 
 This distribution indicates that the most consumed beer brand was \textbf{Radegast}, with a total consumption of~\bfmtnum{10366}~liters and~\bfmtnum{27329} units sold.
 
@@ -1249,13 +1249,13 @@ The significant increase in attendance on Day 3 suggests that the festival succe
 
 The analysis of visitor arrival patterns reveals distinct peak periods across the three festival days, with significant variations in the rate of new visitor registrations throughout each day.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq24-arrival-patterns}
 	\caption{\rqshorttext{customers-new-visitors} Visitor Arrival Patterns}
-	\label{fig:visitor-arrival-patterns}
+	\label{chart:visitor-arrival-patterns}
 	\source
-\end{figure}
+\end{chart}
 
 The data reveals three distinct patterns across the festival days:
 
@@ -1383,13 +1383,13 @@ This was most likely due to their responsibilities at the event, which may have 
 The examination of credit top-up patterns reveals distinct peak periods and daily patterns throughout the event.
 A total of~\bfmtnum{17233}~top-up transactions were processed, with activity varying significantly throughout the day.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq26-topup-patterns}
 	\caption{\rqshorttext{customers-top-up-peaks} Credit Top-up Patterns During Event}
-	\label{fig:topup-patterns}
+	\label{chart:topup-patterns}
 	\source
-\end{figure}
+\end{chart}
 
 The data shows three major peak periods:
 \begin{itemize}
@@ -1426,33 +1426,34 @@ This indicates that while many customers purchased tickets online, most preferre
 \makerqbox{customers-distribution-types}
 
 The festival attracted a total of 10,009 attendees across different categories.
-This distribution is shown in the~\autoref{fig:customer-distribution} below.
+This distribution is shown in the~\autoref{chart:customer-distribution} below.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq20-customer-distribution}
 	\caption{\rqshorttext{customers-distribution-types} Customer Distribution by Type}
-	\label{fig:customer-distribution}
+	\label{chart:customer-distribution}
 	\source
-\end{figure}
+\end{chart}
 
 The data shows that the vast majority of attendees (\bfmtnump[2]{89.66}\%) came through online ticket purchases.
 Regular on-site customers made up~\bfmtnump[2]{6.66}\%~of attendees, while staff, guests, and VIPs collectively accounted for less than~\bfmtnum{4}\%~of the total attendance.
 
 \makerqbox{customers-mobile-app}
 
-The festival provided multiple platforms for customers to interact with the system.
-In the figure~\autoref{fig:customer-app-usage}~below is shown this breakdown.
+The system provides several ways for customers to interact with the festival, including mobile apps and web platform.
+These can be used for ticket purchases, credit top-ups, credit refunds and other services.
+In the~\autoref{chart:customer-app-usage}~below is shown this breakdown.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq21-customer-app-usage}
 	\caption{\rqshorttext{customers-mobile-app} Customer App Usage}
-	\label{fig:customer-app-usage}
+	\label{chart:customer-app-usage}
 	\source
-\end{figure}
+\end{chart}
 
-The analysis reveals a significant adoption of mobile platforms, with~\bfmtnump[2]{40.69}\%~of customers using either iOS (\bfmtnump[2]{25.36}\%) or Android (\bfmtnump[2]{15.33}\%) mobile apps.
+The analysis reveals a significant adoption of mobile app, with~\bfmtnump[2]{40.69}\%~of customers using either iOS (\bfmtnump[2]{25.36}\%) or Android (\bfmtnump[2]{15.33}\%) app.
 The web platform remained the most popular choice, used by~\bfmtnump[2]{55.17}\%~of customers.
 A small portion (\bfmtnump[2]{4.14}\%) of customers had no recorded platform preference whatsoever.
 
@@ -1481,28 +1482,28 @@ the analysis should find interesting patterns and answer the defined research qu
 
 \makerqbox{customers-bank-cards}
 
-The analysis of bank refunds reveals the distribution among Czech banking institutions shown in the~\autoref{fig:bank-refunds} below.
+The analysis of bank refunds reveals the distribution among Czech banking institutions shown in the~\autoref{chart:bank-refunds} below.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq22-bank-refunds}
 	\caption{\rqshorttext{customers-bank-cards} Bank Refunds Distribution}
-	\label{fig:bank-refunds}
+	\label{chart:bank-refunds}
 	\source
-\end{figure}
+\end{chart}
 
 Out of~\bfmtnum{7430}~online credit refunds that were requested, the data shows that \textbf{Česká spořitelna} was the leading bank, accounting for~\bfmtnump[1]{33.3}\%~of all refunds.
 Followed by \textbf{ČSOB} and \textbf{Komerční banka} with~\bfmtnump[1]{15}\%~and~\bfmtnump[1]{13.4}\%~share respectively.
 
 \makerqbox{customers-card-schemes}
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq23-card-schemes}
 	\caption{\rqshorttext{customers-card-schemes} Card Schemes Distribution}
-	\label{fig:card-schemes}
+	\label{chart:card-schemes}
 	\source
-\end{figure}
+\end{chart}
 
 Out of total \bfmtnum{12626}~card transactions done both online (online ticket purchases, credit top-ups in advance) and onsite (onsite top-ups at festival, onsite physical ticket purchases), only two card schemes were identified:
 \begin{itemize}
@@ -1514,15 +1515,15 @@ This distribution rather nicely follows the local trend, where VISA is the most 
 
 \makerqbox{customers-top-up-frequency}
 
-Analyzing onsite top-up frequency behavior at the festival reveals the distribution of top-up counts among customers, as shown in the~\autoref{fig:top-up-behavior} below.
+Analyzing onsite top-up frequency behavior at the festival reveals the distribution of top-up counts among customers, as shown in the~\autoref{chart:top-up-behavior} below.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq27-topup-frequency}
 	\caption{\rqshorttext{customers-top-up-frequency} Top-up Behavior Analysis}
-	\label{fig:top-up-behavior}
+	\label{chart:top-up-behavior}
 	\source
-\end{figure}
+\end{chart}
 
 The analysis of top-up behavior reveals that most customers (\bfmtnump[1]{44.9}\%) topped up only once during the festival.
 A significant portion (\bfmtnump[1]{29.8}\%) topped up twice, while only a small fraction of customers (\bfmtnump[0]{5}\%) topped up more than three times.
@@ -1559,15 +1560,15 @@ This section examines customer purchase behaviors throughout the festival, focus
 \makerqbox{customers-drink-preferences}
 
 To analyze beverage preferences throughout the day, sales data was aggregated by hour and beverage category.
-Figure~\ref{fig:beverage-preferences}~shows the distribution of alcoholic and non-alcoholic beverage sales over the course of the day.
+The~\autoref{chart:beverage-preferences}~shows the distribution of alcoholic and non-alcoholic beverage sales over the course of the day.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\includegraphics[width=\textwidth]{\ChartsDir/rq28-beverage-preferences}
 	\caption{\rqshorttext{customers-drink-preferences} Beverage Preferences Throughout the Day}
-	\label{fig:beverage-preferences}
+	\label{chart:beverage-preferences}
 	\source
-\end{figure}
+\end{chart}
 
 These results reveal that non-alcoholic beverages, such as Coffee and Lemonades, were most popular around noon.
 Afternoon hours saw a shift towards light alcoholic beverages, with beer sales peaking in the late afternoon and early evening.
@@ -1607,9 +1608,9 @@ This information was not possible to extract from the data alone, but it was a k
 Identifying frequently purchased product combinations can provide valuable insights into customer preferences and behavior.
 Two analyses were performed: one with returnable cups and one without, as the high frequency of cup purchases can obscure other meaningful patterns.
 
-The initial results are shown in the~\autoref{fig:common-combos-with-cups}~below and ss expected, returnable cups appear prominently in the most popular combinations as it was necessary to purchase them for drinks.
+The initial results are shown in the~\autoref{chart:common-combos-with-cups}~below and ss expected, returnable cups appear prominently in the most popular combinations as it was necessary to purchase them for drinks.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\small
 	% table
@@ -1649,14 +1650,14 @@ The initial results are shown in the~\autoref{fig:common-combos-with-cups}~below
 	% treemap
 	\includegraphics[width=\textwidth]{\ChartsDir/rq29-product-combos-with-returnable}
 	\caption{\rqshorttext{customers-common-combinations} Most Common Product Combinations with Cups}
-	\label{fig:common-combos-with-cups}
+	\label{chart:common-combos-with-cups}
 	\source
-\end{figure}
+\end{chart}
 
 
-To gain additional insights, the analysis was repeated while excluding returnable cups, as shown in the~\autoref{fig:common-combos-without-cups}~below.
+To gain additional insights, the analysis was repeated while excluding returnable cups, as shown in the~\autoref{chart:common-combos-without-cups}~below.
 
-\begin{figure}[H]
+\begin{chart}[H]
 	\centering
 	\small
 	% table
@@ -1696,9 +1697,9 @@ To gain additional insights, the analysis was repeated while excluding returnabl
 	% treemap
 	\includegraphics[width=\textwidth]{\ChartsDir/rq29-product-combos-without-returnable}
 	\caption{\rqshorttext{customers-common-combinations} Most Common Product Combinations without Cups}
-	\label{fig:common-combos-without-cups}
+	\label{chart:common-combos-without-cups}
 	\source
-\end{figure}
+\end{chart}
 
 This revealed the most popular product combination, without returnable cups included, was the \textbf{Absolut Vodka} and \textbf{Redbull} accounting to total of~\bfmtnump[2]{2.48}\%~of all transactions.
 

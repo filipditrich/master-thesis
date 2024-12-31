@@ -61,11 +61,11 @@
     </thead>
     <!-- progress-table-start -->
     <tbody>
-        <tr>
-            <td>16697</td>
-            <td>66.8</td>
-            <td>106</td>
-            <td>2024-12-31 01:25 AM</td>
+       <tr>
+            <td>16737</td>
+            <td>66.9</td>
+            <td>107</td>
+            <td>2024-12-31 02:27 AM</td>
             <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
         </tr>
         <tr>
