@@ -239,7 +239,7 @@ def beverages_section_callbacks(app):
 				"date_to": parse_date(date_to),
 			}
 		)
-		total_consumption_liters = results['total_consumption'].iloc[0].get("total_consumption_liters", 0)
+		total_consumption_liters = round(results['total_consumption'].iloc[0].get("total_consumption_liters", 0))
 		returnable_cups_res = results['returnable_cups'].iloc[0]
 		most_popular_category_res = results['category_popularity'].iloc[0]
 		beer_brands_res = results['beer_brands']
