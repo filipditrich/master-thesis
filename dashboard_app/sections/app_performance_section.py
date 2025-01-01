@@ -384,9 +384,21 @@ def performance_section_callbacks(app):
 			} for row in program_timeline.itertuples()
 		]
 
-		# Sort input data and reference lines
+		# Format the slot_start with format_event_datetime() method
 		input_data = sorted(input_data, key=lambda x: x['slot_start'])
-		reference_lines = sorted(reference_lines, key=lambda x: x['x'])
+		for row in input_data:
+			# row['slot_start'] = format_event_datetime(row['slot_start'], True)
+			row['slot_start'] = to_timestamp(row['slot_start']).strftime("%H:%M")
+		# Sort input data and reference lines
+		# reference_lines = sorted(reference_lines, key=lambda x: x['x'])
+		# reference_lines = [
+		# 	{
+		# 		"label": "Day 1",
+		# 		"labelPosition": "top",
+		# 		"color": "gray",
+		# 		"x": to_timestamp("2024-07-04T00:00:00")
+		# 	}
+		# ]
 
 		# TODO: create plotly bar chart instead?
 
@@ -402,6 +414,7 @@ def performance_section_callbacks(app):
 				withDots=False,
 				# withRightYAxis=True,
 				# rightYAxisLabel="Count",
+				xAxisProps={ "tickMargin": 50, "orientation": "bottom" },
 				series=[
 					{ "name": "value", "label": metric, "color": "green" },
 				],

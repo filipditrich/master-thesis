@@ -186,11 +186,11 @@ class MainApplication:
 							html.Main(
 								className="grid grid-cols-1 gap-4",
 								children=[
-									# TODO: Cashflow and Revenue Analysis
+									# Cashflow and Revenue Analysis
 									cashflow_section_children(self),
-									# TODO: Performance Analysis
+									# Performance Analysis
 									performance_section_children(self),
-									# TODO: Beverage Consumption analysis
+									# Beverage Consumption analysis
 									beverages_section_children(self),
 									# TODO: Customer Analysis
 									customers_section_children(self),
@@ -219,13 +219,13 @@ class MainApplication:
 		def sync_date_preset(preset):
 			return days[preset] if preset in days else (days['1'][0], days['3'][1])
 
-		# FIXME: register cashflow section callbacks
+		# register cashflow section callbacks
 		cashflow_section_callbacks(self)
 
-		# FIXME: register performance section callbacks
+		# register performance section callbacks
 		performance_section_callbacks(self)
 
-		# FIXME: register beverages section callbacks
+		# register beverages section callbacks
 		beverages_section_callbacks(self)
 
 		# FIXME: register customers section callbacks
