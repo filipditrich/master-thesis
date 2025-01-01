@@ -28,10 +28,6 @@ days = {
 }
 
 
-def fast_preview_playground():
-	return []
-
-
 # ---- Dash Application ----
 class MainApplication:
 	def __init__(self):
@@ -180,8 +176,6 @@ class MainApplication:
 									),
 								]
 							),
-							# FIXME
-							fast_preview_playground(),
 							# Main content
 							html.Main(
 								className="grid grid-cols-1 gap-4",

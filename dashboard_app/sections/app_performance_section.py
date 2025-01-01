@@ -306,7 +306,6 @@ def performance_section_callbacks(app):
 			query_names=[
 				# TODO: when time improve (add chip registers and time processing stats)
 				"time_series",
-				"event_entry_timeline",
 			],
 			parameters={
 				"date_from": parse_date(date_from),
@@ -317,7 +316,6 @@ def performance_section_callbacks(app):
 			}
 		)
 		time_series_data = results['time_series'].to_dict(orient='records')
-		event_entry_timeline = results['event_entry_timeline']
 
 		def get_row_data(rd):
 			if transaction_type == "all":
@@ -359,12 +357,12 @@ def performance_section_callbacks(app):
 				}
 			)
 		# Get visible program timeline
-		program_timeline = event_entry_timeline[(
-			# or stage_name is None
-				event_entry_timeline['stage_name'].isnull()
-				# if stage_name include "Jihlava"
-				| event_entry_timeline['stage_name'].str.contains("Jihlava")
-		)]
+		# program_timeline = event_entry_timeline[(
+		# 	# or stage_name is None
+		# 		event_entry_timeline['stage_name'].isnull()
+		# 		# if stage_name include "Jihlava"
+		# 		| event_entry_timeline['stage_name'].str.contains("Jihlava")
+		# )]
 		# Fill in the slots for reference lines
 		# for row in program_timeline.itertuples():
 		# 	input_data.append(
@@ -374,15 +372,15 @@ def performance_section_callbacks(app):
 		# 		}
 		# 	)
 		# Prepare reference lines
-		reference_lines = [
-			{
-				"x": to_timestamp(row.start_time),
-				"label": row.entry_name,
-				"labelPosition": "top",
-				"color": "gray" if row.stage_name is None else "indigo",
-				# "ifOverflow": "extendDomain",
-			} for row in program_timeline.itertuples()
-		]
+		# reference_lines = [
+		# 	{
+		# 		"x": to_timestamp(row.start_time),
+		# 		"label": row.entry_name,
+		# 		"labelPosition": "top",
+		# 		"color": "gray" if row.stage_name is None else "indigo",
+		# 		# "ifOverflow": "extendDomain",
+		# 	} for row in program_timeline.itertuples()
+		# ]
 
 		# Format the slot_start with format_event_datetime() method
 		input_data = sorted(input_data, key=lambda x: x['slot_start'])
@@ -418,7 +416,7 @@ def performance_section_callbacks(app):
 				series=[
 					{ "name": "value", "label": metric, "color": "green" },
 				],
-				referenceLines=reference_lines,
+				# referenceLines=reference_lines,
 				yAxisProps={ "width": 80 },
 			)
 		]
