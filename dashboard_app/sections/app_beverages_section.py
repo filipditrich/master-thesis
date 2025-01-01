@@ -159,7 +159,7 @@ def beverages_section_callbacks(app):
 					name="total_consumption",
 					sql=QueryManager.process_sql_query(
 						"""
-							SELECT * FROM beve(:date_from$1, :date_to$2);
+							SELECT * FROM beverage_an_total_consumption(:date_from$1, :date_to$2);
 						"""
 					),
 					parameters=[
