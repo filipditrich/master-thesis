@@ -11,10 +11,8 @@ thesis/autobib/
 # database source and exports
 db/
 
-# db queries
-app-demo/queries/
-app-demo/cache/
-app-demo/cached-queries/
+# deprecated app-demo
+app-demo/
 
 # charts prep
 prep-charts.ipynb
