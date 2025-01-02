@@ -240,7 +240,9 @@
 
 % Configure autoref format for research questions
 \makeatletter
-\def\therqcounter{\@arabic\c@rqcounter}
+% @formatter:off
+\def\therqcounter{\ifnum\value{rqcounter}<10\relax0\fi\number\value{rqcounter}}
+% @formatter:on
 \@addtoreset{rqcounter}{chapter}
 \def\autoref@rqcounter#1{\RQ{#1}}
 \def\RQ#1{\textup{RQ#1}}
@@ -275,10 +277,10 @@
 }
 
 % use a research question (RQ#: Question text?)
-\NewDocumentCommand{\rqfull}{m}{
-	\hyperref[rq:#1]{
-		\textbf{\csname rqlabel:\string#1\endcsname}: \rqtext{#1}
-	}
+\NewDocumentCommand{\rqfull}{m}{%
+	\hyperref[rq:#1]{%
+		\textbf{\csname rqlabel:\string#1\endcsname}\nobreak: \rqtext{#1}%
+	}%
 }
 
 % use a research question shortcut (RQ#)
@@ -291,4 +293,6 @@
 	\csname rqlabel:\string#1\endcsname\textbf{}
 }
 
-\renewcommand{\therqcounter}{\arabic{rqcounter}}
+% @formatter:off
+\renewcommand{\therqcounter}{\ifnum\value{rqcounter}<10\relax0\fi\number\value{rqcounter}}
+% @formatter:on
