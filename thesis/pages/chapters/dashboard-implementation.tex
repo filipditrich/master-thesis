@@ -148,11 +148,12 @@ query_manager.registry.register_query(
 def execute_query(self, query_name: str, parameters: Dict[str, Any], or_query_def: Optional[QueryDefinition]):
     query_key = self.get_query_key(query_name, parameters)
 
+	# Load query from cache if enabled
     if query_def.default_data == "FSCacheDefault":
         try:
             return pd._read_csv_cache(query_key)
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"Failed to load query {query_name} from cache: {e}")
 
     # Execute database query directly
     result = self._execute_db_query(query_def, parameters)
@@ -227,57 +228,6 @@ background_callback_manager = dash.DiskcacheManager(
 		Having extensive experience with asynchronous programming in the JavaScript ecosystem, we wanted to leverage similar patterns in our Python implementation.
 		This led to a custom callback management system implementation that somehow bridged this gap.
 
-		The implementation, shown in~\autoref{lst:dashboard-implementation-callback-decorator}, demonstrates the approach to the custom callback registration:
-
-		\begin{listing}[H]
-			\caption{Custom Callback Decorator Implementation}
-			\begin{minted}[breaklines]{python}
-def register_callback(self, output, inputs, prevent_initial_call=False, background=False, *args, **kwargs):
-    def decorator(func):
-        def async_callback_wrapper(_self, *args, **kwargs):
-            async def async_function():
-                try:
-                    return await func(_self, *args, **kwargs)
-                except Exception as e:
-                    print(f"🚨 Error in callback {func.__name__}: {str(e)}")
-                    raise dash.exceptions.PreventUpdate
-
-            try:
-                loop = asyncio.new_event_loop()
-                asyncio.set_event_loop(loop)
-                return loop.run_until_complete(async_function())
-            finally:
-                loop.close()
-
-        def sync_callback_wrapper(_self, *args, **kwargs):
-            try:
-                return func(_self, *parsed_args, **kwargs)
-            except Exception as e:
-                print(f"🚨 Error in callback {func.__name__}: {str(e)}")
-                raise dash.exceptions.PreventUpdate
-
-        if background:
-            return self.__app.callback(
-                output=output,
-                inputs=inputs,
-                background=True,
-                prevent_initial_call=prevent_initial_call,
-                manager=create_cache_key(func.__name__),
-                *args, **kwargs
-            )(async_callback_wrapper)
-        else:
-            return self.__app.callback(
-                output=output,
-                inputs=inputs,
-                prevent_initial_call=prevent_initial_call,
-                *args, **kwargs
-            )(sync_callback_wrapper)
-
-    return decorator
-			\end{minted}
-			\label{lst:dashboard-implementation-callback-decorator}
-		\end{listing}
-
 		The implementation addressed several development needs:
 		\begin{itemize}
 			\item \textbf{Async/Await Pattern Support}: The system allowed using familiar async/await syntax in our Python callbacks, maintaining consistency with the query execution manager which was already implemented using async
@@ -287,6 +237,37 @@ def register_callback(self, output, inputs, prevent_initial_call=False, backgrou
 			\item \textbf{Flexible Processing Modes}: The system seamlessly supported both synchronous and asynchronous operations through a single interface, automatically managing asyncio event loops
 			\footnote{Asyncio is a Python library to write concurrent code using the async/await syntax\cite{psf_library_asyncio}} when needed.
 		\end{itemize}
+
+		The simplified pseudo-implementation
+		\footnote{
+			The actual implementation includes additional features such as proper asyncio event loop management, argument parsing, and integration with the caching system.
+			This example demonstrates the core pattern while omitting implementation details.}, shown in~\autoref{lst:dashboard-implementation-callback-decorator}, demonstrates this approach to the custom callback registration.
+
+		\begin{listing}[H]
+			\caption{Custom Callback Decorator Implementation}
+			\begin{minted}[breaklines]{python}
+def register_callback(self, output, inputs, background=False):
+	def decorator(func):
+		async def async_wrapper(_self, *args):
+			try:
+				return await func(_self, *args)
+			except Exception as e:
+				print(f"Error in {func.__name__}: {str(e)}")
+				raise dash.exceptions.PreventUpdate
+
+		if background:
+			return self.__app.callback(
+				output=output,
+				inputs=inputs,
+				background=True,
+				*args, **kwargs
+			)(async_wrapper)
+		return self.__app.callback(output=output, inputs=inputs, *args, **kwargs)(func)
+
+	return decorator
+			\end{minted}
+			\label{lst:dashboard-implementation-callback-decorator}
+		\end{listing}
 
 		This unified approach simplified the possibly complex and boiler-plated, callback implementations, as shown in~\autoref{lst:dashboard-implementation-callback-usage}:
 
