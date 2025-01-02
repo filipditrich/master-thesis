@@ -1,11 +1,16 @@
 @startuml
+'skinparam defaultFontName serif
+skinparam defaultFontSize 14
+skinparam padding 1
+'skinparam nodesep 5
+'skinparam ranksep 5000
 skinparam ActivityBackgroundColor #f9f9f9
 skinparam ActivityBorderColor #333
 skinparam ArrowColor #666
-skinparam ActivityFontSize 11
+skinparam ActivityFontSize 14
 skinparam NoteBorderColor #999
 skinparam NoteBackgroundColor #fff
-skinparam NoteFontSize 10
+skinparam NoteFontSize 14
 
 ' Define specific activity styles
 skinparam activity {
@@ -21,8 +26,7 @@ skinparam partition {
 
 partition "Initial Analysis" {
     start
-    :Analyze DB;
-    :Select Tables;
+    :Analyze DB, Select Tables;
     note right: 21 tables selected
     :Plan Export Strategy;
 
@@ -33,19 +37,16 @@ partition "Initial Analysis" {
         :Process Large Tables;
         :Split in Chunks;
         :Join with Python;
-        note right: e.g., Transactions table (140k+ rows)
+        note left: e.g., Transactions table (140k+ rows)
     end split
 }
 
 partition "Preprocessing" {
-    :Convert Timestamps;
-    :Fix Formats;
-'    note: Ensure numeric consistency
+    :Fix Formats, Convert Timestamps;
 }
 
 partition "Environment Setup" {
-    :Install PostgreSQL with PostGIS;
-    :Setup DB Structure;
+    :Setup PostgreSQL with PostGIS;
     :Import Preprocessed Files;
     :Base Dataset Ready;<<milestone>>
 }
@@ -55,9 +56,8 @@ partition "Data Enhancement" {
         :Enhance Beverage Data;
         :Add Volume Info;
         note left
-            - 425 products
-            - 159 beverages
-            - Manual entry
+            Manual entry
+            in 159 beverages
         end note
     split again
         :Process Returns;
@@ -67,15 +67,18 @@ partition "Data Enhancement" {
         :Extract from Web;
         :AI-Assisted Entry;
         note right
-            AI-generated
+            AI-Processed
             SQL scripts
         end note
     end split
 }
 
 partition "Anonymization" {
-    :Setup Tables;
-    note left: Tables: config, values
+    :Extend DB with Anonymization Tables;
+    note left
+     New anonymization_config
+     and original_values tables
+    end note
     :Configure Anonymization;
     note right: JSON-driven setup
 
@@ -84,7 +87,6 @@ partition "Anonymization" {
         note left: Specific formats
     split again
         :Process Customers;
-        note right: Preserve domains
     split again
         :Process Locations;
         note right
@@ -105,7 +107,7 @@ partition "Analysis Prep" {
     end split
 }
 
-:Final Dataset Ready;<<milestone>>
+:**Final Dataset Ready**;<<milestone>>
 stop
 
 @enduml
