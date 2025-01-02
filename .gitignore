@@ -15,4 +15,4 @@ db/
 app-demo/
 
 # charts prep
-prep-charts.ipynb
+app-demo/prep-charts.ipynb

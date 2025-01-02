@@ -49,7 +49,7 @@ def extract_stats(content):
 
 
 def main():
-	readme_path = 'README.md'
+	readme_path = '../README.md'
 	commits = get_file_history(readme_path)
 	historical_data = []
 
