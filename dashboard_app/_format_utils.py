@@ -77,11 +77,11 @@ def format_volume(num: int | float, float_places: int = 0) -> str:
 	"""Default volume (ml) formatter with space as thousands separator and 'liters' suffix"""
 	try:
 		if num >= 1_000:
-			return f"{num / 1_000:,.{float_places}f} litres".replace(",", " ")
+			return f"{num / 1_000:,.{float_places}f} liters".replace(",", " ")
 		else:
 			return "{:,}".format(num).replace(",", " ") + " ml"
 	except TypeError:
-		return "0 litres"
+		return "0 liters"
 
 
 def format_duration(mins: int | float) -> str:

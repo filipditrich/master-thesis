@@ -17,10 +17,10 @@
 
 <h3 align="center">👨🏻‍🔬 Current Status</h3>
 <p align="center">
-  <img src="https://img.shields.io/badge/Research-100%25-lime" />
-  <img src="https://img.shields.io/badge/Development-90%25-green" />
-  <img src="https://img.shields.io/badge/Thesis-100.0%25-green" />
-  <img src="https://img.shields.io/badge/Revisions-0%25-red" />
+  <img src="https://img.shields.io/badge/Research-100%25-brightgreen" />
+  <img src="https://img.shields.io/badge/Development-95%25-green" />
+  <img src="https://img.shields.io/badge/Thesis-100.0%25-brightgreen" />
+  <img src="https://img.shields.io/badge/Revisions-75%25-yellow" />
 </p>
 
 ## Thesis PDF
@@ -62,11 +62,18 @@
     <!-- progress-table-start -->
     <tbody>
         <tr>
+            <td>16891</td>
+            <td>67.6</td>
+            <td>106</td>
+            <td>2025-01-04 07:26 PM</td>
+            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
+        </tr>
+        <tr>
             <td>16795</td>
             <td>67.2</td>
             <td>105</td>
             <td>2024-12-31 04:23 AM</td>
-            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
+            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/9c3051f0d0c026a176c5c988067f8e4b87432d92/thesis/dist/main.pdf" target="_blank">👀 View</a></td>
         </tr>
         <tr>
             <td>14964</td>

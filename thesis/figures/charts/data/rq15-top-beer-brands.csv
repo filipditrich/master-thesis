@@ -1,11 +1,11 @@
-subcategory,total_consumption_ml,total_sold
-Radegast,10366,27329
-Pilsner Urquell,5258,14137
-Frisco,2658,8209
-Proud,980,2908
-BEERPONG - PIVO,219,681
-IPA,134,332
-Franz Spalek,126,285
-KISELÁČ,24,55
-ZON Lemonade,27,51
-APA 12,1,3
+subcategory,total_consumption_liters,total_sold
+Radegast,13664.5,27329
+Pilsner Urquell,7068.5,14137
+Frisco,3283.6,8209
+Proud,1163.2,2908
+BEERPONG - PIVO,340.5,681
+IPA,166,332
+Franz Spalek,142.5,285
+KISELÁČ,27.5,55
+ZON Lemonade,25.5,51
+APA 12,1.5,3

@@ -1,11 +1,24 @@
-subcategory,total_consumption_ml,total_sold
-Beefeater,966,4628
-Absolut Vodka,335,9177
-Jack Daniels,312,2391
-Becherovka Lemond,96,4941
-Havana,67,1847
-Malibu + Pineapple,55,707
-Malfy Rosa + Tonic,45,217
-Fire Štrúdl,28,770
-Aperol,17,414
-Others,59,1872
+subcategory,total_consumption_liters,total_sold
+Absolut Vodka,238.69,9177
+Beefeater,170.42,4628
+Becherovka Lemond,96.25,4941
+Jack Daniels,69.2,2391
+Havana,67.92,1847
+Malibu + Pineapple,31.1,707
+Fire Štrúdl,28.8,770
+Aperol,17.5,414
+Malibu,11.3,415
+Jameson,9.22,307
+Malfy Rosa + Tonic,7.1,217
+Cuba Libre,4.5,125
+"Jack on the rocks 0,04l",4.08,180
+"Bumbu original 0,04l",3.96,239
+"Lemond Apple 0,2l",3.6,89
+Lynchburg Lemonade,3.2,78
+VIP - Skinny Bitch,3.1,87
+VIP - Jägermeister,2.95,129
+"Malfy Rosa 0,04l",1.2,136
+VIP - Ron de Azur,0.85,28
+VIP - Mimosa,0.6,13
+"Gentleman Jack 0,04l",0.48,40
+Lemonade,0.3,6

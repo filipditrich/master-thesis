@@ -13,7 +13,7 @@
     <option name="IS_MODULE_SDK" value="false" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />
-    <option name="SCRIPT_NAME" value="update-thesis-progress.py" />
+    <option name="SCRIPT_NAME" value="scripts/update-thesis-progress.py" />
     <option name="PARAMETERS" value="./thesis/main.tex ./thesis/dist/main.pdf ./README.md" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />

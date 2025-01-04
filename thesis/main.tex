@@ -51,6 +51,8 @@
 	pdfnewwindow,
 	breaklinks
 }
+
+% auto-references setup
 \addto\extrasenglish{%
 	\renewcommand{\chapterautorefname}{\textbf{Chapter}}
 	\renewcommand{\sectionautorefname}{\textbf{Section}}
@@ -59,6 +61,12 @@
 	\renewcommand{\tableautorefname}{\textbf{Table}}
 	\newcommand{\listingautorefname}{\textbf{Source Code}}
 }
+
+% make the entire reference bold, including the number
+\makeatletter
+\let\orgautoref\autoref
+\renewcommand{\autoref}[1]{\textbf{\orgautoref{#1}}}
+\makeatother
 
 %%%%% Bibliography setup
 %%%%% ---------------------------------------------------------------
@@ -75,8 +83,6 @@
 \renewcommand\cftchapafterpnum{\vskip0pt}
 \renewcommand\cftsecafterpnum{\vskip2pt}
 \usepackage[toc,page]{appendix}
-% \renewcommand{\appendixtocname}{Seznam příloh}
-% \renewcommand{\appendixpagename}{Seznam příloh}
 
 %%%%% Directories setup
 %%%%% ---------------------------------------------------------------
@@ -89,6 +95,16 @@
 %% - [] revise Data Analysis and Results chapter - shorten, formatting, corrections, and references, improve wording
 %%      NOTE: Každý blok research question zakončujete frází typu: "answers to these question should provide valuable/detailed insights" občas to obměňte
 %% - [] overall revision - grammatical correctness and final visual adjustments (line breaks, indentation, new pages, etc.)
+%% - [x] fix all auto-references remove `the` Chart, Table, etc.
+%% - [x] use flushleft on all boxes (keytakeaways, infobox, ...)
+%% - [x] autoref Chart/Figure etc makes bold only the label not the number
+%% - [x] consistent number formatting (latex should format thousands with space instead of comma)
+%% - [x] check for liters and litres (incorrect) - CHARTS have litres also
+%% - [x] beverage consumption recheck (incorrect volume calculation)!!!
+%% - [x] add chart for top non-alco and spirits beverages
+%% - [x] join top beer, non-alco and spirits charts with tables as one chart
+%% - [x] RQ20 customer distribution bar chart values descending
+%% -
 %% - [] revise all figures, tables, and charts - content correctness, graphical finalization, alignment, etc.
 %% - [] finish up dashboard implementation, prepare to submission format (add as appendix)
 %% - [] submit hard title for printing
@@ -96,6 +112,7 @@
 %% - [] add copy of the assignment PDF
 %% - [x] improve KDD diagram if time allows
 %% - [x] improve Sankey charts if time allows
+%% - [] RQ03 remaining balances sankey diagram -> replace/or add funnel chart? if time allows
 
 % TODO (MEDIUM prio):
 %% - [x] prepare dashboard screenshots for Implementation Results section
@@ -121,7 +138,7 @@
 %% - [🟢] Figure 2.2: Sales of the Organizer vs. External Vendors            -- hopefully ok
 %% - [🟢] Figure 2.3: Remaining Chip Balances Sankey Diagram                 -- hopefully OK
 %% - [🟢] Figure 2.4: Breakdown of All Revenue Streams                       -- hopefully OK
-%% - [🟠] Figure 2.5: Overall Cash Flow Diagram                              -- improve coloring and fonts
+%% - [🟢] Figure 2.5: Overall Cash Flow Diagram                              -- improve coloring and fonts
 %% - [🟢] Figure 2.6: Transactions Peaks                                     -- hopefully OK
 %% - [🟢] Figure 2.7: Transaction Processing Times                           -- hopefully OK
 %% - [🟢] Figure 2.8: Best Top-Up Points                                     -- hopefully OK
@@ -205,18 +222,18 @@
 	\include{pages/acknowledgements}
 %%% ✅ first page
 	\include{pages/firstpage}
-%%% ⏳abstract | TODO: Wait for final revisions, update if necessary
+%%% ✅ abstract
 	\include{pages/abstract}
 %%% ✅ table of contents
 	\newpage
 	\pagestyle{plain}
 	\tableofcontents
 %%% ⏳ chapters
-	% ⏳ chapter - introduction
+	% ✅ chapter - introduction
 	\input{pages/chapters/introduction}
-	% ⏳ chapter - methodology
+	% ✅ chapter - methodology
 	\input{pages/chapters/data-and-methodology}
-	% ⏳ chapter - data analysis and results
+	% ✅ chapter - data analysis and results
 	\input{pages/chapters/data-analysis-and-results}
 	% ⏳ chapter - implementation of the analytical dashboard
 	\input{pages/chapters/dashboard-implementation}

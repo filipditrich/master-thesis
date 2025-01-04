@@ -229,6 +229,8 @@ def get_progress_color(progress):
 		return 'orange'
 	elif progress < 90:
 		return 'yellow'
+	elif progress == 100:
+		return 'brightgreen'
 	else:
 		return 'green'
 
