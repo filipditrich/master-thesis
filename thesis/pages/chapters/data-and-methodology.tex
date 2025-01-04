@@ -1,6 +1,6 @@
 %%% Data and Methodology
-%%%%%%% Wording: ⏳
-%%%%%%% Styling: ⏳
+%%%%%%% Wording: ✅
+%%%%%%% Styling: ✅
 %%%%%%% References: ✅
 %%%%% Grammar: ✅
 %%% --------------------------------------------------------------
@@ -81,7 +81,7 @@ One of the initial ideas was to visualize the venue map with the locations of th
 
 This would be invaluable, the database was partially ready for this, but the data would be significantly time-consuming to back-fill and the later analysis and visualization would require more time.
 
-Since these facts and the fast that this process of preparing the data took place before completing the list of data analysis questions, this idea has been later abandoned.
+Since these facts and that the process of preparing the data took place before completing the list of data analysis questions, this idea has been later abandoned.
 
 \subsubsection{Event Program}
 \label{subsubsec:data-methodology-local-database-modifications-program}
@@ -97,6 +97,8 @@ This seemed like a good idea, but the AI tool was initially hallucinating and ma
 But after several iterations, it successfully extracted the data and prepared the SQL script which was used, and the event program was successfully inserted into the database.
 
 In the end, one can doubt that this process was faster than manual data entry, but it was a good exercise and a good example of how AI can be used to automate some processes.
+
+\pagebreak[4]
 
 
 \section{Data Anonymization}
@@ -242,7 +244,9 @@ This was a crucial method required to calculate and analyze the commission from 
 It also benefited from the transaction commission calculation function mentioned above, which helped to easily calculate the commission for each transaction.
 
 \textbf{Chip Customers}: Probably the most complex function that returns the customers at the event.
-Since the transactional data is architected using Event Sourcing, the customer information is not directly available and needs to be compiled from the transactional history.
+Since the transactional data is architected using an Event Sourcing pattern\footnote{
+	Event Sourcing is a pattern where the state of the system is determined by a sequence of events\cite{aw_implementing_event_sourcing_using_a_relational_database}.
+}, the customer information is not directly available and needs to be compiled from the transactional history.
 This function was constructed in a way where it supports time-based filtering and provides extensive insights into the customers, which is shown in~\autoref{tab:chip-customers-columns}.
 
 \begin{table}[htbp]
@@ -306,7 +310,7 @@ This function was constructed in a way where it supports time-based filtering an
 
 For further understanding, an enumeration of chip types should be mentioned; that can be seen in~\autoref{tab:chip-types}.
 
-\begin{table}[htbp]
+\begin{table}[H]
 	\centering
 	\footnotesize
 	% @formatter:off
