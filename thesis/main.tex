@@ -92,17 +92,19 @@
 \newcommand{\DataDir}{./figures/charts/data}
 
 % TODO (HIGH prio):
-%% - [] revise Data Analysis and Results chapter - shorten, formatting, corrections, and references, improve wording
-%% - [] overall revision - grammatical correctness and final visual adjustments (line breaks, indentation, new pages, etc.)
 %% - [] revise all figures, tables, and charts - content correctness, graphical finalization, alignment, etc.
-%% - [] finish up dashboard implementation, prepare to submission format (add as appendix)
-%% - [] submit hard title for printing
+%% - [] higher-quality screenshots of dashboard sections
+%% - [] higher-quality PDFs of all charts and figures
 %% - [] prepare the Extended Summary
 %% - [] add copy of the assignment PDF
+%% - [] finish up dashboard implementation, prepare to submission format (add as appendix)
 %% - [] RQ03 remaining balances sankey diagram -> replace/or add funnel chart? if time allows
+%% - [] submit hard for printing
 
 
 % TODO (DONE):
+%% - [x] revise Data Analysis and Results chapter - shorten, formatting, corrections, and references, improve wording
+%% - [x] overall revision - grammatical correctness and final visual adjustments (line breaks, indentation, new pages, etc.)
 %% - [x] fix list of source codes are numbered inconsistently with figures etc
 %% - [x] fix all auto-references remove `the` Chart, Table, etc.
 %% - [x] use flushleft on all boxes (keytakeaways, infobox, ...)
@@ -204,10 +206,10 @@
 %%%%% Main document part
 %%%%% ------------------------------------------------------------
 \begin{document}
-%%% ⏳ hard cover | TODO: Check year and masters/diploma wording
+%%% ✅ hard cover
 	% FIXME: remove
 	\include{pages/hard-cover}
-%%% ⏳ cover page | TODO: check year and masters/diploma wording
+%%% ✅ cover page
 	\include{pages/cover}
 %%% copy of the assignment | TODO: Attach the PDF after we receive it
 %    \includepdf[pages={1}]{\ThesisFigures/zadani-zp.pdf}
@@ -224,16 +226,16 @@
 	\newpage
 	\pagestyle{plain}
 	\tableofcontents
-%%% ⏳ chapters
+%%% ✅ chapters
 	% ✅ chapter - introduction
 	\input{pages/chapters/introduction}
 	% ✅ chapter - methodology
 	\input{pages/chapters/data-and-methodology}
 	% ✅ chapter - data analysis and results
 	\input{pages/chapters/data-analysis-and-results}
-	% ⏳ chapter - implementation of the analytical dashboard
+	% ✅ chapter - implementation of the analytical dashboard
 	\input{pages/chapters/dashboard-implementation}
-	% ⏳ chapter - conclusion
+	% ✅ chapter - conclusion
 	\input{pages/chapters/conclusion}
 %%% ✅ bibliography
 	\begin{flushleft}

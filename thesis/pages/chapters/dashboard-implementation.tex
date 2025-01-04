@@ -1,6 +1,6 @@
 %%% Dashboard Implementation
-%%%%%%% Wording: ⏳
-%%%%%%% Styling: ⏳
+%%%%%%% Wording: ✅
+%%%%%%% Styling: ✅
 %%%%%%% References: ✅
 %%%%% Grammar: ✅
 %%% --------------------------------------------------------------
@@ -21,26 +21,23 @@ While not intended for production deployment, the prototype successfully demonst
 	\label{sec:implementation-development-approach}
 
 	The implementation phase focused on transforming the analysis results from the~\autoref{ch:data-analysis-and-results} into an interactive dashboard prototype.
-	Our approach prioritized rapid development and effective visualization of our analytical findings.
+	Our approach prioritized rapid development and effective visualization of the analytical findings.
+
+	Before proceeding with the development process, a considerable amount of time was spent on researching and testing different approaches in parallel to the data exploration and analysis.
+	Several iterations were made to find the most development approach that would best fit the project's needs.
 
 	\begin{subsection}{Development Goals}
 		\label{subsec:implementation-development-approach-goals}
 
-		The primary goal was to create a functional prototype dashboard that could effectively present our analysis results in an interactive format.
-		Specifically, we aimed to:
-		\begin{itemize}
-			\item Demonstrate key findings through interactive visualizations
-			\item Implement basic filtering capabilities for data exploration
-			\item Create a responsive interface that handles data operations efficiently
-			\item Establish a foundation for visualizing festival transaction data
-		\end{itemize}
-
+		The primary goal was to create a functional prototype dashboard that could effectively present the analysis results in an interactive format.
+		The specific goals included demonstrating key findings through interactive visualizations, implementing basic filtering capabilities for data exploration,
+		creating a responsive interface that handles data operations efficiently, and establishing a foundation for visualizing festival transaction data.
 	\end{subsection}
 
 	\begin{subsection}{Technology Selection}
 		\label{subsec:implementation-development-approach-technology}
 
-		The dashboard was built using Dash and Plotly, chosen primarily for their familiarity from prior personal experience in the academic field and their great capability for relatively fast data app prototyping\cite{plotly_dash_plotly_com}.
+		The dashboard was built using Dash and Plotly, chosen primarily for their familiarity from prior personal experience.
 
 		The technology stack included:
 		\begin{itemize}
@@ -49,7 +46,8 @@ While not intended for production deployment, the prototype successfully demonst
 			\item PostgreSQL\footnote{\url{https://www.postgresql.org/}} for local data storage
 		\end{itemize}
 
-		This stack was chosen specifically for prototyping, with Dash and Plotly providing a good balance of functionality and development speed based on previous personal experience using these tools in university projects.
+		This stack was chosen specifically for prototyping, with Dash and Plotly providing a good balance of functionality
+		and development speed\cite{plotly_dash_plotly_com} based on previous personal experience using these tools in university projects.
 		Mantine Components were added to enhance the visual presentation without significantly increasing additional development time.
 	\end{subsection}
 
@@ -58,11 +56,13 @@ While not intended for production deployment, the prototype successfully demonst
 
 		The dashboard was developed exclusively for the local environment, focusing on demonstrating analytical capabilities rather than production readiness.
 
+		\vspace*{\fill}\pagebreak[4] % fill rest due to the foonote placement
+
 		This decision was influenced by several factors:
 		\begin{itemize}
-			\item The prototype nature of the implementation, focusing on demonstrating analytical insights rather than production features
-			\item Complexity of Python async handling, production requirements and deployment challenges with Python environments
-			\item Implementing a fully featured production-ready dashboard would require significant additional development time and would not bring additional value to the project
+			\item The prototype nature of the implementation, focusing on demonstrating analytical insights rather than production features.
+			\item Complexity of Python async handling, production requirements, and deployment challenges with Python environments.
+			\item Implementing a fully featured production-ready dashboard would require significant additional development time and would not bring additional value to the project.
 		\end{itemize}
 
 		Moreover, as stated previously, the personal motivation for this thesis was to learn more about the data and demonstrate the findings in an interactive way, leading to more insights and knowledge for future updates of the NFCtron Hub dashboard.
@@ -82,6 +82,8 @@ While not intended for production deployment, the prototype successfully demonst
 
 	\begin{subsection}{Query Management System}
 		\label{subsec:implementation-core-architecture-query-management}
+		For the SQL database connection and pooling, the \texttt{asyncpg} library\footnote{\url{https://magicstack.github.io/asyncpg/current/}} was used,
+		which provided a simple and efficient way to interact with the PostgreSQL database asynchronously using asyncio.
 
 		To manage the SQL database interactions efficiently, a simple \textbf{Query Management System} has been implemented to handle loading data from our SQL database.
 
@@ -132,17 +134,17 @@ query_manager.registry.register_query(
 		\begin{subsubsection}{Query Result Caching}
 			\label{subsubsec:implementation-core-architecture-query-cache}
 
-			Since the dashboard relies on several complex SQL queries to load data, it was crucial to optimize query execution during development.
-			Running these queries repeatedly during development significantly slowed down the development process.
+			Since the dashboard relies on several complex SQL queries to load data, it was crucial to optimize query execution.
+			Running these queries repeatedly during development significantly slowed down the process.
 
-			Thus, a basic file-based caching system was implemented to store query results as CSV files, preventing redundant database queries during development.
+			Thus, a basic file-based caching system was implemented to store query results as CSV files, preventing redundant database queries during the development.
 			It, simply by defining a \texttt{default\_data} parameter in the \texttt{QueryDefinition} class, allowed turning on the caching for specific queries which did not need to be reloaded every time.
 
 			The query execution handler shown in the~\autoref{lst:dashboard-implementation-query-cache} below
 			\footnote{The implementation is rather a simplified pseudo-implementation, as the \texttt{execute\_query} method is more complex and contains additional logic for results formatting, database connection retries and error handling},
 			demonstrates the simple implementation of this caching strategy.
 
-			\begin{listing}[H]
+			\begin{listing}[h]
 				\caption{Query Result Caching Implementation}
 				\begin{minted}[breaklines]{python}
 def execute_query(self, query_name: str, parameters: Dict[str, Any], or_query_def: Optional[QueryDefinition]):
@@ -174,6 +176,8 @@ def execute_query(self, query_name: str, parameters: Dict[str, Any], or_query_de
 			Then, if the caching is enabled for the query, it tries to read the CSV file from the cache directory and return it as a result.
 			Otherwise, it executes the DB query directly as usual and then saves the result to the cache directory for future use.
 		\end{subsubsection}
+
+		\vspace*{\fill}\pagebreak[4] % fill rest due to the foonote placement
 
 		\begin{subsubsection}{Background Callback Caching}
 			\label{subsubsec:implementation-core-architecture-callback-cache}
@@ -230,7 +234,7 @@ background_callback_manager = dash.DiskcacheManager(
 
 		The implementation addressed several development needs:
 		\begin{itemize}
-			\item \textbf{Async/Await Pattern Support}: The system allowed using familiar async/await syntax in our Python callbacks, maintaining consistency with the query execution manager which was already implemented using async
+			\item \textbf{Async/Await Pattern Support}: The system allowed using familiar async/await syntax in our Python callbacks, maintaining consistency with the query execution manager, which was already implemented using async
 			patterns.
 			\item \textbf{Unified Error Handling}: Instead of implementing error handling in each callback separately, the decorator provided centralized, but simple, error management and logging, reducing code duplication and ensuring
 			consistent error handling across all callbacks.
@@ -361,7 +365,7 @@ background_callback_manager = dash.DiskcacheManager(
 			due to the modular structure of the dashboard\footnote{Each dashboard section had its own callbacks; but many of them shared the same inputs, such as date range filters}, this approach led to cache key collisions.
 
 			\begin{infobox}{Why Cache Key Collisions Occurred}
-				\textbf{Cache Key Collisions} occurred because the DiskcacheManager used the same cache key for callbacks with identical inputs.
+				\textbf{Cache Key Collisions} occurred because the~\textt{DiskcacheManager} used the same cache key for callbacks with identical inputs.
 				We did not know that the callbacks should ideally have unique inputs to prevent cache key collisions.
 				As a result, the cached data was overwritten, leading to incorrect data being returned.
 			\end{infobox}
@@ -370,7 +374,7 @@ background_callback_manager = dash.DiskcacheManager(
 		\begin{subsubsection}{First Solution Attempt}
 			\label{subsubsec:implementation-technical-challenges-caching-first}
 
-			To address cache key collisions, we tried to implement a unique~\textt{DiskacheManager} instance for each unique callback, based on it's~\texttt{callback\_id}:
+			To address cache key collisions, we tried to implement a unique~\textt{DiskcacheManager} instance for each unique callback, based on it's~\texttt{callback\_id}:
 
 			\begin{listing}[H]
 				\caption{Unique Cache Managers Per Callback}
@@ -412,7 +416,10 @@ def create_callback_manager(callback_id):
 
 			Eventually, after an unsuccessful 12–hour overnight journey, we decided to look for a simpler solution as a result of the frustration, lack of progress, and time constraints.
 
-			Then a simple and dumb, yet effective solution was found, which was to create a separate cache directory for each callback, effectively isolating the SQLite database for each callback:
+			Then a simple and dumb, yet effective solution was found, which was to create a separate cache directory for each callback,
+			effectively isolating the SQLite database for each callback, as shown in the~\autoref{lst:dashboard-implementation-cache-final}.
+
+			\vspace*{\fill}\pagebreak[4] % fill rest due to the foonote placement
 
 			\begin{listing}[H]
 				\caption{Final Cache Implementation}
@@ -483,7 +490,7 @@ def create_isolated_cache_manager(callback_id):
 		The centerpiece Sankey diagram visualizes how money moves through the system—from initial top-ups through various payment channels to final settlements.
 		This helps to track the conversion of chip credits into sales and monitor refund volumes.
 
-		Below, sales data splits between organizer (\bfmtczk{8240264}) and vendor (\bfmtczk{3471543}) categories, with detailed breakdowns for beverages, food, and other revenue streams.
+		Below, the data splits between organizer sales (\bfmtczk{8240264}) and external vendor sales (\bfmtczk{3471543}), with detailed breakdowns for beverages, food, and other related information.
 	\end{subsection}
 
 	\begin{subsection}{Performance Analysis Section}
@@ -512,7 +519,7 @@ def create_isolated_cache_manager(callback_id):
 		\label{subsec:implementation-results-structure-beverage}
 
 		The beverage section tracks consumption patterns and returnable cup management.
-		At a glance, a total consumption (\bfmtnum{29343}~liters), returnable cups issued (\bfmtnum{22045}), and the return rate of~\bfmtnump[2]{78.4}\% can immediately be seen.
+		At a glance, a total consumption (\bfmtnum{35844}~liters), returnable cups issued (\bfmtnum{22045}), and the return rate of~\bfmtnump[2]{78.4}\% can immediately be seen.
 		A visual representation of this section is shown in~\autoref{fig:dashboard-beverage-analysis}.
 
 		\begin{figure}[h]
@@ -523,8 +530,8 @@ def create_isolated_cache_manager(callback_id):
 			\label{fig:dashboard-beverage-analysis}
 		\end{figure}
 
-		Breaking down by category, \textbf{Radegast} led beer sales with \bfmtnum{10525}~liters and \bfmtnum{27752}~units sold.
-		\textbf{Birell} dominated non-alcoholic beverages with \bfmtnum{21846}~liters, while \textbf{Beefeater} led spirits with \bfmtnum{966}~liters consumed.
+		Breaking down by category, \textbf{Radegast} led beer sales with \bfmtnum{13665}~liters and \bfmtnum{27329}~units sold.
+		\textbf{Birell} dominated non-alcoholic beverages with \bfmtnum{2446}~liters, while \textbf{Absolut Vodka} led spirits with \bfmtnum{239}~liters consumed.
 	\end{subsection}
 
 	\begin{subsection}{Customer Analysis Section}
