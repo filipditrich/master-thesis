@@ -133,6 +133,10 @@
 	commentstyle=\itshape\color{gray},
 	captionpos=t
 }
+% make listings follow chapter numbering (e.g., 1.1, 1.2, ...)
+\usepackage{chngcntr}
+\counterwithin{listing}{chapter}
+\renewcommand{\thelisting}{\thechapter.\arabic{listing}}
 
 % wrap long URLs
 \PassOptionsToPackage{hyphens}{url}
