@@ -70,16 +70,20 @@
 % key takeaways box as environment
 \NewDocumentEnvironment{keytakeaways}{}{
 	\begin{blue-box}{Key Takeaways}
-		\small
-		}{
+		\begin{flushleft}
+			\small
+			}{
+		\end{flushleft}
 	\end{blue-box}
 }
 
 % info box as environment
 \NewDocumentEnvironment{infobox}{m}{
 	\begin{light-gray-box}{#1}
-		\small
-		}{
+		\begin{flushleft}
+			\small
+			}{
+		\end{flushleft}
 	\end{light-gray-box}
 }
 
@@ -195,7 +199,7 @@
 \usepackage{siunitx} % for number formatting
 % configure siunitx for Czech number formatting
 \sisetup{
-	group-separator={,},
+	group-separator={~},
 	group-minimum-digits=4,
 	round-mode=places,
 	round-precision=0,
