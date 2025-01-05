@@ -41,6 +41,10 @@
             <td><a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf">View PDF</a></td>
             <td>View the PDF version of the thesis</td>
         </tr>
+        <tr>
+            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/extended-summary/dist/extended-summary.pdf">Download PDF</a></td>
+            <td>View the PDF version of the Extended Summary</td>
+        </tr>
     </tbody>
 </table>
 
