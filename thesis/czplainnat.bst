@@ -1428,8 +1428,6 @@ FUNCTION {presort}
 
 ITERATE {presort}
 
-SORT
-
 STRINGS { longest.label last.label next.extra }
 
 INTEGERS { longest.label.width last.extra.num number.label }
@@ -1482,8 +1480,6 @@ FUNCTION {bib.sort.order}
 }
 
 ITERATE {bib.sort.order}
-
-SORT
 
 FUNCTION {begin.bib}
 {   preamble$ empty$
