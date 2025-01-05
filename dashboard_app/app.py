@@ -142,7 +142,7 @@ class MainApplication:
 									),
 								]
 							),
-							# TODO: Filter bar
+							# TODO: better filter bar
 							html.Div(
 								className="flex items-center justify-center gap-4",
 								children=[
@@ -222,7 +222,7 @@ class MainApplication:
 		# register beverages section callbacks
 		beverages_section_callbacks(self)
 
-		# FIXME: register customers section callbacks
+		# TODO: register customers section callbacks
 		customers_section_callbacks(self)
 
 		self._callbacks_registered = True

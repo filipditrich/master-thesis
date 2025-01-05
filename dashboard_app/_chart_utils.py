@@ -21,30 +21,6 @@ class SankeyFlow:
 	color: str
 
 
-# colors = {
-# 	'indigo': 'rgba(101, 116, 205, 1.0)',  # Soft indigo for online
-# 	'cool_gray': 'rgba(149, 165, 166, 1.0)',  # Professional gray
-# 	'slate_blue': 'rgba(162, 181, 205, 1.0)',  # Slate blue for payments
-# 	'light_steel': 'rgba(176, 190, 197, 1.0)',  # Light steel blue
-# 	'warm_gray': 'rgba(188, 184, 177, 1.0)',  # Warm gray
-# 	'sage': 'rgba(134, 179, 167, 1.0)',  # Sage green
-# 	'dusty_blue': 'rgba(130, 177, 197, 1.0)',  # Dusty blue
-# 	'lavender': 'rgba(156, 147, 190, 1.0)',  # Soft lavender
-# 	'rose': 'rgba(199, 144, 144, 1.0)',  # Dusty rose
-# 	'mint': 'rgba(134, 182, 151, 1.0)',  # Mint green
-# 	'peach': 'rgba(226, 139, 120, 1.0)',  # Soft peach
-# }
-
-# chart_colors = {
-# 	'chart1': '#2D7DD2',
-# 	'chart2': '#6C969D',
-# 	'chart3': '#97CC04',
-# 	'chart4': '#EEB902',
-# 	'chart5': '#474647',
-# 	'chart6': '#F45D01',
-# 	'chart7': '#9B6B6C',
-# 	'chart8': '#556F44',
-# }
 colors = {
 	'thesis_blue': 'rgba(11, 42, 112, 0.8)',
 	'aqua': 'rgba(64, 200, 211, 0.8)',
@@ -59,16 +35,16 @@ colors = {
 }
 colors_keys = list(colors.keys())
 chart_colors = [
-	"#0B2A70",  # Dominant Thesis Color (Dark Blue)
-	"#40C8D3",  # Secondary Thesis Color (Light Blue)
-	"#6C969D",  # Light Teal Gray
-	"#97CC04",  # Vibrant Green
-	"#EEB902",  # Bright Yellow
-	"#F28E2B",  # Warm Orange
-	"#E15759",  # Vibrant Red
-	"#BAB0AC",  # Neutral Gray
-	"#84C1FF",  # Soft Blue
-	"#FF8C94",  # Coral Pink
+	"#0B2A70",
+	"#40C8D3",
+	"#6C969D",
+	"#97CC04",
+	"#EEB902",
+	"#F28E2B",
+	"#E15759",
+	"#BAB0AC",
+	"#84C1FF",
+	"#FF8C94",
 ]
 
 chart_colors_named = {
