@@ -91,12 +91,13 @@
 % TODO (HIGH prio):
 %% - [] check for overfull boxes, final revision
 %% - [⏳] prepare the Extended Summary
-%% - [⏳] add copy of the assignment PDF (??? is it required or not wtf)
 %% - [⏳] FINAL EXPORT FILES PREPARATION - finish up dashboard implementation, prepare to submission format
 %% - [⏳] submit for printing
 
 
 % TODO (DONE):
+%% - [x] copy of assignment is not needed
+%% - [x] first numbered page is after TOC
 %% - [x] revise all figures, tables, and charts - content correctness, graphical finalization, alignment, etc.
 %% - [x] RQ03 remaining balances sankey diagram -> replace/or add funnel chart? if time allows
 %% - [x] higher-quality screenshots of dashboard sections
@@ -204,54 +205,60 @@
 %%%%% Main document part
 %%%%% ------------------------------------------------------------
 \begin{document}
-%%% ✅ hard cover
+%%% ✅ Hard Cover
 	% FIXME: remove
-	\include{pages/hard-cover}
-%%% ✅ cover page
+	% not included in the work
+%	\include{pages/hard-cover}
+%%% ✅ Cover page
 	\include{pages/cover}
-%%% ⏳ copy of the assignment | TODO: Attach the PDF after we receive it
-	\includepdf[pages={1}]{\ThesisFigures/assignment-copy-draft.pdf}
-	\includepdf[pages={2}]{\ThesisFigures/assignment-copy-draft.pdf}
-%%% ✅ declaration
+%%% copy of the assignment - NOT NEEDED
+%	\includepdf[pages={1}]{\ThesisFigures/assignment-copy-draft.pdf}
+%	\includepdf[pages={2}]{\ThesisFigures/assignment-copy-draft.pdf}
+%%% ✅ Declaration
 	\include{pages/statutory-declaration}
-%%% ✅ acknowledgements
+%%% ✅ Acknowledgements
 	\include{pages/acknowledgements}
-%%% ✅ first page
+%%% ✅ First Page
 	\include{pages/firstpage}
-%%% ✅ abstract
+%%% ✅ Abstract
 	\include{pages/abstract}
-%%% ✅ table of contents
+%%% ✅ Table of Contents
 	\newpage
-	\pagestyle{plain}
+	\pagestyle{empty}
 	\tableofcontents
-%%% ✅ chapters
-	% ✅ chapter - introduction
+	% force empty style for all TOC pages
+	\addtocontents{toc}{\protect\thispagestyle{empty}}
+	\clearpage
+%%% ✅ Chapter
+	% reset page numbering and style
+	\pagestyle{plain}
+	% ✅ Chapter - Introduction
 	\input{pages/chapters/introduction}
-	% ✅ chapter - methodology
+	% ✅ Chapter - Methodology
 	\input{pages/chapters/data-and-methodology}
-	% ✅ chapter - data analysis and results
+	% ✅ Chapter - Data Analysis and Results
 	\input{pages/chapters/data-analysis-and-results}
-	% ✅ chapter - implementation of the analytical dashboard
+	% ✅ Chapter - Dashboard Implementation
 	\input{pages/chapters/dashboard-implementation}
-	% ✅ chapter - conclusion
+	% ✅ Chapter - Conclusion
 	\input{pages/chapters/conclusion}
-%%% ✅ bibliography
+%%% ✅ Bibliography
 	\begin{flushleft}
 		\bibliography{/Users/filipditrich/University/master_thesis/thesis/main,/Users/filipditrich/University/master_thesis/thesis/auto}
 	\end{flushleft}
-%%% ✅ list of figures
+%%% ✅ List of Figures
 	\listoffigures
 	\textit{Note: Unless stated otherwise, all figures are the author's rendition.}
-%%% ✅ list of tables
+%%% ✅ List of Tables
 	\listoftables
 	\textit{Note: Unless stated otherwise, all tables are the author's rendition.}
-%%% ✅ list of charts
+%%% ✅ List of Charts
 	\listofcharts
 	\textit{Note: Unless stated otherwise, all charts are the author's rendition.}
-%%% ✅ list of source codes
+%%% ✅ List of Source Codes
 	\listoflistings
-%%% ⏳ appendix | TODO: Create ZIP and attach it after final revisions
+%%% ⏳ Appendix | TODO: Create ZIP and attach it after final revisions
 	\input{pages/appendix}
-%%% ⏳ extended summary | TODO: Extended Summary document creation
+%%% ⏳ Extended Summary | TODO: Extended Summary document creation
 	\addtocontents{toc}{\protect\contentsline{chapter}{Extended Summary}{}{}}
 \end{document}
