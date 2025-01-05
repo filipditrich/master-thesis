@@ -20,7 +20,7 @@
   <img src="https://img.shields.io/badge/Research-100%25-brightgreen" />
   <img src="https://img.shields.io/badge/Development-100%25-brightgreen" />
   <img src="https://img.shields.io/badge/Thesis-100.0%25-brightgreen" />
-  <img src="https://img.shields.io/badge/Revisions-98%25-green" />
+  <img src="https://img.shields.io/badge/Revisions-100%25-brightgreen" />
 </p>
 
 ## Thesis PDF
@@ -66,11 +66,18 @@
     <!-- progress-table-start -->
     <tbody>
         <tr>
+            <td>17051</td>
+            <td>68.2</td>
+            <td>106</td>
+            <td>2025-01-05 11:44 PM</td>
+            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
+        </tr>
+        <tr>
             <td>17047</td>
             <td>68.2</td>
             <td>108</td>
             <td>2025-01-05 05:41 PM</td>
-            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
+            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/29f0e0432e647ee8e241604324fb9f89782b1458/thesis/dist/main.pdf" target="_blank">👀 View</a></td>
         </tr>
         <tr>
             <td>17043</td>
