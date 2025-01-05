@@ -11,27 +11,27 @@
 \renewcommand{\thesection}{Appendix \Alph{section}}
 
 %%% Appendix A: Source code of the application
-%%%%% File preparation: ⏳
+%%%%% File preparation: ✅
 %%%%% Instructions: ✅
 %%% --------------------------------------------------------------
 \begin{section}{Source code of the application}
 	\label{appendix:source-code}
-	The source code for the dashboard application is available on the attached CD in the~\texttt{dashboard\_app.zip} file.
+	The source code for the dashboard application is available on the attached CD in the~\texttt{dashboard\_app.zip} file,
+	alongside the Thesis itself and Extended Summary in PDF a format\footnote{Both the source code and thesis are also available on a~\href{https://github.com/filipditrich/master-thesis}{\texttt{GitHub repository}}}.
 
 	The application is built using Python 3.9\footnote{\url{https://www.python.org/downloads/release/python-390/}}, and its requirements are listed in the~\texttt{requirements.txt} file.
 	However, as explained in the thesis, this application depends on a local PostgreSQL database, which is not included in the source code.
 
 	The application is structured as follows:
 	\begin{itemize}
-		\item \texttt{app.py}: the main Dash application implementation
-		\item \texttt{queries\/}: directory with SQL queries
-		\item \texttt{sections\/}: directory with implementation of dashboard sections
-		\item \texttt{assets\/}: directory with CSS stylesheets
+		\item \texttt{assets/}: directory with CSS stylesheets
+		\item \texttt{sections/}: directory with implementation of dashboard sections
+		\item \texttt{\_chart\_utils.py}: utility functions for chart generation, SankeyDiagram implementation
 		\item \texttt{\_dash\_utils.py}: utility functions for Dash
 		\item \texttt{\_db\_utils.py}: common database utility functions with query manager implementation
-		\item \texttt{\_query\_manager.py}: registered SQL queries
 		\item \texttt{\_format\_utils.py}: utility functions for data formatting
-		\item \texttt{\_chart\_utils.py}: utility functions for chart generation, SankeyDiagram implementation
+		\item \texttt{\_query\_manager.py}: registered SQL queries
+		\item \texttt{app.py}: the main Dash application implementation
 	\end{itemize}
 
 \end{section}
