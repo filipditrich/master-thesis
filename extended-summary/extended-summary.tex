@@ -1,0 +1,109 @@
+%%%%% Default settings for one-side (simplex) printing
+%%%%% Frame: left 40mm, right 25mm, top a bottom 25mm
+%%%%% ---------------------------------------------------------------
+\documentclass[11pt, a5paper]{report}
+\usepackage{geometry}
+%\setlength\textwidth{100mm}
+\setlength\textheight{165mm}
+%\setlength\oddsidemargin{5mm}
+%\setlength\evensidemargin{5mm}
+\setlength\topmargin{0mm}
+\setlength\headsep{0mm}
+\setlength\headheight{0mm}
+\newcommand{\openright}{\clearpage}
+
+%%%%% Czech language settings
+%%%%% ---------------------------------------------------------------
+% \usepackage[czech]{babel}
+% \ifx\uv\undefined\newcommand{\uv}[1]{,,#1``}\fi
+\usepackage [english]{babel}
+\usepackage [autostyle, english = american]{csquotes}
+\MakeOuterQuote{"}
+
+%%%%% Preamble with settings and macros
+%%%%% ---------------------------------------------------------------
+\include{../thesis/preamble}
+
+%%%%% Hyperlinks setup
+%%%%% ------------------------------------------------------------
+\usepackage[unicode]{hyperref}
+\hypersetup{pdftitle=Cashless festival data analysis and analytical dashboard development,
+	pdfauthor=Bc. Filip Ditrich
+	ps2pdf,
+	colorlinks=true,
+	urlcolor=black,
+	linkcolor=black,
+	citecolor=black,
+	pdfstartview=FitH,
+	pdfpagemode=UseOutlines,
+	pdfnewwindow,
+	breaklinks
+}
+
+% auto-references setup
+\addto\extrasenglish{%
+	\renewcommand{\chapterautorefname}{\textbf{Chapter}}
+	\renewcommand{\sectionautorefname}{\textbf{Section}}
+	\renewcommand{\subsectionautorefname}{\textbf{Subsection}}
+	\renewcommand{\figureautorefname}{\textbf{Figure}}
+	\renewcommand{\tableautorefname}{\textbf{Table}}
+	\newcommand{\listingautorefname}{\textbf{Source Code}}
+}
+
+% make the entire reference bold, including the number
+\makeatletter
+\let\orgautoref\autoref
+\renewcommand{\autoref}[1]{\textbf{\orgautoref{#1}}}
+\makeatother
+
+%%%%% Bibliography setup
+%%%%% ---------------------------------------------------------------
+\bibliographystyle{/Users/filipditrich/University/master_thesis/thesis/czplainnat.bst}
+\usepackage{bibentry}
+\nobibliography*
+\renewcommand{\fullcite}[1]{\bibentry{#1}}
+
+%%%%% Table of contents setup
+%%%%% ---------------------------------------------------------------
+\usepackage[nottoc]{tocbibind}
+\renewcommand{\listingscaption}{Source Code}
+\renewcommand{\listoflistingscaption}{List of Source Codes}
+\usepackage[titles]{tocloft}
+\renewcommand\cftchapafterpnum{\vskip0pt}
+\renewcommand\cftsecafterpnum{\vskip2pt}
+\usepackage[toc,page]{appendix}
+
+%%%%% Directories setup
+%%%%% ---------------------------------------------------------------
+\newcommand{\CoreFigures}{../figures}
+\newcommand{\ThesisFigures}{./figures}
+\newcommand{\ChartsDir}{./figures/charts}
+\newcommand{\DataDir}{./figures/charts/data}
+
+%%%%% Titles styling
+%%%%% ------------------------------------------------------------
+\titlespacing*{\chapter}{0pt}{-10mm}{5mm}
+\titleformat{\chapter}{\normalfont\Large\bfseries}{\thechapter}{1em}{}
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{1em}{}
+
+% make \subsection*{} smaller than \section
+\titleformat{\subsection}{\normalfont\footnotesize\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{0pt}{-10pt}
+
+%%%%% Main document part
+%%%%% ------------------------------------------------------------
+\begin{document}
+%%% title page
+	\include{pages/cover}
+%%% main content
+	\pagenumbering{gobble}
+	\input{pages/extended-summary}
+%%% bibliography
+	\hphantom{
+		\vphantom{
+			\begin{minipage}{\textwidth}
+				\bibliography{/Users/filipditrich/University/master_thesis/extended-summary/top}
+			\end{minipage}
+		}
+	}
+\end{document}

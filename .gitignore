@@ -4,6 +4,8 @@
 # ignore all files inside /out directory except for the pdf file
 thesis/dist/*
 !thesis/dist/*.pdf
+extended-summary/dist/*
+!extended-summary/dist/*.pdf
 
 # ignore unnecessary thesis files
 thesis/autobib/
