@@ -23,7 +23,7 @@
   <img src="https://img.shields.io/badge/Revisions-100%25-brightgreen" />
 </p>
 
-## Thesis PDF
+<h2 align="center">Thesis & Extended Summary</h2>
 
 <table align="center">
     <thead>
@@ -35,20 +35,35 @@
     <tbody>
         <tr>
             <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf">Download PDF</a></td>
-            <td>Download the PDF version of the thesis</td>
+            <td>Download the PDF version of the <b>Thesis</b></td>
         </tr>
-        <tr>
+         <tr>
             <td><a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf">View PDF</a></td>
-            <td>View the PDF version of the thesis</td>
-        </tr>
-        <tr>
-            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/extended-summary/dist/extended-summary.pdf">Download PDF</a></td>
-            <td>View the PDF version of the Extended Summary</td>
+            <td>View the PDF version of the <b>Thesis</b></td>
         </tr>
     </tbody>
 </table>
 
-## Thesis Progress
+<table align="center">
+    <thead>
+        <tr>
+            <th>🔗 Link</th>
+            <th>📄 Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/extended-summary/dist/extended-summary.pdf">Download PDF</a></td>
+            <td>View the PDF version of the <b>Extended Summary</b></td>
+        </tr>
+        <tr>
+            <td><a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf">View PDF</a></td>
+            <td>View the PDF version of the <b>Extended Summary</b></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 align="center">Thesis Progress</h2>
 
 > Pages are estimated based on the word count and the average number of words per page in the thesis.
 > The goal is to have **65** pages of content in total.
