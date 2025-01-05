@@ -18,7 +18,7 @@ To start off, we needed to set up some kind of environment where we would later 
 The data we would be working with was stored in a PostgreSQL database.
 
 Having direct access to the production database to perform the analysis was not a secure and ethical way to go.
-Exporting only the necessary and raw data from the production database was an initial thought, but we initially did not know what data we would need, and by exporting we would lose all the relations between the tables.
+Exporting only the necessary and raw data from the production database was the earliest thought, but we initially did not know what data we would need, and by exporting we would lose all the relations between the tables.
 
 Therefore, we decided to set up a local database with the same structure as the production database where we can query and analyze the data safely.
 The next step was to import the data from the production database to the local database.
@@ -165,11 +165,11 @@ However, the original values were still present in the database, and the databas
 
 \section{Data Structure}
 \label{sec:data-methodology-structure}
-Without exposing the internal database structure, the abstract data structure this study was working with can be described as follows:
+Without exposing the internal database structure, the abstract data structure this study has been working with, is described in this section.
 
 \subsection{Financial Data}
 \label{subsec:data-methodology-structure-financial}
-\textbf{Transactions} (approx.\ 300k rows): Transactional data, that holds the information about the type, amount, timestamps, and links to products, places, and other related entities.
+\textbf{Transactions} (approx.\ 300k rows): Transactional data that holds the information about the type, amount, timestamps, and links to products, places, and other related entities.
 This analysis relies on and works with several transaction types, including \textbf{top-up charge} and \textbf{refund} transactions~\footnote{Top-up transactions mean funding or refunding chip credit balances.},
 \textbf{order sales} and \textbf{refund} transactions~\footnote{Order transactions mean spending the credit balance for products.}~and
 \textbf{chip registrations}\footnote{Chip registrations mean records of when the system registered the chip bracelets}.
@@ -244,9 +244,9 @@ This was a crucial method required to calculate and analyze the commission from 
 It also benefited from the transaction commission calculation function mentioned above, which helped to easily calculate the commission for each transaction.
 
 \textbf{Chip Customers}: Probably the most complex function that returns the customers at the event.
-Since the transactional data is architected using an Event Sourcing pattern\footnote{
-	Event Sourcing is a pattern where the state of the system is determined by a sequence of events\cite{aw_implementing_event_sourcing_using_a_relational_database}.
-}, the customer information is not directly available and needs to be compiled from the transactional history.
+Since the transactional data is architected using an Event Sourcing pattern
+\footnote{Event Sourcing is a pattern where the state of the system is determined by a sequence of events\cite{aw_implementing_event_sourcing_using_a_relational_database}.}, the customer information
+is not directly available and needs to be compiled from the transactional history.
 This function was constructed in a way where it supports time-based filtering and provides extensive insights into the customers, which is shown in~\autoref{tab:chip-customers-columns}.
 
 \begin{table}[htbp]

@@ -194,7 +194,7 @@ def execute_query(self, query_name: str, parameters: Dict[str, Any], or_query_de
 			\textbf{Celery}: Runs the callback logic in a Celery worker\cite{celery_userguide_workers} and returns results to the Dash app through a Celery broker like Redis.
 			This is recommended for production as it queues the background callbacks, running them one-by-one in the order that they were received by dedicated Celery worker(s).
 
-			For our development, we used the DiskCache backend, as it was easier to set up and use for local development:
+			For our development, we used the DiskCache backend, as illustrated in the~\autoref{lst:dashboard-implementation-callback-cache}, since it was easier to set up and use for local development.
 
 			\begin{listing}[H]
 				\caption{DiskCache Background Callback Manager Setup}
@@ -273,7 +273,7 @@ def register_callback(self, output, inputs, background=False):
 			\label{lst:dashboard-implementation-callback-decorator}
 		\end{listing}
 
-		This unified approach simplified the possibly complex and boiler-plated, callback implementations, as shown in~\autoref{lst:dashboard-implementation-callback-usage}:
+		This unified approach simplified the possibly complex and boiler-plated, callback implementations, as shown in~\autoref{lst:dashboard-implementation-callback-usage}.
 
 		\begin{listing}[H]
 			\caption{Callback Registration Example}
@@ -347,7 +347,8 @@ async def update_sankey_diagram(self, start_date, end_date):
 		\begin{subsubsection}{Initial Implementation}
 			\label{subsubsec:implementation-technical-challenges-caching-initial}
 
-			Following Dash documentation\cite{plotly_dash_plotly_com_background_callbacks}, we initially implemented a single \texttt{DiskcacheManager} with a simple cache directory setup:
+			Following Dash documentation\cite{plotly_dash_plotly_com_background_callbacks}, we initially implemented a single \texttt{DiskcacheManager} with a simple cache directory setup,
+			as shown in the~\autoref{lst:dashboard-implementation-cache-initial}.
 
 			\begin{listing}[H]
 				\caption{Initial Cache Manager Setup}
