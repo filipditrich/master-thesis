@@ -240,5 +240,5 @@ if __name__ == '__main__':
 	print("----------------------------------------------")
 	Application = MainApplication()
 	app = Application.app
-	app.run(debug=True, port=4001)
+	app.run(debug=False, port=4001)
 # app.run_server(debug=False, host='192.168.0.167', port=4000)

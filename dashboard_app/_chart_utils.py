@@ -57,6 +57,7 @@ colors = {
 	'sky': 'rgba(132, 193, 255, 0.8)',
 	'coral': 'rgba(255, 140, 148, 0.8)',
 }
+colors_keys = list(colors.keys())
 chart_colors = [
 	"#0B2A70",  # Dominant Thesis Color (Dark Blue)
 	"#40C8D3",  # Secondary Thesis Color (Light Blue)
@@ -71,7 +72,8 @@ chart_colors = [
 ]
 
 chart_colors_named = {
-	'text': '#474647'
+	'text': '#474647',
+	**{ f'{colors_keys[i]}': chart_colors[i] for i in range(len(chart_colors)) }
 }
 
 

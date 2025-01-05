@@ -425,16 +425,9 @@ def create_callback_manager(callback_id):
 				\caption{Final Cache Implementation}
 				\begin{minted}[breaklines]{python}
 def create_isolated_cache_manager(callback_id):
-    # Create separate SQLite database per callback
-    cache_dir = os.path.join(
-        os.path.dirname(__file__),
-        f'dash_cache_{callback_id}'
-    )
-    cache = diskcache.Cache(
-        directory=cache_dir,
-        size_limit=3e9,
-        eviction_policy='least-recently-used'
-    )
+    # Create separate cache database per callback
+    cache_dir = os.path.join(os.path.dirname(__file__), f'dash_cache_{callback_id}')
+    cache = diskcache.Cache(directory=cache_dir)
 
     return dash.DiskcacheManager(
         cache,
@@ -464,7 +457,7 @@ def create_isolated_cache_manager(callback_id):
 	A global date-range filter, shown in the~\autoref{fig:dashboard-header}, sits at the top of the dashboard, allowing users to analyze any time period during the festival.
 	Pre-configured options for each festival day make it easy to quickly compare different phases of the event.
 
-	\begin{figure}[h]
+	\begin{figure}[H]
 		\centering
 		\includegraphics[width=\textwidth]{\ThesisFigures/ui/dashboard-header}
 		\caption{Dashboard Header with Date Range Filter}
