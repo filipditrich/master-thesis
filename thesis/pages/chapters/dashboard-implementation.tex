@@ -82,10 +82,10 @@ While not intended for production deployment, the prototype successfully demonst
 
 	\begin{subsection}{Query Management System}
 		\label{subsec:implementation-core-architecture-query-management}
-		For the SQL database connection and pooling, the \texttt{asyncpg} library\footnote{\url{https://magicstack.github.io/asyncpg/current/}} was used,
-		which provided a simple and efficient way to interact with the PostgreSQL database asynchronously using asyncio.
+		For the PostgreSQL database connection and pooling, the \texttt{asyncpg} library\footnote{\url{https://magicstack.github.io/asyncpg/current/}} was used,
+		which provided a simple and efficient way to interact with the database asynchronously using asyncio.
 
-		To manage the SQL database interactions efficiently, a simple \textbf{Query Management System} has been implemented to handle loading data from our SQL database.
+		To manage the SQL interactions efficiently, a simple \textbf{Query Management System} has been implemented to handle loading data from our SQL database.
 
 		It consisted of several key components:
 		\begin{itemize}
@@ -119,7 +119,7 @@ query_manager.registry.register_query(
 
 		This class has been the core of the dashboard's data management, allowing multiple approaches to data loading and caching strategies.
 
-		It allowed defining raw SQL queries with \texttt{QueryManager\.process\_sql\_query}, which safely handled parameter substitution and query formatting.
+		It allowed defining raw SQL queries with \texttt{QueryManager.process\_sql\_query}, which safely handled parameter substitution and query formatting.
 		Or it could have loaded an SQL query from an external file (due to the complexity of the query) and then executed it with parameters.
 
 		On top of that, it allowed for defining default data loading strategies, such as loading data from a local CSV cache, which significantly sped up the development process.
@@ -194,7 +194,7 @@ def execute_query(self, query_name: str, parameters: Dict[str, Any], or_query_de
 			\textbf{Celery}: Runs the callback logic in a Celery worker\cite{celery_userguide_workers} and returns results to the Dash app through a Celery broker like Redis.
 			This is recommended for production as it queues the background callbacks, running them one-by-one in the order that they were received by dedicated Celery worker(s).
 
-			For our development, we used the DiskCache backend, as illustrated in the~\autoref{lst:dashboard-implementation-callback-cache}, since it was easier to set up and use for local development.
+			For our development, we used the DiskCache backend, as shown in the~\autoref{lst:dashboard-implementation-callback-cache}, since it was easier to set up and use for local development.
 
 			\begin{listing}[H]
 				\caption{DiskCache Background Callback Manager Setup}
@@ -327,7 +327,7 @@ async def update_sankey_diagram(self, start_date, end_date):
 \begin{section}{Technical Challenges and Solutions}
 	\label{sec:implementation-technical-challenges}
 
-	The implementation process encountered several significant technical challenges, primarily centered around asynchronous operations and callback caching in Python.
+	The implementation process encountered several significant technical challenges, primarily centered around asynchronous operations and callback caching in Dash.
 	These challenges and their solutions significantly influenced the overall development approach and the outcome of the dashboard prototype.
 
 	\begin{subsection}{Asynchronous Handling Challenges}
@@ -366,7 +366,7 @@ background_callback_manager = dash.DiskcacheManager(
 			due to the modular structure of the dashboard\footnote{Each dashboard section had its own callbacks; but many of them shared the same inputs, such as date range filters}, this approach led to cache key collisions.
 
 			\begin{infobox}{Why Cache Key Collisions Occurred}
-				\textbf{Cache Key Collisions} occurred because the~\textt{DiskcacheManager} used the same cache key for callbacks with identical inputs.
+				\textbf{Cache Key Collisions} occurred because the~\texttt{DiskcacheManager} used the same cache key for callbacks with identical inputs.
 				We did not know that the callbacks should ideally have unique inputs to prevent cache key collisions.
 				As a result, the cached data was overwritten, leading to incorrect data being returned.
 			\end{infobox}
@@ -375,7 +375,7 @@ background_callback_manager = dash.DiskcacheManager(
 		\begin{subsubsection}{First Solution Attempt}
 			\label{subsubsec:implementation-technical-challenges-caching-first}
 
-			To address cache key collisions, we tried to implement a unique~\textt{DiskcacheManager} instance for each unique callback, based on it's~\texttt{callback\_id}:
+			To address cache collisions, we tried to implement a unique~\texttt{DiskcacheManager} instance for each unique callback, based on it's~\texttt{callback\_id}:
 
 			\begin{listing}[H]
 				\caption{Unique Cache Managers Per Callback}
@@ -470,7 +470,7 @@ def create_isolated_cache_manager(callback_id):
 		\label{subsec:implementation-results-structure-cashflow}
 
 		The financial section gives an immediate overview of money flows through the festival system.
-		Three key metrics at the top show the total revenue (\bfmtczk{1155162}), available balances (\bfmtczk{334450}), and total chip top-ups (\bfmtczk{14520973}).
+		Three key metrics at the top show the total revenue, available balances, and total chip top-ups with their respective payment methods.
 		A visual representation of this section is shown in~\autoref{fig:dashboard-cashflow-analysis}.
 
 		\begin{figure}[h]
