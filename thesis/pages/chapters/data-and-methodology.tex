@@ -140,7 +140,7 @@ For the usage, a simple SQL function was created to define the anonymization con
 			]'::JSONB
 		);
 	\end{minted}
-	\caption{Anonymization configuration example}
+	\caption{Anonymization Configuration Example}
 	\label{lst:anonymization-configuration}
 \end{listing}
 
@@ -175,9 +175,9 @@ This analysis relies on and works with several transaction types, including \tex
 \textbf{chip registrations}\footnote{Chip registrations mean records of when the system registered the chip bracelets}.
 
 \textbf{Credit Refunds} (approx.\ 15k rows): Post-event credit refund requested by the customers with the information about the amount, timestamp, customer, and the bank account to which the refund was sent.
-This data enables our analysis to correctly handle disposable credit balances, more information about the anonymous customers~\footnote{Anonymous customer essentially means a user without a registered account}~and their behavior.
+This data enables our analysis to correctly handle disposable credit balances, more information about the anonymous customers~\footnote{Anonymous customer essentially means a user without a registered account.}~and their behavior.
 
-\begin{blue-box}{Why is it important?}
+\begin{blue-box}{Why Is The Financial Data Important?}
 	These records also form the backbone of the analysis, enabling insights into revenue, sales trends, and customer behavior.
 \end{blue-box}
 
@@ -186,9 +186,9 @@ This data enables our analysis to correctly handle disposable credit balances, m
 
 \textbf{User Accounts} (approx.\ 5k rows): Registered customer accounts with the information about the user and its potential online order history and other related information.
 
-\textbf{Tickets and Orders} (approx.\ 30k rows): Information about the online sold tickets, its types, prices, timestamps, online order-related information.
+\textbf{Tickets and Orders} (approx.\ 30k rows): Information about online ticket sales, ticket types with their prices, timestamps, and most importantly, the online orders with the information about the customer, payment methods and other related information.
 
-\begin{blue-box}{Why is it important?}
+\begin{blue-box}{Why Is The Customer Data Important?}
 	With the above data, this analysis can work with more customer information supporting the customer behavior analysis, customer segmentation, and other related analysis.
 \end{blue-box}
 
@@ -201,34 +201,41 @@ This data enables our analysis to correctly handle disposable credit balances, m
 
 Important information about products is their supported categorization that will later be used for the sales analysis and can be seen in~\autoref{tab:product-categories}.
 
-\begin{table}[htbp]
+\begin{table}[H]
 	\centering
-	\footnotesize
 	% @formatter:off
-	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}l|}
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}p{2.6cm}
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X|
+	}
 		\hline
 		\rowcolor{unicorn_blue}
 		\textbf{\color{white} Category} & \textbf{\color{white} Description} \\
+		\hline\hline
+		Non-Alcoholic & Any non-alcoholic beverages (e.g., coffee, water, etc.) \\
 		\hline
-		\hline
-		Nonalcoholic & Any non-alcoholic beverages (e.g., coffee, water, etc.) \\
 		Beer & Any kind of beer \\
+		\hline
 		Wine & Any kind of wine \\
-		Other Alcohol & Any other kind of alcoholic beverages (e.g., shots, cocktails, etc.) \\
+		\hline
+		Other Alcohol & Any other kind of alcohol beverages (e.g., shots, drinks, etc.) \\
+		\hline
 		Salty & Any salty snacks \\
+		\hline
 		Sweet & Any sweet snacks \\
+		\hline
 		Other & Any other products that do not fit into the above categories \\
 		\hline
 	\end{tabularx}
 	% @formatter:on
-	\caption{Product categories}
+	\caption{Product Categories}
 	\label{tab:product-categories}
 	\source
 \end{table}
 
 \textbf{Event Program} (approx.\ 140 rows): Event program schedule with the information about the stages, performers, times and other related information.
 
-\begin{blue-box}{Why is it important?}
+\begin{blue-box}{Why Is the Event Data Important?}
 	This data provides more context to the event when combined with the financial and customer data above.
 	Enabling the analysis to work with the event program, its correlation with the sales, customer behavior, and other related analysis.
 \end{blue-box}
@@ -249,86 +256,102 @@ Since the transactional data is architected using an Event Sourcing pattern
 is not directly available and needs to be compiled from the transactional history.
 This function was constructed in a way where it supports time-based filtering and provides extensive insights into the customers, which is shown in~\autoref{tab:chip-customers-columns}.
 
+		{\renewcommand{\arraystretch}{1.2}
 \begin{table}[htbp]
 	\centering
 	\footnotesize
 	% @formatter:off
-	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}l|}
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}p{4.5cm}
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X|
+	}
 		\hline
 		\rowcolor{unicorn_blue}
-		\textbf{\color{white} Column Name} & \textbf{\color{white} Description} \\
+		\normalsize{\textbf{\color{white} Column Name}} & \normalsize{\textbf{\color{white} Description}} \\
 		\hline
 		\hline
-		CHIP\_ID & Unique chip identifier \\
-		CHIP\_TYPE & Type of chip (\eg~regular, VIP, online, staff) \\
-		REG\_AT & Timestamp of chip registration \\
-		FIRST\_TRX & First transaction timestamp associated with the chip \\
-		LAST\_TRX & Last transaction timestamp associated with the chip \\
-		LAST\_BALANCE & Last known balance at the specified time frame \\
-		ACTUAL\_BALANCE & Balance at the specified time frame after credit refunds \\
+		CHIP\_ID & Unique chip identifier \\\hline
+		CHIP\_TYPE & Type of chip (\eg~regular, VIP, online, staff) \\\hline
+		REG\_AT & Timestamp of chip registration \\\hline
+		FIRST\_TRX & First transaction timestamp associated with the chip \\\hline
+		LAST\_TRX & Last transaction timestamp associated with the chip \\\hline
+		LAST\_BALANCE & Last known balance at the specified time frame \\\hline
+		ACTUAL\_BALANCE & Balance at the specified time frame after credit refunds \\\hline
+		% separator
+		\noalign{\vspace{2mm}}
 		\hline
-		IS\_BLOCKED & Indicates if the chip is blocked due to suspicious activity \\
-		HOURS\_ACTIVE & Total active hours of the chip (daily sum) \\
-		DAYS\_ACTIVE & Total number of days the chip was active \\
+		IS\_BLOCKED & Indicates if the chip is blocked due to suspicious activity \\\hline
+		HOURS\_ACTIVE & Total active hours of the chip (daily sum) \\\hline
+		DAYS\_ACTIVE & Total number of days the chip was active \\\hline
+		% separator
+		\noalign{\vspace{2mm}}
 		\hline
-		T\_COUNT & Total number of transactions associated with the chip \\
-		O\_TOTAL\_CNT & Total number of orders placed using the chip \\
-		O\_TOTAL\_AMT & Total amount spent through orders \\
-		O\_MAX\_AMT & Maximum amount spent in a single order \\
-		O\_AVG\_AMT & Average amount spent per order \\
-		O\_MODE\_AMT & Most common amount spent per order \\
-		OS\_AVG\_AMT & Average amount spent on sales orders (excluding refunds) \\
-		OS\_MODE\_AMT & Most common sale amount (excluding refunds) \\
-		TU\_TOTAL\_CNT & Total number of top-ups made to the chip \\
-		TU\_TOTAL\_AMT & Total amount credited to the chip via top-ups \\
-		TU\_MAX\_AMT & Maximum amount credited in a single top-up \\
-		TU\_AVG\_AMT & Average amount credited per top-up \\
-		TU\_MODE\_AMT & Most common amount credited per top-up \\
-		TU\_CARD\_BRAND & Used card brand for top-ups (\eg~Visa, Mastercard) \\
+		T\_COUNT & Total number of transactions associated with the chip \\\hline
+		O\_TOTAL\_CNT & Total number of orders placed using the chip \\\hline
+		O\_TOTAL\_AMT & Total amount spent through orders \\\hline
+		O\_MAX\_AMT & Maximum amount spent in a single order \\\hline
+		O\_AVG\_AMT & Average amount spent per order \\\hline
+		O\_MODE\_AMT & Most common amount spent per order \\\hline
+		OS\_AVG\_AMT & Average amount spent on sales orders (excluding refunds) \\\hline
+		OS\_MODE\_AMT & Most common sale amount (excluding refunds) \\\hline
+		TU\_TOTAL\_CNT & Total number of top-ups made to the chip \\\hline
+		TU\_TOTAL\_AMT & Total amount credited to the chip via top-ups \\\hline
+		TU\_MAX\_AMT & Maximum amount credited in a single top-up \\\hline
+		TU\_AVG\_AMT & Average amount credited per top-up \\\hline
+		TU\_MODE\_AMT & Most common amount credited per top-up \\\hline
+		TU\_CARD\_BRAND & Used card brand for top-ups (\eg~Visa, Mastercard) \\\hline
+		% separator
+		\noalign{\vspace{2mm}}
 		\hline
-		BR\_AMT & Total amount refunded to the customer's bank account \\
-		BR\_EMAIL\_DOMAIN & Domain of the refund request email (\eg~gmail.com) \\
-		BR\_COUNTRY & Country associated with the bank account for refund \\
-		BR\_REQ\_SOURCE & Source of the refund request (\eg~iOS, Android, Web) \\
-		BR\_BANK\_NAME & Name of the Czech bank used for the refund \\
-		BR\_CREATED & Timestamp when the refund request was created \\
-		BR\_APPROVED & Timestamp when the refund request was approved \\
+		BR\_AMT & Total amount refunded to the customer's bank account \\\hline
+		BR\_EMAIL\_DOMAIN & Domain of the refund request email (\eg~gmail.com) \\\hline
+		BR\_COUNTRY & Country associated with the bank account for refund \\\hline
+		BR\_REQ\_SOURCE & Source of the refund request (\eg~iOS, Android, Web) \\\hline
+		BR\_BANK\_NAME & Name of the Czech bank used for the refund \\\hline
+		BR\_CREATED & Timestamp when the refund request was created \\\hline
+		BR\_APPROVED & Timestamp when the refund request was approved \\\hline
+		% separator
+		\noalign{\vspace{2mm}}
 		\hline
-		A\_EMAIL\_DOMAIN & Email domain of the account \\
-		A\_COUNTRY\_NAME & Country associated with the account \\
-		A\_REQ\_SOURCE & Source of the account creation (\eg~iOS, Android, Web) \\
-		EO\_PAYMENT\_METHOD & Payment method for orders (\eg~card, bank transfer) \\
-		EO\_CARD\_BRAND & Used card brand for online order (Visa, Mastercard \\
-		EO\_REQ\_SOURCE & Source of the order request (\eg~iOS, Android, Web) \\
-		\hline
+		A\_EMAIL\_DOMAIN & Email domain of the account \\\hline
+		A\_COUNTRY\_NAME & Country associated with the account \\\hline
+		A\_REQ\_SOURCE & Source of the account creation (\eg~iOS, Android, Web) \\\hline
+		EO\_PAYMENT\_METHOD & Payment method for orders (\eg~card, bank transfer) \\\hline
+		EO\_CARD\_BRAND & Used card brand for online order (Visa, Mastercard \\\hline
+		EO\_REQ\_SOURCE & Source of the order request (\eg~iOS, Android, Web) \\\hline
 	\end{tabularx}
 	% @formatter:on
-	\caption{Customer chips function return table}
+	\caption{Customer Chips SQL Function Return Table}
 	\label{tab:chip-customers-columns}
 	\source
-\end{table}
+\end{table}}
 
 For further understanding, an enumeration of chip types should be mentioned; that can be seen in~\autoref{tab:chip-types}.
 
 \begin{table}[H]
 	\centering
-	\footnotesize
 	% @formatter:off
-	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}l|}
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}p{2.5cm}
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X|
+	}
 		\hline
 		\rowcolor{unicorn_blue}
 		\textbf{\color{white} Chip Type} & \textbf{\color{white} Description} \\
-		\hline
-		\hline
+		\hline\hline
 		Regular & Chip issued at the event without any prior credit \\
-		VIP & VIP chip issued with artificial credit on behalf of the organizer \\
+		\hline
+		VIP & Chip issued with artificial credit on behalf of the organizer \\
+		\hline
 		Online & Chip issued via online purchase or top-up \\
+		\hline
 		Staff & Chip issued to the staff members \\
+		\hline
 		Guest & Chip issued to the guests (band members, etc.) \\
 		\hline
 	\end{tabularx}
 	% @formatter:on
-	\caption{Chip types enumeration}
+	\caption{Chip Types Enumeration}
 	\label{tab:chip-types}
 	\source
 \end{table}
@@ -349,6 +372,8 @@ These main tools and technologies included:
 
 Using such tools during this process provided a convenient environment for data handling and processing, initial analysis and ensuring the accuracy and efficiency for further analysis and results presentation.
 
+\pagebreak[4]
+
 
 \section{Conclusion}
 \label{sec:data-methodology-conclusion}
@@ -359,11 +384,11 @@ Some key challenges, such as absent beverage volume details, data anonymization,
 In the end, the use of SQL views for data enrichment and functions for further data processing ensured efficient querying and analysis.
 Hopefully, it also laid the groundwork for answering the research questions and achieving the study's goals, as detailed in the later chapters.
 
-For better understanding and visualization of this initial comprehensive Knowledge Data Discover process\footnote{Knowledge Data Discovery (KDD) is the process of discovering useful knowledge from a collection of data\cite{uord_kdd_1_kdd}}, a simplified diagram, which can be seen in the~\autoref{fig:data-methodology-diagram}, was created to illustrate the workflow of the process.
+For better understanding and visualization of this initial comprehensive Knowledge Data Discover process\footnote{Knowledge Data Discovery (KDD) is the process of discovering useful knowledge from a collection of data\cite{uord_kdd_1_kdd}.}, a simplified diagram, which can be seen in the~\autoref{fig:data-methodology-diagram}, was created to illustrate the workflow of the process.
 
 \begin{figure}[h]
 	\centering
 	\includesvg[width=0.875\textwidth]{\ThesisFigures/diagrams/kdd-workflow-paths.svg}
-	\caption{Knowledge Data Discovery workflow diagram}
+	\caption{Knowledge Data Discovery Workflow Diagram}
 	\label{fig:data-methodology-diagram}
 \end{figure}

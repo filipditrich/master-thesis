@@ -53,6 +53,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 			\centering
 			\small
 			% @formatter:off
+			{\renewcommand{\arraystretch}{1.2}
 	\begin{tabularx}{0.95\textwidth}{
 		|>{\columncolor{unicorn_blue!5}}X
 		|>{\columncolor{unicorn_blue!5}}r
@@ -64,24 +65,25 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		& \textbf{\color{white}Total Value} \\
 		\hline
 		\hline
-		\colorindicator{1}Card terminal & \fmtnum{8486}& \fmtczk{7264503}   \\
+		\colorindicator{1}Card Terminal & \fmtnum{8486}& \fmtczk{7264503}   \\
+		\hline
 		\colorindicator{2}Cash & \fmtnum{7561}& \fmtczk{5782570}   \\
-		\colorindicator{3}Online pre-top-up & \fmtnum{1634}& \fmtczk{1436400}   \\
-		\colorindicator{4}VIP issued & \fmtnum{23}& \fmtczk{37500}     \\
+		\hline
+		\colorindicator{3}Online Top-Up Voucher & \fmtnum{1634}& \fmtczk{1436400}   \\
+		\hline
+		\colorindicator{4}VIP Issued & \fmtnum{23}& \fmtczk{37500}     \\
 		\hline
 		\hline
-		\rowcolor{unicorn_blue!10}
+		\rowcolor{unicorn_blue!20}
 		\textbf{Total} & \bfmtnum{17704}& \bfmtczk{14520973} \\
 		\hline
-	\end{tabularx}
+	\end{tabularx}}
 	% @formatter:on
 			\includegraphics[width=\textwidth]{\ChartsDir/rq2-topup-methods}
 			\caption{\rqshorttext{cashflow-top-up-balance} Top-Up Transactions by Payment Method}
 			\label{chart:top-up-transactions-by-payment-method}
 			\source
 		\end{chart}
-
-		Thanks to the results, it is clear how many funds the system received and by what means.
 
 		\begin{keytakeaways}
 			\begin{itemize}
@@ -203,7 +205,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 
 		If we were to include these, the total revenue would increase by~\bfmtczk{11179700} from the online ticket sales and by~\bfmtczk{8240264} from the direct sales, which would result in a total revenue of~\bfmtczkp[2]{20575107,79}.
 
-		To better understand the revenue streams, the results are visualized in~\autoref{chart:revenue-breakdown-total} below.
+		To better understand the revenue streams, the results are visualized in~\autoref{chart:revenue-breakdown-total}.
 
 		\begin{chart}[h]
 			\centering
@@ -213,23 +215,32 @@ Each section focuses on a different aspect of the data analysis trying to answer
 			\par\vspace*{0.5em}
 			% table
 			% @formatter:off
-	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}r|}
+			{\renewcommand{\arraystretch}{1.2}
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{0.5cm}
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{4cm}|
+	}
 		\hline
 		\rowcolor{unicorn_blue}
-		\textbf{\color{white}Revenue Stream} & \textbf{\color{white}Amount} \\
+		& \textbf{\color{white}Revenue Stream} & \textbf{\color{white}Amount} \\
 		\hline
 		\hline
-		\colorindicator{3}Vendor Commissions & \fmtczkp[2]{820712.79} \\
-		\colorindicator{4}Unclaimed Chip Balances & \fmtczk{334431} \\
+		\colorindicator{3} & Vendor Commissions & \fmtczkp[2]{820712.79} \\
+		\colorindicator{4}& Unclaimed Chip Balances & \fmtczk{334431} \\
 		\hline
-		\textbf{Total Direct Revenue} & \bfmtczkp[2]{1155143.79} \\
+		\rowcolor{unicorn_blue!10}
+		& \textbf{Total Direct Revenue} & \bfmtczkp[2]{1155143.79} \\
 		\hline
-		\colorindicator{2}Online Ticket Sales & \fmtczk{11179700} \\
-		\colorindicator{1}Organizer Direct Sales & \fmtczk{8240264} \\
+		\colorindicator{2} & Online Ticket Sales & \fmtczk{11179700} \\
+		\colorindicator{1} & Organizer Direct Sales & \fmtczk{8240264} \\
 		\hline
-		\textbf{Total Revenue (All Streams)} & \bfmtczkp[2]{20575107.79} \\
+		\noalign{\vspace{1mm}}
 		\hline
-	\end{tabularx}
+		\rowcolor{unicorn_blue!20}
+		& \textbf{Total Revenue (All Streams)} & \bfmtczkp[2]{20575107.79} \\
+		\hline
+	\end{tabularx}}
 	% @formatter:on
 			\caption{\rqshorttext{cashflow-total-revenue} Breakdown of All Revenue Streams}
 			\label{chart:revenue-breakdown-total}
@@ -281,6 +292,8 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		\end{keytakeaways}
 	\end{subsection}
 \end{section}
+
+\pagebreak[4]
 
 %%% Section: Performance Indicators Analysis
 %%% --------------------------------------------------------------
@@ -342,9 +355,10 @@ Each section focuses on a different aspect of the data analysis trying to answer
 
 		The answer to this question is closely related to the previous one, as it requires the identification of the processing times during the peak times, which were already previously identified.
 
+		\pagebreak[4]
 		It required finding the average processing time, meaning the difference between the transaction creation and its completion times.
 
-		\begin{infobox}{What causes the processing time?}
+		\begin{infobox}{What Causes the Processing Time?}
 			The time when the transaction is created is the time when the in-place offline-supported system created the transaction, and the processed time is later when the central system receives the transaction and processes it.
 
 			The delays can be caused by various factors, such as network latency, offline mode active, system load, or even the transaction type.
@@ -408,29 +422,29 @@ Each section focuses on a different aspect of the data analysis trying to answer
 
 			This resulted in the following findings in \autoref{tab:best-topup-points} below.
 
-			\begin{table}[htbp]
+			\begin{table}[H]
 				\centering
 				\small
 				% @formatter:off
 	\begin{tabularx}{\textwidth}{
 		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
 		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
-		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.6cm}
-		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.6cm}
-		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.6cm}|}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.75cm}|}
 		\hline
 		\rowcolor{unicorn_blue}
 		\textbf{}
-		& \textbf{\color{white}Top-Up point}
+		& \textbf{\color{white}Top-Up Point}
 		& \textbf{\color{white}Customers}
 		& \textbf{\color{white}Transactions}
-		& \textbf{\color{white}Max trans./h}
+		& \textbf{\color{white}Max Trans./h}
 		\\\hline\hline
 		% first rows
 		\csvreader[
 		head to column names,
 		late after line={\\\hline},
-		filter={\thecsvinputline<6}
+%		filter={\thecsvinputline<7}
 		]{\DataDir/rq9-best-topup-points.csv}{
 			entity=\colentity,
 			customer_count=\colcustomers,
@@ -439,55 +453,9 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		}{
 			\the\numexpr\thecsvinputline-1
 			& \colentity
-			& \num[group-separator={,}]{\colcustomers}
-			& \num[group-separator={,}]{\coltrxcount}
-			& \num[group-separator={,}]{\colhourlypeak}
-		}
-		% separator
-		\noalign{\vspace{1mm}}
-		\multicolumn{5}{c}{\footnotesize{\textellipsis}}
-		\\
-		\noalign{\vspace{1mm}}
-		\hline
-		% middle rows
-		\csvreader[
-		head to column names,
-		late after line={\\\hline},
-		filter={\thecsvinputline>15 \AND \thecsvinputline<20}
-		]{\DataDir/rq9-best-topup-points.csv}{
-			entity=\colentity,
-			customer_count=\colcustomers,
-			transaction_count=\coltrxcount,
-			max_hourly_peak=\colhourlypeak
-		}{
-			\the\numexpr\thecsvinputline-1
-			& \colentity
-			& \num[group-separator={,}]{\colcustomers}
-			& \num[group-separator={,}]{\coltrxcount}
-			& \num[group-separator={,}]{\colhourlypeak}
-		}
-		% separator
-		\noalign{\vspace{1mm}}
-		\multicolumn{5}{c}{\footnotesize{\textellipsis}}
-		\\
-		\noalign{\vspace{1mm}}
-		\hline
-		% last rows
-		\csvreader[
-		head to column names,
-		late after line={\\\hline},
-		filter={\thecsvinputline>25}
-		]{\DataDir/rq9-best-topup-points.csv}{
-			entity=\colentity,
-			customer_count=\colcustomers,
-			transaction_count=\coltrxcount,
-			max_hourly_peak=\colhourlypeak
-		}{
-			\the\numexpr\thecsvinputline-1
-			& \colentity
-			& \num[group-separator={,}]{\colcustomers}
-			& \num[group-separator={,}]{\coltrxcount}
-			& \num[group-separator={,}]{\colhourlypeak}
+			& \num[group-separator={~}]{\colcustomers}
+			& \num[group-separator={~}]{\coltrxcount}
+			& \num[group-separator={~}]{\colhourlypeak}
 		}
 	\end{tabularx}
 	% @formatter:on
@@ -536,29 +504,26 @@ Each section focuses on a different aspect of the data analysis trying to answer
 
 			The process of finding the best sale places was similar to the previous one, but this time it required finding all sales transactions and their respective places.
 
-			Out of the total of~\bfmtnum{145}~sale places, the best place was undeniably the \textbf{L20 PIVNÍ STAN 1} with a total of~\bfmtnum{10114}~orders processed and the maximum peak of~\bfmtnum{840}~orders per hour.
+			Out of the total of~\bfmtnum{134}~sale places, shown in \autoref{tab:best-sale-points} below,
+			the best place was undeniably the \textbf{L20 PIVNÍ STAN 1} with a total of~\bfmtnum{10114}~orders processed and the maximum peak of~\bfmtnum{840}~orders per hour.
 
-			Another interesting fact is the number of unique users processed at the places.
-			The \textbf{L20 PIVNÍ STAN 1} processed~\bfmtnum{9159}~unique customers, accounting for a significant portion (\bfmtnump[2]{91.50}~\%)
-			of the total\footnote{The total number of unique customers was found to be~\bfmtnum{10009}, which is more described in later sections}.
-
-			\begin{table}[htbp]
+			\begin{table}[H]
 				\centering
 				\small
 				% @formatter:off
 	\begin{tabularx}{\textwidth}{
 		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{1cm}
 		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
-		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}
-		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}
-		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2.5cm}|}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{2cm}
+		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}p{3cm}|}
 		\hline
 		\rowcolor{unicorn_blue}
 		\textbf{}
 		& \textbf{\color{white}Sale Point}
 		& \textbf{\color{white}Customers}
 		& \textbf{\color{white}Orders}
-		& \textbf{\color{white}Max orders./h}
+		& \textbf{\color{white}Max Orders/h}
 		\\\hline\hline
 		% first rows
 		\csvreader[
@@ -573,9 +538,9 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		}{
 			\the\numexpr\thecsvinputline-1
 			& \colentity
-			& \num[group-separator={,}]{\colcustomers}
-			& \num[group-separator={,}]{\coltrxcount}
-			& \num[group-separator={,}]{\colhourlypeak}
+			& \num[group-separator={~}]{\colcustomers}
+			& \num[group-separator={~}]{\coltrxcount}
+			& \num[group-separator={~}]{\colhourlypeak}
 		}
 		% separator
 		\noalign{\vspace{1mm}}
@@ -587,7 +552,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		\csvreader[
 		head to column names,
 		late after line={\\\hline},
-		filter={\thecsvinputline>132}
+		filter={\thecsvinputline>133}
 		]{\DataDir/rq8-best-sale-points.csv}{
 			entity=\colentity,
 			customer_count=\colcustomers,
@@ -596,9 +561,9 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		}{
 			\the\numexpr\thecsvinputline-1
 			& \colentity
-			& \num[group-separator={,}]{\colcustomers}
-			& \num[group-separator={,}]{\coltrxcount}
-			& \num[group-separator={,}]{\colhourlypeak}
+			& \num[group-separator={~}]{\colcustomers}
+			& \num[group-separator={~}]{\coltrxcount}
+			& \num[group-separator={~}]{\colhourlypeak}
 		}
 	\end{tabularx}
 	% @formatter:on
@@ -606,6 +571,10 @@ Each section focuses on a different aspect of the data analysis trying to answer
 				\label{tab:best-sale-points}
 				\source
 			\end{table}
+
+			Another interesting fact is the number of unique users processed at the places.
+			The \textbf{L20 PIVNÍ STAN 1} processed~\bfmtnum{9159}~unique customers, accounting for a significant portion (\bfmtnump[2]{91.50}~\%)
+			of the total\footnote{The total number of unique customers was found to be~\bfmtnum{10009}, which is more described in later sections.}.
 
 			Based on this particular finding, we can assume that in the following analysis - the best vendors and products - the product preferences will be highly in favor of the beer beverages.
 			And thus the best vendor will probably be the organizer, as they sold all the beer beverages at the festival.
@@ -634,8 +603,9 @@ Each section focuses on a different aspect of the data analysis trying to answer
 
 			\makerqbox{performance-best-vendors}
 
-			The results in~\autoref{tab:best-vendors} below show the distribution of the processed orders over the vendors.
+			The results in~\autoref{tab:best-vendors} show the distribution of the processed orders over the \bfmtnum{27}~vendors at the festival.
 
+				{\renewcommand{\arraystretch}{1.2}
 			\begin{table}[htbp]
 				\centering
 				\small
@@ -656,7 +626,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		\csvreader[
 		head to column names,
 		late after line={\\\hline},
-		filter={\thecsvinputline<9}
+		filter={\thecsvinputline<12}
 		]{\DataDir/rq10-best-vendors.csv}{
 			legal_name=\colentity,
 			customer_count=\colcustomers,
@@ -664,12 +634,12 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		}{
 			\the\numexpr\thecsvinputline-1
 			& \colentity
-			& \num[group-separator={,}]{\colcustomers}
-			& \num[group-separator={,}]{\coltrxcount}
+			& \num[group-separator={~}]{\colcustomers}
+			& \num[group-separator={~}]{\coltrxcount}
 		}
 		% separator
 		\noalign{\vspace{1mm}}
-		\multicolumn{5}{c}{\footnotesize{\textellipsis}}
+		\multicolumn{4}{c}{\footnotesize{\textellipsis}}
 		\\
 		\noalign{\vspace{1mm}}
 		\hline
@@ -677,7 +647,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		\csvreader[
 		head to column names,
 		late after line={\\\hline},
-		filter={\thecsvinputline>25}
+		filter={\thecsvinputline>23}
 		]{\DataDir/rq10-best-vendors.csv}{
 			legal_name=\colentity,
 			customer_count=\colcustomers,
@@ -685,19 +655,20 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		}{
 			\the\numexpr\thecsvinputline-1
 			& \colentity
-			& \num[group-separator={,}]{\colcustomers}
-			& \num[group-separator={,}]{\coltrxcount}
+			& \num[group-separator={~}]{\colcustomers}
+			& \num[group-separator={~}]{\coltrxcount}
 		}
 	\end{tabularx}
 	% @formatter:on
 				\caption{\rqshorttext{performance-best-vendors} Best Vendors}
 				\label{tab:best-vendors}
 				\source
-			\end{table}
+			\end{table}}
 
 			As predicted in the previous section, the best vendor was the organizer, which processed the most orders and customers.
 			The total of~\bfmtnum{89217}~orders was processed by the organizer, which was~\bfmtnump[2]{80.04}~\% of the total orders created and served~\bfmtnum{9831}~unique customers, which was~\bfmtnump[2]{98.22}~\% of all active customers.
 
+			\pagebreak[4]
 			The second-best vendor, out of~\bfmtnum{27}~total, was some \textbf{Seller 05} with a huge difference of about~\bfmtnum{84104} orders less than the Organizer.
 
 			In these results, we did not go after the hourly maximums, as in the previous questions, as the vendors were not time-bound and could have been at multiple places simultaneously.
@@ -711,6 +682,8 @@ Each section focuses on a different aspect of the data analysis trying to answer
 				\end{itemize}
 			\end{keytakeaways}
 		\end{subsubsection}
+
+		\pagebreak[4]
 
 		%%% Performance / Best Places, Vendors, and Products Analysis / Best Products
 		%%% --------------------------------------------------------------
@@ -726,7 +699,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 
 			The results in~\autoref{tab:best-products} below somehow confirm this prediction as the very best product was a returnable cup – \textbf{Kelímek – záloha} and the next several best products were beer beverages:
 
-			\begin{table}[htbp]
+			\begin{table}[H]
 				\centering
 				\small
 				% @formatter:off
@@ -748,7 +721,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		\csvreader[
 		head to column names,
 		late after line={\\\hline},
-		filter={\thecsvinputline<9}
+		filter={\thecsvinputline<12}
 		]{\DataDir/rq11-best-products.csv}{
 			product_name=\colproduct,
 			customer_count=\colcustomers,
@@ -757,9 +730,9 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		}{
 			\the\numexpr\thecsvinputline-1
 			& \colproduct
-			& \num[group-separator={,}]{\colsalescount}
-			& \num[group-separator={,}]{\colrefundcount}
-			& \num[group-separator={,}]{\colcustomers}
+			& \num[group-separator={~}]{\colsalescount}
+			& \num[group-separator={~}]{\colrefundcount}
+			& \num[group-separator={~}]{\colcustomers}
 		}
 		% separator
 		\noalign{\vspace{1mm}}
@@ -771,7 +744,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		\csvreader[
 		head to column names,
 		late after line={\\\hline},
-		filter={\thecsvinputline>326}
+		filter={\thecsvinputline>324}
 		]{\DataDir/rq11-best-products.csv}{
 			product_name=\colproduct,
 			customer_count=\colcustomers,
@@ -780,9 +753,9 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		}{
 			\the\numexpr\thecsvinputline-1
 			& \colproduct
-			& \num[group-separator={,}]{\colsalescount}
-			& \num[group-separator={,}]{\colrefundcount}
-			& \num[group-separator={,}]{\colcustomers}
+			& \num[group-separator={~}]{\colsalescount}
+			& \num[group-separator={~}]{\colrefundcount}
+			& \num[group-separator={~}]{\colcustomers}
 		}
 	\end{tabularx}
 	% @formatter:on
@@ -792,9 +765,9 @@ Each section focuses on a different aspect of the data analysis trying to answer
 			\end{table}
 
 			As there were more than \bfmtnum{300}~unique products sold during the event, a better visualization of the results would be a bar chart showing the best product categories instead of individual products.
-			This can be seen in~\autoref{chart:best-product-category} below.
+			This can be seen in~\autoref{chart:best-product-category}.
 
-			\begin{chart}[h]
+			\begin{chart}[H]
 				\centering
 				\includegraphics[width=\textwidth]{\ChartsDir/rq11-best-product-category}
 				\caption{\rqshorttext{performance-best-products} Best Products by Category}
@@ -855,9 +828,9 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		\makerqbox{beverage-returnable-cups}
 
 		To chart out the results, it was essential to analyze the actual contents of the transactions rather than merely identifying transactions including returnable cups,
-		as a single transaction may encompass many products and hence multiple returnable cups\footnote{The cups were sold for a price of~\fmtczk{70} with a~\fmtnum{21}~\% VAT}.
+		as a single transaction may encompass many products and hence multiple returnable cups\footnote{The cups were sold for a price of~\fmtczk{70} with a~\fmtnum{21}~\% VAT.}.
 
-		Upon calculating the total number of issued and returned cups, the results depicted in~\autoref{chart:returnable-cups}~below illustrate the distribution of returnable cups throughout the event.
+		Upon calculating the total number of issued and returned cups, the results depicted in~\autoref{chart:returnable-cups} illustrate the distribution of returnable cups throughout the event.
 
 		\begin{chart}[h]
 			\centering
@@ -895,27 +868,33 @@ Each section focuses on a different aspect of the data analysis trying to answer
 
 		\makerqbox{beverage-popular-category}
 
-		These results are shown in~\autoref{tab:beverage-total-consumption} below and show a total of~\bfmtnum{}~liters of beverages consumed during the event, with the beer category being the most consumed.
+		These results are shown in~\autoref{tab:beverage-total-consumption} below and show a total of~\bfmtnump[2]{35843.79}~liters of beverages consumed during the event, with the beer category being the most consumed.
 
-		\begin{table}[htbp]
+		\begin{table}[H]
 			\centering
 			% @formatter:off
-	\begin{tabularx}{\textwidth}{|>{\columncolor{unicorn_blue!5}}X|>{\columncolor{unicorn_blue!5}}r|>{\columncolor{unicorn_blue!5}}r|}
+	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{0.5cm}
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}X
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}r
+		|>{\columncolor{unicorn_blue!5}\raggedright\arraybackslash}r|
+	r}
 		\hline
 		\rowcolor{unicorn_blue}
-		\textbf{\color{white}Beverage Category}
+		& \textbf{\color{white}Beverage Category}
 		& \textbf{\color{white}Volume}
 		& \textbf{\color{white}Ratio}
 		\\
 		\hline
 		\hline
-		\colorindicator{1}Beer & \fmtnump[2]{25883.3}~l & \fmtnump[2]{72.21}~\% \\
-		\colorindicator{2}Non-alcoholic & \fmtnump[2]{7832.47}~l & \fmtnump[2]{21.85}~\% \\
-		\colorindicator{3}Spirits / other alcohol & \fmtnump[2]{1255.44}~l & \fmtnump[2]{3.50}~\% \\
-		\colorindicator{4}Wine & \fmtnum{872.58}~l & \fmtnump[2]{2.44}~\% \\
+		\colorindicator{1} & Beer & \fmtnump[2]{25883.3}~l & \fmtnump[2]{72.21}~\% \\\hline
+		\colorindicator{2} & Non-alcoholic & \fmtnump[2]{7832.47}~l & \fmtnump[2]{21.85}~\% \\\hline
+		\colorindicator{3} & Spirits / other alcohol & \fmtnump[2]{1255.44}~l & \fmtnump[2]{3.50}~\% \\\hline
+		\colorindicator{4} & Wine & \fmtnum{872.58}~l & \fmtnump[2]{2.44}~\% \\\hline
+		\noalign{\vspace{1mm}}
 		\hline
-		\textbf{Total volume} & \bfmtnump[2]{35843.79}~l & \fmtnum{100}~\% \\
-		\hline
+		\rowcolor{unicorn_blue!20}
+		\textbf{} & \textbf{Total} & \bfmtnump[2]{35843.79}~l & \fmtnum{100}~\% \\\hline
 	\end{tabularx}
 	% @formatter:on
 			\caption{\rqshorttext{beverage-total-consumption} Total Beverage Consumption}
@@ -988,9 +967,9 @@ Each section focuses on a different aspect of the data analysis trying to answer
 					\hline
 					\rowcolor{unicorn_blue}
 					\textbf{}
-					& \textbf{\color{white}Beer brand}
-					& \textbf{\color{white}Total consumption}
-					& \textbf{\color{white}Units sold}
+					& \textbf{\color{white}Beer Brand}
+					& \textbf{\color{white}Total Consumption}
+					& \textbf{\color{white}Units Sold}
 					\\\hline\hline
 % rows
 					\csvreader[
@@ -1003,8 +982,8 @@ Each section focuses on a different aspect of the data analysis trying to answer
 					}{
 						\the\numexpr\thecsvinputline-1
 						& \colbrand
-						& \num[group-separator={,}]{\colconsumption}~l
-						& \num[group-separator={,}]{\colunits}
+						& \num[group-separator={~}]{\colconsumption}~l
+						& \num[group-separator={~}]{\colunits}
 					}
 					\hline
 					\noalign{\vspace{1mm}}
@@ -1023,7 +1002,8 @@ Each section focuses on a different aspect of the data analysis trying to answer
 			\end{table}
 
 			The data demonstrate a strong preference for Radegast beer among festival attendees.
-			The price may have influenced this, as the Radegast was generally slightly less expensive than, for instance, the Pilsner Urquell\footnote{The price of Radegast ranged from~\fmtczk{60} to~\fmtczk{66} and Pilsner Urquell was priced at~\fmtczk{60} to~\fmtczk{75}, depending on the beer size and its grade}.
+			The price may have influenced this, as the Radegast was generally slightly less expensive than, for instance, the Pilsner Urquell
+			\footnote{The price of Radegast ranged from~\fmtczk{60} to~\fmtczk{66} and Pilsner Urquell was priced at~\fmtczk{60} to~\fmtczk{75}, depending on the beer size and its grade.}.
 
 			\begin{keytakeaways}
 				\begin{itemize}
@@ -1033,7 +1013,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 			\end{keytakeaways}
 		\end{subsubsection}
 
-		\vspace*{\fill}\pagebreak[4] % fill rest due to the foonote placement
+		\pagebreak[4]
 
 		%%% Beverage / Popular Brands Analysis / Non-alcoholic Brands Analysis
 		%%% --------------------------------------------------------------
@@ -1228,7 +1208,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 					\item Highest single-hour registration peak:~\bfmtnum{1873}~visitors (Day 1, 16:00).
 					\item The registration window that was most effective was from 14:00 to 17:00 on all days.
 					\item Day 1 accounted for approximately~\bfmtnump[2]{64.39}~\%~of total arrivals.
-					\item Weekend (Day 3) saw renewed registration activity with the peak of~\bfmtnum{728}~new visitors.
+					\item The weekend saw renewed activity with the peak of~\bfmtnum{728}~new visitors.
 				\end{itemize}
 			\end{keytakeaways}
 		\end{subsubsection}
@@ -1240,15 +1220,15 @@ Each section focuses on a different aspect of the data analysis trying to answer
 
 			\makerqbox{customers-visitor-time}
 
-			The analysis reveals significant variations in how quickly different types of visitors made their first transaction after arrival.
+			The analysis results reveal significant variations in how quickly different types of visitors made their first transaction after arrival.
 			Overall, the average time to the first transaction was~\bfmtnum{79.55}~minutes.
 			However, this number alone is misleading, as evidenced by the much lower median of~\bfmtnum{7}~minutes and mode of~\bfmtnum{3}~minutes.
 
-			\begin{table}[htbp]
+			\begin{table}[H]
 				\centering
-				\small
 				% @formatter:off
 	\begin{tabularx}{\textwidth}{
+		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}p{0.5cm}
 		|>{\columncolor{unicorn_blue!5}\centering\arraybackslash}l
 		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}X
 		|>{\columncolor{unicorn_blue!5}\raggedleft\arraybackslash}X
@@ -1257,46 +1237,50 @@ Each section focuses on a different aspect of the data analysis trying to answer
 	}
 		\hline
 		\rowcolor{unicorn_blue}
-		\textbf{\color{white}Visitor Type}
+		& \textbf{\color{white}Visitor Type}
 		& \textbf{\color{white}Average}
 		& \textbf{\color{white}Mode}
 		& \textbf{\color{white}Median}
 		& \textbf{\color{white}Max}
 		\\
-		\hline
-		\colorindicator{1}Guest
+		\hline\hline
+		\colorindicator{1}
+		& Guest
 		& \textbf{2}~h~\textbf{21}~min
 		& \bfmtnum{0}~min
 		& \bfmtnum{10}~min
 		& \textbf{52}~h~\textbf{56}~min
-		\\
-		\colorindicator{2}Regular
+		\\\hline
+		\colorindicator{2}
+		& Regular
 		& \bfmtnum{44.68}~min
 		& \bfmtnum{0}~min
 		& \bfmtnum{6}~min
 		& \textbf{47}~h~\textbf{32}~min
-		\\
-		\colorindicator{3}Online
+		\\\hline
+		\colorindicator{3}
+		& Online
 		& \bfmtnum{66.85}~min
 		& \bfmtnum{3}~min
 		& \bfmtnum{7}~min
 		& \textbf{44}~h~\textbf{51}~min
-		\\
-		\colorindicator{4}Staff
+		\\\hline
+		\colorindicator{4}
+		& Staff
 		& \textbf{9}~h~\textbf{44}~min
 		& \bfmtnum{7}~min
 		& \textbf{3}~h~\textbf{54}~min
 		& \textbf{58}~h~\textbf{12}~min
-		\\
+		\\\hline
+		\noalign{\vspace{1mm}}
 		\hline
 		\rowcolor{unicorn_blue!20}
-		\textbf{Overall}
+		& \textbf{Overall}
 		& \bfmtnum{79.55}~min
 		& \bfmtnum{3}~min
 		& \bfmtnum{7}~min
 		& \textbf{58}~h~\textbf{12}~min
-		\\
-		\hline
+		\\\hline
 	\end{tabularx}
 	% @formatter:on
 				\caption{\rqshorttext{customers-visitor-time} Time to First Transaction}
@@ -1406,7 +1390,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		The analysis reveals a significant use of mobile apps, with~\bfmtnump[2]{40.69}~\%~of customers using either iOS (\bfmtnump[2]{25.36}~\%) app\footnote{\url{https://apps.apple.com/cz/app/nfctron/id1595341751}}
 		or Android (\bfmtnump[2]{15.33}~\%) app\footnote{\url{https://play.google.com/store/apps/details?id=com.nfctron.mobile}}.
 		The web platform remained the most used way of interaction, used by~\bfmtnump[2]{55.17}~\%~of customers.
-		A small portion (\bfmtnump[2]{4.14}~\%) of customers had no recorded platform preference whatsoever.
+		A small portion of customers had no recorded platform preference whatsoever.
 
 		\begin{keytakeaways}
 			\begin{itemize}
@@ -1427,8 +1411,8 @@ Each section focuses on a different aspect of the data analysis trying to answer
 
 		By segmenting the customers based on their payment data,
 		such as their card-issuing banks
-		\footnote{Card Issuing bank is the bank responsible for issuing payment cards to customers; Issuers manage cardholder accounts, authorize transactions, and handle billing\cite{jc_what_are_card_schemes_and_how_do_they_work}} and used
-		payment card schemes\footnote{Card Scheme, such as Mastercard or Visa, are a payment network provider who processes card payments globally\cite{jc_what_are_card_schemes_and_how_do_they_work}}, the analysis should find interesting
+		\footnote{Card Issuing bank is the bank responsible for issuing payment cards to customers; Issuers manage cardholder accounts, authorize transactions, and handle billing\cite{jc_what_are_card_schemes_and_how_do_they_work}.} and used
+		payment card schemes\footnote{Card Scheme, such as Mastercard or Visa, are a payment network provider who processes card payments globally\cite{jc_what_are_card_schemes_and_how_do_they_work}.}, the analysis should find interesting
 		patterns and answer the defined research questions.
 
 		\makerqbox{customers-bank-cards}
@@ -1559,7 +1543,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 			Identifying frequently purchased product combinations can provide valuable insights into customer preferences and behavior.
 			Two analyses were performed: one with returnable cups and one without, as the high frequency of cup purchases can obscure other meaningful patterns.
 
-			The initial results are shown in~\autoref{chart:common-combos-with-cups}~below and as expected, returnable cups appear prominently in the most popular combinations as it was necessary to purchase them for drinks.
+			The initial results are shown in~\autoref{chart:common-combos-with-cups} and as expected, returnable cups appear prominently in the most popular combinations as it was necessary to purchase them for drinks.
 
 			\begin{chart}[H]
 				\centering
@@ -1577,9 +1561,9 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		\textbf{\color{white}Product A}
 		& \textbf{\color{white}Product B}
 		& \textbf{\color{white}Count}
-		& \textbf{\color{white}\%~of~total }
+		& \textbf{\color{white}\%~of~Total }
 		\\
-		\hline
+		\hline\hline
 		\csvreader[
 		head to column names,
 		late after line={\\\hline},
@@ -1592,7 +1576,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		}{
 			\producta
 			& \productb
-			& \num[group-separator={,}]{\combos}
+			& \num[group-separator={~}]{\combos}
 			& \num[round-precision=2]{\percentage}\%
 		}
 		\hline
@@ -1614,7 +1598,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 				Radegast appeared in~\bfmtnum{20700}~transactions (\bfmtnump[1]{18.6}~\%) and Kelímek~–~záloha in~\bfmtnum{29100}~transactions (\bfmtnump[1]{26.3}~\%).
 			\end{infobox}
 
-			To gain additional insights, the analysis was repeated while excluding returnable cups, as shown in~\autoref{chart:common-combos-without-cups}~below.
+			To gain additional insights, the analysis was repeated while excluding returnable cups, as shown in~\autoref{chart:common-combos-without-cups}.
 
 			\begin{chart}[H]
 				\centering
@@ -1632,12 +1616,12 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		\textbf{\color{white}Product A}
 		& \textbf{\color{white}Product B}
 		& \textbf{\color{white}Count}
-		& \textbf{\color{white}\%~of~total}
+		& \textbf{\color{white}\%~of~Total}
 		\\
-		\hline
+		\hline\hline
 		\csvreader[
 		head to column names,
-		late after line= \\,
+		late after line={\\\hline},
 		filter={\thecsvinputline<9}
 		]{\DataDir/rq29-product-combos-without-returnable.csv}{
 			product1=\producta,
@@ -1647,7 +1631,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 		}{
 			\producta
 			& \productb
-			& \num[group-separator={,}]{\combos}
+			& \num[group-separator={~}]{\combos}
 			& \num[round-precision=2]{\percentage}\%
 		}
 		\hline
@@ -1662,7 +1646,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 				\source
 			\end{chart}
 
-			This revealed the most popular product combination, without returnable cups included, was the \textbf{Absolut Vodka} and \textbf{Redbull} accounting to total of~\bfmtnump[2]{2.48}~\%~of all transactions.
+			This revealed that the most popular combination, without returnable cups, was \textbf{Absolut Vodka} and \textbf{Redbull} found in total of~\bfmtnump[2]{2.48}~\%~of all transactions.
 			There was also a notable high combination of non-beverage products, such as \textbf{Klobása}, \textbf{Hermelín}, or \textbf{Oštěpok} in combination with \textbf{Příloha}, making it a seemingly popular food choice.
 
 			Interpretation of the results could have been done in many ways, for example, using a network graph to visualize the relationships between products.
@@ -1672,7 +1656,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 				\begin{itemize}
 					\item The most common product combination was \textbf{Absolut Vodka} and \textbf{Redbull} (\bfmtnump[2]{2.48}~\%~of all transactions).
 					\item The most common non-beverage combination was \textbf{Klobása} and \textbf{Příloha}.
-					\item Returnable cups were, not surprisingly, a significant part of the most common combinations.
+					\item Cups were a significant part of the most common combinations.
 				\end{itemize}
 			\end{keytakeaways}
 		\end{subsubsection}
@@ -1700,7 +1684,7 @@ Each section focuses on a different aspect of the data analysis trying to answer
 
 	Analysis of cash flow dynamics and income sources revealed important revenue-generating systems and their interactions.
 	Concurrent with this, performance indicators showed the system's ability to control transactional spikes and the ability to handle higher transaction
-	volumes\footnote{This was not surprising, as the system is designed and should be able to handle such transaction volumes in much larger quantities than at this festival}.
+	volumes\footnote{This was not surprising, as the system is designed and should be able to handle such transaction volumes in much larger quantities than at this festival.}.
 
 	Analyzing the customer behavior revealed notable trends in attendance and buying preferences.
 

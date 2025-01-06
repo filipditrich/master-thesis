@@ -56,7 +56,7 @@ While not intended for production deployment, the prototype successfully demonst
 
 		The dashboard was developed exclusively for the local environment, focusing on demonstrating analytical capabilities rather than production readiness.
 
-		\vspace*{\fill}\pagebreak[4] % fill rest due to the foonote placement
+		\pagebreak[4]
 
 		This decision was influenced by several factors:
 		\begin{itemize}
@@ -141,7 +141,7 @@ query_manager.registry.register_query(
 			It, simply by defining a \texttt{default\_data} parameter in the \texttt{QueryDefinition} class, allowed turning on the caching for specific queries which did not need to be reloaded every time.
 
 			The query execution handler shown in the~\autoref{lst:dashboard-implementation-query-cache} below
-			\footnote{The implementation is rather a simplified pseudo-implementation, as the \texttt{execute\_query} method is more complex and contains additional logic for results formatting, database connection retries and error handling},
+			\footnote{The implementation is rather a simplified pseudo-implementation, as the \texttt{execute\_query} method is more complex and contains additional logic for results formatting, database connection retries and error handling.},
 			demonstrates the simple implementation of this caching strategy.
 
 			\begin{listing}[h]
@@ -177,7 +177,7 @@ def execute_query(self, query_name: str, parameters: Dict[str, Any], or_query_de
 			Otherwise, it executes the DB query directly as usual and then saves the result to the cache directory for future use.
 		\end{subsubsection}
 
-		\vspace*{\fill}\pagebreak[4] % fill rest due to the foonote placement
+		\pagebreak[4]
 
 		\begin{subsubsection}{Background Callback Caching}
 			\label{subsubsec:implementation-core-architecture-callback-cache}
@@ -239,7 +239,7 @@ background_callback_manager = dash.DiskcacheManager(
 			\item \textbf{Unified Error Handling}: Instead of implementing error handling in each callback separately, the decorator provided centralized, but simple, error management and logging, reducing code duplication and ensuring
 			consistent error handling across all callbacks.
 			\item \textbf{Flexible Processing Modes}: The system seamlessly supported both synchronous and asynchronous operations through a single interface, automatically managing asyncio event loops
-			\footnote{Asyncio is a Python library to write concurrent code using the async/await syntax\cite{psf_library_asyncio}} when needed.
+			\footnote{Asyncio is a Python library to write concurrent code using the async/await syntax\cite{psf_library_asyncio}.} when needed.
 		\end{itemize}
 
 		The simplified pseudo-implementation
@@ -363,7 +363,7 @@ background_callback_manager = dash.DiskcacheManager(
 			\end{listing}
 
 			However, since our dashboard had several callbacks registered, and many had the same inputs,
-			due to the modular structure of the dashboard\footnote{Each dashboard section had its own callbacks; but many of them shared the same inputs, such as date range filters}, this approach led to cache key collisions.
+			due to the modular structure of the dashboard\footnote{Each dashboard section had its own callbacks; but many of them shared the same inputs, such as date range filters.}, this approach led to cache key collisions.
 
 			\begin{infobox}{Why Cache Key Collisions Occurred}
 				\textbf{Cache Key Collisions} occurred because the~\texttt{DiskcacheManager} used the same cache key for callbacks with identical inputs.
@@ -403,7 +403,7 @@ def create_callback_manager(callback_id):
 			It was caused because each callback had its own DiskcacheManager instance, which created a separate SQLite connection for each callback, and all of them were trying to write to the same SQLite database file.
 
 			A more robust solution, recommended for production setup in Dash documentation – Celery~\&~Redis
-			\footnote{Celery is a distributed task queue that allows for background task execution, while Redis is an in-memory data structure store used as a database, cache, and message broker\cite{reintech_blog_combining_celery_redis_caching_task_queuing}\cite{celery_getting_started_introduction}\cite{redis_latest}},
+			\footnote{Celery is a distributed task queue that allows for background task execution, while Redis is an in-memory data structure store used as a database, cache, and message broker\cite{reintech_blog_combining_celery_redis_caching_task_queuing}\cite{celery_getting_started_introduction}\cite{redis_latest}.},
 			was considered as a solution to this issue.
 
 			Such a solution looked promising since it would allow for each callback to define \texttt{cache\_by} parameter.
@@ -420,7 +420,7 @@ def create_callback_manager(callback_id):
 			Then a simple and dumb, yet effective solution was found, which was to create a separate cache directory for each callback,
 			effectively isolating the SQLite database for each callback, as shown in the~\autoref{lst:dashboard-implementation-cache-final}.
 
-			\vspace*{\fill}\pagebreak[4] % fill rest due to the foonote placement
+			\pagebreak[4]
 
 			\begin{listing}[H]
 				\caption{Final Cache Implementation}
@@ -570,7 +570,7 @@ def create_isolated_cache_manager(callback_id):
 
 		\textbf{Performance Optimization}: SQL queries would require optimization for larger datasets.
 		Implementation of materialized views and better query planning would improve response times with production-scale data.
-		\footnote{Materialized views are essentially database tables that store the results of a query and can be used to improve query performance\cite{tpgdg_current_rules_materializedviews}}
+		\footnote{Materialized views are essentially database tables that store the results of a query and can be used to improve query performance\cite{tpgdg_current_rules_materializedviews}.}
 
 		\textbf{Caching Solution}: A production-grade caching system using Redis would replace the current development-focused implementation.
 		This would improve dashboard responsiveness and enable handling multiple concurrent users.

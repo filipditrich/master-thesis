@@ -81,11 +81,18 @@
     <!-- progress-table-start -->
     <tbody>
         <tr>
+            <td>17065</td>
+            <td>68.3</td>
+            <td>104</td>
+            <td>2025-01-07 12:28 AM</td>
+            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
+        </tr>
+        <tr>
             <td>17051</td>
             <td>68.2</td>
             <td>106</td>
             <td>2025-01-05 11:44 PM</td>
-            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/main/thesis/dist/main.pdf" target="_blank">🟢 View</a></td>
+            <td><a href="https://raw.githubusercontent.com/filipditrich/master-thesis/87fcbd10981f17d2e7106d046fa907bea4951515/thesis/dist/main.pdf" target="_blank">👀 View</a></td>
         </tr>
         <tr>
             <td>17047</td>
